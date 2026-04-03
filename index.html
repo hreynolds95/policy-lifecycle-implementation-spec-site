@@ -30,8 +30,17 @@
         <div class="btns">
           <button class="primary" id="expandAll">Expand All</button>
           <button id="collapseAll">Collapse All</button>
+          <button id="printPage">Print / Save PDF</button>
         </div>
-        <nav aria-label="Section shortcuts">
+        <div class="theme-toggle" id="themeControls" role="group" aria-label="Theme selector">
+          <button class="toggle-btn is-active" data-theme="theme-block" aria-pressed="true">Block</button>
+          <button class="toggle-btn" data-theme="theme-cash" aria-pressed="false">Cash</button>
+          <button class="toggle-btn" data-theme="theme-square" aria-pressed="false">Square</button>
+        </div>
+      </section>
+
+      <section class="mini-nav-wrap">
+        <nav class="mini-nav" aria-label="Section shortcuts">
           <a href="#s1">Scope</a>
           <a href="#s6">Tollgates</a>
           <a href="#s7">Approvals</a>
@@ -256,6 +265,9 @@ procedures_reference_only:
     <script>
       const sections = Array.from(document.querySelectorAll('details'));
       const topLevel = sections.filter((el) => el.parentElement.classList.contains('accordion'));
+      const navLinks = Array.from(document.querySelectorAll('.mini-nav a'));
+      const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
+      const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
 
       document.getElementById('expandAll').addEventListener('click', () => {
         sections.forEach((s) => {
@@ -266,6 +278,75 @@ procedures_reference_only:
       document.getElementById('collapseAll').addEventListener('click', () => {
         topLevel.forEach((s, idx) => {
           s.open = idx === 0;
+        });
+      });
+
+      document.getElementById('printPage').addEventListener('click', () => {
+        window.print();
+      });
+
+      function setActiveNavLink(id) {
+        navLinks.forEach((link) => {
+          const isActive = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('active', isActive);
+          link.setAttribute('aria-current', isActive ? 'true' : 'false');
+        });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          const id = link.getAttribute('href').replace('#', '');
+          const target = document.getElementById(id);
+          if (target) target.open = true;
+        });
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+
+          if (visible[0]) setActiveNavLink(visible[0].target.id);
+        },
+        { root: null, rootMargin: '-35% 0px -55% 0px', threshold: [0.1, 0.25, 0.5] }
+      );
+
+      topLevel.forEach((section) => observer.observe(section));
+      setActiveNavLink('s1');
+
+      function applyTheme(theme) {
+        const selectedTheme = validThemes.includes(theme) ? theme : 'theme-block';
+        document.body.classList.remove(...validThemes);
+        document.body.classList.add(selectedTheme);
+        localStorage.setItem('policySpecTheme', selectedTheme);
+
+        themeButtons.forEach((button) => {
+          const isActive = button.dataset.theme === selectedTheme;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      }
+
+      themeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          applyTheme(button.dataset.theme);
+        });
+      });
+
+      applyTheme(localStorage.getItem('policySpecTheme') || 'theme-block');
+
+      let printOpenStates = [];
+      window.addEventListener('beforeprint', () => {
+        printOpenStates = sections.map((section) => section.open);
+        sections.forEach((section) => {
+          section.open = true;
+        });
+      });
+
+      window.addEventListener('afterprint', () => {
+        sections.forEach((section, idx) => {
+          section.open = printOpenStates[idx];
         });
       });
     </script>

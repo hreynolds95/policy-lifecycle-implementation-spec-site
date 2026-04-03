@@ -34,3 +34,4 @@ Open `index.html` directly in a browser.
   - Created GitHub Pages website with collapsible spec sections.
   - Added tollgate-focused section shortcuts and expand/collapse controls.
   - Added this README with publishing and maintenance guidance.
+  - Added theme toggle (Block/Cash/Square), sticky active-section mini-nav, and print/PDF stylesheet support.

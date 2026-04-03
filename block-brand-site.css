@@ -93,9 +93,9 @@ body {
 
 body {
   background:
-    radial-gradient(circle at 0% 0%, rgba(227, 230, 234, 0.48) 0%, transparent 38%),
-    radial-gradient(circle at 100% 0%, rgba(203, 209, 214, 0.3) 0%, transparent 35%),
-    var(--surface-subtle);
+    radial-gradient(circle at 0% 0%, rgba(71, 78, 87, 0.28) 0%, transparent 35%),
+    radial-gradient(circle at 100% 0%, rgba(82, 91, 104, 0.24) 0%, transparent 32%),
+    #000000;
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -113,6 +113,7 @@ body {
   border-radius: 20px;
   padding: 1.6rem 1.4rem;
   box-shadow: var(--shadow-lg);
+  border: 1px solid #474e57;
   position: relative;
   overflow: hidden;
 }
@@ -225,6 +226,13 @@ nav a {
   background: var(--surface);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
+}
+
+/* Ensure hero remains dark even though it also uses the .card class */
+.hero.card {
+  background: linear-gradient(120deg, #22252a 0%, #32353b 56%, #3f434b 100%);
+  color: var(--color-text-inverse);
+  border-color: #474e57;
 }
 
 .accordion {

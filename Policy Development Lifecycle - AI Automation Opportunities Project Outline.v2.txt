@@ -1,0 +1,784 @@
+﻿Policy Development Lifecycle — AI Automation Opportunities
+Project Outline & Scope Definition
+Prepared: March 18, 2026 Source of Truth: Compliance Policy on Policies (PoP) — Block, Inc. Purpose: Define discrete automation workstreams that can streamline the compliance policy development lifecycle while preserving required human judgment, approval authority, and regulatory integrity.
+Policy Baseline Control: This plan is implemented against the current approved PoP baseline. Any PoP draft comments, bracketed notes, or pending governance updates are treated as proposed changes until formally approved. Automation rules that depend on such items must be configuration-driven and versioned.
+
+
+________________
+
+
+1. Executive Summary
+The Compliance Policy on Policies (PoP) establishes a rigorous four-tollgate lifecycle for developing, reviewing, approving, and publishing compliance documents. While this framework is essential for regulatory integrity, many of its checkpoints involve repetitive, pattern-based validations that are strong candidates for AI-assisted automation.
+
+
+This project outline identifies six automation workstreams mapped directly to PoP requirements. Each workstream defines scope, success criteria, AI capabilities to leverage, what remains human-only, and estimated impact. The goal is not to replace human judgment but to accelerate cycle time, reduce manual error, and create consistent quality baselines so that human reviewers can focus on substantive regulatory and strategic decisions.
+Automation Workstreams at a Glance
+#
+	Workstream
+	Tollgate Alignment
+	Estimated Effort Reduction
+	1
+	Document Owner QC Pre-Checks
+	Tollgate #1–#2 (Intake & Revision)
+	40–60% of owner prep time
+	2
+	Policy Team QC Validation Engine
+	Tollgate #3 (Quality Control)
+	50–70% of QC review time
+	3
+	Change Summary & Version Control Diff Audit Trail
+	Tollgate #2–#4 (Revision through Publication)
+	60–80% of change documentation time
+	4
+	Conflict Detection & Inventory Alignment
+	Tollgate #1 (Intake)
+	30–50% of conflict check time
+	5
+	Style Guide & Drafting Compliance Checker
+	Tollgate #2 (Revision)
+	70–85% of editorial review time
+	6
+	Lifecycle Orchestration & Status Tracking
+	All Tollgates
+	40–60% of coordination overhead
+	
+
+________________
+
+
+2. Current State: Policy Lifecycle Process Map
+2.1 Tollgate Structure (from PoP)
+Tollgate #1 — Intake Phase
+
+
+* Owner initiates new document or off-cycle change request
+* Regulatory requirements and existing documentation assessed
+* Conflict checks with current inventory (Go/Policy, LogicGate SOR)
+* Document strategy decision (new vs. expand existing)
+* Compliance Domain alignment confirmed
+* Template selection
+* Policy Team notification to proceed
+
+
+Tollgate #2 — Revision Phase
+
+
+* Owner/Delegate drafts or revises document using approved template
+* Stakeholder reviewers consulted and feedback documented
+* Redlines and/or summary of changes prepared
+* Roles and responsibilities reviewed with stakeholders
+* Regulatory content updates reviewed with Legal Counsel as needed
+* Supplemental materials (Standards, Procedures) identified
+* Track changes and clean copy submitted to Policy Team
+
+
+Tollgate #3 — Quality Control Phase
+
+
+* Policy Team conducts offline QC review (18-item checklist)
+* Material changes tracked via redline document
+* Owner reviews and approves Policy Team's proposed changes
+* Post-QC checklist (10-item) completed
+* Approval framework compliance verified
+* SOR and Go/Policy alignment confirmed
+
+
+Tollgate #4 — Approvals/Publication Phase
+
+
+* Clean and redline copies submitted to Approvers
+* Approval per Compliance Document Approval Matrix (Tier 1/2/3)
+* Written approvals documented with digital audit trail
+* Policy Team publishes to LogicGate SOR and Go/Policy
+* Communication via monthly updates, leadership reporting, stakeholder notifications
+* Annual review date confirmed and documented
+2.2 Key Roles in the Lifecycle
+* Document Owner — Accountable for full lifecycle; content attestation
+* Delegate — Drafting and stakeholder coordination on behalf of Owner
+* Stakeholder Reviewer — Subject matter input and sign-off
+* Policy Team — Governance, QC, publication, inventory management
+* Compliance Leadership (C-Core / C-Core+1) — Final approval for Tier 3; escalation authority
+* Legal Counsel — Regulatory interpretation and guidance
+* Approver — Per Compliance Document Approval Matrix (Leadership, Committee, Board)
+
+
+________________
+
+
+3. Workstream #1: Document Owner QC Pre-Checks
+3.1 Scope
+Automate the Owner's self-assessment checklist (Appendix B) that must be completed before and after each tollgate. This covers 30+ discrete action items spanning document structure, stakeholder identification, regulatory review, template compliance, and submission readiness.
+3.2 PoP Requirements Addressed
+* Appendix B: Owner Responsibilities Checklist (Prior to Tollgate #1, After Tollgate #1, After Tollgate #2, After Tollgate #3, After Tollgate #4)
+* Section 2.7.2: Creation requirements (template usage, regulatory compliance, existing document identification)
+* Section 2.7.3: Revision/Review requirements (stakeholder feedback, redline maintenance)
+3.3 What Can Be Automated
+Check
+	AI Capability
+	Confidence
+	Existing document coverage check (B-1, B-Prior#1)
+	NLP semantic search across LogicGate/Go/Policy inventory to find overlapping documents
+	High
+	Template compliance verification (B-5, B-After#8)
+	Structural parsing to verify all required sections present and in correct order
+	High
+	Entity and product scope confirmation (B-Prior#6)
+	Entity extraction from document text cross-referenced against known Block entity list
+	Medium
+	Stakeholder reviewer identification (B-Prior#2)
+	Suggest reviewers based on Compliance Domain, document scope, and historical review patterns
+	Medium
+	Regulatory content change detection (B-After#4, #5)
+	Compare cited regulations against regulatory change feeds to flag potential updates needed
+	Medium
+	Supplemental materials linkage (B-After#6)
+	Cross-reference document mentions against inventory to verify all referenced docs exist
+	High
+	Track changes and clean copy readiness (B-After#10)
+	Verify Google Doc has suggestion mode history and a clean version exists
+	High
+	Roles and responsibilities consistency (B-After#1, #2)
+	NLP check that roles mentioned in body match those in R&R section
+	High
+	Record retention requirements present (B-After#3)
+	Section detection and regulatory cross-reference for retention standards
+	High
+	Change explanation readiness (B-After#11)
+	Auto-generate change summary from redline diff for Owner review
+	High
+	3.4 What Remains Human-Only
+* Final determination on whether a new document is needed vs. expanding existing
+* Confirmation of applicable entities and products (AI suggests, human confirms)
+* Substantive regulatory interpretation and legal review decisions
+* Stakeholder relationship management and review coordination
+* Owner attestation to document content
+3.5 Success Criteria
+* Pre-check automation covers ≥80% of Appendix B checklist items with automated or semi-automated validation
+* Owner prep time reduced by 40–60% per document review cycle
+* Zero false negatives on structural/template compliance checks
+* False positive rate on semantic checks (conflict detection, scope coverage) below 15%
+* Full audit trail of automated pre-check results retained in LogicGate
+3.6 AI Capabilities Required
+* Document structure parsing (Google Docs API + custom parser)
+* Semantic similarity search (embeddings-based search across document inventory)
+* Named entity recognition (Block entities, regulatory bodies, product names)
+* Diff generation and summarization (LLM-powered change analysis)
+* Checklist orchestration engine (workflow automation with pass/fail/review states)
+3.7 Implementation Approach
+Phase 1: Template compliance and structural checks (rules-based, high confidence) Phase 2: Semantic inventory search and conflict pre-screening (embeddings + LLM) Phase 3: Regulatory change detection integration and stakeholder suggestion engine
+
+
+________________
+
+
+4. Workstream #2: Compliance Central Team (Policy Team) Review QC Validations
+4.1 Scope
+Automate the Policy Team's Tollgate #3 Quality Control Checklist (Appendix A) — an 18-item review checklist plus a 10-item post-QC checklist. This is the central governance checkpoint before documents proceed to approval.
+4.2 PoP Requirements Addressed
+* Appendix A: Policy Team PoP QC Review (Tollgate #3) — 18 items
+* Appendix A: Policy Team After Tollgate #3 Checklist — 10 items
+* Checklist rules are loaded from governed policy artifacts (PoP and supporting procedures/checklists) and version-controlled in configuration so structural checklist changes do not require code rewrites.
+* Section 2.7.3: Quality Control Review requirement
+* Section 5.3: Tollgate #3 Quality Control Phase
+4.3 What Can Be Automated
+Tollgate #3 QC Review Items:
+
+
+QC Item #
+	Check Description
+	Automation Approach
+	Confidence
+	1
+	Does document meet definition of Policy or Standard?
+	NLP classification against PoP definitions (high-level management intent vs. operational steps)
+	Medium
+	2
+	Existing document coverage review
+	Semantic search across inventory; flag >70% similarity matches
+	High
+	2.b
+	Alignment with existing documents on same topic
+	Cross-document comparison using embeddings and topic modeling
+	Medium
+	3
+	Approved template used
+	Structural fingerprinting against approved templates
+	High
+	4
+	Required sections present per template
+	Section header detection and ordering validation
+	High
+	4.l
+	Links and references accurate and correct
+	Automated link validation (HTTP checks, Go/ link resolution)
+	High
+	5
+	Introduction and Purpose follow template guidance
+	NLP comparison against template guidance patterns
+	Medium
+	6/6.1
+	Scope section includes applicability language and relevant entities
+	Entity extraction + pattern matching for scope language
+	Medium-High
+	7
+	Roles and responsibilities consistent throughout
+	NLP cross-reference: R&R section vs. body mentions
+	High
+	8
+	Regulatory citations include definitions
+	Regex + NLP detection of regulatory references; verify glossary entries exist
+	High
+	9/9.a
+	Record retention guidelines present; regulatory standards included
+	Section detection + regulatory database cross-reference
+	High
+	10
+	Document title consistency with inventory
+	Fuzzy string matching against existing document titles
+	High
+	11
+	Procedures/Standards listed in Policy
+	Cross-reference mentioned documents against inventory
+	High
+	12
+	Required tollgates scheduled/completed
+	Workflow status check against LogicGate lifecycle tracking
+	High
+	13
+	Track changes and clean version provided
+	Google Docs API check for suggestion history + clean copy existence
+	High
+	14
+	Roles confirmed with stakeholders
+	Check for documented stakeholder sign-off evidence
+	Medium
+	15/16
+	Correct written approvals obtained per PoP
+	Cross-reference approval evidence against Compliance Document Approval Matrix tier requirements
+	High
+	17
+	Ownership updates needed
+	Compare document owner fields against LogicGate records
+	High
+	18
+	Style guidelines adherence
+	Automated style guide checker (see Workstream #5)
+	High
+	
+
+Post-Tollgate #3 Items:
+
+
+Post-QC #
+	Check Description
+	Automation Approach
+	Confidence
+	1
+	Owner followed approval framework
+	Approval matrix rule engine validation
+	High
+	2
+	Written approvals obtained and stored on SOR
+	Document/evidence existence check in LogicGate
+	High
+	3
+	Document updated with revision dates, approvals, governance info
+	Parse Document Details and Revision History sections
+	High
+	4
+	SOR updated with version history
+	LogicGate API cross-reference
+	High
+	5
+	Document submitted for publication
+	Workflow status check
+	High
+	6
+	Internal tracking updated
+	Tracking system API check
+	High
+	7
+	Review reported in monthly governance report
+	Report generation automation
+	High
+	8
+	Go/Policy matches SOR
+	Content hash comparison between published versions
+	High
+	9
+	Ownership transfer follow-ups needed
+	Delta detection between current and previous owner fields
+	High
+	10
+	Annual review date confirmed and documented
+	Date field validation in Document Details and SOR
+	High
+	4.4 What Remains Human-Only
+* Final judgment on whether a document truly meets Policy vs. Standard definition (AI flags, human decides)
+* Assessment of whether scope is substantively accurate (not just structurally present)
+* Evaluation of whether roles and responsibilities are appropriate (not just consistent)
+* Determination of whether regulatory citations are correct and current
+* Decision on whether feedback provided to Owner is sufficient
+* Material change approval authority
+* Escalation decisions to Compliance Leadership
+4.5 Success Criteria
+* Automated pre-screening covers 100% of Appendix A checklist items (automated or flagged for human review)
+* Policy Team QC review time reduced by 50–70% per document
+* Automated checks achieve ≥95% accuracy on structural/template items
+* Automated checks achieve ≥85% accuracy on semantic/content items
+* All automated findings include confidence scores and supporting evidence
+* Human reviewer can override any automated finding with documented rationale
+* Full QC audit trail maintained in LogicGate
+4.6 AI Capabilities Required
+* Document structure analysis (section detection, ordering, completeness)
+* Cross-document semantic comparison (embeddings, topic modeling)
+* Link validation engine (HTTP resolution, internal link verification)
+* Named entity recognition (regulatory bodies, Block entities, role titles)
+* Approval matrix rule engine (tier classification + approval requirement mapping)
+* LogicGate API integration (SOR status, version history, ownership records)
+* Confidence scoring framework (each check returns pass/fail/review + confidence %)
+4.7 Implementation Approach
+Phase 1: Structural and template compliance checks (items 3, 4, 4.l, 13 — rules-based) Phase 2: Content quality checks (items 5–11, 18 — NLP + embeddings) Phase 3: Process compliance checks (items 12, 14–17 — workflow integration with LogicGate) Phase 4: Post-QC automation (items 1–10 — SOR sync, reporting, publication workflow)
+
+
+________________
+
+
+5. Workstream #3: Change Summary & Version Control Diff Audit Trail Analysis
+5.1 Scope
+Automate the generation, classification, and audit trail documentation of changes between document versions. This addresses one of the most time-intensive manual processes: creating redlines, change summaries, and maintaining the Revision & Approval History section with accurate descriptions of what changed and why.
+5.2 PoP Requirements Addressed
+* Section 2.7.3: "All feedback and edits should be maintained by the Document Owner or Delegate in Google Docs by retaining a redline version of the Document with all substantive comments and their related resolution retained"
+* Section 2.7.4.3: "Owner must submit redline and clean copies... must submit a Change Summary form as a part of the approval package"
+* Section 2.8: "Owners must document all changes through redlines for audit purposes. For complete rewrites, Owners must summarize all material changes and their rationale"
+* Section 2.11.1: Material vs. Immaterial change classification
+* Tollgate #2: "Document stakeholder feedback and resolution via redlines and/or a summary of changes"
+* Tollgate #4: "Clean and redline copies submitted to required approvers"
+5.3 What Can Be Automated
+Capability
+	Description
+	AI Approach
+	Confidence
+	Automated Diff Generation
+	Compare two document versions and produce a structured diff showing all additions, deletions, and modifications
+	Google Docs version history API + custom diff engine
+	High
+	Material vs. Immaterial Classification
+	Automatically classify each change as Material or Immaterial per PoP definitions
+	LLM classification using PoP definitions as rubric: Material = new requirements, more restrictive requirements, scope expansion, material business impact, risk control/regulatory compliance changes. Immaterial = grammar, formatting, naming conventions, link updates
+	High
+	Change Summary Generation
+	Auto-generate a narrative change summary suitable for approval packages
+	LLM summarization of classified diffs, grouped by section and materiality
+	High
+	Approval Requirement Determination
+	Based on change classification, determine required approval level per Compliance Document Approval Matrix
+	Rule engine: Material changes → reapproval per Matrix; Immaterial changes → Owner notification + Policy Team acknowledgment per PoP process
+	High
+	Comment Resolution Tracking
+	Track all Google Docs comments, their resolution status, and link to corresponding document changes
+	Google Docs API comment extraction + diff correlation
+	High
+	Stakeholder Feedback Audit Trail
+	Document who provided feedback, what changed as a result, and disposition of each comment
+	Comment metadata extraction + change attribution
+	Medium-High
+	Revision History Auto-Population
+	Automatically populate the Revision & Approval History section with accurate change descriptions, approver names, dates, and change types
+	Structured data assembly from diff analysis + approval records
+	High
+	Complete Rewrite Detection
+	Detect when changes are so extensive that a full change summary is more appropriate than redlines
+	Percentage-based change threshold analysis (e.g., >60% content changed)
+	High
+	Regulatory Impact Flagging
+	Flag changes that may affect regulatory compliance or cited regulations
+	NLP detection of regulatory language changes cross-referenced against cited regulations
+	Medium
+	Cross-Document Impact Analysis
+	When a Policy changes, identify Standards and Procedures that may need corresponding updates
+	Dependency graph analysis across document inventory
+	Medium
+	5.4 What Remains Human-Only
+* Final determination on whether a change is truly Material vs. Immaterial (AI classifies, human confirms)
+* Rationale for why changes were made (AI can prompt, but human must provide business justification)
+* Decision on whether a complete rewrite summary is sufficient vs. redlines required
+* Approval decisions themselves (the audit trail is automated, not the approval)
+* Assessment of whether stakeholder feedback was adequately addressed
+* Determination of cross-document impact scope and required updates
+5.5 Success Criteria
+* Automated diff generation covers 100% of document changes with zero missed modifications
+* Material/Immaterial classification accuracy ≥90% (with human override capability)
+* Change summary generation reduces Owner documentation time by 60–80%
+* Auto-generated Revision History entries are accepted without modification ≥75% of the time
+* Complete audit trail from draft through publication maintained automatically
+* All automated classifications include confidence scores and PoP definition references
+* Regulatory impact flags have a false negative rate below 5%
+5.6 AI Capabilities Required
+* Document diff engine (structural + semantic diff, not just text diff)
+* LLM-based change classification (Material vs. Immaterial using PoP definitions as few-shot examples)
+* LLM-based summarization (change narratives, approval package summaries)
+* Google Docs API integration (version history, comments, suggestion mode)
+* Rule engine for approval matrix mapping
+* Dependency graph for cross-document impact analysis
+* Regulatory language detection (NER for regulatory bodies, statutes, rules)
+5.7 Implementation Approach
+Phase 1: Automated diff generation and basic Material/Immaterial classification Phase 2: Change summary generation and Revision History auto-population Phase 3: Comment resolution tracking and stakeholder feedback audit trail Phase 4: Cross-document impact analysis and regulatory impact flagging
+
+
+________________
+
+
+6. Workstream #4: Conflict Detection & Inventory Alignment
+6.1 Scope
+Automate the conflict check process required before creating new documents or making material changes. The PoP requires Owners to review the existing inventory to identify related documents, potential duplications, and conflicts — a process that is currently manual and dependent on institutional knowledge.
+6.2 PoP Requirements Addressed
+* Section 2.4: Conflict Checks with Existing Documents
+* Section 2.7.1: "Owner must avoid contradicting any existing statements or related Documents"
+* Tollgate #1: "Review of the existing Documents and Compliance Domain alignment"
+* Tollgate #1: "Check Go/Policy and the SOR for related existing Documents"
+* Appendix B Prior#1: "Were existing Documents reviewed to confirm that coverage does not already exist?"
+6.3 What Can Be Automated
+Capability
+	Description
+	Confidence
+	Semantic Inventory Search
+	Given a new/revised document's scope and content, find all related documents in the inventory using embeddings-based similarity
+	High
+	Overlap Detection
+	Quantify the degree of topical overlap between a proposed document and existing documents
+	Medium-High
+	Conflict Identification
+	Flag specific statements or requirements that may contradict existing documents
+	Medium
+	Hierarchy Validation
+	Verify that document relationships follow the defined hierarchy (Policy → Standard → Procedure)
+	High
+	Domain Alignment Check
+	Confirm the document is linked to an appropriate Compliance Domain
+	High
+	Subsidiary vs. Block-Level Analysis
+	Determine if a Block-level document already covers the scope, making a subsidiary document potentially redundant
+	Medium
+	Gap Analysis
+	Identify regulatory or topical areas where no document currently exists
+	Medium
+	6.4 What Remains Human-Only
+* Final determination on whether overlap constitutes true duplication or justified coverage
+* Decision on whether to expand existing document vs. create new
+* Business justification for subsidiary-specific documents
+* Compliance Leadership escalation for unresolved duplication disputes
+6.5 Success Criteria
+* Conflict detection identifies ≥90% of substantively related documents in inventory
+* False positive rate on conflict flags below 20%
+* Reduces conflict check time by 30–50%
+* Provides ranked relevance scores for all identified related documents
+6.6 AI Capabilities Required
+* Document embeddings and vector search across full inventory
+* Topic modeling for domain classification
+* Semantic contradiction detection (NLI-based)
+* Document hierarchy graph analysis
+
+
+________________
+
+
+7. Workstream #5: Style Guide & Drafting Compliance Checker
+7.1 Scope
+Automate the 23-item Drafting Checklist (Appendix C) that governs document formatting, language standards, and editorial consistency. These are highly rules-based checks that are ideal for automation.
+7.2 PoP Requirements Addressed
+* Appendix C: Style Guidelines and Checklist (23 items)
+* Section 2.7.2: "Documents are designed in compliance with relevant laws, regulations, rules"
+* Appendix A QC#18: "Does the Document adhere to all guidance listed in the style guidelines?"
+7.3 What Can Be Automated
+Checklist #
+	Check
+	Automation Approach
+	Confidence
+	1
+	Version is listed
+	Field detection in Document Details
+	High
+	2
+	Terms defined properly (not acronyms)
+	NLP: detect definitions that are just acronym expansions
+	High
+	3
+	Definitions section alphabetized
+	Alphabetical order check
+	High
+	4
+	Definitions have periods
+	Punctuation check on definition entries
+	High
+	5
+	All defined terms in glossary, only defined there
+	Cross-reference: body defined terms vs. glossary entries
+	High
+	6/6.a
+	Abbreviation usage after first mention; header exception
+	Track first usage of each abbreviation; verify subsequent uses
+	High
+	7
+	Unused roles removed from R&R section
+	Cross-reference R&R section roles against body mentions
+	High
+	8/8.a
+	Related documents listed in references section; organized by type
+	Cross-reference body mentions vs. references section; check ordering
+	High
+	9
+	Use "must/shall/will" vs. "may" or ambiguous terms
+	Regex + NLP flagging of weak/ambiguous obligation language
+	High
+	10
+	No "ensure," "strive to," or result-promising language
+	Pattern matching for prohibited terms
+	High
+	11
+	Use "and" not "&"
+	Simple text search and replace
+	High
+	12
+	Spell out "percent" not "%"
+	Simple text search
+	High
+	13
+	Defined terms and roles capitalized throughout
+	NLP: track defined terms and verify capitalization in all occurrences
+	High
+	14
+	Section number references align
+	Cross-reference internal section citations against actual numbering
+	High
+	15
+	Consistent spacing, no double periods
+	Regex pattern matching
+	High
+	16
+	No hanging sections (header on one page, body on next)
+	Page break analysis via Google Docs API
+	Medium
+	17
+	Correct font and font size per template
+	Google Docs API formatting inspection
+	High
+	18
+	Charts/illustrations use Block colors
+	Color extraction from embedded objects
+	Medium
+	19
+	All placeholders addressed, highlighting removed
+	Pattern matching for placeholder syntax + highlight detection
+	High
+	20
+	Full editorial review (spelling and grammar)
+	LLM-powered grammar and spell check (beyond Google Docs built-in)
+	High
+	21
+	Table of contents accurate
+	TOC generation comparison against actual headings
+	High
+	22
+	Definitions consistent with Compliance Definitions Glossary
+	Cross-reference against centralized glossary
+	High
+	23
+	Entity names correct
+	Named entity validation against known Block entity list
+	High
+	7.4 What Remains Human-Only
+* Judgment on whether language effectively communicates requirements to intended audience
+* Assessment of plain language readability beyond automated scoring
+* Final editorial judgment on tone and voice
+7.5 Success Criteria
+* Automated coverage of 100% of Appendix C checklist items
+* ≥95% accuracy on rules-based checks (items 1–6, 8, 11–12, 14–15, 17, 19, 21)
+* ≥85% accuracy on NLP-based checks (items 7, 9–10, 13, 20, 22–23)
+* Reduces editorial review time by 70–85%
+* Real-time feedback available during drafting (Google Docs integration)
+7.6 AI Capabilities Required
+* Google Docs API deep integration (formatting, structure, comments)
+* NLP text analysis (obligation language detection, term tracking)
+* Centralized glossary integration
+* LLM-powered grammar and style checking
+* Real-time document monitoring (Google Docs add-on or sidebar)
+7.7 Implementation Approach
+Phase 1: Rules-based checks (items 1–6, 8, 11–12, 14–15, 17, 19, 21) — deterministic, high confidence Phase 2: NLP-based checks (items 7, 9–10, 13, 20, 22–23) — requires training/tuning Phase 3: Real-time Google Docs integration for live feedback during drafting
+
+
+________________
+
+
+8. Workstream #6: Lifecycle Orchestration & Status Tracking
+8.1 Scope
+Automate coordination, notification, and status tracking across all four tollgates for in-scope Documents (Policies and Standards only), reducing manual follow-up and ensuring no lifecycle steps are missed. Procedures are tracked as related references and dependencies but are excluded from Policy Team lifecycle governance workflows. This includes review date tracking, extension/deferment management, and monthly reporting.
+8.2 PoP Requirements Addressed
+* Section 2.7: Document Lifecycle (all tollgates)
+* Section 2.11.1: Scheduled Review/Off-Cycle Changes
+* Section 2.6.2: Policy Review Date Extensions
+* Section 2.9: Policy Publication and Communication
+* Section 2.13: Compliance Document Approval Matrix (frequency tracking)
+* Appendix A Post-QC#6: Internal tracking updated
+* Appendix A Post-QC#7: Monthly governance report
+8.3 What Can Be Automated
+Capability
+	Description
+	Confidence
+	Review Schedule Management
+	Automated tracking of annual review dates with escalating reminders (60-day, 30-day, 14-day, overdue)
+	High
+	Tollgate Progression Tracking
+	Dashboard showing each document's current tollgate status, blockers, and next actions
+	High
+	Extension/Deferment Workflow
+	Automated extension/deferment request routing, approval tracking, and SOR updates using policy-configured thresholds and approver roles (no hard-coded duration/authority logic in code)
+	High
+	Approval Matrix Routing
+	Based on document tier and change type, automatically route to correct approvers per the Compliance Document Approval Matrix
+	High
+	Monthly Governance Reporting
+	Auto-generate monthly report on document inventory status, completed reviews, pending items, overdue documents
+	High
+	Publication Workflow
+	Automated checklist for publication: Go/Policy update, SOR update, Slack notification, stakeholder communication
+	High
+	Communication Automation
+	Templated notifications for new/updated documents via Slack and email
+	High
+	Ownership Transfer Tracking
+	Automated workflow for documenting and executing ownership changes
+	High
+	8.4 What Remains Human-Only
+* Approval decisions at every level
+* Extension justification and leadership approval
+* Escalation judgment for overdue documents
+* Stakeholder awareness campaign design and execution
+* Implementation plan development and tracking
+8.5 Success Criteria
+* Zero missed review dates (100% reminder coverage)
+* Tollgate status visible in real-time for all active in-scope documents (Policies/Standards)
+* Monthly governance report generated automatically with <1 hour of human review
+* Approval routing accuracy of 100% (deterministic rule engine)
+* Reduces coordination overhead by 40–60%
+
+
+________________
+
+
+9. Cross-Cutting Considerations
+9.1 Integration Architecture
+All workstreams should integrate with:
+
+
+* LogicGate — System of record for compliance documents, exceptions, lifecycle management
+* Google Docs — Primary drafting and collaboration platform
+* Go/Policy — Staff-facing publication platform
+* Slack — Communication and notification channel
+* Block Entity Registry — Authoritative source for entity names and hierarchy
+9.2 Confidence Scoring Framework
+Every automated check should return:
+
+
+* Result: Pass / Fail / Needs Review
+* Confidence: High (>90%) / Medium (70–90%) / Low (<70%)
+* Evidence: Specific text, section, or data point supporting the finding
+* PoP Reference: The specific PoP section or checklist item being validated
+* Override Capability: Human reviewer can override with documented rationale
+9.3 Audit Trail Requirements
+Per PoP requirements, all automation must maintain:
+
+
+* Complete record of automated checks performed and results
+* Human override decisions and rationale
+* Timestamp and user attribution for all actions
+* Retention per Block's Data Classification and Handling Policy or applicable regulatory requirements (whichever is longer)
+9.4 Risk Guardrails
+* No autonomous approvals — AI assists and recommends; humans approve
+* No autonomous publication — AI prepares; Policy Team publishes
+* Regulatory content changes always flagged for human review — even if classified as Immaterial by AI
+* Confidence thresholds — Items below Medium confidence automatically routed to human review
+* Model drift monitoring — Regular accuracy audits against human reviewer decisions
+9.5 Phased Rollout Recommendation
+Phase
+	Timeline
+	Workstreams
+	Focus
+	Phase 1: Foundation
+	Months 1–3
+	#5 (Style Guide), #6 (Orchestration)
+	Rules-based automation, highest confidence, immediate value
+	Phase 2: Core QC
+	Months 4–6
+	#1 (Owner Pre-Checks), #2 (Policy Team QC)
+	Structural checks first, then semantic checks
+	Phase 3: Intelligence
+	Months 7–9
+	#3 (Change Summary/Diff), #4 (Conflict Detection)
+	LLM-powered analysis, cross-document intelligence
+	Phase 4: Integration
+	Months 10–12
+	All workstreams
+	End-to-end integration, real-time feedback, reporting
+	
+
+________________
+
+
+10. Success Metrics & KPIs
+Metric
+	Current State (Estimated)
+	Target State
+	Measurement
+	Average document review cycle time
+	8–12 weeks
+	4–6 weeks
+	LogicGate lifecycle tracking
+	Policy Team QC review time per document
+	4–8 hours
+	1–3 hours
+	Time tracking
+	Owner pre-check preparation time
+	6–10 hours
+	2–4 hours
+	Self-reported
+	Change summary documentation time
+	3–5 hours
+	30–60 minutes
+	Time tracking
+	Missed review dates (annual)
+	TBD
+	0
+	LogicGate monitoring
+	QC checklist completion rate
+	Manual/variable
+	100% automated pre-screen
+	Automation logs
+	Monthly governance report preparation
+	4–6 hours
+	<1 hour
+	Time tracking
+	Style guide compliance at first submission
+	~60–70%
+	>90%
+	Automated scoring
+	
+
+________________
+
+
+11. Appendix: PoP Checklist-to-Automation Mapping
+Complete Mapping of All PoP Checklist Items to Workstreams
+Appendix A (Policy Team QC) → Workstream #2 Appendix B (Owner Checklist) → Workstream #1 Appendix C (Style Guide) → Workstream #5 Tollgate Process (Appendix D) → Workstream #6 Change Documentation Requirements → Workstream #3 Conflict Check Requirements → Workstream #4
+Checklist rules are sourced from governed policy artifacts and versioned configuration, rather than hard-coded checklist constants, to support approved policy/procedure updates without code rewrites.
+
+
+Each checklist item has been individually assessed and mapped to the appropriate workstream with a specific automation approach and confidence level, as detailed in Sections 3–8 above.
+
+
+________________
+
+
+
+
+This document serves as the project outline and scope definition for automating the compliance policy development lifecycle. Each workstream should be further developed into detailed technical requirements, user stories, and implementation plans as the project progresses through approval and resourcing.

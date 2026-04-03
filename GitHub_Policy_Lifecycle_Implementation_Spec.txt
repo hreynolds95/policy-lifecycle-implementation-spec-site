@@ -1,0 +1,221 @@
+GitHub Workflow Design Implementation Spec (v1.0)
+
+1. Scope and Assumptions
+- GitHub fully replaces LogicGate as the compliance policy/standard system of record.
+- In-scope governance objects are Policy and Standard only.
+- Procedures are tracked as linked dependencies but are out of Policy Team tollgate governance.
+- Tiered approvals must achieve feature parity with current PoP behavior.
+- All policy logic (approval matrix, extension limits, checklist items) is config-driven and versioned in-repo.
+
+2. Target Architecture
+- GitHub org: dedicated compliance org or locked business-unit org.
+- Primary repo: policy-sor (private, restricted).
+- Optional publication repo: policy-public (read-only mirror for Go/Policy pipeline).
+- CI/CD: GitHub Actions + one custom GitHub App (policy-gatekeeper) for dynamic approval enforcement.
+
+3. Repository Structure
+policy-sor/
+  governance/
+    approval-matrix.yaml
+    lifecycle-rules.yaml
+    checklists/
+      appendix-a-qc.yaml
+      appendix-b-owner.yaml
+      appendix-c-style.yaml
+  documents/
+    <domain>/
+      <doc_id>/
+        document.md
+        metadata.yaml
+        change_summary.md
+        approvals/
+          external/
+          internal/
+        evidence/
+        history/
+  exceptions/
+    <doc_id>/
+      <exception_id>.yaml
+  reports/
+    YYYY-MM/
+      governance-report.md
+      governance-report.csv
+  .github/
+    CODEOWNERS
+    PULL_REQUEST_TEMPLATE.md
+    ISSUE_TEMPLATE/
+      intake.yml
+      extension_deferment.yml
+      exception.yml
+      ownership_transfer.yml
+      retirement.yml
+    workflows/
+      intake.yml
+      precheck.yml
+      qc.yml
+      approval-gate.yml
+      publish.yml
+      reminders.yml
+      extension-deferment.yml
+      exception.yml
+      ownership-transfer.yml
+      retirement.yml
+      monthly-report.yml
+      config-validation.yml
+
+4. Metadata Contract (required)
+Use one metadata.yaml per document:
+
+doc_id: POL-CG-001
+title: Compliance Policy on Policies
+doc_type: policy # policy|standard
+tier: tier2 # tier1|tier2|tier3
+domain: compliance_governance
+owner: github_user_or_team
+delegate: github_user_or_team
+stakeholder_reviewers:
+  - team/legal-counsel
+  - team/compliance-domain-reviewers
+status: tg1_intake # tg1_intake|tg2_revision|tg3_qc|tg4_approval|published|retired
+change_type: scheduled_review # net_new|scheduled_review|offcycle_material|offcycle_immaterial|retirement|ownership_transfer
+effective_date: 2026-06-01
+last_approved_date: 2026-06-06
+next_review_date: 2027-06-06
+sor_visibility: internal # internal|restricted
+related_documents:
+  - STD-CG-004
+procedures_reference_only:
+  - PROC-CG-011
+
+5. Access and Control Model
+- Teams:
+  - policy-authors
+  - policy-team
+  - compliance-leadership
+  - board-committee-liaison
+  - legal-counsel
+- Branch protection on main:
+  - no force push, no deletion
+  - signed commits required
+  - merge queue required
+  - conversations resolved required
+  - required status checks (below) required
+- CODEOWNERS enforces domain ownership at file-path level.
+- Dynamic tier/change approvals enforced by policy-gatekeeper check (not static CODEOWNERS alone).
+
+6. Tollgate Workflow (exact mapping)
+
+Tollgate 1: Intake
+- Trigger: intake issue form.
+- Automation:
+  - validate required fields
+  - semantic duplicate/conflict precheck
+  - scaffold document package + draft PR
+  - set status=tg1_intake
+- Required approvals:
+  - Owner confirmation
+  - Policy Team intake approval
+- Exit criteria:
+  - Intake checks pass
+  - scope/domain/template validated
+  - PR labeled tg1-approved
+
+Tollgate 2: Revision
+- Trigger: canonical PR active for document.
+- Automation:
+  - style/structure/template checks
+  - metadata schema validation
+  - redline/change summary generation
+  - stakeholder evidence presence check
+  - set status=tg2_revision
+- Human responsibilities:
+  - stakeholder review/signoff
+  - legal review where applicable
+- Exit criteria:
+  - required reviewers approve
+  - checks pass
+  - PR labeled ready-for-qc
+
+Tollgate 3: QC
+- Trigger: label run-qc or automatic on ready-for-qc.
+- Automation:
+  - run Policy Team QC checklist engine (config from governance/checklists)
+  - generate machine-readable QC report artifact
+  - block on critical failures
+  - set status=tg3_qc
+- Human responsibilities:
+  - Policy Team final QC judgment
+  - documented override rationale if any
+- Exit criteria:
+  - QC status check policy-qc-pass
+  - Policy Team approval on PR
+
+Tollgate 4: Approval + Publication
+- Trigger: QC passed and PR marked ready-for-approval.
+- Automation:
+  - approval matrix engine resolves required approvers from approval-matrix.yaml
+  - verifies internal approvals + external evidence files where required
+  - verifies audit trail artifacts present
+  - set status=tg4_approval
+- Merge gating:
+  - blocked until approval-matrix-pass
+- Post-merge:
+  - tag release (<doc_id>-v<semver>)
+  - publish artifact bundle to Go/Policy pipeline
+  - Slack notifications
+  - set status=published
+
+7. Approval Matrix Implementation
+approval-matrix.yaml drives all approval logic by:
+- doc_type
+- tier
+- change_type
+- required internal teams/users
+- whether external committee/board evidence is mandatory
+- required attestation flags
+- escalation paths
+
+All merges are blocked unless matrix conditions pass via policy-gatekeeper.
+
+8. Concurrent Reviewer Model (single-document edits)
+- One canonical PR per document lifecycle event.
+- Multiple reviewers can propose changes simultaneously via:
+  - GitHub suggested changes in review comments
+  - child branches/child PRs targeting the canonical PR branch
+- Owner/Delegate is the single integrator of accepted changes.
+- Merge conflicts resolved in canonical branch before final approval.
+- Optional section-splitting for large policies to reduce line collisions.
+
+9. Required GitHub Actions Checks
+- policy-config-validation
+- policy-metadata-validation
+- policy-structure-style-check
+- policy-reference-link-check
+- policy-diff-summary
+- policy-qc-checklist
+- policy-approval-matrix
+- policy-publication-readiness
+
+All above are required branch checks on main.
+
+10. Lifecycle Operations (feature parity items)
+- Scheduled review reminders (60/30/14/overdue) via reminders.yml.
+- Extension/deferment requests via issue form + approval workflow + metadata update.
+- Exception requests with controls, expiry, renewal reminders.
+- Ownership transfer workflow requiring current owner/new owner/policy team acknowledgments.
+- Retirement workflow with approval gating, access removal signal, archive tagging.
+
+11. Audit, Retention, and Evidence
+- Evidence must be in-repo under approvals/ and evidence/ for each version.
+- Monthly governance report auto-generated under reports/YYYY-MM/.
+- Immutable history controls:
+  - protected default branch
+  - signed commits
+  - no history rewrite
+- Retention rules enforced by policy config and archive workflow.
+
+12. Delivery Plan
+- Phase 1 (4-6 weeks): repo scaffolding, metadata model, intake/revision workflows, base checks.
+- Phase 2 (4-6 weeks): QC engine, approval matrix gatekeeper, publication pipeline.
+- Phase 3 (3-5 weeks): exceptions/extensions/ownership/retirement + monthly reporting.
+- Phase 4 (2-4 weeks): migration, parallel run, cutover, controls signoff.

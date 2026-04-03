@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Policy Lifecycle Implementation Spec</title>
+    <meta
+      name="description"
+      content="Implementation spec for a GitHub-native compliance policy and standard lifecycle with PoP tollgates."
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+      :root {
+        --ink-900: #14202b;
+        --ink-700: #2b3e4e;
+        --ink-500: #567082;
+        --paper: #f7fafb;
+        --card: #ffffff;
+        --line: #d5e2e8;
+        --accent: #007a78;
+        --accent-2: #ff8f3d;
+        --good: #1f8a58;
+        --shadow: 0 12px 26px rgba(20, 32, 43, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background:
+          radial-gradient(circle at 5% 5%, #e5f7f7 0%, transparent 35%),
+          radial-gradient(circle at 95% 0%, #ffe9d8 0%, transparent 32%),
+          var(--paper);
+        color: var(--ink-900);
+        font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+      }
+
+      .wrap {
+        width: min(1100px, 92vw);
+        margin: 2.2rem auto 3rem;
+      }
+
+      .hero {
+        background: linear-gradient(120deg, #0f3a4a 0%, #186665 52%, #1f8a58 100%);
+        color: #ecfffa;
+        border-radius: 20px;
+        padding: 1.6rem 1.4rem;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: auto -30px -45px auto;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      h1,
+      h2,
+      h3,
+      summary {
+        font-family: 'Space Grotesk', 'Avenir Next', sans-serif;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.55rem, 2.4vw, 2.1rem);
+        line-height: 1.2;
+      }
+
+      .subtitle {
+        margin: 0.6rem 0 0;
+        color: #d9fff3;
+        font-size: 0.98rem;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .badge {
+        font-size: 0.78rem;
+        letter-spacing: 0.01em;
+        padding: 0.33rem 0.58rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .toolbar {
+        margin: 1rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .btns {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 10px;
+        padding: 0.5rem 0.8rem;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--ink-700);
+      }
+
+      button.primary {
+        border-color: transparent;
+        background: var(--accent);
+        color: #f2fffe;
+      }
+
+      nav {
+        display: flex;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--ink-700);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.32rem 0.56rem;
+        font-size: 0.79rem;
+        background: var(--card);
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+      }
+
+      .accordion {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      details {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        overflow: hidden;
+        animation: enter 280ms ease both;
+      }
+
+      @keyframes enter {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      details[open] {
+        border-color: #b6d6df;
+      }
+
+      summary {
+        list-style: none;
+        padding: 0.88rem 1rem;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--ink-900);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .summary-meta {
+        color: var(--ink-500);
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .content {
+        border-top: 1px solid #ecf2f4;
+        padding: 0.9rem 1rem 1rem;
+      }
+
+      .content ul,
+      .content ol {
+        margin: 0.35rem 0 0.25rem 1.15rem;
+      }
+
+      .content li {
+        margin: 0.33rem 0;
+      }
+
+      .content p {
+        margin: 0.25rem 0 0.6rem;
+      }
+
+      code {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 0.84rem;
+        background: #eff5f8;
+        border-radius: 6px;
+        padding: 0.08rem 0.28rem;
+      }
+
+      pre {
+        margin: 0.6rem 0;
+        padding: 0.8rem;
+        border-radius: 10px;
+        overflow-x: auto;
+        background: #12222f;
+        color: #d9f4ff;
+        border: 1px solid #31495a;
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 0.8rem;
+        line-height: 1.45;
+      }
+
+      .pill {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 0.2rem 0.48rem;
+        font-size: 0.74rem;
+        border: 1px solid #b8d6cc;
+        background: #ecf8f2;
+        color: var(--good);
+        margin-right: 0.35rem;
+      }
+
+      .footer-note {
+        margin-top: 1rem;
+        border-left: 3px solid var(--accent-2);
+        padding: 0.55rem 0.8rem;
+        font-size: 0.9rem;
+        color: var(--ink-700);
+        background: #fff7f0;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 760px) {
+        .wrap {
+          width: min(1200px, 95vw);
+          margin-top: 1rem;
+        }
+
+        summary {
+          font-size: 0.95rem;
+          align-items: flex-start;
+        }
+
+        .summary-meta {
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero card">
+        <h1>GitHub Policy Lifecycle Implementation Spec</h1>
+        <p class="subtitle">
+          Compliance policy and standard governance on GitHub with PoP-aligned tollgates,
+          dynamic approval routing, and auditable publication controls.
+        </p>
+        <div class="badge-row">
+          <span class="badge">Source of Record: GitHub</span>
+          <span class="badge">In-Scope: Policies + Standards</span>
+          <span class="badge">Workflow: TG1-TG4</span>
+        </div>
+      </header>
+
+      <section class="toolbar">
+        <div class="btns">
+          <button class="primary" id="expandAll">Expand All</button>
+          <button id="collapseAll">Collapse All</button>
+        </div>
+        <nav aria-label="Section shortcuts">
+          <a href="#s1">Scope</a>
+          <a href="#s6">Tollgates</a>
+          <a href="#s7">Approvals</a>
+          <a href="#s9">Checks</a>
+          <a href="#s12">Delivery</a>
+        </nav>
+      </section>
+
+      <section class="accordion">
+        <details id="s1" open>
+          <summary>1) Scope and Assumptions <span class="summary-meta">governance baseline</span></summary>
+          <div class="content">
+            <ul>
+              <li>GitHub fully replaces LogicGate as the policy/standard system of record.</li>
+              <li>In-scope governance objects are <code>Policy</code> and <code>Standard</code> only.</li>
+              <li>Procedures are linked dependencies, outside Policy Team tollgate governance.</li>
+              <li>Tiered approvals require feature parity with PoP.</li>
+              <li>Approval matrix, extension limits, and checklist logic are config-driven and versioned.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="s2">
+          <summary>2) Target Architecture <span class="summary-meta">platform topology</span></summary>
+          <div class="content">
+            <ul>
+              <li>GitHub org dedicated to compliance governance.</li>
+              <li>Primary private repo: <code>policy-sor</code>.</li>
+              <li>Optional publication mirror: <code>policy-public</code> for Go/Policy delivery.</li>
+              <li>Automation stack: GitHub Actions + custom app <code>policy-gatekeeper</code>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="s3">
+          <summary>3) Repository Structure <span class="summary-meta">canonical layout</span></summary>
+          <div class="content">
+            <pre>policy-sor/
+  governance/
+    approval-matrix.yaml
+    lifecycle-rules.yaml
+    checklists/
+      appendix-a-qc.yaml
+      appendix-b-owner.yaml
+      appendix-c-style.yaml
+  documents/&lt;domain&gt;/&lt;doc_id&gt;/
+    document.md
+    metadata.yaml
+    change_summary.md
+    approvals/{external,internal}
+    evidence/
+    history/
+  exceptions/&lt;doc_id&gt;/&lt;exception_id&gt;.yaml
+  reports/YYYY-MM/
+  .github/{templates,workflows}</pre>
+          </div>
+        </details>
+
+        <details id="s4">
+          <summary>4) Metadata Contract <span class="summary-meta">required schema</span></summary>
+          <div class="content">
+            <p>Each document package must include <code>metadata.yaml</code> with lifecycle-critical fields.</p>
+            <pre>doc_id: POL-CG-001
+doc_type: policy
+tier: tier2
+status: tg1_intake
+change_type: scheduled_review
+owner: github_user_or_team
+delegate: github_user_or_team
+next_review_date: 2027-06-06
+related_documents:
+  - STD-CG-004
+procedures_reference_only:
+  - PROC-CG-011</pre>
+          </div>
+        </details>
+
+        <details id="s5">
+          <summary>5) Access and Control Model <span class="summary-meta">security and merge controls</span></summary>
+          <div class="content">
+            <p>
+              <span class="pill">Required</span> Branch protection + merge queue + signed commits + required checks.
+            </p>
+            <ul>
+              <li>Core teams: <code>policy-authors</code>, <code>policy-team</code>, <code>compliance-leadership</code>, <code>legal-counsel</code>.</li>
+              <li><code>CODEOWNERS</code> enforces domain ownership by path.</li>
+              <li><code>policy-gatekeeper</code> enforces dynamic tier/change approval rules.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="s6">
+          <summary>6) Tollgate Workflow (TG1-TG4) <span class="summary-meta">end-to-end lifecycle</span></summary>
+          <div class="content">
+            <details>
+              <summary>TG1 Intake</summary>
+              <div class="content">
+                <ul>
+                  <li>Triggered via intake issue form.</li>
+                  <li>Runs field validation + duplicate/conflict precheck.</li>
+                  <li>Scaffolds package + draft PR.</li>
+                  <li>Exit: intake checks pass, domain/scope/template validated.</li>
+                </ul>
+              </div>
+            </details>
+            <details>
+              <summary>TG2 Revision</summary>
+              <div class="content">
+                <ul>
+                  <li>Runs template/style/schema checks and stakeholder evidence checks.</li>
+                  <li>Generates redline + change summary artifacts.</li>
+                  <li>Exit: required reviewers approve and checks pass.</li>
+                </ul>
+              </div>
+            </details>
+            <details>
+              <summary>TG3 QC</summary>
+              <div class="content">
+                <ul>
+                  <li>Policy Team checklist engine executes from governed config.</li>
+                  <li>Produces QC report artifact and blocks critical failures.</li>
+                  <li>Exit: <code>policy-qc-pass</code> + Policy Team approval.</li>
+                </ul>
+              </div>
+            </details>
+            <details>
+              <summary>TG4 Approval + Publication</summary>
+              <div class="content">
+                <ul>
+                  <li>Approval matrix resolves required approvers and evidence.</li>
+                  <li>Merge blocked until <code>approval-matrix-pass</code>.</li>
+                  <li>Post-merge: tag release, publish bundle, notify Slack, status <code>published</code>.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </details>
+
+        <details id="s7">
+          <summary>7) Approval Matrix Implementation <span class="summary-meta">tier parity engine</span></summary>
+          <div class="content">
+            <p>
+              <code>approval-matrix.yaml</code> drives approvals by <code>doc_type</code>, <code>tier</code>,
+              <code>change_type</code>, required approvers, external evidence needs, and escalation paths.
+            </p>
+            <p>All merges are blocked unless matrix conditions pass through <code>policy-gatekeeper</code>.</p>
+          </div>
+        </details>
+
+        <details id="s8">
+          <summary>8) Concurrent Reviewer Model <span class="summary-meta">parallel edits safely</span></summary>
+          <div class="content">
+            <ul>
+              <li>One canonical PR per document lifecycle event.</li>
+              <li>Multiple reviewers can suggest edits simultaneously via review suggestions or child PRs.</li>
+              <li>Owner/Delegate acts as single integrator for accepted changes.</li>
+              <li>Conflicts are resolved in canonical branch before final approval.</li>
+              <li>Optional section-splitting reduces edit collisions on large documents.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="s9">
+          <summary>9) Required GitHub Actions Checks <span class="summary-meta">merge gate checklist</span></summary>
+          <div class="content">
+            <ul>
+              <li><code>policy-config-validation</code></li>
+              <li><code>policy-metadata-validation</code></li>
+              <li><code>policy-structure-style-check</code></li>
+              <li><code>policy-reference-link-check</code></li>
+              <li><code>policy-diff-summary</code></li>
+              <li><code>policy-qc-checklist</code></li>
+              <li><code>policy-approval-matrix</code></li>
+              <li><code>policy-publication-readiness</code></li>
+            </ul>
+            <p>All checks are required on protected <code>main</code>.</p>
+          </div>
+        </details>
+
+        <details id="s10">
+          <summary>10) Lifecycle Operations <span class="summary-meta">feature parity workflows</span></summary>
+          <div class="content">
+            <ul>
+              <li>Scheduled reminders: 60/30/14/overdue.</li>
+              <li>Extension/deferment requests with approval and metadata update workflows.</li>
+              <li>Exception intake with controls, expiry, and renewal reminders.</li>
+              <li>Ownership transfer workflow with explicit acknowledgments.</li>
+              <li>Retirement workflow with approval gating and archiving signal.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="s11">
+          <summary>11) Audit, Retention, and Evidence <span class="summary-meta">regulatory traceability</span></summary>
+          <div class="content">
+            <ul>
+              <li>Evidence stored per version in <code>approvals/</code> and <code>evidence/</code>.</li>
+              <li>Monthly governance report generated under <code>reports/YYYY-MM/</code>.</li>
+              <li>Immutable controls: protected branch, signed commits, no history rewrite.</li>
+              <li>Retention enforced from policy config and archival workflows.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details id="s12">
+          <summary>12) Delivery Plan <span class="summary-meta">execution roadmap</span></summary>
+          <div class="content">
+            <ol>
+              <li>Phase 1 (4-6 weeks): repo scaffolding, metadata model, intake/revision workflows, base checks.</li>
+              <li>Phase 2 (4-6 weeks): QC engine, approval matrix gatekeeper, publication pipeline.</li>
+              <li>Phase 3 (3-5 weeks): exceptions/extensions/ownership/retirement + monthly reporting.</li>
+              <li>Phase 4 (2-4 weeks): migration, parallel run, cutover, controls signoff.</li>
+            </ol>
+            <p class="footer-note">
+              This site is static and GitHub Pages-ready. Publish by enabling Pages on this repository and selecting the branch root that contains <code>index.html</code>.
+            </p>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <script>
+      const sections = Array.from(document.querySelectorAll('details'));
+      const topLevel = sections.filter((el) => el.parentElement.classList.contains('accordion'));
+
+      document.getElementById('expandAll').addEventListener('click', () => {
+        sections.forEach((s) => {
+          s.open = true;
+        });
+      });
+
+      document.getElementById('collapseAll').addEventListener('click', () => {
+        topLevel.forEach((s, idx) => {
+          s.open = idx === 0;
+        });
+      });
+    </script>
+  </body>
+</html>

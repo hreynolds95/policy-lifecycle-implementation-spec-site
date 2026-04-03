@@ -50,7 +50,7 @@
       </section>
 
       <section class="accordion">
-        <details id="s1" open>
+        <details id="s1">
           <summary>1) Scope and Assumptions <span class="summary-meta">governance baseline</span></summary>
           <div class="content">
             <ul>
@@ -276,8 +276,8 @@ procedures_reference_only:
       });
 
       document.getElementById('collapseAll').addEventListener('click', () => {
-        topLevel.forEach((s, idx) => {
-          s.open = idx === 0;
+        sections.forEach((s) => {
+          s.open = false;
         });
       });
 
@@ -313,6 +313,9 @@ procedures_reference_only:
       );
 
       topLevel.forEach((section) => observer.observe(section));
+      topLevel.forEach((section) => {
+        section.open = false;
+      });
       setActiveNavLink('s1');
 
       function applyTheme(theme) {

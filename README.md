@@ -4,6 +4,7 @@ Static GitHub Pages site for the compliance policy/standard lifecycle implementa
 
 ## Files
 - `index.html` - Website with collapsible sections aligned to the implementation spec.
+- `block-brand-site.css` - Block-brand theme stylesheet cloned from local MCP token conventions for static rendering.
 - `GitHub_Policy_Lifecycle_Implementation_Spec.txt` - Source text used to structure the site content.
 - `GitHub_Policy_Lifecycle_Implementation_Spec.pdf` - Shareable PDF version.
 

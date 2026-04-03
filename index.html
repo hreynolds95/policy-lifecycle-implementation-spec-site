@@ -26,6 +26,29 @@
         </div>
       </header>
 
+      <section class="status-banner card" aria-label="Implementation status banner">
+        <div class="status-item">
+          <span class="status-label">PoP Baseline</span>
+          <span class="status-value">Compliance Policy on Policies (PoP)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">System of Record</span>
+          <span class="status-value">GitHub (LogicGate replaced)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Scope</span>
+          <span class="status-value">Policies + Standards</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Tiered Approval Parity</span>
+          <span class="status-chip">Required</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Last Updated</span>
+          <span class="status-value">2026-04-03</span>
+        </div>
+      </section>
+
       <section class="toolbar">
         <div class="btns">
           <button class="primary" id="expandAll">Expand All</button>
@@ -49,6 +72,7 @@
         </nav>
       </section>
 
+      <div class="spec-layout">
       <section class="accordion">
         <details id="s1">
           <summary>1) Scope and Assumptions <span class="summary-meta">governance baseline</span></summary>
@@ -260,6 +284,60 @@ procedures_reference_only:
           </div>
         </details>
       </section>
+      <aside class="diagram-panel card" id="diagramView" aria-label="Lifecycle diagram view">
+        <h2>Diagram View</h2>
+        <p class="diagram-subtitle">Tollgates and approval flow mapped to the GitHub implementation.</p>
+
+        <div class="diagram-flow">
+          <div class="diagram-node">
+            <span class="node-title">TG1</span>
+            <span class="node-text">Intake</span>
+          </div>
+          <div class="diagram-arrow" aria-hidden="true">→</div>
+          <div class="diagram-node">
+            <span class="node-title">TG2</span>
+            <span class="node-text">Revision</span>
+          </div>
+          <div class="diagram-arrow" aria-hidden="true">→</div>
+          <div class="diagram-node">
+            <span class="node-title">TG3</span>
+            <span class="node-text">QC</span>
+          </div>
+          <div class="diagram-arrow" aria-hidden="true">→</div>
+          <div class="diagram-node">
+            <span class="node-title">TG4</span>
+            <span class="node-text">Approval + Publish</span>
+          </div>
+        </div>
+
+        <div class="diagram-lanes">
+          <div class="lane">
+            <h3>Owner / Delegate</h3>
+            <ul>
+              <li>Initiate intake request and draft PR.</li>
+              <li>Address stakeholder feedback and evidence.</li>
+              <li>Integrate reviewer suggestions in canonical PR.</li>
+            </ul>
+          </div>
+          <div class="lane">
+            <h3>Policy Team</h3>
+            <ul>
+              <li>Run and review TG3 QC checks.</li>
+              <li>Validate checklist outcomes and exceptions.</li>
+              <li>Confirm publication readiness and records.</li>
+            </ul>
+          </div>
+          <div class="lane">
+            <h3>Approvers</h3>
+            <ul>
+              <li>Approval matrix resolves required approvers.</li>
+              <li>Tier-based approvals gate merge.</li>
+              <li>Post-merge publication + communication triggers.</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      </div>
     </main>
 
     <script>

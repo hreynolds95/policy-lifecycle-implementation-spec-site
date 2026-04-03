@@ -35,3 +35,4 @@ Open `index.html` directly in a browser.
   - Added tollgate-focused section shortcuts and expand/collapse controls.
   - Added this README with publishing and maintenance guidance.
   - Added theme toggle (Block/Cash/Square), sticky active-section mini-nav, and print/PDF stylesheet support.
+  - Added implementation status banner and desktop diagram view alongside the text spec.

@@ -49,6 +49,17 @@
         </div>
       </section>
 
+      <section class="telemetry-banner card" aria-label="Local telemetry insights">
+        <div class="telemetry-copy">
+          <span class="telemetry-title">Usage Insights (Local Only)</span>
+          <span class="telemetry-summary" id="telemetrySummary">No section interactions recorded yet.</span>
+        </div>
+        <div class="telemetry-actions">
+          <button id="exportTelemetry">Export JSON</button>
+          <button id="resetTelemetry">Reset</button>
+        </div>
+      </section>
+
       <section class="toolbar">
         <div class="btns">
           <button class="primary" id="expandAll">Expand All</button>
@@ -346,21 +357,117 @@ procedures_reference_only:
       const navLinks = Array.from(document.querySelectorAll('.mini-nav a'));
       const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
       const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
+      const telemetrySummary = document.getElementById('telemetrySummary');
+      const telemetryKey = 'policySpecTelemetry.v1';
+      let suppressTelemetry = false;
+
+      function getSectionLabel(section) {
+        const summary = section.querySelector(':scope > summary');
+        if (!summary) return section.id;
+        const clone = summary.cloneNode(true);
+        clone.querySelectorAll('.summary-meta').forEach((node) => node.remove());
+        return clone.textContent.trim().replace(/^\d+\)\s*/, '');
+      }
+
+      const sectionLabels = Object.fromEntries(topLevel.map((section) => [section.id, getSectionLabel(section)]));
+
+      function buildEmptyTelemetry() {
+        return {
+          totalOpenEvents: 0,
+          opens: Object.fromEntries(topLevel.map((section) => [section.id, 0])),
+          firstSeenAt: new Date().toISOString(),
+          lastEventAt: null,
+        };
+      }
+
+      function loadTelemetry() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(telemetryKey) || 'null');
+          if (!parsed || typeof parsed !== 'object') return buildEmptyTelemetry();
+          const base = buildEmptyTelemetry();
+          return {
+            ...base,
+            ...parsed,
+            opens: { ...base.opens, ...(parsed.opens || {}) },
+          };
+        } catch {
+          return buildEmptyTelemetry();
+        }
+      }
+
+      function saveTelemetry(data) {
+        localStorage.setItem(telemetryKey, JSON.stringify(data));
+      }
+
+      let telemetry = loadTelemetry();
+
+      function updateTelemetrySummary() {
+        const ranked = Object.entries(telemetry.opens)
+          .filter(([, count]) => count > 0)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 3);
+
+        if (ranked.length === 0) {
+          telemetrySummary.textContent = 'No section interactions recorded yet.';
+          return;
+        }
+
+        const text = ranked
+          .map(([id, count]) => `${sectionLabels[id] || id} (${count})`)
+          .join(', ');
+        telemetrySummary.textContent = `Top opened sections: ${text}`;
+      }
+
+      function recordSectionOpen(id) {
+        if (suppressTelemetry || !telemetry.opens[id] && telemetry.opens[id] !== 0) return;
+        telemetry.opens[id] += 1;
+        telemetry.totalOpenEvents += 1;
+        telemetry.lastEventAt = new Date().toISOString();
+        saveTelemetry(telemetry);
+        updateTelemetrySummary();
+      }
 
       document.getElementById('expandAll').addEventListener('click', () => {
+        suppressTelemetry = true;
         sections.forEach((s) => {
           s.open = true;
         });
+        suppressTelemetry = false;
       });
 
       document.getElementById('collapseAll').addEventListener('click', () => {
+        suppressTelemetry = true;
         sections.forEach((s) => {
           s.open = false;
         });
+        suppressTelemetry = false;
       });
 
       document.getElementById('printPage').addEventListener('click', () => {
         window.print();
+      });
+
+      document.getElementById('exportTelemetry').addEventListener('click', () => {
+        const payload = {
+          exportedAt: new Date().toISOString(),
+          ...telemetry,
+          sectionLabels,
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'policy-spec-telemetry.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById('resetTelemetry').addEventListener('click', () => {
+        telemetry = buildEmptyTelemetry();
+        saveTelemetry(telemetry);
+        updateTelemetrySummary();
       });
 
       function setActiveNavLink(id) {
@@ -393,8 +500,12 @@ procedures_reference_only:
       topLevel.forEach((section) => observer.observe(section));
       topLevel.forEach((section) => {
         section.open = false;
+        section.addEventListener('toggle', () => {
+          if (section.open) recordSectionOpen(section.id);
+        });
       });
       setActiveNavLink('s1');
+      updateTelemetrySummary();
 
       function applyTheme(theme) {
         const selectedTheme = validThemes.includes(theme) ? theme : 'theme-block';
@@ -419,6 +530,7 @@ procedures_reference_only:
 
       let printOpenStates = [];
       window.addEventListener('beforeprint', () => {
+        suppressTelemetry = true;
         printOpenStates = sections.map((section) => section.open);
         sections.forEach((section) => {
           section.open = true;
@@ -429,6 +541,7 @@ procedures_reference_only:
         sections.forEach((section, idx) => {
           section.open = printOpenStates[idx];
         });
+        suppressTelemetry = false;
       });
     </script>
   </body>

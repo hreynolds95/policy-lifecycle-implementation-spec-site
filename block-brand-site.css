@@ -233,6 +233,42 @@ h1 {
   font-weight: 700;
 }
 
+.telemetry-banner {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 0.72rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.telemetry-copy {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.telemetry-title {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #606c7a;
+  font-weight: 700;
+}
+
+.telemetry-summary {
+  font-size: 0.9rem;
+  color: #32353b;
+  font-weight: 500;
+}
+
+.telemetry-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
 .theme-toggle {
   display: flex;
   gap: 0.45rem;
@@ -553,7 +589,8 @@ pre {
   .toolbar,
   .mini-nav-wrap,
   .theme-toggle,
-  .diagram-panel {
+  .diagram-panel,
+  .telemetry-banner {
     display: none !important;
   }
 

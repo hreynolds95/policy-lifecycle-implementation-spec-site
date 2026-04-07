@@ -61,12 +61,21 @@
   --surface: var(--color-background-primary);
   --surface-subtle: var(--color-background-secondary);
   --surface-muted: var(--color-background-tertiary);
-  --ink: var(--color-text-primary);
-  --ink-subtle: #525b68;
+  --ink: #32353b;
+  --ink-subtle: #474e57;
   --line: var(--color-border-primary);
   --page-grad-1: rgba(71, 78, 87, 0.28);
   --page-grad-2: rgba(82, 91, 104, 0.24);
   --page-bg: #000000;
+
+  /* Typography scale */
+  --type-hero: clamp(1.7rem, 2.45vw, 2.3rem);
+  --type-section: clamp(1rem, 1.15vw, 1.08rem);
+  --type-body: 0.98rem;
+  --type-small: 0.84rem;
+  --type-micro: 0.78rem;
+  --leading-tight: 1.22;
+  --leading-body: 1.56;
 }
 
 /* Optional theme accents copied from MCP styles */
@@ -113,6 +122,8 @@ body {
     var(--page-bg);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -178,17 +189,17 @@ summary {
 
 h1 {
   margin: 0;
-  font-size: clamp(1.55rem, 2.4vw, 2.12rem);
-  line-height: 1.2;
+  font-size: var(--type-hero);
+  line-height: var(--leading-tight);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 
 .subtitle {
   margin: 0.6rem 0 0;
-  color: #d7dde3;
-  font-size: 0.98rem;
-  line-height: 1.4;
+  color: #dde3e8;
+  font-size: 1.01rem;
+  line-height: 1.46;
 }
 
 .badge-row {
@@ -199,7 +210,8 @@ h1 {
 }
 
 .badge {
-  font-size: 0.78rem;
+  font-size: var(--type-micro);
+  font-weight: 600;
   letter-spacing: 0.01em;
   padding: 0.33rem 0.58rem;
   border-radius: 999px;
@@ -232,7 +244,7 @@ h1 {
 }
 
 .status-label {
-  font-size: 0.72rem;
+  font-size: var(--type-micro);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #606c7a;
@@ -240,8 +252,8 @@ h1 {
 }
 
 .status-value {
-  font-size: 0.9rem;
-  color: #32353b;
+  font-size: 0.92rem;
+  color: #2f3339;
   font-weight: 600;
 }
 
@@ -276,7 +288,7 @@ h1 {
 }
 
 .telemetry-title {
-  font-size: 0.82rem;
+  font-size: var(--type-small);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #606c7a;
@@ -284,7 +296,7 @@ h1 {
 }
 
 .telemetry-summary {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: #32353b;
   font-weight: 500;
 }
@@ -412,14 +424,14 @@ nav a {
 
 .diagram-panel h2 {
   margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.2;
+  font-size: 1.12rem;
+  line-height: var(--leading-tight);
 }
 
 .diagram-subtitle {
   margin: 0.35rem 0 0.8rem;
-  color: #525b68;
-  font-size: 0.9rem;
+  color: #474e57;
+  font-size: 0.92rem;
 }
 
 .diagram-flow {
@@ -440,7 +452,7 @@ nav a {
 
 .node-title {
   display: inline-block;
-  font-size: 0.74rem;
+  font-size: var(--type-micro);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #525b68;
@@ -449,8 +461,8 @@ nav a {
 
 .node-text {
   display: block;
-  font-size: 0.88rem;
-  color: #32353b;
+  font-size: 0.9rem;
+  color: #2f3339;
   font-weight: 600;
   margin-top: 0.05rem;
 }
@@ -477,8 +489,8 @@ nav a {
 
 .lane h3 {
   margin: 0 0 0.3rem;
-  font-size: 0.84rem;
-  color: #3f434b;
+  font-size: 0.86rem;
+  color: #32353b;
 }
 
 .lane ul {
@@ -488,8 +500,8 @@ nav a {
 
 .lane li {
   margin: 0.2rem 0;
-  font-size: 0.83rem;
-  color: #525b68;
+  font-size: 0.85rem;
+  color: #474e57;
 }
 
 details {
@@ -520,7 +532,8 @@ summary {
   list-style: none;
   padding: 0.88rem 1rem;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--type-section);
+  line-height: 1.34;
   font-weight: 700;
   color: var(--ink);
   display: flex;
@@ -535,13 +548,16 @@ summary::-webkit-details-marker {
 
 .summary-meta {
   color: var(--ink-subtle);
-  font-size: 0.8rem;
+  font-size: var(--type-small);
   font-weight: 500;
 }
 
 .content {
   border-top: 1px solid #ecf2f4;
   padding: 0.9rem 1rem 1rem;
+  color: var(--ink);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
 }
 
 .content ul,
@@ -550,11 +566,11 @@ summary::-webkit-details-marker {
 }
 
 .content li {
-  margin: 0.33rem 0;
+  margin: 0.35rem 0;
 }
 
 .content p {
-  margin: 0.25rem 0 0.6rem;
+  margin: 0.3rem 0 0.65rem;
 }
 
 code {

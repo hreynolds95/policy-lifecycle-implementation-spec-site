@@ -138,10 +138,17 @@ body {
   z-index: 1;
 }
 
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.5rem;
+}
+
 .hero-brand {
   display: inline-flex;
   align-items: center;
-  margin: 0 0 0.85rem;
+  margin: 0;
 }
 
 .hero-logo {
@@ -664,6 +671,11 @@ pre {
   .wrap {
     width: min(1200px, 95vw);
     margin-top: 1rem;
+  }
+
+  .hero-title-row {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
   }
 
   summary {

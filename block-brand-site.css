@@ -64,6 +64,11 @@
   --ink: #32353b;
   --ink-subtle: #474e57;
   --line: var(--color-border-primary);
+  --card-line: #d8e0e5;
+  --card-line-strong: #c6d1d8;
+  --card-header-band: linear-gradient(180deg, #fafcfd 0%, #f4f7f9 100%);
+  --card-shadow: 0 1px 1px rgba(34, 37, 42, 0.05), 0 2px 7px rgba(34, 37, 42, 0.035);
+  --card-shadow-open: 0 1px 1px rgba(34, 37, 42, 0.06), 0 3px 9px rgba(34, 37, 42, 0.045);
   --page-grad-1: rgba(71, 78, 87, 0.28);
   --page-grad-2: rgba(82, 91, 104, 0.24);
   --page-bg: #000000;
@@ -394,10 +399,10 @@ nav a {
 }
 
 .card {
-  border: 1px solid var(--line);
+  border: 1px solid var(--card-line);
   background: var(--surface);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--card-shadow);
 }
 
 /* Ensure hero remains dark even though it also uses the .card class */
@@ -405,6 +410,7 @@ nav a {
   background: linear-gradient(120deg, #22252a 0%, #32353b 56%, #3f434b 100%);
   color: var(--color-text-inverse);
   border-color: #474e57;
+  box-shadow: var(--shadow-lg);
 }
 
 .accordion {
@@ -528,6 +534,16 @@ details[open] {
   border-color: #cbd1d6;
 }
 
+.accordion > details {
+  border-color: var(--card-line);
+  box-shadow: var(--card-shadow);
+}
+
+.accordion > details[open] {
+  border-color: var(--card-line-strong);
+  box-shadow: var(--card-shadow-open);
+}
+
 summary {
   list-style: none;
   padding: 0.88rem 1rem;
@@ -546,6 +562,14 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+.accordion > details > summary {
+  background: var(--card-header-band);
+}
+
+.accordion > details[open] > summary {
+  border-bottom: 1px solid #e5edf2;
+}
+
 .summary-meta {
   color: var(--ink-subtle);
   font-size: var(--type-small);
@@ -558,6 +582,10 @@ summary::-webkit-details-marker {
   color: var(--ink);
   font-size: var(--type-body);
   line-height: var(--leading-body);
+}
+
+.accordion > details > .content {
+  border-top: 0;
 }
 
 .content ul,

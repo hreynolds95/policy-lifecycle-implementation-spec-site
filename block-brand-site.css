@@ -535,13 +535,34 @@ details[open] {
 }
 
 .accordion > details {
+  position: relative;
   border-color: var(--card-line);
   box-shadow: var(--card-shadow);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .accordion > details[open] {
   border-color: var(--card-line-strong);
   box-shadow: var(--card-shadow-open);
+}
+
+.accordion > details::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: transparent;
+  transition: background-color 150ms ease;
+}
+
+.accordion > details[open]::before {
+  background: #cbd1d6;
+}
+
+.accordion > details.is-current[open]::before {
+  background: var(--color-accent);
 }
 
 summary {
@@ -563,11 +584,43 @@ summary::-webkit-details-marker {
 }
 
 .accordion > details > summary {
+  position: relative;
+  padding-left: 2.75rem;
   background: var(--card-header-band);
 }
 
 .accordion > details[open] > summary {
   border-bottom: 1px solid #e5edf2;
+}
+
+.accordion > details > summary::before {
+  content: '+';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 1px solid #b8c5ce;
+  border-radius: 999px;
+  color: #5a6774;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.94rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.accordion > details[open] > summary::before {
+  content: '\2212';
+}
+
+.accordion > details.is-current[open] > summary::before {
+  border-color: transparent;
+  color: var(--color-accent-foreground);
+  background: var(--color-accent);
 }
 
 .summary-meta {

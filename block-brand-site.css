@@ -69,6 +69,9 @@
   --card-header-band: linear-gradient(180deg, #fafcfd 0%, #f4f7f9 100%);
   --card-shadow: 0 1px 1px rgba(34, 37, 42, 0.05), 0 2px 7px rgba(34, 37, 42, 0.035);
   --card-shadow-open: 0 1px 1px rgba(34, 37, 42, 0.06), 0 3px 9px rgba(34, 37, 42, 0.045);
+  --lane-tint-1: #f9fbfc;
+  --lane-tint-2: #f7fafb;
+  --lane-tint-3: #f5f8fa;
   --page-grad-1: rgba(71, 78, 87, 0.28);
   --page-grad-2: rgba(82, 91, 104, 0.24);
   --page-bg: #000000;
@@ -533,12 +536,15 @@ button:hover {
 
 .diagram-panel {
   padding: var(--space-2);
+  border-color: var(--card-line-strong);
 }
 
 .diagram-panel h2 {
   margin: 0;
   font-size: 1.12rem;
   line-height: var(--leading-tight);
+  letter-spacing: 0.01em;
+  color: #32353b;
 }
 
 .diagram-subtitle {
@@ -548,19 +554,21 @@ button:hover {
 }
 
 .diagram-flow {
-  border: 1px solid #dfe5e9;
-  border-radius: 12px;
-  background: #f9fbfc;
+  border: 1px solid var(--card-line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fbfcfd 0%, #f6f9fb 100%);
   padding: var(--space-1);
   display: grid;
   gap: var(--space-1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
 .diagram-node {
-  border: 1px solid #d5dde3;
-  border-radius: 10px;
+  border: 1px solid var(--card-line);
+  border-radius: 12px;
   background: #ffffff;
   padding: var(--space-1);
+  box-shadow: var(--card-shadow);
 }
 
 .node-title {
@@ -568,23 +576,32 @@ button:hover {
   font-size: var(--type-micro);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #525b68;
+  color: #606c7a;
   font-weight: 700;
 }
 
 .node-text {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.89rem;
   color: #2f3339;
   font-weight: 600;
-  margin-top: 0.05rem;
+  margin-top: 0.1rem;
 }
 
 .diagram-arrow {
-  color: #878787;
-  font-size: 1rem;
+  color: #606c7a;
+  font-size: 0.95rem;
   text-align: center;
   line-height: 1;
+  border: 1px solid #d5dde3;
+  border-radius: 999px;
+  background: #ffffff;
+  width: 1.5rem;
+  height: 1.5rem;
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .diagram-lanes {
@@ -594,16 +611,26 @@ button:hover {
 }
 
 .lane {
-  border: 1px solid #e3e6ea;
-  border-radius: 10px;
+  border: 1px solid var(--card-line);
+  border-radius: 12px;
   padding: var(--space-1);
-  background: #ffffff;
+  background: var(--lane-tint-1);
+}
+
+.diagram-lanes .lane:nth-child(2) {
+  background: var(--lane-tint-2);
+}
+
+.diagram-lanes .lane:nth-child(3) {
+  background: var(--lane-tint-3);
 }
 
 .lane h3 {
   margin: 0 0 var(--space-1);
-  font-size: 0.86rem;
-  color: #32353b;
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #525b68;
 }
 
 .lane ul {
@@ -614,7 +641,7 @@ button:hover {
 .lane li {
   margin: 0.18rem 0;
   font-size: 0.85rem;
-  color: #474e57;
+  color: #3f434b;
 }
 
 details {

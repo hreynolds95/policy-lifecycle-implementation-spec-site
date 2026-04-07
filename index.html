@@ -389,6 +389,10 @@ procedures_reference_only:
       const miniNavWrap = document.querySelector('.mini-nav-wrap');
       const miniNavSentinel = document.querySelector('.mini-nav-sentinel');
       const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
+      const surfaceUpdateTargets = Array.from(
+        document.querySelectorAll('.status-banner, .status-legend, .diagram-panel')
+      );
+      const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
       const telemetrySummary = document.getElementById('telemetrySummary');
       const telemetryKey = 'policySpecTelemetry.v1';
@@ -461,9 +465,110 @@ procedures_reference_only:
         updateTelemetrySummary();
       }
 
+      function motionEnabled() {
+        return !reduceMotionQuery.matches;
+      }
+
+      function resetSectionInlineStyles(section) {
+        if (typeof section.getAnimations === 'function') {
+          section.getAnimations().forEach((animation) => animation.cancel());
+        }
+        section.style.height = '';
+        section.style.overflow = '';
+      }
+
+      function animateSurfaceUpdates() {
+        if (!motionEnabled()) return;
+        surfaceUpdateTargets.forEach((panel) => {
+          panel.classList.remove('is-updating');
+          void panel.offsetWidth;
+          panel.classList.add('is-updating');
+        });
+      }
+
+      surfaceUpdateTargets.forEach((panel) => {
+        panel.addEventListener('animationend', () => {
+          panel.classList.remove('is-updating');
+        });
+      });
+
+      function setupSectionToggleAnimation() {
+        if (!motionEnabled()) return;
+
+        const animationState = new WeakMap();
+
+        const finish = (section, state, open) => {
+          section.open = open;
+          state.animation = null;
+          state.isClosing = false;
+          state.isOpening = false;
+          resetSectionInlineStyles(section);
+        };
+
+        const close = (section, state, summary) => {
+          if (state.animation) state.animation.cancel();
+          state.isClosing = true;
+
+          const startHeight = `${section.offsetHeight}px`;
+          const endHeight = `${summary.offsetHeight}px`;
+          section.style.height = startHeight;
+          section.style.overflow = 'hidden';
+
+          state.animation = section.animate(
+            { height: [startHeight, endHeight] },
+            { duration: 170, easing: 'cubic-bezier(0.3, 0, 0.2, 1)' }
+          );
+          state.animation.onfinish = () => finish(section, state, false);
+          state.animation.oncancel = () => {
+            state.isClosing = false;
+          };
+        };
+
+        const open = (section, state) => {
+          if (state.animation) state.animation.cancel();
+          state.isOpening = true;
+
+          const startHeight = `${section.offsetHeight}px`;
+          section.style.height = startHeight;
+          section.style.overflow = 'hidden';
+          section.open = true;
+          const endHeight = `${section.scrollHeight}px`;
+
+          state.animation = section.animate(
+            { height: [startHeight, endHeight] },
+            { duration: 190, easing: 'cubic-bezier(0.2, 0, 0, 1)' }
+          );
+          state.animation.onfinish = () => finish(section, state, true);
+          state.animation.oncancel = () => {
+            state.isOpening = false;
+          };
+        };
+
+        sections.forEach((section) => {
+          const summary = section.querySelector(':scope > summary');
+          if (!summary) return;
+
+          animationState.set(section, { animation: null, isClosing: false, isOpening: false });
+          summary.addEventListener('click', (event) => {
+            event.preventDefault();
+            const state = animationState.get(section);
+            if (!state) return;
+
+            if (state.isClosing || !section.open) {
+              open(section, state);
+            } else {
+              close(section, state, summary);
+            }
+          });
+        });
+      }
+
+      setupSectionToggleAnimation();
+
       document.getElementById('expandAll').addEventListener('click', () => {
         suppressTelemetry = true;
         sections.forEach((s) => {
+          resetSectionInlineStyles(s);
           s.open = true;
         });
         suppressTelemetry = false;
@@ -472,6 +577,7 @@ procedures_reference_only:
       document.getElementById('collapseAll').addEventListener('click', () => {
         suppressTelemetry = true;
         sections.forEach((s) => {
+          resetSectionInlineStyles(s);
           s.open = false;
         });
         suppressTelemetry = false;
@@ -519,7 +625,13 @@ procedures_reference_only:
         link.addEventListener('click', () => {
           const id = link.getAttribute('href').replace('#', '');
           const target = document.getElementById(id);
-          if (target) target.open = true;
+          if (!target || target.open) return;
+          const summary = target.querySelector(':scope > summary');
+          if (summary && motionEnabled()) {
+            summary.click();
+          } else {
+            target.open = true;
+          }
         });
       });
 
@@ -569,7 +681,8 @@ procedures_reference_only:
 
       setupMiniNavStickyState();
 
-      function applyTheme(theme) {
+      function applyTheme(theme, options = {}) {
+        const { animate = true } = options;
         const selectedTheme = validThemes.includes(theme) ? theme : 'theme-block';
         document.body.classList.remove(...validThemes);
         document.body.classList.add(selectedTheme);
@@ -580,27 +693,31 @@ procedures_reference_only:
           button.classList.toggle('is-active', isActive);
           button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
+
+        if (animate) animateSurfaceUpdates();
       }
 
       themeButtons.forEach((button) => {
         button.addEventListener('click', () => {
-          applyTheme(button.dataset.theme);
+          applyTheme(button.dataset.theme, { animate: true });
         });
       });
 
-      applyTheme(localStorage.getItem('policySpecTheme') || 'theme-block');
+      applyTheme(localStorage.getItem('policySpecTheme') || 'theme-block', { animate: false });
 
       let printOpenStates = [];
       window.addEventListener('beforeprint', () => {
         suppressTelemetry = true;
         printOpenStates = sections.map((section) => section.open);
         sections.forEach((section) => {
+          resetSectionInlineStyles(section);
           section.open = true;
         });
       });
 
       window.addEventListener('afterprint', () => {
         sections.forEach((section, idx) => {
+          resetSectionInlineStyles(section);
           section.open = printOpenStates[idx];
         });
         suppressTelemetry = false;

@@ -133,6 +133,25 @@ body {
   overflow: hidden;
 }
 
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-brand {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0.85rem;
+}
+
+.hero-logo {
+  display: block;
+  height: auto;
+  max-width: 118px;
+  filter: brightness(0) invert(1);
+  opacity: 0.94;
+}
+
 .hero::after {
   content: '';
   position: absolute;
@@ -604,6 +623,11 @@ pre {
 
   .hero::after {
     display: none !important;
+  }
+
+  .hero-logo {
+    filter: none !important;
+    opacity: 1 !important;
   }
 
   .badge {

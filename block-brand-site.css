@@ -644,6 +644,27 @@ pre {
   border-radius: 8px;
 }
 
+.site-footer {
+  margin: 1.35rem 0 0.15rem;
+  text-align: center;
+}
+
+.site-credit {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  color: #a7b0b9;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.site-commit {
+  margin: 0.2rem 0 0;
+  font-size: 0.86rem;
+  color: #cbd1d6;
+  font-weight: 500;
+}
+
 @media print {
   body {
     background: #ffffff !important;
@@ -660,8 +681,14 @@ pre {
   .mini-nav-wrap,
   .theme-toggle,
   .diagram-panel,
-  .telemetry-banner {
+  .telemetry-banner,
+  .site-credit {
     display: none !important;
+  }
+
+  .site-commit {
+    color: #000000 !important;
+    margin-top: 0.4rem !important;
   }
 
   .hero,

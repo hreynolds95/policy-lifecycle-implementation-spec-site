@@ -360,6 +360,13 @@ procedures_reference_only:
         </div>
       </aside>
       </div>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+        <p class="site-commit" id="lastCommitStamp" data-build-ts="2026-04-07T19:17:27Z">
+          Last commit: loading...
+        </p>
+      </footer>
     </main>
 
     <script>
@@ -371,6 +378,7 @@ procedures_reference_only:
       const telemetrySummary = document.getElementById('telemetrySummary');
       const telemetryKey = 'policySpecTelemetry.v1';
       let suppressTelemetry = false;
+      const lastCommitStamp = document.getElementById('lastCommitStamp');
 
       function getSectionLabel(section) {
         const summary = section.querySelector(':scope > summary');
@@ -554,6 +562,53 @@ procedures_reference_only:
         });
         suppressTelemetry = false;
       });
+
+      function formatTimestamp(isoString) {
+        const value = new Date(isoString);
+        if (Number.isNaN(value.getTime())) return null;
+        return new Intl.DateTimeFormat('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit',
+          timeZoneName: 'short',
+        }).format(value);
+      }
+
+      function setCommitStamp(prefix, isoString) {
+        if (!lastCommitStamp) return;
+        const formatted = formatTimestamp(isoString);
+        if (!formatted) {
+          lastCommitStamp.textContent = `${prefix} unavailable`;
+          return;
+        }
+        lastCommitStamp.textContent = `${prefix} ${formatted}`;
+      }
+
+      async function loadLastCommitStamp() {
+        if (!lastCommitStamp) return;
+
+        const fallbackIso = lastCommitStamp.dataset.buildTs || new Date().toISOString();
+        try {
+          const response = await fetch(
+            'https://api.github.com/repos/hreynolds95/policy-lifecycle-implementation-spec-site/commits/main',
+            { headers: { Accept: 'application/vnd.github+json' } }
+          );
+          if (!response.ok) throw new Error(`GitHub API ${response.status}`);
+          const data = await response.json();
+          const commit = data && data.commit ? data.commit : null;
+          const committer = commit && commit.committer ? commit.committer : null;
+          const author = commit && commit.author ? commit.author : null;
+          const iso = (committer && committer.date) || (author && author.date);
+          if (!iso) throw new Error('Commit timestamp missing');
+          setCommitStamp('Last commit:', iso);
+        } catch {
+          setCommitStamp('Last commit (build fallback):', fallbackIso);
+        }
+      }
+
+      loadLastCommitStamp();
     </script>
   </body>
 </html>

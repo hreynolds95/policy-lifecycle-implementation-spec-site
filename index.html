@@ -377,7 +377,7 @@ procedures_reference_only:
 
       <footer class="site-footer" aria-label="Site metadata">
         <p class="site-credit">Built by hreynolds</p>
-        <p class="site-commit" id="lastCommitStamp" data-build-ts="2026-04-07T19:17:27Z">
+        <p class="site-commit" id="lastCommitStamp">
           Last commit: loading...
         </p>
       </footer>
@@ -399,6 +399,8 @@ procedures_reference_only:
       const telemetryKey = 'policySpecTelemetry.v1';
       let suppressTelemetry = false;
       const lastCommitStamp = document.getElementById('lastCommitStamp');
+      const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
+        typeof HTMLElement.prototype.animate === 'function';
 
       function getSectionLabel(section) {
         const summary = section.querySelector(':scope > summary');
@@ -494,7 +496,7 @@ procedures_reference_only:
       });
 
       function setupSectionToggleAnimation() {
-        if (!motionEnabled()) return;
+        if (!motionEnabled() || !supportsSectionAnimation) return;
 
         const animationState = new WeakMap();
 
@@ -750,7 +752,10 @@ procedures_reference_only:
       async function loadLastCommitStamp() {
         if (!lastCommitStamp) return;
 
-        const fallbackIso = lastCommitStamp.dataset.buildTs || new Date().toISOString();
+        const lastModified = new Date(document.lastModified);
+        const fallbackIso = Number.isNaN(lastModified.getTime())
+          ? new Date().toISOString()
+          : lastModified.toISOString();
         try {
           const response = await fetch(
             'https://api.github.com/repos/hreynolds95/policy-lifecycle-implementation-spec-site/commits/main',

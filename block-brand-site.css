@@ -971,8 +971,7 @@ pre {
     font-size: 8pt !important;
   }
 
-  .card,
-  details {
+  .card {
     box-shadow: none !important;
     border: 1px solid #c0c0c0 !important;
     page-break-inside: avoid;
@@ -982,6 +981,13 @@ pre {
 
   .accordion > details {
     margin-bottom: 0.12in !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  .accordion > details > summary {
+    break-after: avoid-page;
+    page-break-after: avoid;
   }
 
   .accordion > details::before,

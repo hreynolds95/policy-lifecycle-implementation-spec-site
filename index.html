@@ -96,6 +96,7 @@
         </div>
       </section>
 
+      <div class="mini-nav-sentinel" aria-hidden="true"></div>
       <section class="mini-nav-wrap">
         <nav class="mini-nav" aria-label="Section shortcuts">
           <a href="#s1">Scope</a>
@@ -385,6 +386,8 @@ procedures_reference_only:
       const sections = Array.from(document.querySelectorAll('details'));
       const topLevel = sections.filter((el) => el.parentElement.classList.contains('accordion'));
       const navLinks = Array.from(document.querySelectorAll('.mini-nav a'));
+      const miniNavWrap = document.querySelector('.mini-nav-wrap');
+      const miniNavSentinel = document.querySelector('.mini-nav-sentinel');
       const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
       const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
       const telemetrySummary = document.getElementById('telemetrySummary');
@@ -540,6 +543,31 @@ procedures_reference_only:
       });
       setActiveNavLink('s1');
       updateTelemetrySummary();
+
+      function setupMiniNavStickyState() {
+        if (!miniNavWrap || !miniNavSentinel) return;
+
+        if ('IntersectionObserver' in window) {
+          const stickyObserver = new IntersectionObserver(
+            (entries) => {
+              const entry = entries[0];
+              miniNavWrap.classList.toggle('is-stuck', !entry.isIntersecting);
+            },
+            { root: null, threshold: [0], rootMargin: '-10px 0px 0px 0px' }
+          );
+          stickyObserver.observe(miniNavSentinel);
+          return;
+        }
+
+        const onScroll = () => {
+          const topOffset = parseFloat(getComputedStyle(miniNavWrap).top) || 0;
+          miniNavWrap.classList.toggle('is-stuck', window.scrollY > miniNavWrap.offsetTop - topOffset);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+
+      setupMiniNavStickyState();
 
       function applyTheme(theme) {
         const selectedTheme = validThemes.includes(theme) ? theme : 'theme-block';

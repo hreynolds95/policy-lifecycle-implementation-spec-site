@@ -814,6 +814,86 @@ procedures_reference_only:
         });
       }
 
+      function openTopLevelSection(target, options = {}) {
+        if (!target) return;
+        const { scroll = true, focusSummary = false } = options;
+
+        if (target.classList.contains('is-filtered-out') && sectionSearch) {
+          sectionSearch.value = '';
+          applySectionFilter('');
+        }
+
+        if (!target.open) {
+          const summary = target.querySelector(':scope > summary');
+          if (summary && motionEnabled()) {
+            summary.click();
+          } else {
+            target.open = true;
+          }
+        }
+
+        const summary = target.querySelector(':scope > summary');
+        if (focusSummary && summary && typeof summary.focus === 'function') {
+          summary.focus({ preventScroll: true });
+        }
+
+        if (scroll) {
+          window.requestAnimationFrame(() => {
+            target.scrollIntoView({ behavior: motionEnabled() ? 'smooth' : 'auto', block: 'start' });
+          });
+        }
+      }
+
+      function setupSectionPager() {
+        topLevel.forEach((section, index) => {
+          const content = section.querySelector(':scope > .content');
+          if (!content) return;
+
+          const prior = topLevel[index - 1];
+          const next = topLevel[index + 1];
+          const existing = content.querySelector(':scope > .section-nav');
+          if (existing) existing.remove();
+
+          const nav = document.createElement('div');
+          nav.className = 'section-nav';
+
+          const previousButton = document.createElement('button');
+          previousButton.type = 'button';
+          previousButton.className = 'section-nav-btn';
+          previousButton.textContent = prior ? `Previous: ${sectionLabels[prior.id]}` : 'Previous';
+          previousButton.dataset.targetId = prior ? prior.id : '';
+          previousButton.disabled = !prior;
+
+          const nextButton = document.createElement('button');
+          nextButton.type = 'button';
+          nextButton.className = 'section-nav-btn';
+          nextButton.textContent = next ? `Next: ${sectionLabels[next.id]}` : 'Next';
+          nextButton.dataset.targetId = next ? next.id : '';
+          nextButton.disabled = !next;
+
+          nav.append(previousButton, nextButton);
+          content.append(nav);
+        });
+      }
+
+      function setupSectionPagerEvents() {
+        const accordion = document.querySelector('.accordion');
+        if (!accordion) return;
+
+        accordion.addEventListener('click', (event) => {
+          const button = event.target.closest('.section-nav-btn');
+          if (!button || button.disabled) return;
+
+          const targetId = button.dataset.targetId;
+          if (!targetId) return;
+          const target = document.getElementById(targetId);
+          openTopLevelSection(target, { scroll: true, focusSummary: true });
+        });
+      }
+
+      setupSectionPager();
+      setupSectionPagerEvents();
+
       function setActiveNavLink(id) {
         navLinks.forEach((link) => {
           const isActive = link.getAttribute('href') === `#${id}`;
@@ -830,17 +910,7 @@ procedures_reference_only:
           const id = link.getAttribute('href').replace('#', '');
           const target = document.getElementById(id);
           if (!target) return;
-          if (target.classList.contains('is-filtered-out') && sectionSearch) {
-            sectionSearch.value = '';
-            applySectionFilter('');
-          }
-          if (target.open) return;
-          const summary = target.querySelector(':scope > summary');
-          if (summary && motionEnabled()) {
-            summary.click();
-          } else {
-            target.open = true;
-          }
+          if (!target.open) openTopLevelSection(target, { scroll: false, focusSummary: false });
         });
       });
 

@@ -90,6 +90,17 @@
           <button id="collapseAll">Collapse All</button>
           <button id="printPage">Print / Save PDF</button>
         </div>
+        <div class="search-controls" role="search" aria-label="Search sections">
+          <input
+            id="sectionSearch"
+            type="search"
+            placeholder="Search sections..."
+            autocomplete="off"
+            aria-label="Search section titles and content"
+          />
+          <button id="clearSearch" type="button">Clear</button>
+          <span id="searchMatchCount" class="search-match-count" aria-live="polite">12 sections</span>
+        </div>
         <div class="theme-toggle" id="themeControls" role="group" aria-label="Theme selector">
           <button class="toggle-btn is-active" data-theme="theme-block" aria-pressed="true">Block</button>
           <button class="toggle-btn" data-theme="theme-cash" aria-pressed="false">Cash</button>
@@ -397,8 +408,12 @@ procedures_reference_only:
       const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
       const telemetrySummary = document.getElementById('telemetrySummary');
       const telemetryKey = 'policySpecTelemetry.v1';
+      const readingStateKey = 'policySpecReadingState.v1';
       let suppressTelemetry = false;
       const lastCommitStamp = document.getElementById('lastCommitStamp');
+      const sectionSearch = document.getElementById('sectionSearch');
+      const clearSearch = document.getElementById('clearSearch');
+      const searchMatchCount = document.getElementById('searchMatchCount');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
         typeof HTMLElement.prototype.animate === 'function';
 
@@ -411,6 +426,44 @@ procedures_reference_only:
       }
 
       const sectionLabels = Object.fromEntries(topLevel.map((section) => [section.id, getSectionLabel(section)]));
+      const sectionSearchIndex = topLevel.map((section) => {
+        const summary = section.querySelector(':scope > summary');
+        const content = section.querySelector(':scope > .content');
+        const summaryText = summary ? getSectionLabel(section) : '';
+        const bodyText = content ? content.textContent || '' : '';
+        return {
+          id: section.id,
+          section,
+          haystack: `${summaryText} ${bodyText}`.toLowerCase().replace(/\s+/g, ' ').trim(),
+        };
+      });
+
+      function buildEmptyReadingState() {
+        return {
+          openSectionIds: [],
+          scrollY: 0,
+          lastUpdatedAt: null,
+        };
+      }
+
+      function loadReadingState() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(readingStateKey) || 'null');
+          if (!parsed || typeof parsed !== 'object') return buildEmptyReadingState();
+          return {
+            ...buildEmptyReadingState(),
+            ...parsed,
+            openSectionIds: Array.isArray(parsed.openSectionIds) ? parsed.openSectionIds : [],
+            scrollY: Number.isFinite(parsed.scrollY) ? parsed.scrollY : 0,
+          };
+        } catch {
+          return buildEmptyReadingState();
+        }
+      }
+
+      function saveReadingState(data) {
+        localStorage.setItem(readingStateKey, JSON.stringify(data));
+      }
 
       function buildEmptyTelemetry() {
         return {
@@ -441,6 +494,48 @@ procedures_reference_only:
       }
 
       let telemetry = loadTelemetry();
+      let readingState = loadReadingState();
+      let readingStateSaveTimer = null;
+
+      function persistReadingState() {
+        readingState = {
+          openSectionIds: topLevel.filter((section) => section.open).map((section) => section.id),
+          scrollY: window.scrollY || 0,
+          lastUpdatedAt: new Date().toISOString(),
+        };
+        saveReadingState(readingState);
+      }
+
+      function scheduleReadingStateSave() {
+        if (readingStateSaveTimer) window.clearTimeout(readingStateSaveTimer);
+        readingStateSaveTimer = window.setTimeout(() => {
+          persistReadingState();
+          readingStateSaveTimer = null;
+        }, 140);
+      }
+
+      function updateSearchMatchCount(query, matches) {
+        if (!searchMatchCount) return;
+        if (!query) {
+          searchMatchCount.textContent = `${topLevel.length} sections`;
+          return;
+        }
+        searchMatchCount.textContent = `${matches} match${matches === 1 ? '' : 'es'}`;
+      }
+
+      function applySectionFilter(rawQuery) {
+        const query = (rawQuery || '').toLowerCase().trim();
+        let matches = 0;
+
+        sectionSearchIndex.forEach((entry) => {
+          const isMatch = !query || entry.haystack.includes(query);
+          entry.section.classList.toggle('is-filtered-out', !isMatch);
+          if (isMatch) matches += 1;
+        });
+
+        updateSearchMatchCount(query, matches);
+        if (clearSearch) clearSearch.disabled = !query;
+      }
 
       function updateTelemetrySummary() {
         const ranked = Object.entries(telemetry.opens)
@@ -575,6 +670,7 @@ procedures_reference_only:
           s.open = true;
         });
         suppressTelemetry = false;
+        scheduleReadingStateSave();
       });
 
       document.getElementById('collapseAll').addEventListener('click', () => {
@@ -584,6 +680,7 @@ procedures_reference_only:
           s.open = false;
         });
         suppressTelemetry = false;
+        scheduleReadingStateSave();
       });
 
       document.getElementById('printPage').addEventListener('click', () => {
@@ -613,6 +710,21 @@ procedures_reference_only:
         updateTelemetrySummary();
       });
 
+      if (sectionSearch) {
+        sectionSearch.addEventListener('input', () => {
+          applySectionFilter(sectionSearch.value);
+        });
+      }
+
+      if (clearSearch) {
+        clearSearch.addEventListener('click', () => {
+          if (!sectionSearch) return;
+          sectionSearch.value = '';
+          sectionSearch.focus();
+          applySectionFilter('');
+        });
+      }
+
       function setActiveNavLink(id) {
         navLinks.forEach((link) => {
           const isActive = link.getAttribute('href') === `#${id}`;
@@ -628,7 +740,12 @@ procedures_reference_only:
         link.addEventListener('click', () => {
           const id = link.getAttribute('href').replace('#', '');
           const target = document.getElementById(id);
-          if (!target || target.open) return;
+          if (!target) return;
+          if (target.classList.contains('is-filtered-out') && sectionSearch) {
+            sectionSearch.value = '';
+            applySectionFilter('');
+          }
+          if (target.open) return;
           const summary = target.querySelector(':scope > summary');
           if (summary && motionEnabled()) {
             summary.click();
@@ -651,13 +768,42 @@ procedures_reference_only:
 
       topLevel.forEach((section) => observer.observe(section));
       topLevel.forEach((section) => {
-        section.open = false;
         section.addEventListener('toggle', () => {
           if (section.open) recordSectionOpen(section.id);
+          scheduleReadingStateSave();
         });
       });
-      setActiveNavLink('s1');
+      const savedOpenSet = new Set(
+        (readingState.openSectionIds || []).filter((id) => topLevel.some((section) => section.id === id))
+      );
+      suppressTelemetry = true;
+      topLevel.forEach((section) => {
+        resetSectionInlineStyles(section);
+        section.open = savedOpenSet.has(section.id);
+      });
+      suppressTelemetry = false;
+
+      const initialActiveSection = topLevel.find((section) => section.open);
+      setActiveNavLink(initialActiveSection ? initialActiveSection.id : 's1');
       updateTelemetrySummary();
+      applySectionFilter(sectionSearch ? sectionSearch.value : '');
+
+      if (!window.location.hash && readingState.scrollY > 0) {
+        window.requestAnimationFrame(() => {
+          window.requestAnimationFrame(() => {
+            window.scrollTo({ top: readingState.scrollY, behavior: 'auto' });
+          });
+        });
+      }
+
+      window.addEventListener('scroll', scheduleReadingStateSave, { passive: true });
+      window.addEventListener('beforeunload', () => {
+        if (readingStateSaveTimer) {
+          window.clearTimeout(readingStateSaveTimer);
+          readingStateSaveTimer = null;
+        }
+        persistReadingState();
+      });
 
       function setupMiniNavStickyState() {
         if (!miniNavWrap || !miniNavSentinel) return;

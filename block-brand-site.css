@@ -253,6 +253,10 @@ h1 {
   gap: var(--space-2);
 }
 
+.mobile-quick-actions {
+  display: none;
+}
+
 .status-banner {
   margin-top: var(--space-3);
   margin-bottom: var(--space-2);
@@ -1003,6 +1007,7 @@ pre {
   }
 
   .toolbar,
+  .mobile-quick-actions,
   .mini-nav-sentinel,
   .mini-nav-wrap,
   .theme-toggle,
@@ -1191,6 +1196,10 @@ pre {
     margin-top: 1rem;
   }
 
+  .toolbar {
+    margin-bottom: var(--space-1);
+  }
+
   .search-controls {
     width: 100%;
   }
@@ -1207,6 +1216,52 @@ pre {
 
   .reading-progress-copy {
     flex-wrap: wrap;
+  }
+
+  .mobile-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
+    position: sticky;
+    top: 0.48rem;
+    z-index: 32;
+    margin-bottom: var(--space-1);
+    padding: 0.34rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(250, 252, 253, 0.96);
+    backdrop-filter: saturate(1.2) blur(2px);
+    box-shadow: 0 4px 12px rgba(34, 37, 42, 0.12);
+  }
+
+  .mobile-quick-actions button {
+    min-height: 44px;
+    padding: 0.38rem 0.45rem;
+    font-size: 0.79rem;
+    border-radius: 9px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .mini-nav-wrap {
+    top: 4.05rem;
+  }
+
+  .mini-nav a {
+    min-height: 44px;
+    padding: 0.48rem 0.78rem;
+    font-size: 0.84rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .search-controls input[type='search'] {
+    min-height: 44px;
+  }
+
+  button,
+  .section-nav-btn {
+    min-height: 44px;
   }
 
   .section-nav {

@@ -124,6 +124,13 @@
         </div>
       </section>
 
+      <section class="mobile-quick-actions" aria-label="Quick mobile actions">
+        <button id="mobileExpand" type="button">Expand</button>
+        <button id="mobileCollapse" type="button">Collapse</button>
+        <button id="mobileSearch" type="button">Search</button>
+        <button id="mobileTop" type="button">Top</button>
+      </section>
+
       <div class="mini-nav-sentinel" aria-hidden="true"></div>
       <section class="mini-nav-wrap">
         <nav class="mini-nav" aria-label="Section shortcuts">
@@ -430,6 +437,10 @@ procedures_reference_only:
       const sectionSearch = document.getElementById('sectionSearch');
       const clearSearch = document.getElementById('clearSearch');
       const searchMatchCount = document.getElementById('searchMatchCount');
+      const mobileExpand = document.getElementById('mobileExpand');
+      const mobileCollapse = document.getElementById('mobileCollapse');
+      const mobileSearch = document.getElementById('mobileSearch');
+      const mobileTop = document.getElementById('mobileTop');
       const readingProgressText = document.getElementById('readingProgressText');
       const readingProgressBar = document.getElementById('readingProgressBar');
       const readingProgressTrack = document.getElementById('readingProgressTrack');
@@ -775,6 +786,32 @@ procedures_reference_only:
       document.getElementById('printPage').addEventListener('click', () => {
         window.print();
       });
+
+      if (mobileExpand) {
+        mobileExpand.addEventListener('click', () => {
+          document.getElementById('expandAll').click();
+        });
+      }
+
+      if (mobileCollapse) {
+        mobileCollapse.addEventListener('click', () => {
+          document.getElementById('collapseAll').click();
+        });
+      }
+
+      if (mobileSearch) {
+        mobileSearch.addEventListener('click', () => {
+          if (!sectionSearch) return;
+          sectionSearch.focus();
+          sectionSearch.scrollIntoView({ behavior: motionEnabled() ? 'smooth' : 'auto', block: 'center' });
+        });
+      }
+
+      if (mobileTop) {
+        mobileTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: motionEnabled() ? 'smooth' : 'auto' });
+        });
+      }
 
       document.getElementById('exportTelemetry').addEventListener('click', () => {
         const payload = {

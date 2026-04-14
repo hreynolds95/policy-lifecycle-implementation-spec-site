@@ -53,11 +53,11 @@
         </div>
         <div class="status-item">
           <span class="status-label">Tiered Approval Parity</span>
-          <span class="status-pill is-required">Required</span>
+          <span class="status-pill" data-status-token="required">Required</span>
         </div>
         <div class="status-item">
           <span class="status-label">Implementation Status</span>
-          <span class="status-pill is-in-progress">In Progress</span>
+          <span class="status-pill" data-status-token="in-progress">In Progress</span>
         </div>
         <div class="status-item">
           <span class="status-label">Last Updated</span>
@@ -67,10 +67,7 @@
 
       <section class="status-legend card" aria-label="Status token legend">
         <span class="status-legend-label">Status Tokens</span>
-        <span class="status-pill is-required">Required</span>
-        <span class="status-pill is-in-progress">In Progress</span>
-        <span class="status-pill is-complete">Complete</span>
-        <span class="status-pill is-blocked">Blocked</span>
+        <div id="statusLegendTokens" class="status-legend-tokens"></div>
       </section>
 
       <section class="telemetry-banner card" aria-label="Local telemetry insights">
@@ -212,7 +209,7 @@ procedures_reference_only:
           <summary>5) Access and Control Model <span class="summary-meta">security and merge controls</span></summary>
           <div class="content">
             <p>
-              <span class="status-pill is-required">Required</span> Branch protection + merge queue + signed commits + required checks.
+              <span class="status-pill" data-status-token="required">Required</span> Branch protection + merge queue + signed commits + required checks.
             </p>
             <ul>
               <li>Core teams: <code>policy-authors</code>, <code>policy-team</code>, <code>compliance-leadership</code>, <code>legal-counsel</code>.</li>
@@ -436,8 +433,17 @@ procedures_reference_only:
       const readingProgressText = document.getElementById('readingProgressText');
       const readingProgressBar = document.getElementById('readingProgressBar');
       const readingProgressTrack = document.getElementById('readingProgressTrack');
+      const statusLegendTokens = document.getElementById('statusLegendTokens');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
         typeof HTMLElement.prototype.animate === 'function';
+      const statusTokenConfig = Object.freeze({
+        required: { label: 'Required', modifierClass: 'is-required' },
+        'in-progress': { label: 'In Progress', modifierClass: 'is-in-progress' },
+        complete: { label: 'Complete', modifierClass: 'is-complete' },
+        blocked: { label: 'Blocked', modifierClass: 'is-blocked' },
+      });
+      const statusTokenOrder = ['required', 'in-progress', 'complete', 'blocked'];
+      const statusTokenClasses = Object.values(statusTokenConfig).map((token) => token.modifierClass);
 
       function getSectionLabel(section) {
         const summary = section.querySelector(':scope > summary');
@@ -445,6 +451,44 @@ procedures_reference_only:
         const clone = summary.cloneNode(true);
         clone.querySelectorAll('.summary-meta').forEach((node) => node.remove());
         return clone.textContent.trim().replace(/^\d+\)\s*/, '');
+      }
+
+      function normalizeStatusTokenKey(rawToken) {
+        const key = String(rawToken || '').toLowerCase().trim();
+        return statusTokenConfig[key] ? key : null;
+      }
+
+      function applyStatusTokenElement(element) {
+        const tokenKey = normalizeStatusTokenKey(element.dataset.statusToken);
+        if (!tokenKey) return;
+
+        const token = statusTokenConfig[tokenKey];
+        element.classList.add('status-pill');
+        element.classList.remove(...statusTokenClasses);
+        element.classList.add(token.modifierClass);
+        if (!element.textContent.trim()) {
+          element.textContent = token.label;
+        }
+      }
+
+      function hydrateStatusTokens(scope = document) {
+        scope.querySelectorAll('[data-status-token]').forEach((element) => {
+          applyStatusTokenElement(element);
+        });
+      }
+
+      function renderStatusLegendTokens() {
+        if (!statusLegendTokens) return;
+        statusLegendTokens.textContent = '';
+
+        statusTokenOrder.forEach((tokenKey) => {
+          const token = statusTokenConfig[tokenKey];
+          const pill = document.createElement('span');
+          pill.dataset.statusToken = tokenKey;
+          pill.textContent = token.label;
+          applyStatusTokenElement(pill);
+          statusLegendTokens.appendChild(pill);
+        });
       }
 
       const sectionLabels = Object.fromEntries(topLevel.map((section) => [section.id, getSectionLabel(section)]));
@@ -703,6 +747,8 @@ procedures_reference_only:
       }
 
       setupSectionToggleAnimation();
+      renderStatusLegendTokens();
+      hydrateStatusTokens();
 
       document.getElementById('expandAll').addEventListener('click', () => {
         suppressTelemetry = true;

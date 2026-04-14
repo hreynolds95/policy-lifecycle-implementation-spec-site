@@ -351,6 +351,13 @@ h1 {
   margin-right: var(--space-1);
 }
 
+.status-legend-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  align-items: center;
+}
+
 .status-banner,
 .status-legend,
 .diagram-panel {

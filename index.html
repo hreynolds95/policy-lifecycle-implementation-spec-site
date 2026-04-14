@@ -101,6 +101,25 @@
           <button id="clearSearch" type="button">Clear</button>
           <span id="searchMatchCount" class="search-match-count" aria-live="polite">12 sections</span>
         </div>
+        <div class="reading-progress" aria-label="Section reading progress">
+          <div class="reading-progress-copy">
+            <span class="reading-progress-label">Reading Progress</span>
+            <span id="readingProgressText" class="reading-progress-text" aria-live="polite">
+              0 of 12 sections open (0%)
+            </span>
+          </div>
+          <div
+            id="readingProgressTrack"
+            class="reading-progress-track"
+            role="progressbar"
+            aria-label="Opened sections progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span id="readingProgressBar" class="reading-progress-bar"></span>
+          </div>
+        </div>
         <div class="theme-toggle" id="themeControls" role="group" aria-label="Theme selector">
           <button class="toggle-btn is-active" data-theme="theme-block" aria-pressed="true">Block</button>
           <button class="toggle-btn" data-theme="theme-cash" aria-pressed="false">Cash</button>
@@ -414,6 +433,9 @@ procedures_reference_only:
       const sectionSearch = document.getElementById('sectionSearch');
       const clearSearch = document.getElementById('clearSearch');
       const searchMatchCount = document.getElementById('searchMatchCount');
+      const readingProgressText = document.getElementById('readingProgressText');
+      const readingProgressBar = document.getElementById('readingProgressBar');
+      const readingProgressTrack = document.getElementById('readingProgressTrack');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
         typeof HTMLElement.prototype.animate === 'function';
 
@@ -535,6 +557,25 @@ procedures_reference_only:
 
         updateSearchMatchCount(query, matches);
         if (clearSearch) clearSearch.disabled = !query;
+      }
+
+      function updateReadingProgress() {
+        const total = topLevel.length;
+        const openCount = topLevel.filter((section) => section.open).length;
+        const percent = total === 0 ? 0 : Math.round((openCount / total) * 100);
+
+        if (readingProgressText) {
+          readingProgressText.textContent = `${openCount} of ${total} sections open (${percent}%)`;
+        }
+
+        if (readingProgressBar) {
+          readingProgressBar.style.width = `${percent}%`;
+        }
+
+        if (readingProgressTrack) {
+          readingProgressTrack.setAttribute('aria-valuenow', String(percent));
+          readingProgressTrack.setAttribute('aria-valuetext', `${openCount} of ${total} sections open`);
+        }
       }
 
       function updateTelemetrySummary() {
@@ -670,6 +711,7 @@ procedures_reference_only:
           s.open = true;
         });
         suppressTelemetry = false;
+        updateReadingProgress();
         scheduleReadingStateSave();
       });
 
@@ -680,6 +722,7 @@ procedures_reference_only:
           s.open = false;
         });
         suppressTelemetry = false;
+        updateReadingProgress();
         scheduleReadingStateSave();
       });
 
@@ -770,6 +813,7 @@ procedures_reference_only:
       topLevel.forEach((section) => {
         section.addEventListener('toggle', () => {
           if (section.open) recordSectionOpen(section.id);
+          updateReadingProgress();
           scheduleReadingStateSave();
         });
       });
@@ -786,6 +830,7 @@ procedures_reference_only:
       const initialActiveSection = topLevel.find((section) => section.open);
       setActiveNavLink(initialActiveSection ? initialActiveSection.id : 's1');
       updateTelemetrySummary();
+      updateReadingProgress();
       applySectionFilter(sectionSearch ? sectionSearch.value : '');
 
       if (!window.location.hash && readingState.scrollY > 0) {

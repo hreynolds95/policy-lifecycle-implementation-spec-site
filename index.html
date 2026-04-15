@@ -12,7 +12,8 @@
 
   </head>
   <body class="theme-block">
-    <main class="wrap">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap" id="mainContent" tabindex="-1">
       <header class="hero card">
         <div class="hero-title-row">
           <div class="hero-brand" aria-label="Block">
@@ -73,7 +74,9 @@
       <section class="telemetry-banner card" aria-label="Local telemetry insights">
         <div class="telemetry-copy">
           <span class="telemetry-title">Usage Insights (Local Only)</span>
-          <span class="telemetry-summary" id="telemetrySummary">No section interactions recorded yet.</span>
+          <span class="telemetry-summary" id="telemetrySummary" aria-live="polite">
+            No section interactions recorded yet.
+          </span>
         </div>
         <div class="telemetry-actions">
           <button id="exportTelemetry">Export JSON</button>
@@ -415,6 +418,7 @@ procedures_reference_only:
           Last commit: loading...
         </p>
       </footer>
+      <div id="srAnnouncer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     </main>
 
     <script>
@@ -445,6 +449,7 @@ procedures_reference_only:
       const readingProgressBar = document.getElementById('readingProgressBar');
       const readingProgressTrack = document.getElementById('readingProgressTrack');
       const statusLegendTokens = document.getElementById('statusLegendTokens');
+      const srAnnouncer = document.getElementById('srAnnouncer');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
         typeof HTMLElement.prototype.animate === 'function';
       const statusTokenConfig = Object.freeze({
@@ -573,6 +578,22 @@ procedures_reference_only:
       let telemetry = loadTelemetry();
       let readingState = loadReadingState();
       let readingStateSaveTimer = null;
+      let announceTimer = null;
+
+      function announce(message) {
+        if (!srAnnouncer || !message) return;
+        srAnnouncer.textContent = '';
+        if (announceTimer) window.clearTimeout(announceTimer);
+        announceTimer = window.setTimeout(() => {
+          srAnnouncer.textContent = message;
+        }, 24);
+      }
+
+      function syncSummaryExpandedState(section) {
+        const summary = section.querySelector(':scope > summary');
+        if (!summary) return;
+        summary.setAttribute('aria-expanded', section.open ? 'true' : 'false');
+      }
 
       function persistReadingState() {
         readingState = {
@@ -743,6 +764,11 @@ procedures_reference_only:
           if (!summary) return;
 
           animationState.set(section, { animation: null, isClosing: false, isOpening: false });
+          summary.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            summary.click();
+          });
           summary.addEventListener('click', (event) => {
             event.preventDefault();
             const state = animationState.get(section);
@@ -758,6 +784,12 @@ procedures_reference_only:
       }
 
       setupSectionToggleAnimation();
+      sections.forEach((section) => {
+        syncSummaryExpandedState(section);
+        section.addEventListener('toggle', () => {
+          syncSummaryExpandedState(section);
+        });
+      });
       renderStatusLegendTokens();
       hydrateStatusTokens();
 
@@ -770,6 +802,7 @@ procedures_reference_only:
         suppressTelemetry = false;
         updateReadingProgress();
         scheduleReadingStateSave();
+        announce('Expanded all sections');
       });
 
       document.getElementById('collapseAll').addEventListener('click', () => {
@@ -781,6 +814,7 @@ procedures_reference_only:
         suppressTelemetry = false;
         updateReadingProgress();
         scheduleReadingStateSave();
+        announce('Collapsed all sections');
       });
 
       document.getElementById('printPage').addEventListener('click', () => {
@@ -834,6 +868,7 @@ procedures_reference_only:
         telemetry = buildEmptyTelemetry();
         saveTelemetry(telemetry);
         updateTelemetrySummary();
+        announce('Telemetry counters reset');
       });
 
       if (sectionSearch) {
@@ -848,12 +883,13 @@ procedures_reference_only:
           sectionSearch.value = '';
           sectionSearch.focus();
           applySectionFilter('');
+          announce('Search cleared. Showing all sections');
         });
       }
 
       function openTopLevelSection(target, options = {}) {
         if (!target) return;
-        const { scroll = true, focusSummary = false } = options;
+        const { scroll = true, focusSummary = false, announceMove = false } = options;
 
         if (target.classList.contains('is-filtered-out') && sectionSearch) {
           sectionSearch.value = '';
@@ -878,6 +914,10 @@ procedures_reference_only:
           window.requestAnimationFrame(() => {
             target.scrollIntoView({ behavior: motionEnabled() ? 'smooth' : 'auto', block: 'start' });
           });
+        }
+
+        if (announceMove) {
+          announce(`Moved to section ${sectionLabels[target.id] || target.id}`);
         }
       }
 
@@ -924,7 +964,7 @@ procedures_reference_only:
           const targetId = button.dataset.targetId;
           if (!targetId) return;
           const target = document.getElementById(targetId);
-          openTopLevelSection(target, { scroll: true, focusSummary: true });
+          openTopLevelSection(target, { scroll: true, focusSummary: true, announceMove: true });
         });
       }
 
@@ -1029,7 +1069,7 @@ procedures_reference_only:
       setupMiniNavStickyState();
 
       function applyTheme(theme, options = {}) {
-        const { animate = true } = options;
+        const { animate = true, announceChange = false } = options;
         const selectedTheme = validThemes.includes(theme) ? theme : 'theme-block';
         document.body.classList.remove(...validThemes);
         document.body.classList.add(selectedTheme);
@@ -1042,11 +1082,12 @@ procedures_reference_only:
         });
 
         if (animate) animateSurfaceUpdates();
+        if (announceChange) announce(`${selectedTheme.replace('theme-', '')} theme selected`);
       }
 
       themeButtons.forEach((button) => {
         button.addEventListener('click', () => {
-          applyTheme(button.dataset.theme, { animate: true });
+          applyTheme(button.dataset.theme, { animate: true, announceChange: true });
         });
       });
 

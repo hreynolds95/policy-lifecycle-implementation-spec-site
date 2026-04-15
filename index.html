@@ -519,6 +519,13 @@ procedures_reference_only:
           haystack: `${summaryText} ${bodyText}`.toLowerCase().replace(/\s+/g, ' ').trim(),
         };
       });
+      const topLevelIds = new Set(topLevel.map((section) => section.id));
+      const urlStateParamKeys = Object.freeze({
+        theme: 'theme',
+        section: 'section',
+        open: 'open',
+        search: 'q',
+      });
 
       function buildEmptyReadingState() {
         return {
@@ -579,6 +586,9 @@ procedures_reference_only:
       let readingState = loadReadingState();
       let readingStateSaveTimer = null;
       let announceTimer = null;
+      let urlStateSyncTimer = null;
+      let suppressUrlState = true;
+      let activeSectionId = '';
 
       function announce(message) {
         if (!srAnnouncer || !message) return;
@@ -612,6 +622,80 @@ procedures_reference_only:
         }, 140);
       }
 
+      function normalizeThemeValue(rawTheme) {
+        const normalized = String(rawTheme || '').toLowerCase().trim();
+        if (!normalized) return null;
+        const candidate = normalized.startsWith('theme-') ? normalized : `theme-${normalized}`;
+        return validThemes.includes(candidate) ? candidate : null;
+      }
+
+      function parseUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        const sectionParam = (params.get(urlStateParamKeys.section) || '').trim();
+        const hashSection = window.location.hash.replace(/^#/, '').trim();
+        const sectionCandidate = sectionParam || hashSection;
+
+        let openSectionIds = null;
+        if (params.has(urlStateParamKeys.open)) {
+          openSectionIds = (params.get(urlStateParamKeys.open) || '')
+            .split(',')
+            .map((id) => id.trim())
+            .filter((id, index, list) => id && list.indexOf(id) === index && topLevelIds.has(id));
+        }
+
+        return {
+          theme: normalizeThemeValue(params.get(urlStateParamKeys.theme)),
+          sectionId: topLevelIds.has(sectionCandidate) ? sectionCandidate : null,
+          searchQuery: params.has(urlStateParamKeys.search) ? params.get(urlStateParamKeys.search) || '' : null,
+          openSectionIds,
+        };
+      }
+
+      function getCurrentTheme() {
+        return validThemes.find((theme) => document.body.classList.contains(theme)) || 'theme-block';
+      }
+
+      function buildShareableStateUrl() {
+        const params = new URLSearchParams(window.location.search);
+        Object.values(urlStateParamKeys).forEach((key) => params.delete(key));
+
+        const themeSlug = getCurrentTheme().replace(/^theme-/, '');
+        params.set(urlStateParamKeys.theme, themeSlug);
+
+        const queryValue = sectionSearch ? sectionSearch.value.trim() : '';
+        if (queryValue) params.set(urlStateParamKeys.search, queryValue);
+
+        const currentSectionId = topLevelIds.has(activeSectionId) ? activeSectionId : '';
+        if (currentSectionId) params.set(urlStateParamKeys.section, currentSectionId);
+
+        const openSectionIds = topLevel
+          .filter((section) => section.open)
+          .map((section) => section.id);
+        if (openSectionIds.length > 0) {
+          params.set(urlStateParamKeys.open, openSectionIds.join(','));
+        }
+
+        const queryString = params.toString();
+        return `${window.location.pathname}${queryString ? `?${queryString}` : ''}${window.location.hash}`;
+      }
+
+      function syncUrlState() {
+        if (suppressUrlState) return;
+        const nextUrl = buildShareableStateUrl();
+        const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (nextUrl === currentUrl) return;
+        window.history.replaceState({}, '', nextUrl);
+      }
+
+      function scheduleUrlStateSync() {
+        if (suppressUrlState) return;
+        if (urlStateSyncTimer) window.clearTimeout(urlStateSyncTimer);
+        urlStateSyncTimer = window.setTimeout(() => {
+          urlStateSyncTimer = null;
+          syncUrlState();
+        }, 120);
+      }
+
       function updateSearchMatchCount(query, matches) {
         if (!searchMatchCount) return;
         if (!query) {
@@ -641,6 +725,8 @@ procedures_reference_only:
           const firstVisible = topLevel.find((section) => !section.classList.contains('is-filtered-out'));
           setActiveNavLink(firstVisible ? firstVisible.id : '');
         }
+
+        scheduleUrlStateSync();
       }
 
       function updateReadingProgress() {
@@ -981,6 +1067,8 @@ procedures_reference_only:
 
       function setActiveNavLink(id) {
         const targetId = id || '';
+        const priorActiveId = activeSectionId;
+        activeSectionId = targetId;
         navLinks.forEach((link) => {
           const isActive = Boolean(targetId) && link.getAttribute('href') === `#${targetId}`;
           link.classList.toggle('active', isActive);
@@ -989,6 +1077,8 @@ procedures_reference_only:
         topLevel.forEach((section) => {
           section.classList.toggle('is-current', Boolean(targetId) && section.id === targetId);
         });
+
+        if (priorActiveId !== activeSectionId) scheduleUrlStateSync();
       }
 
       navLinks.forEach((link) => {
@@ -1039,30 +1129,51 @@ procedures_reference_only:
           setActiveNavLink(section.id);
         });
       }
+
+      const urlState = parseUrlState();
       topLevel.forEach((section) => {
         section.addEventListener('toggle', () => {
           if (section.open) recordSectionOpen(section.id);
           updateReadingProgress();
           scheduleReadingStateSave();
+          scheduleUrlStateSync();
         });
       });
+
       const savedOpenSet = new Set(
         (readingState.openSectionIds || []).filter((id) => topLevel.some((section) => section.id === id))
       );
+      const initialOpenSet = urlState.openSectionIds ? new Set(urlState.openSectionIds) : savedOpenSet;
+      if (urlState.sectionId) initialOpenSet.add(urlState.sectionId);
       suppressTelemetry = true;
       topLevel.forEach((section) => {
         resetSectionInlineStyles(section);
-        section.open = savedOpenSet.has(section.id);
+        section.open = initialOpenSet.has(section.id);
       });
       suppressTelemetry = false;
 
-      const initialActiveSection = topLevel.find((section) => section.open);
+      if (sectionSearch && urlState.searchQuery !== null) {
+        sectionSearch.value = urlState.searchQuery;
+      }
+
+      const initialActiveSection = urlState.sectionId
+        ? document.getElementById(urlState.sectionId)
+        : topLevel.find((section) => section.open);
       setActiveNavLink(initialActiveSection ? initialActiveSection.id : 's1');
       updateTelemetrySummary();
       updateReadingProgress();
       applySectionFilter(sectionSearch ? sectionSearch.value : '');
 
-      if (!window.location.hash && readingState.scrollY > 0) {
+      if (urlState.sectionId) {
+        const targetSection = document.getElementById(urlState.sectionId);
+        if (targetSection && !targetSection.classList.contains('is-filtered-out')) {
+          window.requestAnimationFrame(() => {
+            targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+          });
+        }
+      }
+
+      if (!window.location.hash && !urlState.sectionId && readingState.scrollY > 0) {
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(() => {
             window.scrollTo({ top: readingState.scrollY, behavior: 'auto' });
@@ -1076,6 +1187,11 @@ procedures_reference_only:
           window.clearTimeout(readingStateSaveTimer);
           readingStateSaveTimer = null;
         }
+        if (urlStateSyncTimer) {
+          window.clearTimeout(urlStateSyncTimer);
+          urlStateSyncTimer = null;
+        }
+        syncUrlState();
         persistReadingState();
       });
 
@@ -1119,6 +1235,7 @@ procedures_reference_only:
 
         if (animate) animateSurfaceUpdates();
         if (announceChange) announce(`${selectedTheme.replace('theme-', '')} theme selected`);
+        scheduleUrlStateSync();
       }
 
       themeButtons.forEach((button) => {
@@ -1127,7 +1244,9 @@ procedures_reference_only:
         });
       });
 
-      applyTheme(localStorage.getItem('policySpecTheme') || 'theme-block', { animate: false });
+      applyTheme(urlState.theme || localStorage.getItem('policySpecTheme') || 'theme-block', { animate: false });
+      suppressUrlState = false;
+      syncUrlState();
 
       let printOpenStates = [];
       window.addEventListener('beforeprint', () => {

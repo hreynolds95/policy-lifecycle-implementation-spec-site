@@ -633,6 +633,14 @@ procedures_reference_only:
 
         updateSearchMatchCount(query, matches);
         if (clearSearch) clearSearch.disabled = !query;
+
+        const activeVisible = topLevel.some(
+          (section) => section.classList.contains('is-current') && !section.classList.contains('is-filtered-out')
+        );
+        if (!activeVisible) {
+          const firstVisible = topLevel.find((section) => !section.classList.contains('is-filtered-out'));
+          setActiveNavLink(firstVisible ? firstVisible.id : '');
+        }
       }
 
       function updateReadingProgress() {
@@ -972,13 +980,14 @@ procedures_reference_only:
       setupSectionPagerEvents();
 
       function setActiveNavLink(id) {
+        const targetId = id || '';
         navLinks.forEach((link) => {
-          const isActive = link.getAttribute('href') === `#${id}`;
+          const isActive = Boolean(targetId) && link.getAttribute('href') === `#${targetId}`;
           link.classList.toggle('active', isActive);
-          link.setAttribute('aria-current', isActive ? 'true' : 'false');
+          link.setAttribute('aria-current', isActive ? 'page' : 'false');
         });
         topLevel.forEach((section) => {
-          section.classList.toggle('is-current', section.id === id);
+          section.classList.toggle('is-current', Boolean(targetId) && section.id === targetId);
         });
       }
 
@@ -991,18 +1000,45 @@ procedures_reference_only:
         });
       });
 
+      function getClosestVisibleSection() {
+        const visibleSections = topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
+        if (visibleSections.length === 0) return null;
+
+        const anchorOffset = 120;
+        return visibleSections
+          .map((section) => ({
+            section,
+            distance: Math.abs(section.getBoundingClientRect().top - anchorOffset),
+          }))
+          .sort((a, b) => a.distance - b.distance)[0].section;
+      }
+
       const observer = new IntersectionObserver(
         (entries) => {
           const visible = entries
             .filter((entry) => entry.isIntersecting)
             .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
 
-          if (visible[0]) setActiveNavLink(visible[0].target.id);
+          if (visible[0]) {
+            setActiveNavLink(visible[0].target.id);
+            return;
+          }
+
+          const fallback = getClosestVisibleSection();
+          if (fallback) setActiveNavLink(fallback.id);
         },
-        { root: null, rootMargin: '-35% 0px -55% 0px', threshold: [0.1, 0.25, 0.5] }
+        { root: null, rootMargin: '-25% 0px -60% 0px', threshold: [0, 0.12, 0.28, 0.5] }
       );
 
       topLevel.forEach((section) => observer.observe(section));
+      const accordion = document.querySelector('.accordion');
+      if (accordion) {
+        accordion.addEventListener('focusin', (event) => {
+          const section = event.target.closest('.accordion > details');
+          if (!section || section.classList.contains('is-filtered-out')) return;
+          setActiveNavLink(section.id);
+        });
+      }
       topLevel.forEach((section) => {
         section.addEventListener('toggle', () => {
           if (section.open) recordSectionOpen(section.id);

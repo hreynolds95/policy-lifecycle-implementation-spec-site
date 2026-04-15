@@ -169,6 +169,16 @@
           <a href="#s9">Checks</a>
           <a href="#s12">Delivery</a>
         </nav>
+        <div class="orientation-strip card" aria-label="Current section navigator">
+          <div class="orientation-context">
+            <span class="orientation-label">You Are Here</span>
+            <span class="orientation-current" id="orientationCurrent">Scope and Assumptions</span>
+          </div>
+          <div class="orientation-controls">
+            <button id="orientationPrev" class="orientation-btn" type="button">Previous</button>
+            <button id="orientationNext" class="orientation-btn" type="button">Next</button>
+          </div>
+        </div>
       </section>
 
       <div class="spec-layout">
@@ -453,6 +463,9 @@ procedures_reference_only:
       const navLinks = Array.from(document.querySelectorAll('.mini-nav a'));
       const miniNavWrap = document.querySelector('.mini-nav-wrap');
       const miniNavSentinel = document.querySelector('.mini-nav-sentinel');
+      const orientationCurrent = document.getElementById('orientationCurrent');
+      const orientationPrev = document.getElementById('orientationPrev');
+      const orientationNext = document.getElementById('orientationNext');
       const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
       const surfaceUpdateTargets = Array.from(
         document.querySelectorAll('.status-banner, .status-legend, .diagram-panel')
@@ -886,7 +899,47 @@ procedures_reference_only:
         }
 
         updateReviewCompletion();
+        updateOrientationStrip();
         scheduleUrlStateSync();
+      }
+
+      function getVisibleTopLevelSections() {
+        return topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
+      }
+
+      function updateOrientationStrip() {
+        if (!orientationCurrent || !orientationPrev || !orientationNext) return;
+
+        const visibleSections = getVisibleTopLevelSections();
+        if (visibleSections.length === 0) {
+          orientationCurrent.textContent = 'No visible sections';
+          orientationPrev.disabled = true;
+          orientationNext.disabled = true;
+          orientationPrev.dataset.targetId = '';
+          orientationNext.dataset.targetId = '';
+          return;
+        }
+
+        const activeSection = visibleSections.find((section) => section.id === activeSectionId) || visibleSections[0];
+        const activeIndex = visibleSections.findIndex((section) => section.id === activeSection.id);
+        const previousSection = activeIndex > 0 ? visibleSections[activeIndex - 1] : null;
+        const nextSection = activeIndex < visibleSections.length - 1 ? visibleSections[activeIndex + 1] : null;
+
+        orientationCurrent.textContent = sectionLabels[activeSection.id] || activeSection.id;
+
+        orientationPrev.disabled = !previousSection;
+        orientationPrev.dataset.targetId = previousSection ? previousSection.id : '';
+        orientationPrev.setAttribute(
+          'aria-label',
+          previousSection ? `Go to previous section: ${sectionLabels[previousSection.id] || previousSection.id}` : 'No previous section'
+        );
+
+        orientationNext.disabled = !nextSection;
+        orientationNext.dataset.targetId = nextSection ? nextSection.id : '';
+        orientationNext.setAttribute(
+          'aria-label',
+          nextSection ? `Go to next section: ${sectionLabels[nextSection.id] || nextSection.id}` : 'No next section'
+        );
       }
 
       function updateReadingProgress() {
@@ -1276,6 +1329,23 @@ procedures_reference_only:
       setupSectionPager();
       setupSectionPagerEvents();
 
+      function setupOrientationControls() {
+        const handleOrientationClick = (event) => {
+          const targetButton = event.currentTarget;
+          if (!targetButton || targetButton.disabled) return;
+          const targetId = targetButton.dataset.targetId;
+          if (!targetId) return;
+          const targetSection = document.getElementById(targetId);
+          if (!targetSection) return;
+          openTopLevelSection(targetSection, { scroll: true, focusSummary: true, announceMove: true });
+        };
+
+        if (orientationPrev) orientationPrev.addEventListener('click', handleOrientationClick);
+        if (orientationNext) orientationNext.addEventListener('click', handleOrientationClick);
+      }
+
+      setupOrientationControls();
+
       function setActiveNavLink(id) {
         const targetId = id || '';
         const priorActiveId = activeSectionId;
@@ -1289,6 +1359,7 @@ procedures_reference_only:
           section.classList.toggle('is-current', Boolean(targetId) && section.id === targetId);
         });
 
+        updateOrientationStrip();
         if (priorActiveId !== activeSectionId) scheduleUrlStateSync();
       }
 

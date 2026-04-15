@@ -125,6 +125,10 @@
           <button class="toggle-btn" data-theme="theme-cash" aria-pressed="false">Cash</button>
           <button class="toggle-btn" data-theme="theme-square" aria-pressed="false">Square</button>
         </div>
+        <div class="view-mode-toggle" id="viewModeControls" role="group" aria-label="View mode selector">
+          <button class="mode-btn is-active" data-view-mode="full" aria-pressed="true">Full Spec</button>
+          <button class="mode-btn" data-view-mode="review" aria-pressed="false">Review Mode</button>
+        </div>
       </section>
 
       <section class="completion-banner card" aria-label="Section review completion">
@@ -467,15 +471,19 @@ procedures_reference_only:
       const orientationPrev = document.getElementById('orientationPrev');
       const orientationNext = document.getElementById('orientationNext');
       const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
+      const viewModeButtons = Array.from(document.querySelectorAll('.mode-btn'));
       const surfaceUpdateTargets = Array.from(
         document.querySelectorAll('.status-banner, .status-legend, .diagram-panel')
       );
       const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
+      const validViewModes = ['full', 'review'];
+      const reviewModeSectionIds = new Set(['s1', 's6', 's7', 's9', 's12']);
       const telemetrySummary = document.getElementById('telemetrySummary');
       const telemetryKey = 'policySpecTelemetry.v1';
       const readingStateKey = 'policySpecReadingState.v1';
       const reviewedStateKey = 'policySpecReviewedState.v1';
+      const viewModeStateKey = 'policySpecViewMode.v1';
       let suppressTelemetry = false;
       const lastCommitStamp = document.getElementById('lastCommitStamp');
       const sectionSearch = document.getElementById('sectionSearch');
@@ -567,6 +575,7 @@ procedures_reference_only:
       const topLevelIds = new Set(topLevel.map((section) => section.id));
       const urlStateParamKeys = Object.freeze({
         theme: 'theme',
+        mode: 'mode',
         section: 'section',
         open: 'open',
         search: 'q',
@@ -664,6 +673,7 @@ procedures_reference_only:
       let urlStateSyncTimer = null;
       let suppressUrlState = true;
       let activeSectionId = '';
+      let viewMode = 'full';
 
       function announce(message) {
         if (!srAnnouncer || !message) return;
@@ -720,8 +730,9 @@ procedures_reference_only:
       }
 
       function updateReviewCompletion() {
-        const total = topLevel.length;
-        const reviewedCount = topLevel.reduce(
+        const visibleSections = getVisibleTopLevelSections();
+        const total = visibleSections.length;
+        const reviewedCount = visibleSections.reduce(
           (count, section) => count + (reviewedSectionIds.has(section.id) ? 1 : 0),
           0
         );
@@ -745,7 +756,6 @@ procedures_reference_only:
         }
 
         if (markVisibleReviewed) {
-          const visibleSections = topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
           const hasVisibleUnreviewed = visibleSections.some((section) => !reviewedSectionIds.has(section.id));
           markVisibleReviewed.disabled = visibleSections.length === 0 || !hasVisibleUnreviewed;
         }
@@ -801,6 +811,61 @@ procedures_reference_only:
         return validThemes.includes(candidate) ? candidate : null;
       }
 
+      function normalizeViewMode(rawMode) {
+        const mode = String(rawMode || '').toLowerCase().trim();
+        return validViewModes.includes(mode) ? mode : null;
+      }
+
+      function isSectionVisible(section) {
+        return Boolean(section) &&
+          !section.classList.contains('is-filtered-out') &&
+          !section.classList.contains('is-mode-hidden');
+      }
+
+      function getVisibleTopLevelSections() {
+        return topLevel.filter((section) => isSectionVisible(section));
+      }
+
+      function syncViewModeButtons(mode) {
+        viewModeButtons.forEach((button) => {
+          const isActive = button.dataset.viewMode === mode;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      }
+
+      function applyViewMode(mode, options = {}) {
+        const { persist = true, announceChange = false } = options;
+        const nextMode = normalizeViewMode(mode) || 'full';
+        const modeChanged = viewMode !== nextMode;
+        viewMode = nextMode;
+
+        document.body.classList.toggle('mode-review', viewMode === 'review');
+        syncViewModeButtons(viewMode);
+
+        if (persist) localStorage.setItem(viewModeStateKey, viewMode);
+
+        if (modeChanged && announceChange) {
+          announce(viewMode === 'review' ? 'Review mode enabled' : 'Full spec mode enabled');
+        }
+
+        applySectionFilter(sectionSearch ? sectionSearch.value : '');
+
+        if (viewMode === 'review') {
+          suppressTelemetry = true;
+          topLevel.forEach((section) => {
+            if (!reviewModeSectionIds.has(section.id)) return;
+            resetSectionInlineStyles(section);
+            section.open = true;
+          });
+          suppressTelemetry = false;
+          updateReadingProgress();
+          scheduleReadingStateSave();
+        }
+
+        if (modeChanged) animateSurfaceUpdates();
+      }
+
       function parseUrlState() {
         const params = new URLSearchParams(window.location.search);
         const sectionParam = (params.get(urlStateParamKeys.section) || '').trim();
@@ -817,6 +882,7 @@ procedures_reference_only:
 
         return {
           theme: normalizeThemeValue(params.get(urlStateParamKeys.theme)),
+          viewMode: normalizeViewMode(params.get(urlStateParamKeys.mode)),
           sectionId: topLevelIds.has(sectionCandidate) ? sectionCandidate : null,
           searchQuery: params.has(urlStateParamKeys.search) ? params.get(urlStateParamKeys.search) || '' : null,
           openSectionIds,
@@ -833,6 +899,7 @@ procedures_reference_only:
 
         const themeSlug = getCurrentTheme().replace(/^theme-/, '');
         params.set(urlStateParamKeys.theme, themeSlug);
+        if (viewMode === 'review') params.set(urlStateParamKeys.mode, 'review');
 
         const queryValue = sectionSearch ? sectionSearch.value.trim() : '';
         if (queryValue) params.set(urlStateParamKeys.search, queryValue);
@@ -840,7 +907,7 @@ procedures_reference_only:
         const currentSectionId = topLevelIds.has(activeSectionId) ? activeSectionId : '';
         if (currentSectionId) params.set(urlStateParamKeys.section, currentSectionId);
 
-        const openSectionIds = topLevel
+        const openSectionIds = getVisibleTopLevelSections()
           .filter((section) => section.open)
           .map((section) => section.id);
         if (openSectionIds.length > 0) {
@@ -871,7 +938,7 @@ procedures_reference_only:
       function updateSearchMatchCount(query, matches) {
         if (!searchMatchCount) return;
         if (!query) {
-          searchMatchCount.textContent = `${topLevel.length} sections`;
+          searchMatchCount.textContent = `${getVisibleTopLevelSections().length} sections`;
           return;
         }
         searchMatchCount.textContent = `${matches} match${matches === 1 ? '' : 'es'}`;
@@ -882,29 +949,25 @@ procedures_reference_only:
         let matches = 0;
 
         sectionSearchIndex.forEach((entry) => {
+          const suppressedByMode = viewMode === 'review' && !reviewModeSectionIds.has(entry.id);
           const isMatch = !query || entry.haystack.includes(query);
-          entry.section.classList.toggle('is-filtered-out', !isMatch);
-          if (isMatch) matches += 1;
+          entry.section.classList.toggle('is-mode-hidden', suppressedByMode);
+          entry.section.classList.toggle('is-filtered-out', !suppressedByMode && !isMatch);
+          if (!suppressedByMode && isMatch) matches += 1;
         });
 
         updateSearchMatchCount(query, matches);
         if (clearSearch) clearSearch.disabled = !query;
 
-        const activeVisible = topLevel.some(
-          (section) => section.classList.contains('is-current') && !section.classList.contains('is-filtered-out')
-        );
+        const activeVisible = topLevel.some((section) => section.classList.contains('is-current') && isSectionVisible(section));
         if (!activeVisible) {
-          const firstVisible = topLevel.find((section) => !section.classList.contains('is-filtered-out'));
+          const firstVisible = getVisibleTopLevelSections()[0];
           setActiveNavLink(firstVisible ? firstVisible.id : '');
         }
 
         updateReviewCompletion();
         updateOrientationStrip();
         scheduleUrlStateSync();
-      }
-
-      function getVisibleTopLevelSections() {
-        return topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
       }
 
       function updateOrientationStrip() {
@@ -943,8 +1006,9 @@ procedures_reference_only:
       }
 
       function updateReadingProgress() {
-        const total = topLevel.length;
-        const openCount = topLevel.filter((section) => section.open).length;
+        const visibleSections = getVisibleTopLevelSections();
+        const total = visibleSections.length;
+        const openCount = visibleSections.filter((section) => section.open).length;
         const percent = total === 0 ? 0 : Math.round((openCount / total) * 100);
 
         if (readingProgressText) {
@@ -1161,7 +1225,7 @@ procedures_reference_only:
 
       if (markVisibleReviewed) {
         markVisibleReviewed.addEventListener('click', () => {
-          const visibleSections = topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
+          const visibleSections = getVisibleTopLevelSections();
           let updatedCount = 0;
           visibleSections.forEach((section) => {
             if (reviewedSectionIds.has(section.id)) return;
@@ -1239,6 +1303,10 @@ procedures_reference_only:
       function openTopLevelSection(target, options = {}) {
         if (!target) return;
         const { scroll = true, focusSummary = false, announceMove = false } = options;
+
+        if (target.classList.contains('is-mode-hidden')) {
+          applyViewMode('full', { announceChange: false });
+        }
 
         if (target.classList.contains('is-filtered-out') && sectionSearch) {
           sectionSearch.value = '';
@@ -1373,7 +1441,7 @@ procedures_reference_only:
       });
 
       function getClosestVisibleSection() {
-        const visibleSections = topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
+        const visibleSections = getVisibleTopLevelSections();
         if (visibleSections.length === 0) return null;
 
         const anchorOffset = 120;
@@ -1407,7 +1475,7 @@ procedures_reference_only:
       if (accordion) {
         accordion.addEventListener('focusin', (event) => {
           const section = event.target.closest('.accordion > details');
-          if (!section || section.classList.contains('is-filtered-out')) return;
+          if (!isSectionVisible(section)) return;
           setActiveNavLink(section.id);
         });
       }
@@ -1438,17 +1506,20 @@ procedures_reference_only:
         sectionSearch.value = urlState.searchQuery;
       }
 
+      const storedViewMode = normalizeViewMode(localStorage.getItem(viewModeStateKey));
+      const initialViewMode = urlState.viewMode || storedViewMode || 'full';
+      applyViewMode(initialViewMode, { persist: true, announceChange: false });
+
       const initialActiveSection = urlState.sectionId
         ? document.getElementById(urlState.sectionId)
-        : topLevel.find((section) => section.open);
-      setActiveNavLink(initialActiveSection ? initialActiveSection.id : 's1');
+        : getVisibleTopLevelSections().find((section) => section.open) || getVisibleTopLevelSections()[0];
+      setActiveNavLink(initialActiveSection ? initialActiveSection.id : '');
       updateTelemetrySummary();
       updateReadingProgress();
-      applySectionFilter(sectionSearch ? sectionSearch.value : '');
 
       if (urlState.sectionId) {
         const targetSection = document.getElementById(urlState.sectionId);
-        if (targetSection && !targetSection.classList.contains('is-filtered-out')) {
+        if (isSectionVisible(targetSection)) {
           window.requestAnimationFrame(() => {
             targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
           });
@@ -1523,6 +1594,12 @@ procedures_reference_only:
       themeButtons.forEach((button) => {
         button.addEventListener('click', () => {
           applyTheme(button.dataset.theme, { animate: true, announceChange: true });
+        });
+      });
+
+      viewModeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          applyViewMode(button.dataset.viewMode, { announceChange: true });
         });
       });
 

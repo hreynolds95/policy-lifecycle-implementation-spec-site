@@ -550,6 +550,12 @@ h1 {
   flex-wrap: wrap;
 }
 
+.view-mode-toggle {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
 .btns {
   display: flex;
   gap: var(--space-1);
@@ -756,6 +762,16 @@ button:hover {
 }
 
 .theme-toggle .toggle-btn.is-active {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  border-color: transparent;
+}
+
+.view-mode-toggle .mode-btn {
+  min-width: 94px;
+}
+
+.view-mode-toggle .mode-btn.is-active {
   background: var(--color-accent);
   color: var(--color-accent-foreground);
   border-color: transparent;
@@ -1036,6 +1052,10 @@ details[open] {
   display: none;
 }
 
+.accordion > details.is-mode-hidden {
+  display: none;
+}
+
 .accordion > details[open] {
   border-color: var(--card-line-strong);
   box-shadow: var(--card-shadow-open);
@@ -1243,6 +1263,10 @@ summary::-webkit-details-marker {
   display: flex;
   gap: var(--space-1);
   justify-content: space-between;
+}
+
+.mode-review .section-nav {
+  display: none;
 }
 
 .section-nav-btn {
@@ -1545,6 +1569,21 @@ pre {
 
   .toolbar {
     margin-bottom: var(--space-1);
+  }
+
+  .theme-toggle,
+  .view-mode-toggle {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .theme-toggle .toggle-btn,
+  .view-mode-toggle .mode-btn {
+    width: 100%;
+    min-height: 44px;
+    text-align: center;
+    justify-content: center;
   }
 
   .search-controls {

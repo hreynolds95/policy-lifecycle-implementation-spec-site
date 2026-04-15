@@ -127,6 +127,32 @@
         </div>
       </section>
 
+      <section class="completion-banner card" aria-label="Section review completion">
+        <div class="completion-head">
+          <div class="completion-copy">
+            <span class="completion-label">Review Completion</span>
+            <span id="completionProgressText" class="completion-text" aria-live="polite">
+              0 of 12 sections reviewed (0%)
+            </span>
+          </div>
+          <div class="completion-actions">
+            <button id="markVisibleReviewed" type="button">Mark Visible Reviewed</button>
+            <button id="clearReviewed" type="button">Clear Reviewed</button>
+          </div>
+        </div>
+        <div
+          id="completionProgressTrack"
+          class="completion-progress-track"
+          role="progressbar"
+          aria-label="Reviewed sections progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <span id="completionProgressBar" class="completion-progress-bar"></span>
+        </div>
+      </section>
+
       <section class="mobile-quick-actions" aria-label="Quick mobile actions">
         <button id="mobileExpand" type="button">Expand</button>
         <button id="mobileCollapse" type="button">Collapse</button>
@@ -436,6 +462,7 @@ procedures_reference_only:
       const telemetrySummary = document.getElementById('telemetrySummary');
       const telemetryKey = 'policySpecTelemetry.v1';
       const readingStateKey = 'policySpecReadingState.v1';
+      const reviewedStateKey = 'policySpecReviewedState.v1';
       let suppressTelemetry = false;
       const lastCommitStamp = document.getElementById('lastCommitStamp');
       const sectionSearch = document.getElementById('sectionSearch');
@@ -448,6 +475,11 @@ procedures_reference_only:
       const readingProgressText = document.getElementById('readingProgressText');
       const readingProgressBar = document.getElementById('readingProgressBar');
       const readingProgressTrack = document.getElementById('readingProgressTrack');
+      const completionProgressText = document.getElementById('completionProgressText');
+      const completionProgressBar = document.getElementById('completionProgressBar');
+      const completionProgressTrack = document.getElementById('completionProgressTrack');
+      const markVisibleReviewed = document.getElementById('markVisibleReviewed');
+      const clearReviewed = document.getElementById('clearReviewed');
       const statusLegendTokens = document.getElementById('statusLegendTokens');
       const srAnnouncer = document.getElementById('srAnnouncer');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
@@ -554,6 +586,34 @@ procedures_reference_only:
         localStorage.setItem(readingStateKey, JSON.stringify(data));
       }
 
+      function buildEmptyReviewedState() {
+        return {
+          reviewedSectionIds: [],
+          lastUpdatedAt: null,
+        };
+      }
+
+      function loadReviewedState() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(reviewedStateKey) || 'null');
+          if (!parsed || typeof parsed !== 'object') return buildEmptyReviewedState();
+          const reviewedSectionIds = Array.isArray(parsed.reviewedSectionIds)
+            ? parsed.reviewedSectionIds.filter((id, index, list) => topLevelIds.has(id) && list.indexOf(id) === index)
+            : [];
+          return {
+            ...buildEmptyReviewedState(),
+            ...parsed,
+            reviewedSectionIds,
+          };
+        } catch {
+          return buildEmptyReviewedState();
+        }
+      }
+
+      function saveReviewedState(data) {
+        localStorage.setItem(reviewedStateKey, JSON.stringify(data));
+      }
+
       function buildEmptyTelemetry() {
         return {
           totalOpenEvents: 0,
@@ -584,6 +644,8 @@ procedures_reference_only:
 
       let telemetry = loadTelemetry();
       let readingState = loadReadingState();
+      let reviewedState = loadReviewedState();
+      let reviewedSectionIds = new Set(reviewedState.reviewedSectionIds);
       let readingStateSaveTimer = null;
       let announceTimer = null;
       let urlStateSyncTimer = null;
@@ -620,6 +682,103 @@ procedures_reference_only:
           persistReadingState();
           readingStateSaveTimer = null;
         }, 140);
+      }
+
+      function persistReviewedState() {
+        reviewedState = {
+          reviewedSectionIds: topLevel.map((section) => section.id).filter((id) => reviewedSectionIds.has(id)),
+          lastUpdatedAt: new Date().toISOString(),
+        };
+        saveReviewedState(reviewedState);
+      }
+
+      function getSectionReviewButton(section) {
+        return section.querySelector(':scope > .content .section-review-btn');
+      }
+
+      function syncSectionReviewedUi(section) {
+        const isReviewed = reviewedSectionIds.has(section.id);
+        section.classList.toggle('is-reviewed', isReviewed);
+        const reviewButton = getSectionReviewButton(section);
+        if (!reviewButton) return;
+        reviewButton.classList.toggle('is-reviewed', isReviewed);
+        reviewButton.setAttribute('aria-pressed', isReviewed ? 'true' : 'false');
+        reviewButton.textContent = isReviewed ? 'Reviewed' : 'Mark Reviewed';
+      }
+
+      function updateReviewCompletion() {
+        const total = topLevel.length;
+        const reviewedCount = topLevel.reduce(
+          (count, section) => count + (reviewedSectionIds.has(section.id) ? 1 : 0),
+          0
+        );
+        const percent = total === 0 ? 0 : Math.round((reviewedCount / total) * 100);
+
+        if (completionProgressText) {
+          completionProgressText.textContent = `${reviewedCount} of ${total} sections reviewed (${percent}%)`;
+        }
+
+        if (completionProgressBar) {
+          completionProgressBar.style.width = `${percent}%`;
+        }
+
+        if (completionProgressTrack) {
+          completionProgressTrack.setAttribute('aria-valuenow', String(percent));
+          completionProgressTrack.setAttribute('aria-valuetext', `${reviewedCount} of ${total} sections reviewed`);
+        }
+
+        if (clearReviewed) {
+          clearReviewed.disabled = reviewedCount === 0;
+        }
+
+        if (markVisibleReviewed) {
+          const visibleSections = topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
+          const hasVisibleUnreviewed = visibleSections.some((section) => !reviewedSectionIds.has(section.id));
+          markVisibleReviewed.disabled = visibleSections.length === 0 || !hasVisibleUnreviewed;
+        }
+      }
+
+      function setSectionReviewed(section, reviewed, options = {}) {
+        if (!section || !topLevelIds.has(section.id)) return;
+        const { persist = true, announceChange = true } = options;
+        const wasReviewed = reviewedSectionIds.has(section.id);
+
+        if (reviewed) {
+          reviewedSectionIds.add(section.id);
+        } else {
+          reviewedSectionIds.delete(section.id);
+        }
+        const isReviewed = reviewedSectionIds.has(section.id);
+        syncSectionReviewedUi(section);
+        updateReviewCompletion();
+
+        if (persist && wasReviewed !== isReviewed) persistReviewedState();
+        if (!announceChange || wasReviewed === isReviewed) return;
+        const label = sectionLabels[section.id] || section.id;
+        announce(`${label} ${isReviewed ? 'marked as reviewed' : 'marked as not reviewed'}`);
+      }
+
+      function setupSectionReviewControls() {
+        topLevel.forEach((section) => {
+          const content = section.querySelector(':scope > .content');
+          if (!content) return;
+
+          const existing = content.querySelector(':scope > .section-review-row');
+          if (existing) existing.remove();
+
+          const reviewRow = document.createElement('div');
+          reviewRow.className = 'section-review-row';
+
+          const reviewButton = document.createElement('button');
+          reviewButton.type = 'button';
+          reviewButton.className = 'section-review-btn';
+          reviewButton.dataset.sectionId = section.id;
+          reviewButton.setAttribute('aria-pressed', 'false');
+          reviewButton.textContent = 'Mark Reviewed';
+
+          reviewRow.append(reviewButton);
+          content.prepend(reviewRow);
+        });
       }
 
       function normalizeThemeValue(rawTheme) {
@@ -726,6 +885,7 @@ procedures_reference_only:
           setActiveNavLink(firstVisible ? firstVisible.id : '');
         }
 
+        updateReviewCompletion();
         scheduleUrlStateSync();
       }
 
@@ -886,6 +1046,11 @@ procedures_reference_only:
       });
       renderStatusLegendTokens();
       hydrateStatusTokens();
+      setupSectionReviewControls();
+      topLevel.forEach((section) => {
+        syncSectionReviewedUi(section);
+      });
+      updateReviewCompletion();
 
       document.getElementById('expandAll').addEventListener('click', () => {
         suppressTelemetry = true;
@@ -938,6 +1103,43 @@ procedures_reference_only:
       if (mobileTop) {
         mobileTop.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: motionEnabled() ? 'smooth' : 'auto' });
+        });
+      }
+
+      if (markVisibleReviewed) {
+        markVisibleReviewed.addEventListener('click', () => {
+          const visibleSections = topLevel.filter((section) => !section.classList.contains('is-filtered-out'));
+          let updatedCount = 0;
+          visibleSections.forEach((section) => {
+            if (reviewedSectionIds.has(section.id)) return;
+            reviewedSectionIds.add(section.id);
+            syncSectionReviewedUi(section);
+            updatedCount += 1;
+          });
+
+          updateReviewCompletion();
+          if (updatedCount > 0) {
+            persistReviewedState();
+            announce(`Marked ${updatedCount} visible section${updatedCount === 1 ? '' : 's'} as reviewed`);
+          } else {
+            announce('All visible sections are already reviewed');
+          }
+        });
+      }
+
+      if (clearReviewed) {
+        clearReviewed.addEventListener('click', () => {
+          if (reviewedSectionIds.size === 0) {
+            announce('No reviewed sections to clear');
+            return;
+          }
+          reviewedSectionIds.clear();
+          topLevel.forEach((section) => {
+            syncSectionReviewedUi(section);
+          });
+          updateReviewCompletion();
+          persistReviewedState();
+          announce('Cleared reviewed marks');
         });
       }
 
@@ -1052,6 +1254,15 @@ procedures_reference_only:
         if (!accordion) return;
 
         accordion.addEventListener('click', (event) => {
+          const reviewButton = event.target.closest('.section-review-btn');
+          if (reviewButton) {
+            const sectionId = reviewButton.dataset.sectionId;
+            const section = sectionId ? document.getElementById(sectionId) : null;
+            if (!section || !topLevelIds.has(section.id)) return;
+            setSectionReviewed(section, !reviewedSectionIds.has(section.id));
+            return;
+          }
+
           const button = event.target.closest('.section-nav-btn');
           if (!button || button.disabled) return;
 

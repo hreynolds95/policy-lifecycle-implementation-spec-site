@@ -583,6 +583,76 @@ h1 {
   transition: width 180ms ease;
 }
 
+.completion-banner {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  padding: 0.7rem 0.9rem 0.78rem;
+  display: grid;
+  gap: 0.56rem;
+}
+
+.completion-head {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.completion-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.completion-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5e6a79;
+  font-weight: 700;
+}
+
+.completion-text {
+  font-size: 0.86rem;
+  color: #2f3339;
+  font-weight: 700;
+}
+
+.completion-actions {
+  display: inline-flex;
+  gap: 0.42rem;
+  align-items: center;
+}
+
+.completion-actions button {
+  font-size: 0.8rem;
+  padding: 0.34rem 0.56rem;
+  border-radius: 9px;
+}
+
+.completion-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.completion-progress-track {
+  position: relative;
+  width: 100%;
+  height: 0.48rem;
+  border-radius: 999px;
+  border: 1px solid #d2dbe3;
+  background: #edf2f5;
+  overflow: hidden;
+}
+
+.completion-progress-bar {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5e8b73 0%, #315846 100%);
+  transition: width 180ms ease;
+}
+
 button {
   border: 1px solid var(--line);
   background: var(--surface);
@@ -847,6 +917,10 @@ details[open] {
   box-shadow: 0 0 0 1px rgba(63, 67, 75, 0.08), var(--card-shadow-open);
 }
 
+.accordion > details.is-reviewed {
+  border-color: #c0d5c9;
+}
+
 .accordion > details::before {
   content: '';
   position: absolute;
@@ -862,12 +936,24 @@ details[open] {
   background: #d6e0e8;
 }
 
+.accordion > details.is-reviewed::before {
+  background: #d4e4db;
+}
+
 .accordion > details[open]::before {
   background: #cbd1d6;
 }
 
 .accordion > details.is-current[open]::before {
   background: var(--color-accent);
+}
+
+.accordion > details.is-reviewed[open]::before {
+  background: #9bc3ac;
+}
+
+.accordion > details.is-reviewed.is-current[open]::before {
+  background: #4e7a62;
 }
 
 summary {
@@ -897,6 +983,12 @@ summary::-webkit-details-marker {
 .accordion > details.is-current > summary {
   background:
     linear-gradient(180deg, rgba(63, 67, 75, 0.06) 0%, rgba(63, 67, 75, 0.02) 100%),
+    var(--card-header-band);
+}
+
+.accordion > details.is-reviewed > summary {
+  background:
+    linear-gradient(180deg, rgba(49, 88, 70, 0.07) 0%, rgba(49, 88, 70, 0.02) 100%),
     var(--card-header-band);
 }
 
@@ -955,6 +1047,19 @@ summary::-webkit-details-marker {
   color: #3f434b;
 }
 
+.accordion > details.is-reviewed > summary .summary-meta {
+  border-color: #b9d6c6;
+  background: #edf7f1;
+  color: #315846;
+}
+
+.accordion > details.is-reviewed > summary .summary-meta::before {
+  content: '\2713';
+  margin-right: 0.26rem;
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
 .content {
   border-top: 1px solid #ecf2f4;
   padding: var(--section-content-pt) var(--section-summary-px) var(--section-content-pb);
@@ -978,6 +1083,28 @@ summary::-webkit-details-marker {
 
 .content p {
   margin: 0.12rem 0 0.46rem;
+}
+
+.section-review-row {
+  margin: 0 0 0.62rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section-review-btn {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border-color: #d1dbe2;
+  background: #f7fafc;
+}
+
+.section-review-btn.is-reviewed {
+  border-color: #315846;
+  background: #315846;
+  color: #ffffff;
 }
 
 .section-nav {
@@ -1100,7 +1227,9 @@ pre {
   .theme-toggle,
   .diagram-panel,
   .telemetry-banner,
+  .completion-banner,
   .status-legend,
+  .section-review-row,
   .site-credit,
   .skip-link,
   .sr-only {
@@ -1307,6 +1436,28 @@ pre {
     flex-wrap: wrap;
   }
 
+  .completion-banner {
+    padding: 0.62rem 0.68rem 0.7rem;
+  }
+
+  .completion-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.48rem;
+  }
+
+  .completion-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .completion-actions button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
   .mobile-quick-actions {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1355,6 +1506,16 @@ pre {
 
   .section-nav {
     flex-direction: column;
+  }
+
+  .section-review-row {
+    justify-content: stretch;
+    margin-bottom: 0.56rem;
+  }
+
+  .section-review-btn {
+    width: 100%;
+    text-align: center;
   }
 
   .hero-title-row {

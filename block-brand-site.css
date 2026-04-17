@@ -702,12 +702,19 @@ h1 {
   display: inline-flex;
   gap: 0.42rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .completion-actions button {
   font-size: 0.8rem;
   padding: 0.34rem 0.56rem;
   border-radius: 9px;
+}
+
+.completion-actions .packet-btn {
+  border-color: transparent;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
 }
 
 .completion-actions button:disabled {
@@ -1617,7 +1624,7 @@ pre {
   .completion-actions {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
   .completion-actions button {

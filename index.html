@@ -142,6 +142,7 @@
           <div class="completion-actions">
             <button id="markVisibleReviewed" type="button">Mark Visible Reviewed</button>
             <button id="clearReviewed" type="button">Clear Reviewed</button>
+            <button id="copyReviewPacket" class="packet-btn" type="button">Copy Review Packet</button>
           </div>
         </div>
         <div
@@ -501,6 +502,7 @@ procedures_reference_only:
       const completionProgressTrack = document.getElementById('completionProgressTrack');
       const markVisibleReviewed = document.getElementById('markVisibleReviewed');
       const clearReviewed = document.getElementById('clearReviewed');
+      const copyReviewPacket = document.getElementById('copyReviewPacket');
       const statusLegendTokens = document.getElementById('statusLegendTokens');
       const srAnnouncer = document.getElementById('srAnnouncer');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
@@ -781,6 +783,63 @@ procedures_reference_only:
         announce(`${label} ${isReviewed ? 'marked as reviewed' : 'marked as not reviewed'}`);
       }
 
+      function formatPercent(count, total) {
+        return total === 0 ? 0 : Math.round((count / total) * 100);
+      }
+
+      function buildReviewPacket() {
+        syncUrlState();
+
+        const visibleSections = getVisibleTopLevelSections();
+        const totalVisible = visibleSections.length;
+        const openVisible = visibleSections.filter((section) => section.open);
+        const reviewedVisible = visibleSections.filter((section) => reviewedSectionIds.has(section.id));
+        const readingPercent = formatPercent(openVisible.length, totalVisible);
+        const reviewedPercent = formatPercent(reviewedVisible.length, totalVisible);
+        const activeLabel = activeSectionId ? sectionLabels[activeSectionId] || activeSectionId : 'None';
+        const topTelemetry = Object.entries(telemetry.opens)
+          .filter(([, count]) => count > 0)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 3)
+          .map(([id, count]) => `${sectionLabels[id] || id} (${count})`);
+        const sectionList = (list) =>
+          list.length > 0 ? list.map((section) => sectionLabels[section.id] || section.id).join('; ') : 'None';
+
+        return [
+          'Review Packet — GitHub Policy Lifecycle Implementation Spec',
+          `Generated: ${new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}`,
+          `View mode: ${viewMode === 'review' ? 'Review Mode' : 'Full Spec'}`,
+          `Theme: ${getThemeName()}`,
+          `Active section: ${activeLabel}`,
+          `Reading progress: ${openVisible.length}/${totalVisible} (${readingPercent}%) open`,
+          `Review completion: ${reviewedVisible.length}/${totalVisible} (${reviewedPercent}%) reviewed`,
+          `Open sections: ${sectionList(openVisible)}`,
+          `Reviewed sections: ${sectionList(reviewedVisible)}`,
+          `Top opened sections (local telemetry): ${topTelemetry.length > 0 ? topTelemetry.join('; ') : 'None'}`,
+          'Links:',
+          `- Current spec view: ${window.location.href}`,
+          '- Repository: https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site',
+          '- GitHub Pages: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/',
+        ].join('\n');
+      }
+
+      async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+        const fallback = document.createElement('textarea');
+        fallback.value = text;
+        fallback.setAttribute('readonly', '');
+        fallback.style.position = 'absolute';
+        fallback.style.left = '-9999px';
+        document.body.appendChild(fallback);
+        fallback.select();
+        const copied = document.execCommand('copy');
+        fallback.remove();
+        if (!copied) throw new Error('Clipboard copy failed');
+      }
+
       function setupSectionReviewControls() {
         topLevel.forEach((section) => {
           const content = section.querySelector(':scope > .content');
@@ -814,6 +873,11 @@ procedures_reference_only:
       function normalizeViewMode(rawMode) {
         const mode = String(rawMode || '').toLowerCase().trim();
         return validViewModes.includes(mode) ? mode : null;
+      }
+
+      function getThemeName() {
+        const theme = getCurrentTheme().replace(/^theme-/, '');
+        return theme.charAt(0).toUpperCase() + theme.slice(1);
       }
 
       function isSectionVisible(section) {
@@ -1257,6 +1321,22 @@ procedures_reference_only:
           updateReviewCompletion();
           persistReviewedState();
           announce('Cleared reviewed marks');
+        });
+      }
+
+      if (copyReviewPacket) {
+        copyReviewPacket.addEventListener('click', async () => {
+          try {
+            const packet = buildReviewPacket();
+            await copyText(packet);
+            copyReviewPacket.textContent = 'Copied';
+            window.setTimeout(() => {
+              copyReviewPacket.textContent = 'Copy Review Packet';
+            }, 1500);
+            announce('Review packet copied to clipboard');
+          } catch {
+            announce('Unable to copy review packet automatically');
+          }
         });
       }
 

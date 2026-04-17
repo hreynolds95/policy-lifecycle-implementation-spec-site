@@ -89,6 +89,7 @@
           <button class="primary" id="expandAll">Expand All</button>
           <button id="collapseAll">Collapse All</button>
           <button id="printPage">Print / Save PDF</button>
+          <button id="printExecutive">Print Executive PDF</button>
         </div>
         <div class="search-controls" role="search" aria-label="Search sections">
           <input
@@ -494,6 +495,7 @@ procedures_reference_only:
       const mobileCollapse = document.getElementById('mobileCollapse');
       const mobileSearch = document.getElementById('mobileSearch');
       const mobileTop = document.getElementById('mobileTop');
+      const printExecutive = document.getElementById('printExecutive');
       const readingProgressText = document.getElementById('readingProgressText');
       const readingProgressBar = document.getElementById('readingProgressBar');
       const readingProgressTrack = document.getElementById('readingProgressTrack');
@@ -676,6 +678,9 @@ procedures_reference_only:
       let suppressUrlState = true;
       let activeSectionId = '';
       let viewMode = 'full';
+      let pendingExecutivePrint = false;
+      let restoreViewModeAfterPrint = null;
+      let restoreUrlSyncAfterPrint = null;
 
       function announce(message) {
         if (!srAnnouncer || !message) return;
@@ -1261,6 +1266,18 @@ procedures_reference_only:
         window.print();
       });
 
+      if (printExecutive) {
+        printExecutive.addEventListener('click', () => {
+          pendingExecutivePrint = true;
+          restoreViewModeAfterPrint = viewMode;
+          restoreUrlSyncAfterPrint = suppressUrlState;
+          suppressUrlState = true;
+          applyViewMode('review', { persist: false, announceChange: false });
+          announce('Preparing executive print view');
+          window.print();
+        });
+      }
+
       if (mobileExpand) {
         mobileExpand.addEventListener('click', () => {
           document.getElementById('expandAll').click();
@@ -1691,6 +1708,7 @@ procedures_reference_only:
       window.addEventListener('beforeprint', () => {
         suppressTelemetry = true;
         printOpenStates = sections.map((section) => section.open);
+        if (pendingExecutivePrint) document.body.classList.add('print-executive');
         sections.forEach((section) => {
           resetSectionInlineStyles(section);
           section.open = true;
@@ -1702,6 +1720,24 @@ procedures_reference_only:
           resetSectionInlineStyles(section);
           section.open = printOpenStates[idx];
         });
+        if (pendingExecutivePrint) {
+          document.body.classList.remove('print-executive');
+          const restoreMode = restoreViewModeAfterPrint;
+          suppressUrlState = true;
+          if (restoreMode && restoreMode !== viewMode) {
+            applyViewMode(restoreMode, { persist: false, announceChange: false });
+          }
+          if (restoreUrlSyncAfterPrint !== null) {
+            suppressUrlState = restoreUrlSyncAfterPrint;
+          } else {
+            suppressUrlState = false;
+          }
+          if (!suppressUrlState) syncUrlState();
+          pendingExecutivePrint = false;
+          restoreViewModeAfterPrint = null;
+          restoreUrlSyncAfterPrint = null;
+          announce('Executive print view restored');
+        }
         suppressTelemetry = false;
       });
 

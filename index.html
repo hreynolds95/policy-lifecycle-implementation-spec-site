@@ -159,6 +159,35 @@
         </div>
       </section>
 
+      <section class="gate-readiness-banner card" aria-label="Gate readiness summary">
+        <div class="gate-readiness-head">
+          <div class="gate-readiness-copy">
+            <span class="gate-readiness-label">Gate Readiness</span>
+            <span id="gateReadinessText" class="gate-readiness-text" aria-live="polite">
+              0 of 12 sections ready (0%)
+            </span>
+            <span id="gateReadinessSummary" class="gate-readiness-summary">
+              No readiness blockers detected.
+            </span>
+          </div>
+          <div class="gate-readiness-actions">
+            <button id="nextNeedsChecks" type="button">Next Needs Checks</button>
+            <button id="clearVisibleGates" type="button">Clear Visible Gates</button>
+          </div>
+        </div>
+        <div
+          id="gateReadinessTrack"
+          class="gate-readiness-track"
+          role="progressbar"
+          aria-label="Gate readiness progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <span id="gateReadinessBar" class="gate-readiness-bar"></span>
+        </div>
+      </section>
+
       <section class="mobile-quick-actions" aria-label="Quick mobile actions">
         <button id="mobileExpand" type="button">Expand</button>
         <button id="mobileCollapse" type="button">Collapse</button>
@@ -506,6 +535,12 @@ procedures_reference_only:
       const markVisibleReviewed = document.getElementById('markVisibleReviewed');
       const clearReviewed = document.getElementById('clearReviewed');
       const copyReviewPacket = document.getElementById('copyReviewPacket');
+      const gateReadinessText = document.getElementById('gateReadinessText');
+      const gateReadinessSummary = document.getElementById('gateReadinessSummary');
+      const gateReadinessTrack = document.getElementById('gateReadinessTrack');
+      const gateReadinessBar = document.getElementById('gateReadinessBar');
+      const nextNeedsChecks = document.getElementById('nextNeedsChecks');
+      const clearVisibleGates = document.getElementById('clearVisibleGates');
       const statusLegendTokens = document.getElementById('statusLegendTokens');
       const srAnnouncer = document.getElementById('srAnnouncer');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
@@ -836,6 +871,51 @@ procedures_reference_only:
         }
       }
 
+      function updateGateReadinessSummary() {
+        const visibleSections = getVisibleTopLevelSections();
+        const total = visibleSections.length;
+        const readySections = visibleSections.filter((section) => isSectionGateReady(section.id));
+        const pendingSections = visibleSections.filter((section) => !isSectionGateReady(section.id));
+        const percent = formatPercent(readySections.length, total);
+
+        if (gateReadinessText) {
+          gateReadinessText.textContent = `${readySections.length} of ${total} sections ready (${percent}%)`;
+        }
+
+        if (gateReadinessSummary) {
+          if (pendingSections.length === 0) {
+            gateReadinessSummary.textContent = 'No readiness blockers detected.';
+          } else {
+            const preview = pendingSections
+              .slice(0, 3)
+              .map((section) => sectionLabels[section.id] || section.id)
+              .join('; ');
+            const suffix = pendingSections.length > 3 ? '; ...' : '';
+            gateReadinessSummary.textContent =
+              `Needs checks: ${preview}${suffix}`;
+          }
+        }
+
+        if (gateReadinessBar) gateReadinessBar.style.width = `${percent}%`;
+        if (gateReadinessTrack) {
+          gateReadinessTrack.setAttribute('aria-valuenow', String(percent));
+          gateReadinessTrack.setAttribute('aria-valuetext', `${readySections.length} of ${total} sections ready`);
+        }
+
+        if (nextNeedsChecks) {
+          nextNeedsChecks.disabled = pendingSections.length === 0;
+          nextNeedsChecks.dataset.targetId = pendingSections[0] ? pendingSections[0].id : '';
+        }
+
+        if (clearVisibleGates) {
+          const hasAnyPassedGate = visibleSections.some((section) => {
+            const required = getRequiredGates(section.id);
+            return required.some((gateKey) => Boolean(gateState.sectionGates[section.id] && gateState.sectionGates[section.id][gateKey]));
+          });
+          clearVisibleGates.disabled = !hasAnyPassedGate;
+        }
+      }
+
       function setSectionReviewed(section, reviewed, options = {}) {
         if (!section || !topLevelIds.has(section.id)) return;
         const { persist = true, announceChange = true } = options;
@@ -926,6 +1006,7 @@ procedures_reference_only:
         const section = document.getElementById(sectionId);
         if (section) syncSectionGateUi(section);
         if (persist && current !== Boolean(passed)) persistGateState();
+        updateGateReadinessSummary();
         if (announceChange && current !== Boolean(passed)) {
           const gateLabel = gateCatalog[gateKey] || gateKey;
           const sectionLabel = sectionLabels[sectionId] || sectionId;
@@ -1225,6 +1306,7 @@ procedures_reference_only:
         }
 
         updateReviewCompletion();
+        updateGateReadinessSummary();
         updateOrientationStrip();
         scheduleUrlStateSync();
       }
@@ -1429,6 +1511,7 @@ procedures_reference_only:
         syncSectionGateUi(section);
       });
       updateReviewCompletion();
+      updateGateReadinessSummary();
 
       document.getElementById('expandAll').addEventListener('click', () => {
         suppressTelemetry = true;
@@ -1530,6 +1613,43 @@ procedures_reference_only:
           updateReviewCompletion();
           persistReviewedState();
           announce('Cleared reviewed marks');
+        });
+      }
+
+      if (nextNeedsChecks) {
+        nextNeedsChecks.addEventListener('click', () => {
+          const targetId = nextNeedsChecks.dataset.targetId;
+          if (!targetId) {
+            announce('No sections currently need checks');
+            return;
+          }
+          const targetSection = document.getElementById(targetId);
+          if (!targetSection) return;
+          openTopLevelSection(targetSection, { scroll: true, focusSummary: true, announceMove: true });
+        });
+      }
+
+      if (clearVisibleGates) {
+        clearVisibleGates.addEventListener('click', () => {
+          const visibleSections = getVisibleTopLevelSections();
+          let changed = false;
+          visibleSections.forEach((section) => {
+            const required = getRequiredGates(section.id);
+            required.forEach((gateKey) => {
+              const current = Boolean(gateState.sectionGates[section.id] && gateState.sectionGates[section.id][gateKey]);
+              if (!current) return;
+              setSectionGate(section.id, gateKey, false, { persist: false, announceChange: false });
+              changed = true;
+            });
+          });
+
+          if (changed) {
+            persistGateState();
+            updateGateReadinessSummary();
+            announce('Cleared passed gates for visible sections');
+          } else {
+            announce('No passed gates to clear in visible sections');
+          }
         });
       }
 

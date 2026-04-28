@@ -741,6 +741,83 @@ h1 {
   transition: width 180ms ease;
 }
 
+.gate-readiness-banner {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  padding: 0.7rem 0.9rem 0.78rem;
+  display: grid;
+  gap: 0.56rem;
+}
+
+.gate-readiness-head {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gate-readiness-copy {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.gate-readiness-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label-ink);
+  font-weight: 700;
+}
+
+.gate-readiness-text {
+  font-size: 0.86rem;
+  color: #2f3339;
+  font-weight: 700;
+}
+
+.gate-readiness-summary {
+  font-size: 0.78rem;
+  color: #4a5968;
+  font-weight: 600;
+}
+
+.gate-readiness-actions {
+  display: inline-flex;
+  gap: 0.42rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gate-readiness-actions button {
+  font-size: 0.8rem;
+  padding: 0.34rem 0.56rem;
+  border-radius: 9px;
+}
+
+.gate-readiness-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.gate-readiness-track {
+  position: relative;
+  width: 100%;
+  height: 0.48rem;
+  border-radius: 999px;
+  border: 1px solid #d2dbe3;
+  background: #edf2f5;
+  overflow: hidden;
+}
+
+.gate-readiness-bar {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #5e8b73 0%, #315846 100%);
+  transition: width 180ms ease;
+}
+
 button {
   border: 1px solid var(--line);
   background: var(--surface);
@@ -1474,6 +1551,7 @@ pre {
   .diagram-panel,
   .telemetry-banner,
   .completion-banner,
+  .gate-readiness-banner,
   .status-legend,
   .section-review-row,
   .section-gates,
@@ -1702,7 +1780,17 @@ pre {
     padding: 0.62rem 0.68rem 0.7rem;
   }
 
+  .gate-readiness-banner {
+    padding: 0.62rem 0.68rem 0.7rem;
+  }
+
   .completion-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.48rem;
+  }
+
+  .gate-readiness-head {
     flex-direction: column;
     align-items: stretch;
     gap: 0.48rem;
@@ -1714,7 +1802,19 @@ pre {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 
+  .gate-readiness-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
   .completion-actions button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .gate-readiness-actions button {
     width: 100%;
     justify-content: center;
     text-align: center;

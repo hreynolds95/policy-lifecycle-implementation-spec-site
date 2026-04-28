@@ -846,6 +846,58 @@ h1 {
   display: none;
 }
 
+.plan-overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.72rem 0.84rem;
+}
+
+.plan-overview-copy {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 260px;
+}
+
+.plan-overview-copy h2 {
+  font-size: 1rem;
+}
+
+.plan-overview-copy p {
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.plan-phase-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.plan-phase-list span {
+  border: 1px solid #d4dde5;
+  border-radius: 999px;
+  background: #f6f8fa;
+  color: #344250;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0.28rem 0.52rem;
+  white-space: nowrap;
+}
+
+.plan-phase-list strong {
+  color: #1f252c;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
 .phase-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2682,6 +2734,19 @@ pre {
 
   .meeting-mode-btn {
     width: 100%;
+  }
+
+  .plan-overview {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .plan-overview-copy {
+    min-width: 0;
+  }
+
+  .plan-phase-list {
+    justify-content: flex-start;
   }
 
   .phase-strip {

@@ -724,6 +724,34 @@ h1 {
   font-weight: 700;
 }
 
+.tracker-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  flex-wrap: wrap;
+  margin-top: 0.72rem;
+}
+
+.tracker-filter {
+  border-radius: 999px;
+  padding: 0.3rem 0.58rem;
+  font-size: 0.74rem;
+  box-shadow: none;
+}
+
+.tracker-filter.is-active {
+  border-color: transparent;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.tracker-filter-count {
+  color: #526170;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-left: auto;
+}
+
 .tracker-table-wrap {
   overflow-x: auto;
   margin-top: 0.7rem;
@@ -737,6 +765,10 @@ h1 {
   color: #27313b;
   font-weight: 700;
   text-decoration: none;
+}
+
+.tracker-table tr[hidden] {
+  display: none;
 }
 
 .tracker-status {
@@ -2154,6 +2186,17 @@ pre {
 
   .tracker-summary span {
     flex: 1 1 140px;
+    text-align: center;
+  }
+
+  .tracker-filter {
+    flex: 1 1 130px;
+    text-align: center;
+  }
+
+  .tracker-filter-count {
+    flex: 1 1 100%;
+    margin-left: 0;
     text-align: center;
   }
 

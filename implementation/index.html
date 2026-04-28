@@ -79,6 +79,15 @@
             <span><strong>2</strong> Blocked</span>
           </div>
         </div>
+        <div class="tracker-filters" role="group" aria-label="Filter workstream tracker">
+          <button class="tracker-filter is-active" type="button" data-tracker-filter="all" aria-pressed="true">All</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="blocked" aria-pressed="false">Blocked</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="ready" aria-pressed="false">Ready for Build</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="designing" aria-pressed="false">Designing</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="not-started" aria-pressed="false">Not Started</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="critical" aria-pressed="false">Critical Path</button>
+          <span class="tracker-filter-count" id="trackerFilterCount" aria-live="polite">14 workstreams</span>
+        </div>
         <div class="tracker-table-wrap">
           <table class="implementation-table tracker-table">
             <thead>
@@ -90,20 +99,20 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Confirm target-state topology with Platform and Security.</td></tr>
-              <tr><td><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-designing">Designing</span></td><td>Finalize registry schema and domain folder taxonomy.</td></tr>
-              <tr><td><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Resolve portal authentication and SSO group mapping.</td></tr>
-              <tr><td><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-designing">Designing</span></td><td>Choose approval enforcement pattern for tiered gates.</td></tr>
-              <tr><td><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Draft issue form and exception record schema.</td></tr>
-              <tr><td><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Build parser fixtures from the official template.</td></tr>
-              <tr><td><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define published metadata and request form surfaces.</td></tr>
-              <tr><td><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Confirm Slack/email baseline and stakeholder group source.</td></tr>
-              <tr><td><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Confirm source of owner deactivation signal.</td></tr>
-              <tr><td><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define routing criteria for procedures and SOPs.</td></tr>
-              <tr><td><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Convert BRD categories into gap register rows.</td></tr>
-              <tr><td><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-designing">Designing</span></td><td>Inventory legacy archive links and cutover evidence.</td></tr>
-              <tr><td><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Add owners, dates, and dependency sequencing.</td></tr>
-              <tr><td><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Assign decision owners and target resolution dates.</td></tr>
+              <tr data-status="ready" data-critical="false"><td><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Confirm target-state topology with Platform and Security.</td></tr>
+              <tr data-status="designing" data-critical="false"><td><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-designing">Designing</span></td><td>Finalize registry schema and domain folder taxonomy.</td></tr>
+              <tr data-status="blocked" data-critical="false"><td><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Resolve portal authentication and SSO group mapping.</td></tr>
+              <tr data-status="designing" data-critical="true"><td><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-designing">Designing</span></td><td>Choose approval enforcement pattern for tiered gates.</td></tr>
+              <tr data-status="not-started" data-critical="false"><td><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Draft issue form and exception record schema.</td></tr>
+              <tr data-status="ready" data-critical="true"><td><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Build parser fixtures from the official template.</td></tr>
+              <tr data-status="designing" data-critical="false"><td><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define published metadata and request form surfaces.</td></tr>
+              <tr data-status="not-started" data-critical="false"><td><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Confirm Slack/email baseline and stakeholder group source.</td></tr>
+              <tr data-status="blocked" data-critical="false"><td><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Confirm source of owner deactivation signal.</td></tr>
+              <tr data-status="designing" data-critical="false"><td><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define routing criteria for procedures and SOPs.</td></tr>
+              <tr data-status="ready" data-critical="true"><td><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Convert BRD categories into gap register rows.</td></tr>
+              <tr data-status="designing" data-critical="false"><td><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-designing">Designing</span></td><td>Inventory legacy archive links and cutover evidence.</td></tr>
+              <tr data-status="not-started" data-critical="false"><td><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Add owners, dates, and dependency sequencing.</td></tr>
+              <tr data-status="not-started" data-critical="false"><td><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Assign decision owners and target resolution dates.</td></tr>
             </tbody>
           </table>
         </div>
@@ -130,5 +139,45 @@
         <p class="site-credit">Built by hreynolds</p>
       </footer>
     </main>
+    <script>
+      const trackerRows = Array.from(document.querySelectorAll('.tracker-table tbody tr'));
+      const trackerFilters = Array.from(document.querySelectorAll('.tracker-filter'));
+      const trackerFilterCount = document.getElementById('trackerFilterCount');
+      const trackerLabels = {
+        all: 'workstreams',
+        blocked: 'blocked workstreams',
+        ready: 'ready workstreams',
+        designing: 'designing workstreams',
+        'not-started': 'not-started workstreams',
+        critical: 'critical path workstreams',
+      };
+
+      function applyTrackerFilter(filter) {
+        let visibleCount = 0;
+        trackerRows.forEach((row) => {
+          const isMatch = filter === 'all' ||
+            row.dataset.status === filter ||
+            (filter === 'critical' && row.dataset.critical === 'true');
+          row.hidden = !isMatch;
+          if (isMatch) visibleCount += 1;
+        });
+
+        trackerFilters.forEach((button) => {
+          const isActive = button.dataset.trackerFilter === filter;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        if (trackerFilterCount) {
+          trackerFilterCount.textContent = `${visibleCount} ${trackerLabels[filter] || 'workstreams'}`;
+        }
+      }
+
+      trackerFilters.forEach((button) => {
+        button.addEventListener('click', () => {
+          applyTrackerFilter(button.dataset.trackerFilter || 'all');
+        });
+      });
+    </script>
   </body>
 </html>

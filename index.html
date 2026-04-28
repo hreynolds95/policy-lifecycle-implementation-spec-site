@@ -33,62 +33,58 @@
           dynamic approval routing, and auditable publication controls.
         </p>
         <div class="badge-row">
-          <span class="badge">Source of Record: GitHub</span>
-          <span class="badge">In-Scope: Policies + Standards</span>
-          <span class="badge">Workflow: TG1-TG4</span>
+          <span class="badge">Target Platform: GitHub</span>
+          <span class="badge">Block-Wide Enterprise Governance</span>
+          <span class="badge">PoP Lifecycle Alignment</span>
         </div>
       </header>
 
       <section class="status-banner card" aria-label="Implementation status banner">
         <div class="status-item">
-          <span class="status-label">PoP Baseline</span>
-          <span class="status-value">Compliance Policy on Policies (PoP)</span>
+          <span class="status-label">Program Goal</span>
+          <span class="status-value">Replace LogicGate with a GitHub-based DMS</span>
         </div>
         <div class="status-item">
-          <span class="status-label">System of Record</span>
-          <span class="status-value">GitHub (LogicGate replaced)</span>
+          <span class="status-label">Cutover Gate</span>
+          <span class="status-pill" data-status-token="blocked">Not Ready</span>
         </div>
         <div class="status-item">
-          <span class="status-label">Scope</span>
-          <span class="status-value">Policies + Standards</span>
-        </div>
-        <div class="status-item">
-          <span class="status-label">Tiered Approval Parity</span>
+          <span class="status-label">Required Parity</span>
           <span class="status-pill" data-status-token="required">Required</span>
         </div>
         <div class="status-item">
-          <span class="status-label">Implementation Status</span>
+          <span class="status-label">Build Status</span>
           <span class="status-pill" data-status-token="in-progress">In Progress</span>
         </div>
-        <div class="status-item">
-          <span class="status-label">Last Updated</span>
-          <span class="status-value">2026-04-03</span>
-        </div>
       </section>
 
-      <section class="status-legend card" aria-label="Status token legend">
-        <span class="status-legend-label">Status Tokens</span>
-        <div id="statusLegendTokens" class="status-legend-tokens"></div>
+      <section class="landing-paths" aria-label="Primary navigation">
+        <a class="landing-path primary-path" href="implementation/?mode=review">
+          <span class="landing-path-label">Start Here</span>
+          <strong>Weekly Review View</strong>
+          <span>Meeting-ready view of readiness blockers, tracker status, and dependencies.</span>
+        </a>
+        <a class="landing-path" href="implementation/">
+          <span class="landing-path-label">Implementation</span>
+          <strong>Open Workplan</strong>
+          <span>Fourteen tactical pages with owners, outputs, dependencies, and exit criteria.</span>
+        </a>
+        <a class="landing-path" href="#specExplorer">
+          <span class="landing-path-label">Reference</span>
+          <strong>Read Spec Explorer</strong>
+          <span>Detailed GitHub workflow design, approval gates, audit controls, and delivery plan.</span>
+        </a>
       </section>
 
-      <section class="workplan-banner card" aria-label="Implementation workplan navigation">
-        <div class="workplan-copy">
-          <span class="workplan-label">Implementation Workplan</span>
-          <span class="workplan-title">Project pages for Block-wide GitHub DMS delivery</span>
-          <span class="workplan-summary">
-            Tactical pages break the DocArchitect prompt into buildable workstreams, artifacts,
-            dependencies, exit criteria, and migration readiness checks.
-          </span>
-        </div>
-        <div class="workplan-actions">
-          <a class="workplan-link primary-link" href="implementation/">Open Workplan</a>
-          <a class="workplan-link" href="implementation/06-template-enforcement.html">Template Gate</a>
-          <a class="workplan-link" href="implementation/04-governance-workflow.html">Workflow Gates</a>
-          <a class="workplan-link" href="implementation/11-gap-analysis.html">Gap Analysis</a>
-        </div>
-      </section>
+      <details class="advanced-panel">
+        <summary>Spec Tools and Review Controls</summary>
+        <div class="advanced-panel-content">
+          <section class="status-legend card" aria-label="Status token legend">
+            <span class="status-legend-label">Status Tokens</span>
+            <div id="statusLegendTokens" class="status-legend-tokens"></div>
+          </section>
 
-      <section class="telemetry-banner card" aria-label="Local telemetry insights">
+          <section class="telemetry-banner card" aria-label="Local telemetry insights">
         <div class="telemetry-copy">
           <span class="telemetry-title">Usage Insights (Local Only)</span>
           <span class="telemetry-summary" id="telemetrySummary" aria-live="polite">
@@ -99,9 +95,9 @@
           <button id="exportTelemetry">Export JSON</button>
           <button id="resetTelemetry">Reset</button>
         </div>
-      </section>
+          </section>
 
-      <section class="toolbar">
+          <section class="toolbar">
         <div class="btns">
           <button class="primary" id="expandAll">Expand All</button>
           <button id="collapseAll">Collapse All</button>
@@ -142,9 +138,9 @@
           <button class="mode-btn is-active" data-view-mode="full" aria-pressed="true">Full Spec</button>
           <button class="mode-btn" data-view-mode="review" aria-pressed="false">Review Mode</button>
         </div>
-      </section>
+          </section>
 
-      <section class="workflow-presets card" aria-label="Workflow presets">
+          <section class="workflow-presets card" aria-label="Workflow presets">
         <div class="workflow-presets-head">
           <span class="workflow-presets-label">Workflow Presets</span>
           <span id="workflowPresetSummary" class="workflow-presets-summary">
@@ -160,9 +156,9 @@
           <button class="preset-btn" type="button" data-workflow-preset="final-qa">Final QA</button>
           <button class="preset-btn" type="button" data-workflow-preset="reset">Reset View</button>
         </div>
-      </section>
+          </section>
 
-      <section class="completion-banner card" aria-label="Section review completion">
+          <section class="completion-banner card" aria-label="Section review completion">
         <div class="completion-head">
           <div class="completion-copy">
             <span class="completion-label">Review Completion</span>
@@ -187,9 +183,9 @@
         >
           <span id="completionProgressBar" class="completion-progress-bar"></span>
         </div>
-      </section>
+          </section>
 
-      <section class="gate-readiness-banner card" aria-label="Gate readiness summary">
+          <section class="gate-readiness-banner card" aria-label="Gate readiness summary">
         <div class="gate-readiness-head">
           <div class="gate-readiness-copy">
             <span class="gate-readiness-label">Gate Readiness</span>
@@ -234,9 +230,9 @@
             Unreviewed
           </button>
         </div>
-      </section>
+          </section>
 
-      <section id="filterEmptyState" class="filter-empty-state card is-hidden" aria-live="polite">
+          <section id="filterEmptyState" class="filter-empty-state card is-hidden" aria-live="polite">
         <div class="filter-empty-copy">
           <span class="filter-empty-title">No Sections Match Current Filters</span>
           <span id="filterEmptyMessage" class="filter-empty-message">
@@ -247,14 +243,16 @@
           <button id="filterEmptyClearSearch" type="button">Clear Search</button>
           <button id="filterEmptyResetFocus" type="button">Reset Focus</button>
         </div>
-      </section>
+          </section>
 
-      <section class="mobile-quick-actions" aria-label="Quick mobile actions">
+          <section class="mobile-quick-actions" aria-label="Quick mobile actions">
         <button id="mobileExpand" type="button">Expand</button>
         <button id="mobileCollapse" type="button">Collapse</button>
         <button id="mobileSearch" type="button">Search</button>
         <button id="mobileTop" type="button">Top</button>
-      </section>
+          </section>
+        </div>
+      </details>
 
       <div class="mini-nav-sentinel" aria-hidden="true"></div>
       <section class="mini-nav-wrap">
@@ -275,6 +273,12 @@
             <button id="orientationNext" class="orientation-btn" type="button">Next</button>
           </div>
         </div>
+      </section>
+
+      <section class="spec-intro" id="specExplorer">
+        <span class="implementation-eyebrow">Spec Explorer</span>
+        <h2>GitHub Workflow Design</h2>
+        <p>Use this section as the detailed reference. For project execution and weekly reviews, start with the implementation workplan.</p>
       </section>
 
       <div class="spec-layout">
@@ -1298,6 +1302,7 @@ procedures_reference_only:
         const params = new URLSearchParams(window.location.search);
         const sectionParam = (params.get(urlStateParamKeys.section) || '').trim();
         const hashSection = window.location.hash.replace(/^#/, '').trim();
+        const hasHashSection = topLevelIds.has(hashSection);
         const sectionCandidate = sectionParam || hashSection;
 
         let openSectionIds = null;
@@ -1313,6 +1318,7 @@ procedures_reference_only:
           viewMode: normalizeViewMode(params.get(urlStateParamKeys.mode)),
           stateFilter: normalizeSectionStateFilter(params.get(urlStateParamKeys.focus)),
           sectionId: topLevelIds.has(sectionCandidate) ? sectionCandidate : null,
+          shouldScrollToSection: hasHashSection,
           searchQuery: params.has(urlStateParamKeys.search) ? params.get(urlStateParamKeys.search) || '' : null,
           openSectionIds,
         };
@@ -2259,7 +2265,7 @@ procedures_reference_only:
       updateReadingProgress();
       syncWorkflowPresetSummaryFromState();
 
-      if (urlState.sectionId) {
+      if (urlState.shouldScrollToSection && urlState.sectionId) {
         const targetSection = document.getElementById(urlState.sectionId);
         if (isSectionVisible(targetSection)) {
           window.requestAnimationFrame(() => {

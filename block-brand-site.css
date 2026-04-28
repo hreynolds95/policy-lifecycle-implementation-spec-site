@@ -749,6 +749,50 @@ h1 {
   font-weight: 700;
 }
 
+.step-id,
+.task-id,
+.hero-step-id {
+  border: 1px solid #bfcbd6;
+  border-radius: 999px;
+  background: #eef3f6;
+  color: #28323d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 0.18rem 0.42rem;
+  white-space: nowrap;
+}
+
+.hero-step-id {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.step-card .step-id {
+  justify-self: start;
+}
+
+.tracker-table .step-id,
+.readiness-gate-card .step-id,
+.dependency-node .step-id {
+  margin-right: 0.4rem;
+}
+
+.implementation-table .task-id {
+  background: #ffffff;
+}
+
+.implementation-section li .task-id {
+  margin-right: 0.4rem;
+  transform: translateY(-0.05rem);
+}
+
 .phase-kicker,
 .step-meta {
   color: #607080;

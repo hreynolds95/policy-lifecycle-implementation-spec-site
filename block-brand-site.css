@@ -664,6 +664,45 @@ h1 {
   transition: width 180ms ease;
 }
 
+.workflow-presets {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  padding: 0.64rem 0.86rem 0.7rem;
+  display: grid;
+  gap: 0.52rem;
+}
+
+.workflow-presets-head {
+  display: grid;
+  gap: 0.08rem;
+}
+
+.workflow-presets-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label-ink);
+  font-weight: 700;
+}
+
+.workflow-presets-summary {
+  font-size: 0.8rem;
+  color: #425263;
+  font-weight: 600;
+}
+
+.workflow-presets-actions {
+  display: flex;
+  gap: 0.42rem;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  font-size: 0.79rem;
+  padding: 0.34rem 0.58rem;
+  border-radius: 9px;
+}
+
 .completion-banner {
   margin-top: 0;
   margin-bottom: var(--space-2);
@@ -1631,6 +1670,7 @@ pre {
   .theme-toggle,
   .diagram-panel,
   .telemetry-banner,
+  .workflow-presets,
   .completion-banner,
   .gate-readiness-banner,
   .filter-empty-state,
@@ -1862,6 +1902,10 @@ pre {
     padding: 0.62rem 0.68rem 0.7rem;
   }
 
+  .workflow-presets {
+    padding: 0.62rem 0.68rem 0.7rem;
+  }
+
   .gate-readiness-banner {
     padding: 0.62rem 0.68rem 0.7rem;
   }
@@ -1882,6 +1926,19 @@ pre {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .workflow-presets-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workflow-presets-actions .preset-btn {
+    width: 100%;
+    min-height: 40px;
+    justify-content: center;
+    text-align: center;
   }
 
   .gate-readiness-actions {

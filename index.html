@@ -132,6 +132,21 @@
         </div>
       </section>
 
+      <section class="workflow-presets card" aria-label="Workflow presets">
+        <div class="workflow-presets-head">
+          <span class="workflow-presets-label">Workflow Presets</span>
+          <span id="workflowPresetSummary" class="workflow-presets-summary">
+            Use presets for repeat review paths.
+          </span>
+        </div>
+        <div class="workflow-presets-actions">
+          <button class="preset-btn" type="button" data-workflow-preset="board-review">Board Review</button>
+          <button class="preset-btn" type="button" data-workflow-preset="gate-triage">Gate Triage</button>
+          <button class="preset-btn" type="button" data-workflow-preset="final-qa">Final QA</button>
+          <button class="preset-btn" type="button" data-workflow-preset="reset">Reset View</button>
+        </div>
+      </section>
+
       <section class="completion-banner card" aria-label="Section review completion">
         <div class="completion-head">
           <div class="completion-copy">
@@ -558,6 +573,8 @@ procedures_reference_only:
       const mobileSearch = document.getElementById('mobileSearch');
       const mobileTop = document.getElementById('mobileTop');
       const printExecutive = document.getElementById('printExecutive');
+      const presetButtons = Array.from(document.querySelectorAll('.preset-btn'));
+      const workflowPresetSummary = document.getElementById('workflowPresetSummary');
       const readingProgressText = document.getElementById('readingProgressText');
       const readingProgressBar = document.getElementById('readingProgressBar');
       const readingProgressTrack = document.getElementById('readingProgressTrack');
@@ -602,6 +619,12 @@ procedures_reference_only:
         ready: 'Ready',
         reviewed: 'Reviewed',
         unreviewed: 'Unreviewed',
+      });
+      const workflowPresetLabels = Object.freeze({
+        'board-review': 'Board Review',
+        'gate-triage': 'Gate Triage',
+        'final-qa': 'Final QA',
+        reset: 'Reset View',
       });
       const sectionGateRequirements = Object.freeze({
         s1: ['metadata'],
@@ -1425,6 +1448,97 @@ procedures_reference_only:
         announce(`Focus filter set to ${sectionStateFilterLabels[sectionStateFilter] || sectionStateFilter}`);
       }
 
+      function collapseAllSections(options = {}) {
+        const { announceChange = false } = options;
+        suppressTelemetry = true;
+        sections.forEach((section) => {
+          resetSectionInlineStyles(section);
+          section.open = false;
+        });
+        suppressTelemetry = false;
+        updateReadingProgress();
+        scheduleReadingStateSave();
+        if (announceChange) announce('Collapsed all sections');
+      }
+
+      function openFirstVisibleSection(options = {}) {
+        const { scroll = false, announceMove = false } = options;
+        const target = getVisibleTopLevelSections()[0];
+        if (!target) return false;
+        openTopLevelSection(target, { scroll, focusSummary: true, announceMove });
+        return true;
+      }
+
+      function setWorkflowPresetSummary(text) {
+        if (!workflowPresetSummary) return;
+        workflowPresetSummary.textContent = text;
+      }
+
+      function setCustomWorkflowSummary() {
+        setWorkflowPresetSummary('Custom view filters active');
+      }
+
+      function syncWorkflowPresetSummaryFromState() {
+        const query = sectionSearch ? sectionSearch.value.trim() : '';
+        if (!query && viewMode === 'review' && sectionStateFilter === 'needs-checks') {
+          setWorkflowPresetSummary('Board Review preset: Review Mode + Needs Checks');
+          return;
+        }
+        if (!query && viewMode === 'full' && sectionStateFilter === 'needs-checks') {
+          setWorkflowPresetSummary('Gate Triage preset: Full Spec + Needs Checks');
+          return;
+        }
+        if (!query && viewMode === 'full' && sectionStateFilter === 'unreviewed') {
+          setWorkflowPresetSummary('Final QA preset: Full Spec + Unreviewed');
+          return;
+        }
+        if (!query && viewMode === 'full' && sectionStateFilter === 'all') {
+          setWorkflowPresetSummary('Reset view applied: Full Spec + All Sections');
+          return;
+        }
+        setCustomWorkflowSummary();
+      }
+
+      function applyWorkflowPreset(presetKey) {
+        const key = String(presetKey || '').trim();
+        if (!key) return;
+
+        if (sectionSearch) sectionSearch.value = '';
+        collapseAllSections({ announceChange: false });
+
+        switch (key) {
+          case 'board-review':
+            applyViewMode('review', { announceChange: false });
+            setSectionStateFilter('needs-checks', { announceChange: false });
+            openFirstVisibleSection({ scroll: true, announceMove: false });
+            setWorkflowPresetSummary('Board Review preset: Review Mode + Needs Checks');
+            break;
+          case 'gate-triage':
+            applyViewMode('full', { announceChange: false });
+            setSectionStateFilter('needs-checks', { announceChange: false });
+            openFirstVisibleSection({ scroll: true, announceMove: false });
+            setWorkflowPresetSummary('Gate Triage preset: Full Spec + Needs Checks');
+            break;
+          case 'final-qa':
+            applyViewMode('full', { announceChange: false });
+            setSectionStateFilter('unreviewed', { announceChange: false });
+            openFirstVisibleSection({ scroll: true, announceMove: false });
+            setWorkflowPresetSummary('Final QA preset: Full Spec + Unreviewed');
+            break;
+          case 'reset':
+            applyViewMode('full', { announceChange: false });
+            setSectionStateFilter('all', { announceChange: false });
+            openFirstVisibleSection({ scroll: true, announceMove: false });
+            setWorkflowPresetSummary('Reset view applied: Full Spec + All Sections');
+            break;
+          default:
+            return;
+        }
+
+        syncWorkflowPresetSummaryFromState();
+        announce(`${workflowPresetLabels[key] || key} preset applied`);
+      }
+
       function updateOrientationStrip() {
         if (!orientationCurrent || !orientationPrev || !orientationNext) return;
 
@@ -1636,19 +1750,13 @@ procedures_reference_only:
         suppressTelemetry = false;
         updateReadingProgress();
         scheduleReadingStateSave();
+        setCustomWorkflowSummary();
         announce('Expanded all sections');
       });
 
       document.getElementById('collapseAll').addEventListener('click', () => {
-        suppressTelemetry = true;
-        sections.forEach((s) => {
-          resetSectionInlineStyles(s);
-          s.open = false;
-        });
-        suppressTelemetry = false;
-        updateReadingProgress();
-        scheduleReadingStateSave();
-        announce('Collapsed all sections');
+        collapseAllSections({ announceChange: true });
+        setCustomWorkflowSummary();
       });
 
       document.getElementById('printPage').addEventListener('click', () => {
@@ -1810,12 +1918,20 @@ procedures_reference_only:
       if (sectionSearch) {
         sectionSearch.addEventListener('input', () => {
           applySectionFilter(sectionSearch.value);
+          setCustomWorkflowSummary();
         });
       }
 
       stateFilterButtons.forEach((button) => {
         button.addEventListener('click', () => {
           setSectionStateFilter(button.dataset.sectionStateFilter, { announceChange: true });
+          setCustomWorkflowSummary();
+        });
+      });
+
+      presetButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          applyWorkflowPreset(button.dataset.workflowPreset);
         });
       });
 
@@ -1825,6 +1941,7 @@ procedures_reference_only:
           sectionSearch.value = '';
           sectionSearch.focus();
           applySectionFilter('');
+          setCustomWorkflowSummary();
           announce('Search cleared');
         });
       }
@@ -1832,6 +1949,7 @@ procedures_reference_only:
       if (filterEmptyResetFocus) {
         filterEmptyResetFocus.addEventListener('click', () => {
           setSectionStateFilter('all', { announceChange: true });
+          setCustomWorkflowSummary();
         });
       }
 
@@ -1841,6 +1959,7 @@ procedures_reference_only:
           sectionSearch.value = '';
           sectionSearch.focus();
           applySectionFilter('');
+          setCustomWorkflowSummary();
           announce('Search cleared. Showing all sections');
         });
       }
@@ -2074,6 +2193,7 @@ procedures_reference_only:
       setActiveNavLink(initialActiveSection ? initialActiveSection.id : '');
       updateTelemetrySummary();
       updateReadingProgress();
+      syncWorkflowPresetSummaryFromState();
 
       if (urlState.sectionId) {
         const targetSection = document.getElementById(urlState.sectionId);
@@ -2158,6 +2278,7 @@ procedures_reference_only:
       viewModeButtons.forEach((button) => {
         button.addEventListener('click', () => {
           applyViewMode(button.dataset.viewMode, { announceChange: true });
+          setCustomWorkflowSummary();
         });
       });
 

@@ -186,6 +186,24 @@
         >
           <span id="gateReadinessBar" class="gate-readiness-bar"></span>
         </div>
+        <div class="section-focus-filters" role="group" aria-label="Section focus filters">
+          <span class="section-focus-label">Focus</span>
+          <button class="state-filter-btn is-active" type="button" data-section-state-filter="all" aria-pressed="true">
+            All
+          </button>
+          <button class="state-filter-btn" type="button" data-section-state-filter="needs-checks" aria-pressed="false">
+            Needs Checks
+          </button>
+          <button class="state-filter-btn" type="button" data-section-state-filter="ready" aria-pressed="false">
+            Ready
+          </button>
+          <button class="state-filter-btn" type="button" data-section-state-filter="reviewed" aria-pressed="false">
+            Reviewed
+          </button>
+          <button class="state-filter-btn" type="button" data-section-state-filter="unreviewed" aria-pressed="false">
+            Unreviewed
+          </button>
+        </div>
       </section>
 
       <section class="mobile-quick-actions" aria-label="Quick mobile actions">
@@ -509,6 +527,7 @@ procedures_reference_only:
       const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
       const validViewModes = ['full', 'review'];
+      const validSectionStateFilters = ['all', 'needs-checks', 'ready', 'reviewed', 'unreviewed'];
       const reviewModeSectionIds = new Set(['s1', 's6', 's7', 's9', 's12']);
       const telemetrySummary = document.getElementById('telemetrySummary');
       const telemetryKey = 'policySpecTelemetry.v1';
@@ -541,6 +560,7 @@ procedures_reference_only:
       const gateReadinessBar = document.getElementById('gateReadinessBar');
       const nextNeedsChecks = document.getElementById('nextNeedsChecks');
       const clearVisibleGates = document.getElementById('clearVisibleGates');
+      const stateFilterButtons = Array.from(document.querySelectorAll('.state-filter-btn'));
       const statusLegendTokens = document.getElementById('statusLegendTokens');
       const srAnnouncer = document.getElementById('srAnnouncer');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
@@ -558,6 +578,13 @@ procedures_reference_only:
         qc: 'QC',
         approvals: 'Approvals',
         publish: 'Publish',
+      });
+      const sectionStateFilterLabels = Object.freeze({
+        all: 'All',
+        'needs-checks': 'Needs Checks',
+        ready: 'Ready',
+        reviewed: 'Reviewed',
+        unreviewed: 'Unreviewed',
       });
       const sectionGateRequirements = Object.freeze({
         s1: ['metadata'],
@@ -640,6 +667,7 @@ procedures_reference_only:
         section: 'section',
         open: 'open',
         search: 'q',
+        focus: 'focus',
       });
 
       function buildEmptyReadingState() {
@@ -781,6 +809,7 @@ procedures_reference_only:
       let suppressUrlState = true;
       let activeSectionId = '';
       let viewMode = 'full';
+      let sectionStateFilter = 'all';
       let pendingExecutivePrint = false;
       let restoreViewModeAfterPrint = null;
       let restoreUrlSyncAfterPrint = null;
@@ -1151,6 +1180,11 @@ procedures_reference_only:
         return validViewModes.includes(mode) ? mode : null;
       }
 
+      function normalizeSectionStateFilter(rawFilter) {
+        const filter = String(rawFilter || '').toLowerCase().trim();
+        return validSectionStateFilters.includes(filter) ? filter : null;
+      }
+
       function getThemeName() {
         const theme = getCurrentTheme().replace(/^theme-/, '');
         return theme.charAt(0).toUpperCase() + theme.slice(1);
@@ -1223,6 +1257,7 @@ procedures_reference_only:
         return {
           theme: normalizeThemeValue(params.get(urlStateParamKeys.theme)),
           viewMode: normalizeViewMode(params.get(urlStateParamKeys.mode)),
+          stateFilter: normalizeSectionStateFilter(params.get(urlStateParamKeys.focus)),
           sectionId: topLevelIds.has(sectionCandidate) ? sectionCandidate : null,
           searchQuery: params.has(urlStateParamKeys.search) ? params.get(urlStateParamKeys.search) || '' : null,
           openSectionIds,
@@ -1243,6 +1278,7 @@ procedures_reference_only:
 
         const queryValue = sectionSearch ? sectionSearch.value.trim() : '';
         if (queryValue) params.set(urlStateParamKeys.search, queryValue);
+        if (sectionStateFilter !== 'all') params.set(urlStateParamKeys.focus, sectionStateFilter);
 
         const currentSectionId = topLevelIds.has(activeSectionId) ? activeSectionId : '';
         if (currentSectionId) params.set(urlStateParamKeys.section, currentSectionId);
@@ -1291,9 +1327,11 @@ procedures_reference_only:
         sectionSearchIndex.forEach((entry) => {
           const suppressedByMode = viewMode === 'review' && !reviewModeSectionIds.has(entry.id);
           const isMatch = !query || entry.haystack.includes(query);
+          const passesStateFilter = sectionMatchesStateFilter(entry.section);
+          const isVisibleMatch = !suppressedByMode && isMatch && passesStateFilter;
           entry.section.classList.toggle('is-mode-hidden', suppressedByMode);
-          entry.section.classList.toggle('is-filtered-out', !suppressedByMode && !isMatch);
-          if (!suppressedByMode && isMatch) matches += 1;
+          entry.section.classList.toggle('is-filtered-out', !suppressedByMode && !isVisibleMatch);
+          if (isVisibleMatch) matches += 1;
         });
 
         updateSearchMatchCount(query, matches);
@@ -1309,6 +1347,40 @@ procedures_reference_only:
         updateGateReadinessSummary();
         updateOrientationStrip();
         scheduleUrlStateSync();
+      }
+
+      function sectionMatchesStateFilter(section) {
+        switch (sectionStateFilter) {
+          case 'needs-checks':
+            return !isSectionGateReady(section.id);
+          case 'ready':
+            return isSectionGateReady(section.id);
+          case 'reviewed':
+            return reviewedSectionIds.has(section.id);
+          case 'unreviewed':
+            return !reviewedSectionIds.has(section.id);
+          default:
+            return true;
+        }
+      }
+
+      function syncSectionStateFilterButtons() {
+        stateFilterButtons.forEach((button) => {
+          const isActive = button.dataset.sectionStateFilter === sectionStateFilter;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      }
+
+      function setSectionStateFilter(nextFilter, options = {}) {
+        const { announceChange = false } = options;
+        const normalizedFilter = normalizeSectionStateFilter(nextFilter) || 'all';
+        const changed = sectionStateFilter !== normalizedFilter;
+        sectionStateFilter = normalizedFilter;
+        syncSectionStateFilterButtons();
+        applySectionFilter(sectionSearch ? sectionSearch.value : '');
+        if (!announceChange || !changed) return;
+        announce(`Focus filter set to ${sectionStateFilterLabels[sectionStateFilter] || sectionStateFilter}`);
       }
 
       function updateOrientationStrip() {
@@ -1699,6 +1771,12 @@ procedures_reference_only:
         });
       }
 
+      stateFilterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setSectionStateFilter(button.dataset.sectionStateFilter, { announceChange: true });
+        });
+      });
+
       if (clearSearch) {
         clearSearch.addEventListener('click', () => {
           if (!sectionSearch) return;
@@ -1719,6 +1797,7 @@ procedures_reference_only:
 
         if (target.classList.contains('is-filtered-out') && sectionSearch) {
           sectionSearch.value = '';
+          setSectionStateFilter('all', { announceChange: false });
           applySectionFilter('');
         }
 
@@ -1924,6 +2003,8 @@ procedures_reference_only:
       if (sectionSearch && urlState.searchQuery !== null) {
         sectionSearch.value = urlState.searchQuery;
       }
+      sectionStateFilter = urlState.stateFilter || 'all';
+      syncSectionStateFilterButtons();
 
       const storedViewMode = normalizeViewMode(localStorage.getItem(viewModeStateKey));
       const initialViewMode = urlState.viewMode || storedViewMode || 'full';

@@ -120,6 +120,18 @@
   --space-3: 1.5rem;
   --space-4: 2rem;
   --space-5: 2.5rem;
+
+  /* Shared UI rhythm for compact dashboard surfaces */
+  --ui-gap-xs: 0.16rem;
+  --ui-gap-sm: 0.4rem;
+  --ui-gap-md: 0.56rem;
+  --ui-gap-lg: 0.72rem;
+  --ui-card-padding-sm: 0.64rem;
+  --ui-card-padding-md: 0.72rem;
+  --ui-card-padding-lg: 0.84rem;
+  --ui-chip-padding: 0.22rem 0.52rem;
+  --ui-chip-radius: 999px;
+  --ui-card-radius: var(--radius-md);
 }
 
 .theme-block {
@@ -470,20 +482,20 @@ h1 {
 .landing-paths {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.72rem;
+  gap: var(--ui-gap-lg);
   margin-bottom: var(--space-2);
 }
 
 .landing-path {
   border: 1px solid var(--card-line);
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   box-shadow: var(--card-shadow);
   color: #303741;
   display: grid;
-  gap: 0.2rem;
+  gap: var(--ui-gap-xs);
   min-height: 96px;
-  padding: 0.78rem 0.84rem;
+  padding: var(--ui-card-padding-lg);
   text-decoration: none;
 }
 
@@ -496,7 +508,7 @@ h1 {
   border-color: #aeb9c4;
   box-shadow: 0 0 0 1px rgba(63, 67, 75, 0.08), var(--card-shadow);
   min-height: 124px;
-  padding: 1rem;
+  padding: var(--space-2);
 }
 
 .landing-path-label {
@@ -531,7 +543,7 @@ h1 {
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   box-shadow: var(--shadow-sm);
 }
@@ -558,13 +570,13 @@ h1 {
 
 .spec-intro {
   border: 1px solid var(--card-line);
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   box-shadow: var(--shadow-sm);
   display: grid;
-  gap: 0.14rem;
+  gap: var(--ui-gap-xs);
   margin-bottom: var(--space-2);
-  padding: 0.78rem 0.9rem;
+  padding: var(--ui-card-padding-lg);
 }
 
 .spec-intro h2 {
@@ -585,8 +597,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.72rem;
-  padding: 0.72rem 0.84rem;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-md) var(--ui-card-padding-lg);
 }
 
 .landing-next-label {
@@ -657,9 +669,9 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.72rem;
-  margin: 0.72rem 0;
-  padding: 0.58rem 0.72rem;
+  gap: var(--ui-gap-lg);
+  margin: var(--ui-gap-lg) 0;
+  padding: var(--ui-card-padding-sm) var(--ui-card-padding-md);
 }
 
 .readiness-bar-label {
@@ -675,7 +687,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.52rem;
+  gap: var(--ui-gap-md);
   color: #303741;
   flex-wrap: wrap;
   font-size: 0.84rem;
@@ -700,23 +712,23 @@ h1 {
 }
 
 .landing-page .landing-paths {
-  gap: 0.58rem;
-  margin-bottom: 0.72rem;
+  gap: var(--ui-gap-md);
+  margin-bottom: var(--ui-gap-lg);
 }
 
 .landing-page .landing-path {
-  gap: 0.14rem;
+  gap: var(--ui-gap-xs);
   min-height: 80px;
-  padding: 0.64rem 0.72rem;
+  padding: var(--ui-card-padding-sm) var(--ui-card-padding-md);
 }
 
 .landing-page .landing-path.primary-path {
   min-height: 104px;
-  padding: 0.82rem;
+  padding: var(--ui-card-padding-lg);
 }
 
 .landing-page .landing-next {
-  padding: 0.58rem 0.72rem;
+  padding: var(--ui-card-padding-sm) var(--ui-card-padding-md);
 }
 
 .landing-page .site-footer {
@@ -761,7 +773,7 @@ h1 {
 
 .workplan-actions {
   display: flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
@@ -779,7 +791,7 @@ h1 {
 .implementation-nav a,
 .step-link {
   border: 1px solid #cbd5de;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   padding: 0.34rem 0.58rem;
   font-size: 0.79rem;
@@ -806,7 +818,7 @@ h1 {
 
 .implementation-nav {
   display: flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
   margin-bottom: var(--space-2);
 }
@@ -826,12 +838,12 @@ h1 {
 
 .meeting-mode-actions {
   display: flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
 }
 
 .meeting-mode-btn {
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   font-size: 0.8rem;
   padding: 0.38rem 0.62rem;
 }
@@ -875,7 +887,7 @@ h1 {
 }
 
 .review-focus-panel {
-  gap: 0.72rem;
+  gap: var(--ui-gap-lg);
 }
 
 .review-focus-head {
@@ -890,18 +902,18 @@ h1 {
 .review-blocker-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.56rem;
+  gap: var(--ui-gap-md);
 }
 
 .review-blocker-card {
   border: 1px solid #d8e0e7;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   color: #303741;
   display: grid;
-  gap: 0.18rem;
+  gap: var(--ui-gap-xs);
   min-height: 124px;
-  padding: 0.72rem;
+  padding: var(--ui-card-padding-md);
   text-decoration: none;
   box-shadow: var(--shadow-sm);
 }
@@ -936,7 +948,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  padding: 0.72rem 0.84rem;
+  padding: var(--ui-card-padding-md) var(--ui-card-padding-lg);
 }
 
 .plan-overview-copy {
@@ -958,13 +970,13 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.4rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
 }
 
 .plan-phase-list span {
   border: 1px solid #d4dde5;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   background: #f6f8fa;
   color: #344250;
   display: inline-flex;
@@ -973,7 +985,7 @@ h1 {
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.2;
-  padding: 0.28rem 0.52rem;
+  padding: var(--ui-chip-padding);
   white-space: nowrap;
 }
 
@@ -986,16 +998,16 @@ h1 {
 .phase-strip {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.56rem;
+  gap: var(--ui-gap-md);
 }
 
 .phase-item {
   border: 1px solid #d8e0e7;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
-  padding: 0.72rem;
+  padding: var(--ui-card-padding-md);
   display: grid;
-  gap: 0.12rem;
+  gap: var(--ui-gap-xs);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1012,7 +1024,7 @@ h1 {
 .task-id,
 .hero-step-id {
   border: 1px solid #bfcbd6;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   background: #eef3f6;
   color: #28323d;
   display: inline-flex;
@@ -1070,12 +1082,12 @@ h1 {
 
 .step-card {
   border: 1px solid var(--card-line);
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
-  padding: 0.86rem;
+  padding: var(--ui-card-padding-lg);
   box-shadow: var(--card-shadow);
   display: grid;
-  gap: 0.38rem;
+  gap: var(--ui-gap-sm);
   align-content: start;
   min-height: 184px;
   position: relative;
@@ -1113,7 +1125,7 @@ h1 {
   justify-self: start;
   margin-top: 0.3rem;
   border: 1px solid #c8d3de;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   background: #f4f7f9;
   color: #3b4652;
   padding: 0.16rem 0.42rem;
@@ -1121,9 +1133,9 @@ h1 {
 
 .implementation-section {
   border: 1px solid var(--card-line);
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
-  padding: 0.92rem;
+  padding: var(--ui-card-padding-lg);
   box-shadow: var(--card-shadow);
 }
 
@@ -1134,17 +1146,17 @@ h1 {
 .glance-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.5rem;
+  gap: var(--ui-gap-md);
   margin-top: 0.62rem;
 }
 
 .glance-item {
   border: 1px solid #d7e0e7;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
-  padding: 0.56rem;
+  padding: var(--ui-card-padding-sm);
   display: grid;
-  gap: 0.1rem;
+  gap: var(--ui-gap-xs);
 }
 
 .glance-label {
@@ -1175,7 +1187,7 @@ h1 {
 
 .readiness-gate-status {
   border: 1px solid #d8b4b4;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   background: #f8ecec;
   color: #6f3434;
   padding: 0.22rem 0.56rem;
@@ -1189,19 +1201,19 @@ h1 {
 .readiness-gate-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.56rem;
-  margin-top: 0.72rem;
+  gap: var(--ui-gap-md);
+  margin-top: var(--ui-gap-lg);
 }
 
 .readiness-gate-card {
   border: 1px solid #d8e0e7;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   color: #303741;
   display: grid;
-  gap: 0.16rem;
+  gap: var(--ui-gap-xs);
   min-height: 136px;
-  padding: 0.7rem;
+  padding: var(--ui-card-padding-md);
   text-decoration: none;
   box-shadow: var(--shadow-sm);
 }
@@ -1258,17 +1270,17 @@ h1 {
 
 .tracker-summary {
   display: flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .tracker-summary span {
   border: 1px solid #cfd9e2;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   background: #f7fafb;
   color: #44515f;
-  padding: 0.22rem 0.5rem;
+  padding: var(--ui-chip-padding);
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -1276,13 +1288,13 @@ h1 {
 .tracker-filters {
   display: flex;
   align-items: center;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
-  margin-top: 0.72rem;
+  margin-top: var(--ui-gap-lg);
 }
 
 .tracker-filter {
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   padding: 0.3rem 0.58rem;
   font-size: 0.74rem;
   box-shadow: none;
@@ -1325,7 +1337,7 @@ h1 {
   align-items: center;
   min-height: 1.45rem;
   border: 1px solid #cbd5de;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   padding: 0.12rem 0.44rem;
   font-size: 0.68rem;
   font-weight: 700;
@@ -1369,19 +1381,19 @@ h1 {
 
 .dependency-lanes {
   display: grid;
-  gap: 0.56rem;
-  margin-top: 0.72rem;
+  gap: var(--ui-gap-md);
+  margin-top: var(--ui-gap-lg);
 }
 
 .dependency-lane {
   border: 1px solid #d8e0e7;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #ffffff;
   display: grid;
   grid-template-columns: minmax(150px, 1fr) auto minmax(150px, 1fr) minmax(220px, 1.25fr);
-  gap: 0.5rem;
+  gap: var(--ui-gap-md);
   align-items: center;
-  padding: 0.62rem;
+  padding: var(--ui-card-padding-sm);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1395,7 +1407,7 @@ h1 {
 
 .dependency-node {
   border: 1px solid #cbd5de;
-  border-radius: 8px;
+  border-radius: var(--ui-card-radius);
   background: #f7fafb;
   color: #27313b;
   font-size: 0.82rem;
@@ -1528,7 +1540,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
 }
 
 .reading-progress-label {
@@ -1551,7 +1563,7 @@ h1 {
   position: relative;
   width: 100%;
   height: 0.43rem;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   border: 1px solid #d5dde3;
   background: #eef2f5;
   overflow: hidden;
@@ -1605,14 +1617,14 @@ h1 {
 
 .workflow-presets-actions {
   display: flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
 }
 
 .preset-btn {
   font-size: 0.79rem;
   padding: 0.34rem 0.58rem;
-  border-radius: 9px;
+  border-radius: var(--ui-card-radius);
 }
 
 .completion-banner {
@@ -1620,7 +1632,7 @@ h1 {
   margin-bottom: var(--space-2);
   padding: 0.7rem 0.9rem 0.78rem;
   display: grid;
-  gap: 0.56rem;
+  gap: var(--ui-gap-md);
 }
 
 .completion-head {
@@ -1677,7 +1689,7 @@ h1 {
   position: relative;
   width: 100%;
   height: 0.48rem;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   border: 1px solid #d2dbe3;
   background: #edf2f5;
   overflow: hidden;
@@ -1697,7 +1709,7 @@ h1 {
   margin-bottom: var(--space-2);
   padding: 0.7rem 0.9rem 0.78rem;
   display: grid;
-  gap: 0.56rem;
+  gap: var(--ui-gap-md);
 }
 
 .gate-readiness-head {
@@ -1734,7 +1746,7 @@ h1 {
 
 .gate-readiness-actions {
   display: inline-flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   align-items: center;
   flex-wrap: wrap;
 }
@@ -1742,7 +1754,7 @@ h1 {
 .gate-readiness-actions button {
   font-size: 0.8rem;
   padding: 0.34rem 0.56rem;
-  border-radius: 9px;
+  border-radius: var(--ui-card-radius);
 }
 
 .gate-readiness-actions button:disabled {
@@ -1754,7 +1766,7 @@ h1 {
   position: relative;
   width: 100%;
   height: 0.48rem;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   border: 1px solid #d2dbe3;
   background: #edf2f5;
   overflow: hidden;
@@ -1790,7 +1802,7 @@ h1 {
 .state-filter-btn {
   font-size: 0.74rem;
   padding: 0.28rem 0.52rem;
-  border-radius: 999px;
+  border-radius: var(--ui-chip-radius);
   border: 1px solid #cad4de;
   background: #f4f7f9;
   color: #3e4a56;
@@ -1806,13 +1818,13 @@ h1 {
 .filter-empty-state {
   margin-top: 0;
   margin-bottom: var(--space-2);
-  padding: 0.72rem 0.88rem;
+  padding: var(--ui-card-padding-md) var(--ui-card-padding-lg);
   border: 1px dashed #c8d3de;
   background: #f4f7f9;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.7rem;
+  gap: var(--ui-gap-lg);
 }
 
 .filter-empty-state.is-hidden {
@@ -1840,14 +1852,14 @@ h1 {
 
 .filter-empty-actions {
   display: inline-flex;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   flex-wrap: wrap;
 }
 
 .filter-empty-actions button {
   font-size: 0.79rem;
   padding: 0.34rem 0.56rem;
-  border-radius: 9px;
+  border-radius: var(--ui-card-radius);
 }
 
 button {
@@ -1889,7 +1901,7 @@ button:hover {
   z-index: 25;
   margin-bottom: var(--space-2);
   display: grid;
-  gap: 0.42rem;
+  gap: var(--ui-gap-sm);
   transition: box-shadow 160ms ease;
 }
 

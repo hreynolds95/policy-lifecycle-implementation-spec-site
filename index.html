@@ -485,6 +485,7 @@ procedures_reference_only:
       const telemetryKey = 'policySpecTelemetry.v1';
       const readingStateKey = 'policySpecReadingState.v1';
       const reviewedStateKey = 'policySpecReviewedState.v1';
+      const gateStateKey = 'policySpecGateState.v1';
       const viewModeStateKey = 'policySpecViewMode.v1';
       let suppressTelemetry = false;
       const lastCommitStamp = document.getElementById('lastCommitStamp');
@@ -517,12 +518,33 @@ procedures_reference_only:
       });
       const statusTokenOrder = ['required', 'in-progress', 'complete', 'blocked'];
       const statusTokenClasses = Object.values(statusTokenConfig).map((token) => token.modifierClass);
+      const gateCatalog = Object.freeze({
+        metadata: 'Metadata',
+        qc: 'QC',
+        approvals: 'Approvals',
+        publish: 'Publish',
+      });
+      const sectionGateRequirements = Object.freeze({
+        s1: ['metadata'],
+        s2: ['metadata'],
+        s3: ['metadata'],
+        s4: ['metadata'],
+        s5: ['metadata', 'approvals'],
+        s6: ['metadata', 'qc', 'approvals'],
+        s7: ['approvals'],
+        s8: ['approvals'],
+        s9: ['qc'],
+        s10: ['qc', 'approvals'],
+        s11: ['qc', 'publish'],
+        s12: ['metadata', 'qc', 'approvals', 'publish'],
+      });
 
       function getSectionLabel(section) {
         const summary = section.querySelector(':scope > summary');
         if (!summary) return section.id;
         const clone = summary.cloneNode(true);
         clone.querySelectorAll('.summary-meta').forEach((node) => node.remove());
+        clone.querySelectorAll('.section-ready-chip').forEach((node) => node.remove());
         return clone.textContent.trim().replace(/^\d+\)\s*/, '');
       }
 
@@ -640,6 +662,51 @@ procedures_reference_only:
         localStorage.setItem(reviewedStateKey, JSON.stringify(data));
       }
 
+      function buildEmptyGateState() {
+        return {
+          sectionGates: Object.fromEntries(
+            topLevel.map((section) => {
+              const required = sectionGateRequirements[section.id] || [];
+              return [section.id, Object.fromEntries(required.map((gateKey) => [gateKey, false]))];
+            })
+          ),
+          lastUpdatedAt: null,
+        };
+      }
+
+      function loadGateState() {
+        const base = buildEmptyGateState();
+        try {
+          const parsed = JSON.parse(localStorage.getItem(gateStateKey) || 'null');
+          if (!parsed || typeof parsed !== 'object') return base;
+
+          const mergedSectionGates = Object.fromEntries(
+            topLevel.map((section) => {
+              const required = sectionGateRequirements[section.id] || [];
+              const saved = parsed.sectionGates && parsed.sectionGates[section.id] ? parsed.sectionGates[section.id] : {};
+              return [
+                section.id,
+                Object.fromEntries(
+                  required.map((gateKey) => [gateKey, Boolean(saved[gateKey])])
+                ),
+              ];
+            })
+          );
+
+          return {
+            ...base,
+            ...parsed,
+            sectionGates: mergedSectionGates,
+          };
+        } catch {
+          return base;
+        }
+      }
+
+      function saveGateState(data) {
+        localStorage.setItem(gateStateKey, JSON.stringify(data));
+      }
+
       function buildEmptyTelemetry() {
         return {
           totalOpenEvents: 0,
@@ -671,6 +738,7 @@ procedures_reference_only:
       let telemetry = loadTelemetry();
       let readingState = loadReadingState();
       let reviewedState = loadReviewedState();
+      let gateState = loadGateState();
       let reviewedSectionIds = new Set(reviewedState.reviewedSectionIds);
       let readingStateSaveTimer = null;
       let announceTimer = null;
@@ -788,6 +856,124 @@ procedures_reference_only:
         announce(`${label} ${isReviewed ? 'marked as reviewed' : 'marked as not reviewed'}`);
       }
 
+      function getRequiredGates(sectionId) {
+        return sectionGateRequirements[sectionId] || [];
+      }
+
+      function isSectionGateReady(sectionId) {
+        const required = getRequiredGates(sectionId);
+        if (required.length === 0) return true;
+        return required.every((gateKey) => Boolean(gateState.sectionGates[sectionId] && gateState.sectionGates[sectionId][gateKey]));
+      }
+
+      function persistGateState() {
+        gateState = {
+          sectionGates: Object.fromEntries(
+            topLevel.map((section) => {
+              const required = getRequiredGates(section.id);
+              const existing = gateState.sectionGates[section.id] || {};
+              return [section.id, Object.fromEntries(required.map((gateKey) => [gateKey, Boolean(existing[gateKey])]))];
+            })
+          ),
+          lastUpdatedAt: new Date().toISOString(),
+        };
+        saveGateState(gateState);
+      }
+
+      function getSectionReadyChip(section) {
+        const summary = section.querySelector(':scope > summary');
+        if (!summary) return null;
+        let chip = summary.querySelector('.section-ready-chip');
+        if (chip) return chip;
+        chip = document.createElement('span');
+        chip.className = 'section-ready-chip';
+        summary.append(chip);
+        return chip;
+      }
+
+      function syncSectionGateUi(section) {
+        const required = getRequiredGates(section.id);
+        const isReady = isSectionGateReady(section.id);
+        section.classList.toggle('is-ready', isReady);
+        section.classList.toggle('is-needs-gates', !isReady);
+
+        const readyChip = getSectionReadyChip(section);
+        if (readyChip) {
+          readyChip.classList.toggle('is-ready', isReady);
+          readyChip.classList.toggle('is-needs-gates', !isReady);
+          readyChip.textContent = isReady ? 'Ready' : 'Needs Checks';
+        }
+
+        const gateButtons = section.querySelectorAll('.section-gate-btn');
+        gateButtons.forEach((button) => {
+          const gateKey = button.dataset.gateKey;
+          if (!gateKey || !required.includes(gateKey)) return;
+          const passed = Boolean(gateState.sectionGates[section.id] && gateState.sectionGates[section.id][gateKey]);
+          button.classList.toggle('is-pass', passed);
+          button.classList.toggle('is-fail', !passed);
+          button.setAttribute('aria-pressed', passed ? 'true' : 'false');
+        });
+      }
+
+      function setSectionGate(sectionId, gateKey, passed, options = {}) {
+        if (!topLevelIds.has(sectionId)) return;
+        const required = getRequiredGates(sectionId);
+        if (!required.includes(gateKey)) return;
+        const { persist = true, announceChange = true } = options;
+        const current = Boolean(gateState.sectionGates[sectionId] && gateState.sectionGates[sectionId][gateKey]);
+        if (!gateState.sectionGates[sectionId]) gateState.sectionGates[sectionId] = {};
+        gateState.sectionGates[sectionId][gateKey] = Boolean(passed);
+        const section = document.getElementById(sectionId);
+        if (section) syncSectionGateUi(section);
+        if (persist && current !== Boolean(passed)) persistGateState();
+        if (announceChange && current !== Boolean(passed)) {
+          const gateLabel = gateCatalog[gateKey] || gateKey;
+          const sectionLabel = sectionLabels[sectionId] || sectionId;
+          announce(`${sectionLabel}: ${gateLabel} ${passed ? 'passed' : 'not passed'}`);
+        }
+      }
+
+      function setupSectionGateControls() {
+        topLevel.forEach((section) => {
+          const required = getRequiredGates(section.id);
+          const content = section.querySelector(':scope > .content');
+          if (!content) return;
+
+          const existing = content.querySelector(':scope > .section-gates');
+          if (existing) existing.remove();
+
+          if (required.length === 0) {
+            syncSectionGateUi(section);
+            return;
+          }
+
+          const gatesWrap = document.createElement('div');
+          gatesWrap.className = 'section-gates';
+
+          const gatesLabel = document.createElement('span');
+          gatesLabel.className = 'section-gates-label';
+          gatesLabel.textContent = 'Required Checks';
+
+          const gateList = document.createElement('div');
+          gateList.className = 'section-gate-list';
+
+          required.forEach((gateKey) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'section-gate-btn';
+            button.dataset.sectionId = section.id;
+            button.dataset.gateKey = gateKey;
+            button.setAttribute('aria-pressed', 'false');
+            button.textContent = gateCatalog[gateKey] || gateKey;
+            gateList.append(button);
+          });
+
+          gatesWrap.append(gatesLabel, gateList);
+          content.prepend(gatesWrap);
+          syncSectionGateUi(section);
+        });
+      }
+
       function formatPercent(count, total) {
         return total === 0 ? 0 : Math.round((count / total) * 100);
       }
@@ -799,8 +985,10 @@ procedures_reference_only:
         const totalVisible = visibleSections.length;
         const openVisible = visibleSections.filter((section) => section.open);
         const reviewedVisible = visibleSections.filter((section) => reviewedSectionIds.has(section.id));
+        const readyVisible = visibleSections.filter((section) => isSectionGateReady(section.id));
         const readingPercent = formatPercent(openVisible.length, totalVisible);
         const reviewedPercent = formatPercent(reviewedVisible.length, totalVisible);
+        const readyPercent = formatPercent(readyVisible.length, totalVisible);
         const activeLabel = activeSectionId ? sectionLabels[activeSectionId] || activeSectionId : 'None';
         const topTelemetry = Object.entries(telemetry.opens)
           .filter(([, count]) => count > 0)
@@ -818,8 +1006,10 @@ procedures_reference_only:
           `Active section: ${activeLabel}`,
           `Reading progress: ${openVisible.length}/${totalVisible} (${readingPercent}%) open`,
           `Review completion: ${reviewedVisible.length}/${totalVisible} (${reviewedPercent}%) reviewed`,
+          `Gate readiness: ${readyVisible.length}/${totalVisible} (${readyPercent}%) ready`,
           `Open sections: ${sectionList(openVisible)}`,
           `Reviewed sections: ${sectionList(reviewedVisible)}`,
+          `Ready sections: ${sectionList(readyVisible)}`,
           `Top opened sections (local telemetry): ${topTelemetry.length > 0 ? topTelemetry.join('; ') : 'None'}`,
           'Links:',
           `- Current spec view: ${window.location.href}`,
@@ -1232,9 +1422,11 @@ procedures_reference_only:
       });
       renderStatusLegendTokens();
       hydrateStatusTokens();
+      setupSectionGateControls();
       setupSectionReviewControls();
       topLevel.forEach((section) => {
         syncSectionReviewedUi(section);
+        syncSectionGateUi(section);
       });
       updateReviewCompletion();
 
@@ -1472,6 +1664,16 @@ procedures_reference_only:
         if (!accordion) return;
 
         accordion.addEventListener('click', (event) => {
+          const gateButton = event.target.closest('.section-gate-btn');
+          if (gateButton) {
+            const sectionId = gateButton.dataset.sectionId;
+            const gateKey = gateButton.dataset.gateKey;
+            if (!sectionId || !gateKey) return;
+            const current = Boolean(gateState.sectionGates[sectionId] && gateState.sectionGates[sectionId][gateKey]);
+            setSectionGate(sectionId, gateKey, !current);
+            return;
+          }
+
           const reviewButton = event.target.closest('.section-review-btn');
           if (reviewButton) {
             const sectionId = reviewButton.dataset.sectionId;

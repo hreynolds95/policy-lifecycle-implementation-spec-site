@@ -614,6 +614,91 @@ h1 {
   font-weight: 700;
 }
 
+.landing-page .wrap {
+  margin: 1.6rem auto 2rem;
+}
+
+.landing-page .hero {
+  border-radius: 16px;
+  padding: 1.12rem 1.2rem;
+}
+
+.landing-page .hero-title-row {
+  gap: 0.72rem;
+  margin-bottom: 0.32rem;
+}
+
+.landing-page .hero-title-divider {
+  height: 1.38rem;
+}
+
+.landing-page h1 {
+  font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+}
+
+.landing-page .subtitle {
+  font-size: 0.94rem;
+  line-height: 1.34;
+  margin-top: 0.24rem;
+  max-width: 68ch;
+}
+
+.landing-page .badge-row {
+  gap: 0.36rem;
+  margin-top: 0.7rem;
+}
+
+.landing-page .badge {
+  font-size: 0.72rem;
+  padding: 0.24rem 0.48rem;
+}
+
+.landing-page .status-banner {
+  gap: 0.46rem;
+  margin-bottom: 0.72rem;
+  margin-top: 0.72rem;
+  padding: 0.54rem 0.62rem;
+}
+
+.landing-page .status-item {
+  gap: 0.08rem;
+  padding: 0.28rem 0.42rem;
+}
+
+.landing-page .status-label,
+.landing-page .status-pill {
+  font-size: 0.72rem;
+}
+
+.landing-page .status-value {
+  font-size: 0.82rem;
+  line-height: 1.26;
+}
+
+.landing-page .landing-paths {
+  gap: 0.58rem;
+  margin-bottom: 0.72rem;
+}
+
+.landing-page .landing-path {
+  gap: 0.14rem;
+  min-height: 80px;
+  padding: 0.64rem 0.72rem;
+}
+
+.landing-page .landing-path.primary-path {
+  min-height: 104px;
+  padding: 0.82rem;
+}
+
+.landing-page .landing-next {
+  padding: 0.58rem 0.72rem;
+}
+
+.landing-page .site-footer {
+  margin: 1.05rem 0 0;
+}
+
 .workplan-banner {
   margin-bottom: var(--space-2);
   padding: 0.78rem 0.92rem;

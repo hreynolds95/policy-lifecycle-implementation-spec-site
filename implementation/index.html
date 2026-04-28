@@ -259,7 +259,23 @@
         });
       });
 
-      function applyWorkplanMode(mode) {
+      function syncWorkplanModeUrl(mode) {
+        const url = new URL(window.location.href);
+        if (mode === 'review') {
+          url.searchParams.set('mode', 'review');
+        } else {
+          url.searchParams.delete('mode');
+        }
+        window.history.replaceState({}, '', url);
+      }
+
+      function getInitialWorkplanMode() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('mode') === 'review' ? 'review' : 'full';
+      }
+
+      function applyWorkplanMode(mode, options = {}) {
+        const { updateUrl = true } = options;
         const normalizedMode = mode === 'review' ? 'review' : 'full';
         document.body.classList.toggle('workplan-review-mode', normalizedMode === 'review');
         meetingModeButtons.forEach((button) => {
@@ -267,6 +283,7 @@
           button.classList.toggle('is-active', isActive);
           button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
+        if (updateUrl) syncWorkplanModeUrl(normalizedMode);
       }
 
       meetingModeButtons.forEach((button) => {
@@ -274,6 +291,8 @@
           applyWorkplanMode(button.dataset.workplanMode || 'full');
         });
       });
+
+      applyWorkplanMode(getInitialWorkplanMode(), { updateUrl: false });
     </script>
   </body>
 </html>

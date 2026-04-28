@@ -561,6 +561,47 @@ h1 {
   gap: var(--space-2);
 }
 
+.phase-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.56rem;
+}
+
+.phase-item {
+  border: 1px solid #d8e0e7;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.72rem;
+  display: grid;
+  gap: 0.12rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.phase-kicker,
+.step-meta,
+.step-status {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.phase-kicker,
+.step-meta {
+  color: #607080;
+}
+
+.phase-item strong {
+  color: #242a31;
+  font-size: 0.95rem;
+}
+
+.phase-item span:last-child {
+  color: #526170;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .step-card {
   border: 1px solid var(--card-line);
   border-radius: 8px;
@@ -569,6 +610,21 @@ h1 {
   box-shadow: var(--card-shadow);
   display: grid;
   gap: 0.38rem;
+  align-content: start;
+  min-height: 184px;
+  position: relative;
+}
+
+.step-card:hover,
+.implementation-nav a:hover,
+.workplan-link:hover {
+  border-color: #9fb0bf;
+  filter: none;
+}
+
+.step-card.is-critical {
+  border-color: #aeb9c4;
+  box-shadow: 0 0 0 1px rgba(63, 67, 75, 0.08), var(--card-shadow);
 }
 
 .step-card h2,
@@ -584,6 +640,17 @@ h1 {
   margin: 0;
   color: #4a5968;
   font-size: 0.9rem;
+}
+
+.step-status {
+  align-self: end;
+  justify-self: start;
+  margin-top: 0.3rem;
+  border: 1px solid #c8d3de;
+  border-radius: 999px;
+  background: #f4f7f9;
+  color: #3b4652;
+  padding: 0.16rem 0.42rem;
 }
 
 .implementation-section {
@@ -1950,6 +2017,14 @@ pre {
   .workplan-link {
     flex: 1 1 140px;
     text-align: center;
+  }
+
+  .phase-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    min-height: 0;
   }
 
   .view-mode-toggle {

@@ -691,6 +691,16 @@ h1 {
   font-weight: 600;
 }
 
+.workflow-shortcuts-hint {
+  font-size: 0.74rem;
+  color: #5a6674;
+  font-weight: 500;
+}
+
+.workflow-shortcuts-hint code {
+  font-size: 0.74rem;
+}
+
 .workflow-presets-actions {
   display: flex;
   gap: 0.42rem;

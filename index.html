@@ -138,6 +138,9 @@
           <span id="workflowPresetSummary" class="workflow-presets-summary">
             Use presets for repeat review paths.
           </span>
+          <span class="workflow-shortcuts-hint">
+            Shortcuts: <code>/</code> search, <code>N</code> next checks, <code>[</code>/<code>]</code> navigate, <code>C</code> collapse
+          </span>
         </div>
         <div class="workflow-presets-actions">
           <button class="preset-btn" type="button" data-workflow-preset="board-review">Board Review</button>
@@ -2088,6 +2091,59 @@ procedures_reference_only:
       }
 
       setupOrientationControls();
+
+      function setupKeyboardShortcuts() {
+        document.addEventListener('keydown', (event) => {
+          if (event.defaultPrevented) return;
+          const target = event.target;
+          const tagName = target && target.tagName ? target.tagName.toLowerCase() : '';
+          const isTypingContext = Boolean(target && (target.isContentEditable || tagName === 'input' || tagName === 'textarea' || tagName === 'select'));
+          if (isTypingContext) return;
+          if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+          const key = String(event.key || '');
+          if (!key) return;
+
+          if (key === '/') {
+            if (!sectionSearch) return;
+            event.preventDefault();
+            sectionSearch.focus();
+            sectionSearch.select();
+            announce('Search focused');
+            return;
+          }
+
+          if (key === '[') {
+            if (!orientationPrev || orientationPrev.disabled) return;
+            event.preventDefault();
+            orientationPrev.click();
+            return;
+          }
+
+          if (key === ']') {
+            if (!orientationNext || orientationNext.disabled) return;
+            event.preventDefault();
+            orientationNext.click();
+            return;
+          }
+
+          const lower = key.toLowerCase();
+          if (lower === 'n') {
+            if (!nextNeedsChecks || nextNeedsChecks.disabled) return;
+            event.preventDefault();
+            nextNeedsChecks.click();
+            return;
+          }
+
+          if (lower === 'c') {
+            event.preventDefault();
+            collapseAllSections({ announceChange: true });
+            setCustomWorkflowSummary();
+          }
+        });
+      }
+
+      setupKeyboardShortcuts();
 
       function setActiveNavLink(id) {
         const targetId = id || '';

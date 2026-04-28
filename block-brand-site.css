@@ -690,6 +690,10 @@ h1 {
   gap: 0.18rem;
 }
 
+.readiness-bar-items span:last-child {
+  color: #526170;
+}
+
 .readiness-bar-items strong {
   color: #1f252c;
   font-weight: 800;

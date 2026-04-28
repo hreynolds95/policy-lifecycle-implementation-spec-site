@@ -46,6 +46,7 @@
           <span><strong>Blockers:</strong> 2</span>
           <span><strong>Critical Workstreams:</strong> 3</span>
           <span><strong>Build:</strong> In Progress</span>
+          <span><strong>Updated:</strong> <span id="readinessCommitStamp">loading...</span></span>
         </div>
       </section>
 
@@ -89,6 +90,7 @@
 
     <script>
       const lastCommitStamp = document.getElementById('lastCommitStamp');
+      const readinessCommitStamp = document.getElementById('readinessCommitStamp');
 
       function formatTimestamp(isoString) {
         const value = new Date(isoString);
@@ -104,13 +106,18 @@
       }
 
       function setCommitStamp(prefix, isoString) {
-        if (!lastCommitStamp) return;
         const formatted = formatTimestamp(isoString);
-        lastCommitStamp.textContent = formatted ? `${prefix} ${formatted}` : `${prefix} unavailable`;
+        const value = formatted || 'unavailable';
+        if (lastCommitStamp) {
+          lastCommitStamp.textContent = formatted ? `${prefix} ${formatted}` : `${prefix} unavailable`;
+        }
+        if (readinessCommitStamp) {
+          readinessCommitStamp.textContent = value;
+        }
       }
 
       async function loadLastCommitStamp() {
-        if (!lastCommitStamp) return;
+        if (!lastCommitStamp && !readinessCommitStamp) return;
         const lastModified = new Date(document.lastModified);
         const fallbackIso = Number.isNaN(lastModified.getTime())
           ? new Date().toISOString()

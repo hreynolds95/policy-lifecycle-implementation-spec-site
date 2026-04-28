@@ -206,6 +206,19 @@
         </div>
       </section>
 
+      <section id="filterEmptyState" class="filter-empty-state card is-hidden" aria-live="polite">
+        <div class="filter-empty-copy">
+          <span class="filter-empty-title">No Sections Match Current Filters</span>
+          <span id="filterEmptyMessage" class="filter-empty-message">
+            Try clearing search or resetting focus filters.
+          </span>
+        </div>
+        <div class="filter-empty-actions">
+          <button id="filterEmptyClearSearch" type="button">Clear Search</button>
+          <button id="filterEmptyResetFocus" type="button">Reset Focus</button>
+        </div>
+      </section>
+
       <section class="mobile-quick-actions" aria-label="Quick mobile actions">
         <button id="mobileExpand" type="button">Expand</button>
         <button id="mobileCollapse" type="button">Collapse</button>
@@ -561,6 +574,10 @@ procedures_reference_only:
       const nextNeedsChecks = document.getElementById('nextNeedsChecks');
       const clearVisibleGates = document.getElementById('clearVisibleGates');
       const stateFilterButtons = Array.from(document.querySelectorAll('.state-filter-btn'));
+      const filterEmptyState = document.getElementById('filterEmptyState');
+      const filterEmptyMessage = document.getElementById('filterEmptyMessage');
+      const filterEmptyClearSearch = document.getElementById('filterEmptyClearSearch');
+      const filterEmptyResetFocus = document.getElementById('filterEmptyResetFocus');
       const statusLegendTokens = document.getElementById('statusLegendTokens');
       const srAnnouncer = document.getElementById('srAnnouncer');
       const supportsSectionAnimation = typeof HTMLElement !== 'undefined' &&
@@ -1345,8 +1362,33 @@ procedures_reference_only:
 
         updateReviewCompletion();
         updateGateReadinessSummary();
+        updateFilterEmptyState(query);
         updateOrientationStrip();
         scheduleUrlStateSync();
+      }
+
+      function updateFilterEmptyState(queryValue = '') {
+        if (!filterEmptyState || !filterEmptyMessage) return;
+        const visibleCount = getVisibleTopLevelSections().length;
+        const normalizedQuery = String(queryValue || '').trim();
+        const hasSearch = Boolean(normalizedQuery);
+        const hasFocusFilter = sectionStateFilter !== 'all';
+        const shouldShow = visibleCount === 0;
+        filterEmptyState.classList.toggle('is-hidden', !shouldShow);
+
+        if (filterEmptyClearSearch) filterEmptyClearSearch.disabled = !hasSearch;
+        if (filterEmptyResetFocus) filterEmptyResetFocus.disabled = !hasFocusFilter;
+
+        if (!shouldShow) return;
+
+        const parts = [];
+        const focusLabel = sectionStateFilterLabels[sectionStateFilter] || sectionStateFilter;
+        if (hasFocusFilter) parts.push(`Focus: ${focusLabel}`);
+        if (hasSearch) parts.push(`Search: "${normalizedQuery}"`);
+
+        filterEmptyMessage.textContent = parts.length > 0
+          ? `No sections match ${parts.join(' + ')}.`
+          : 'No sections currently visible.';
       }
 
       function sectionMatchesStateFilter(section) {
@@ -1776,6 +1818,22 @@ procedures_reference_only:
           setSectionStateFilter(button.dataset.sectionStateFilter, { announceChange: true });
         });
       });
+
+      if (filterEmptyClearSearch) {
+        filterEmptyClearSearch.addEventListener('click', () => {
+          if (!sectionSearch) return;
+          sectionSearch.value = '';
+          sectionSearch.focus();
+          applySectionFilter('');
+          announce('Search cleared');
+        });
+      }
+
+      if (filterEmptyResetFocus) {
+        filterEmptyResetFocus.addEventListener('click', () => {
+          setSectionStateFilter('all', { announceChange: true });
+        });
+      }
 
       if (clearSearch) {
         clearSearch.addEventListener('click', () => {

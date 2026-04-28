@@ -121,11 +121,6 @@
             <span id="readingProgressBar" class="reading-progress-bar"></span>
           </div>
         </div>
-        <div class="theme-toggle" id="themeControls" role="group" aria-label="Theme selector">
-          <button class="toggle-btn is-active" data-theme="theme-block" aria-pressed="true">Block</button>
-          <button class="toggle-btn" data-theme="theme-cash" aria-pressed="false">Cash</button>
-          <button class="toggle-btn" data-theme="theme-square" aria-pressed="false">Square</button>
-        </div>
         <div class="view-mode-toggle" id="viewModeControls" role="group" aria-label="View mode selector">
           <button class="mode-btn is-active" data-view-mode="full" aria-pressed="true">Full Spec</button>
           <button class="mode-btn" data-view-mode="review" aria-pressed="false">Review Mode</button>
@@ -550,13 +545,12 @@ procedures_reference_only:
       const orientationCurrent = document.getElementById('orientationCurrent');
       const orientationPrev = document.getElementById('orientationPrev');
       const orientationNext = document.getElementById('orientationNext');
-      const themeButtons = Array.from(document.querySelectorAll('.toggle-btn'));
       const viewModeButtons = Array.from(document.querySelectorAll('.mode-btn'));
       const surfaceUpdateTargets = Array.from(
         document.querySelectorAll('.status-banner, .status-legend, .diagram-panel')
       );
       const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const validThemes = ['theme-block', 'theme-cash', 'theme-square'];
+      const validThemes = ['theme-block'];
       const validViewModes = ['full', 'review'];
       const validSectionStateFilters = ['all', 'needs-checks', 'ready', 'reviewed', 'unreviewed'];
       const reviewModeSectionIds = new Set(['s1', 's6', 's7', 's9', 's12']);
@@ -1314,9 +1308,6 @@ procedures_reference_only:
       function buildShareableStateUrl() {
         const params = new URLSearchParams(window.location.search);
         Object.values(urlStateParamKeys).forEach((key) => params.delete(key));
-
-        const themeSlug = getCurrentTheme().replace(/^theme-/, '');
-        params.set(urlStateParamKeys.theme, themeSlug);
         if (viewMode === 'review') params.set(urlStateParamKeys.mode, 'review');
 
         const queryValue = sectionSearch ? sectionSearch.value.trim() : '';
@@ -2312,24 +2303,11 @@ procedures_reference_only:
         const selectedTheme = validThemes.includes(theme) ? theme : 'theme-block';
         document.body.classList.remove(...validThemes);
         document.body.classList.add(selectedTheme);
-        localStorage.setItem('policySpecTheme', selectedTheme);
-
-        themeButtons.forEach((button) => {
-          const isActive = button.dataset.theme === selectedTheme;
-          button.classList.toggle('is-active', isActive);
-          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        });
 
         if (animate) animateSurfaceUpdates();
         if (announceChange) announce(`${selectedTheme.replace('theme-', '')} theme selected`);
         scheduleUrlStateSync();
       }
-
-      themeButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          applyTheme(button.dataset.theme, { animate: true, announceChange: true });
-        });
-      });
 
       viewModeButtons.forEach((button) => {
         button.addEventListener('click', () => {
@@ -2338,7 +2316,7 @@ procedures_reference_only:
         });
       });
 
-      applyTheme(urlState.theme || localStorage.getItem('policySpecTheme') || 'theme-block', { animate: false });
+      applyTheme(urlState.theme || 'theme-block', { animate: false });
       suppressUrlState = false;
       syncUrlState();
 

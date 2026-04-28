@@ -151,6 +151,40 @@
         </div>
       </section>
 
+      <section class="implementation-section dependency-panel" aria-label="Implementation dependency map">
+        <div class="dependency-head">
+          <span class="implementation-eyebrow">Dependency Map</span>
+          <h2>Sequencing Hotspots</h2>
+          <p>Use this map to understand which workstreams unlock downstream delivery and where blockers could slow the migration path.</p>
+        </div>
+        <div class="dependency-lanes">
+          <div class="dependency-lane is-blocked">
+            <a href="03-access-control.html" class="dependency-node">Access Control</a>
+            <span class="dependency-arrow">Unlocks</span>
+            <a href="07-portal-specification.html" class="dependency-node">Portal Role Gates</a>
+            <span class="dependency-risk">Blocked by SSO and role mapping decisions.</span>
+          </div>
+          <div class="dependency-lane is-designing">
+            <a href="02-repository-taxonomy.html" class="dependency-node">Registry Schema</a>
+            <span class="dependency-arrow">Unlocks</span>
+            <a href="08-awareness-communications.html" class="dependency-node">Awareness Automation</a>
+            <span class="dependency-risk">Needs stakeholder group metadata source.</span>
+          </div>
+          <div class="dependency-lane is-critical">
+            <a href="04-governance-workflow.html" class="dependency-node">Approval Workflow</a>
+            <span class="dependency-arrow">Unlocks</span>
+            <a href="11-gap-analysis.html" class="dependency-node">Migration Readiness</a>
+            <span class="dependency-risk">Tiered approval parity must be proven before cutover.</span>
+          </div>
+          <div class="dependency-lane is-ready">
+            <a href="06-template-enforcement.html" class="dependency-node">Template Gate</a>
+            <span class="dependency-arrow">Unlocks</span>
+            <a href="04-governance-workflow.html" class="dependency-node">Policy Team QC</a>
+            <span class="dependency-risk">Ready to build parser fixtures and QC handoff.</span>
+          </div>
+        </div>
+      </section>
+
       <section class="implementation-grid">
         <a class="step-card" href="01-architecture-overview.html"><span class="step-meta">Phase 0 · Discovery</span><h2>01 Architecture Overview</h2><p>Component inventory, topology, and migration readiness scope.</p><span class="step-status">Blueprint</span></a>
         <a class="step-card" href="02-repository-taxonomy.html"><span class="step-meta">Phase 1 · Foundation</span><h2>02 Repository Taxonomy</h2><p>Repo layout, domain taxonomy, metadata registry, and archive links.</p><span class="step-status">Data Model</span></a>

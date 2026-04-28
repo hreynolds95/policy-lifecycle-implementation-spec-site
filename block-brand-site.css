@@ -661,6 +661,41 @@ h1 {
   box-shadow: var(--card-shadow);
 }
 
+.at-a-glance {
+  background: #f8fafb;
+}
+
+.glance-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.62rem;
+}
+
+.glance-item {
+  border: 1px solid #d7e0e7;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.56rem;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.glance-label {
+  color: #607080;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.glance-value {
+  color: #252c35;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.28;
+}
+
 .implementation-section + .implementation-section {
   margin-top: var(--space-2);
 }
@@ -2020,6 +2055,10 @@ pre {
   }
 
   .phase-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .glance-grid {
     grid-template-columns: 1fr;
   }
 

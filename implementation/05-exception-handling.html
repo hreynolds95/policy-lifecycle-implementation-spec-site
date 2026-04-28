@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>05 Exception Handling</title><link rel="stylesheet" href="../block-brand-site.css" /></head>
+  <body class="theme-block"><main class="wrap implementation-shell">
+    <header class="hero card"><div class="hero-title-row"><div class="hero-brand"><img class="hero-logo" src="../assets/block-lockup-black-no-padding.png" alt="Block logo" width="118" height="26" /></div><span class="hero-title-divider" aria-hidden="true"></span><h1>05 Exception Handling</h1></div><p class="subtitle">Build a GitHub Issue workflow for exception requests, owner approval, evidence, expiry, and renewal.</p></header>
+    <nav class="implementation-nav"><a href="./">Workplan</a><a href="04-governance-workflow.html">Previous</a><a href="06-template-enforcement.html">Next</a></nav>
+    <section class="implementation-section"><h2>Workflow</h2><ol><li>Requester opens exception issue with document reference, requirement, justification, mitigating controls, effective date, expiry date, and evidence.</li><li>Action reads `document-registry.yaml` and assigns the Document Owner.</li><li>Owner approval moves the issue to `exception-approved` and records the decision.</li><li>Workflow commits an exception record to the document package and notifies Policy Team.</li><li>Daily cron flags upcoming expiry and opens renewal issues.</li></ol></section>
+    <section class="implementation-section"><h2>Exit Criteria</h2><ul><li>Required fields cannot be bypassed.</li><li>Evidence attachment is retained or linked.</li><li>Expiry alerting produces test issues in a staging repo.</li><li>Exception records are visible in audit exports.</li></ul></section>
+  </main></body>
+</html>

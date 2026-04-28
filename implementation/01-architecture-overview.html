@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>01 Architecture Overview</title><link rel="stylesheet" href="../block-brand-site.css" /></head>
+  <body class="theme-block">
+    <main class="wrap implementation-shell">
+      <header class="hero card"><div class="hero-title-row"><div class="hero-brand"><img class="hero-logo" src="../assets/block-lockup-black-no-padding.png" alt="Block logo" width="118" height="26" /></div><span class="hero-title-divider" aria-hidden="true"></span><h1>01 Architecture Overview</h1></div><p class="subtitle">Define the Block-wide GitHub DMS topology before detailed workflow buildout.</p></header>
+      <nav class="implementation-nav"><a href="../">Dashboard</a><a href="./">Workplan</a><a href="02-repository-taxonomy.html">Next</a></nav>
+      <section class="implementation-section"><span class="implementation-eyebrow">Objective</span><h2>Target Architecture</h2><p>Establish GitHub as the target system of record only after migration readiness criteria are met. The architecture must cover governed documents, non-governed documents, the staff portal, automation, audit, and integrations.</p></section>
+      <section class="implementation-section"><h2>Build Plan</h2><table class="implementation-table"><tr><th>Workstream</th><th>Tasks</th><th>Exit Criteria</th></tr><tr><td>Component inventory</td><td>List repos, Actions, GitHub App, Pages portal, Slack, Snowflake, Google Drive archive, and SSO dependencies.</td><td>Architecture diagram reviewed by Policy Team, Compliance Governance, Security, and Platform.</td></tr><tr><td>System boundaries</td><td>Define what lives in GitHub, what remains in Google Drive, and what remains outside GitHub as implementation-plan links.</td><td>Boundary decisions documented and reflected in metadata schema.</td></tr><tr><td>Readiness model</td><td>Define criteria for LogicGate decommission: audit continuity, approval parity, QC gate, template enforcement, awareness automation, orphan detection.</td><td>Readiness checklist accepted as the migration gate.</td></tr></table></section>
+    </main>
+  </body>
+</html>

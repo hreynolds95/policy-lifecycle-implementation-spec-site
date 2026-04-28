@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>09 Orphaned Documents</title><link rel="stylesheet" href="../block-brand-site.css" /></head>
+  <body class="theme-block"><main class="wrap implementation-shell">
+    <header class="hero card"><div class="hero-title-row"><div class="hero-brand"><img class="hero-logo" src="../assets/block-lockup-black-no-padding.png" alt="Block logo" width="118" height="26" /></div><span class="hero-title-divider" aria-hidden="true"></span><h1>09 Orphaned Document Management</h1></div><p class="subtitle">Detect owner deactivation and alert Policy Team before review cycles are missed.</p></header>
+    <nav class="implementation-nav"><a href="./">Workplan</a><a href="08-awareness-communications.html">Previous</a><a href="10-non-governed-controls.html">Next</a></nav>
+    <section class="implementation-section"><h2>Detection Flow</h2><ol><li>Monitor GitHub organization membership or IdP user lifecycle export.</li><li>Match removed users against `document_owner` fields in the registry.</li><li>Open Policy Team issue listing affected documents and next review dates.</li><li>Post Slack alert and track replacement-owner onboarding.</li></ol></section>
+    <section class="implementation-section"><h2>Control Evidence</h2><ul><li>Test account removal event creates issue and Slack message.</li><li>Issue template captures replacement owner and onboarding date.</li><li>Escalation SLA is defined for documents near review deadlines.</li></ul></section>
+  </main></body>
+</html>

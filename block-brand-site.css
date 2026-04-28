@@ -122,81 +122,10 @@
   --space-5: 2.5rem;
 }
 
-/* Optional theme accents copied from MCP styles */
 .theme-block {
   --page-grad-1: rgba(71, 78, 87, 0.28);
   --page-grad-2: rgba(82, 91, 104, 0.24);
   --page-bg: #000000;
-}
-
-.theme-cash {
-  --color-accent: #00d632;
-  --color-accent-foreground: #062d15;
-  --color-background-secondary: #f0faf0;
-  --color-background-tertiary: #e0f5e0;
-  --page-grad-1: rgba(0, 214, 50, 0.25);
-  --page-grad-2: rgba(0, 160, 37, 0.2);
-  --page-bg: #021407;
-  --label-ink: #315544;
-  --status-item-border: #cadece;
-  --status-item-bg: linear-gradient(180deg, #f6fcf8 0%, #eef8f1 100%);
-  --pill-required-bg: #edf6f0;
-  --pill-required-border: #c3d9ca;
-  --pill-required-text: #295341;
-  --pill-progress-bg: #e6f6eb;
-  --pill-progress-border: #b7d8c2;
-  --pill-progress-text: #1e5e3f;
-  --pill-progress-dot: #177f4f;
-  --pill-complete-bg: #ddf4e6;
-  --pill-complete-border: #9fc8ad;
-  --pill-complete-text: #1f4c37;
-  --pill-blocked-bg: #f6eceb;
-  --pill-blocked-border: #d6bbba;
-  --pill-blocked-text: #6d3737;
-  --meta-chip-bg: #e7f4ec;
-  --meta-chip-border: #b8d6c4;
-  --meta-chip-text: #23543d;
-  --meta-chip-current-bg: #dbefdf;
-  --meta-chip-current-border: #94c1a7;
-  --meta-chip-current-text: #174630;
-  --meta-chip-reviewed-bg: #d7efdf;
-  --meta-chip-reviewed-border: #89bca0;
-  --meta-chip-reviewed-text: #13412c;
-}
-
-.theme-square {
-  --color-accent: #006aff;
-  --color-accent-foreground: #ffffff;
-  --color-background-secondary: #f0f5ff;
-  --color-background-tertiary: #e0ecff;
-  --page-grad-1: rgba(0, 106, 255, 0.24);
-  --page-grad-2: rgba(0, 82, 204, 0.18);
-  --page-bg: #020b1a;
-  --label-ink: #3a4f70;
-  --status-item-border: #d1dcf0;
-  --status-item-bg: linear-gradient(180deg, #f8fbff 0%, #eef4fd 100%);
-  --pill-required-bg: #edf3fc;
-  --pill-required-border: #c1d1ea;
-  --pill-required-text: #29466b;
-  --pill-progress-bg: #e7f0fd;
-  --pill-progress-border: #b9cceb;
-  --pill-progress-text: #1f4d8a;
-  --pill-progress-dot: #006aff;
-  --pill-complete-bg: #e5f0fb;
-  --pill-complete-border: #abc2df;
-  --pill-complete-text: #2c5075;
-  --pill-blocked-bg: #f8eded;
-  --pill-blocked-border: #d7bcbc;
-  --pill-blocked-text: #703939;
-  --meta-chip-bg: #ebf2fc;
-  --meta-chip-border: #c0d1e8;
-  --meta-chip-text: #2a4b73;
-  --meta-chip-current-bg: #dfebfb;
-  --meta-chip-current-border: #90afd7;
-  --meta-chip-current-text: #1f3f67;
-  --meta-chip-reviewed-bg: #e3effa;
-  --meta-chip-reviewed-border: #9eb8d5;
-  --meta-chip-reviewed-text: #214463;
 }
 
 * {
@@ -538,16 +467,159 @@ h1 {
   font-weight: 500;
 }
 
+.workplan-banner {
+  margin-bottom: var(--space-2);
+  padding: 0.78rem 0.92rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.workplan-copy {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.workplan-label,
+.implementation-eyebrow {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--label-ink);
+  font-weight: 700;
+}
+
+.workplan-title {
+  color: #242a31;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.workplan-summary {
+  color: #4e5d6b;
+  font-size: 0.82rem;
+  font-weight: 600;
+  max-width: 760px;
+}
+
+.workplan-actions {
+  display: flex;
+  gap: 0.42rem;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.workplan-link,
+.implementation-nav a,
+.step-card,
+.step-link {
+  color: #303741;
+  text-decoration: none;
+}
+
+.workplan-link,
+.implementation-nav a,
+.step-link {
+  border: 1px solid #cbd5de;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.34rem 0.58rem;
+  font-size: 0.79rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.primary-link {
+  border-color: transparent;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
 .telemetry-actions {
   display: flex;
   gap: var(--space-1);
   flex-wrap: wrap;
 }
 
-.theme-toggle {
+.implementation-shell {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.implementation-nav {
   display: flex;
-  gap: var(--space-1);
+  gap: 0.42rem;
   flex-wrap: wrap;
+  margin-bottom: var(--space-2);
+}
+
+.implementation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-2);
+}
+
+.step-card {
+  border: 1px solid var(--card-line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.86rem;
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: 0.38rem;
+}
+
+.step-card h2,
+.implementation-section h2 {
+  margin: 0;
+  color: #242a31;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.step-card p,
+.implementation-section p {
+  margin: 0;
+  color: #4a5968;
+  font-size: 0.9rem;
+}
+
+.implementation-section {
+  border: 1px solid var(--card-line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.92rem;
+  box-shadow: var(--card-shadow);
+}
+
+.implementation-section + .implementation-section {
+  margin-top: var(--space-2);
+}
+
+.implementation-section ul {
+  margin: 0.55rem 0 0;
+}
+
+.implementation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  margin-top: 0.6rem;
+}
+
+.implementation-table th,
+.implementation-table td {
+  border: 1px solid #d8e0e7;
+  padding: 0.52rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.implementation-table th {
+  background: #f3f6f8;
+  color: #303741;
 }
 
 .view-mode-toggle {
@@ -969,16 +1041,6 @@ button.primary {
 
 button:hover {
   filter: brightness(0.98);
-}
-
-.theme-toggle .toggle-btn {
-  min-width: 76px;
-}
-
-.theme-toggle .toggle-btn.is-active {
-  background: var(--color-accent);
-  color: var(--color-accent-foreground);
-  border-color: transparent;
 }
 
 .view-mode-toggle .mode-btn {
@@ -1677,10 +1739,10 @@ pre {
   .mobile-quick-actions,
   .mini-nav-sentinel,
   .mini-nav-wrap,
-  .theme-toggle,
   .diagram-panel,
   .telemetry-banner,
   .workflow-presets,
+  .workplan-banner,
   .completion-banner,
   .gate-readiness-banner,
   .filter-empty-state,
@@ -1875,14 +1937,27 @@ pre {
     margin-bottom: var(--space-1);
   }
 
-  .theme-toggle,
+  .workplan-banner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.68rem;
+  }
+
+  .workplan-actions {
+    justify-content: stretch;
+  }
+
+  .workplan-link {
+    flex: 1 1 140px;
+    text-align: center;
+  }
+
   .view-mode-toggle {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .theme-toggle .toggle-btn,
   .view-mode-toggle .mode-btn {
     width: 100%;
     min-height: 44px;

@@ -33,7 +33,19 @@
         <a href="13-roadmap.html">Roadmap</a>
       </nav>
 
-      <section class="implementation-section">
+      <section class="meeting-mode-toggle implementation-section" aria-label="Workplan view mode">
+        <div>
+          <span class="implementation-eyebrow">View Mode</span>
+          <h2>Weekly Review Focus</h2>
+          <p>Toggle to show only readiness, tracker, and dependencies for implementation review meetings.</p>
+        </div>
+        <div class="meeting-mode-actions" role="group" aria-label="Workplan view mode selector">
+          <button class="meeting-mode-btn is-active" type="button" data-workplan-mode="full" aria-pressed="true">Full Workplan</button>
+          <button class="meeting-mode-btn" type="button" data-workplan-mode="review" aria-pressed="false">Weekly Review</button>
+        </div>
+      </section>
+
+      <section class="implementation-section workplan-detail">
         <span class="implementation-eyebrow">Program Structure</span>
         <h2>Fourteen Tactical Workstreams</h2>
         <p>
@@ -43,7 +55,7 @@
         </p>
       </section>
 
-      <section class="phase-strip" aria-label="Implementation phases">
+      <section class="phase-strip workplan-detail" aria-label="Implementation phases">
         <div class="phase-item">
           <span class="phase-kicker">Phase 0</span>
           <strong>Discovery</strong>
@@ -185,7 +197,7 @@
         </div>
       </section>
 
-      <section class="implementation-grid">
+      <section class="implementation-grid workplan-detail">
         <a class="step-card" href="01-architecture-overview.html"><span class="step-meta">Phase 0 · Discovery</span><h2>01 Architecture Overview</h2><p>Component inventory, topology, and migration readiness scope.</p><span class="step-status">Blueprint</span></a>
         <a class="step-card" href="02-repository-taxonomy.html"><span class="step-meta">Phase 1 · Foundation</span><h2>02 Repository Taxonomy</h2><p>Repo layout, domain taxonomy, metadata registry, and archive links.</p><span class="step-status">Data Model</span></a>
         <a class="step-card" href="03-access-control.html"><span class="step-meta">Phase 1 · Foundation</span><h2>03 Access Control</h2><p>GitHub Teams, CODEOWNERS, SSO, and portal role gates.</p><span class="step-status">Security</span></a>
@@ -210,6 +222,7 @@
       const trackerRows = Array.from(document.querySelectorAll('.tracker-table tbody tr'));
       const trackerFilters = Array.from(document.querySelectorAll('.tracker-filter'));
       const trackerFilterCount = document.getElementById('trackerFilterCount');
+      const meetingModeButtons = Array.from(document.querySelectorAll('.meeting-mode-btn'));
       const trackerLabels = {
         all: 'workstreams',
         blocked: 'blocked workstreams',
@@ -243,6 +256,22 @@
       trackerFilters.forEach((button) => {
         button.addEventListener('click', () => {
           applyTrackerFilter(button.dataset.trackerFilter || 'all');
+        });
+      });
+
+      function applyWorkplanMode(mode) {
+        const normalizedMode = mode === 'review' ? 'review' : 'full';
+        document.body.classList.toggle('workplan-review-mode', normalizedMode === 'review');
+        meetingModeButtons.forEach((button) => {
+          const isActive = button.dataset.workplanMode === normalizedMode;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      }
+
+      meetingModeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          applyWorkplanMode(button.dataset.workplanMode || 'full');
         });
       });
     </script>

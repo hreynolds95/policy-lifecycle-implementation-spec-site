@@ -66,6 +66,49 @@
         </div>
       </section>
 
+      <section class="implementation-section tracker-panel" aria-label="Workstream progress tracker">
+        <div class="tracker-head">
+          <div>
+            <span class="implementation-eyebrow">Progress Tracker</span>
+            <h2>Workstream Status</h2>
+          </div>
+          <div class="tracker-summary" aria-label="Status summary">
+            <span><strong>3</strong> Ready for Build</span>
+            <span><strong>5</strong> Designing</span>
+            <span><strong>4</strong> Not Started</span>
+            <span><strong>2</strong> Blocked</span>
+          </div>
+        </div>
+        <div class="tracker-table-wrap">
+          <table class="implementation-table tracker-table">
+            <thead>
+              <tr>
+                <th>Workstream</th>
+                <th>Phase</th>
+                <th>Status</th>
+                <th>Next Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Confirm target-state topology with Platform and Security.</td></tr>
+              <tr><td><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-designing">Designing</span></td><td>Finalize registry schema and domain folder taxonomy.</td></tr>
+              <tr><td><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Resolve portal authentication and SSO group mapping.</td></tr>
+              <tr><td><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-designing">Designing</span></td><td>Choose approval enforcement pattern for tiered gates.</td></tr>
+              <tr><td><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Draft issue form and exception record schema.</td></tr>
+              <tr><td><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Build parser fixtures from the official template.</td></tr>
+              <tr><td><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define published metadata and request form surfaces.</td></tr>
+              <tr><td><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Confirm Slack/email baseline and stakeholder group source.</td></tr>
+              <tr><td><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Confirm source of owner deactivation signal.</td></tr>
+              <tr><td><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define routing criteria for procedures and SOPs.</td></tr>
+              <tr><td><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Convert BRD categories into gap register rows.</td></tr>
+              <tr><td><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-designing">Designing</span></td><td>Inventory legacy archive links and cutover evidence.</td></tr>
+              <tr><td><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Add owners, dates, and dependency sequencing.</td></tr>
+              <tr><td><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Assign decision owners and target resolution dates.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section class="implementation-grid">
         <a class="step-card" href="01-architecture-overview.html"><span class="step-meta">Phase 0 · Discovery</span><h2>01 Architecture Overview</h2><p>Component inventory, topology, and migration readiness scope.</p><span class="step-status">Blueprint</span></a>
         <a class="step-card" href="02-repository-taxonomy.html"><span class="step-meta">Phase 1 · Foundation</span><h2>02 Repository Taxonomy</h2><p>Repo layout, domain taxonomy, metadata registry, and archive links.</p><span class="step-status">Data Model</span></a>

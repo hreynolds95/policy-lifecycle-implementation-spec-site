@@ -66,6 +66,39 @@
         </div>
       </section>
 
+      <section class="implementation-section readiness-gate-panel" aria-label="LogicGate replacement readiness gate summary">
+        <div class="readiness-gate-head">
+          <div>
+            <span class="implementation-eyebrow">Migration Readiness</span>
+            <h2>LogicGate Replacement Gate</h2>
+            <p>GitHub remains the target platform, but production cutover waits until critical controls are demonstrably ready.</p>
+          </div>
+          <span class="readiness-gate-status">Not Ready for Cutover</span>
+        </div>
+        <div class="readiness-gate-grid">
+          <a class="readiness-gate-card is-blocked" href="03-access-control.html">
+            <span class="readiness-gate-label">Blocked</span>
+            <strong>Portal access model</strong>
+            <span>Resolve SSO group mapping and role-gated initiation.</span>
+          </a>
+          <a class="readiness-gate-card is-blocked" href="09-orphaned-documents.html">
+            <span class="readiness-gate-label">Blocked</span>
+            <strong>Owner deactivation signal</strong>
+            <span>Confirm membership or IdP source for orphan detection.</span>
+          </a>
+          <a class="readiness-gate-card is-designing" href="04-governance-workflow.html">
+            <span class="readiness-gate-label">Designing</span>
+            <strong>Tiered approval enforcement</strong>
+            <span>Select enforcement pattern for PoP approval parity.</span>
+          </a>
+          <a class="readiness-gate-card is-ready" href="06-template-enforcement.html">
+            <span class="readiness-gate-label">Ready</span>
+            <strong>Template hard gate</strong>
+            <span>Build validator fixtures from official Policy/Standard template.</span>
+          </a>
+        </div>
+      </section>
+
       <section class="implementation-section tracker-panel" aria-label="Workstream progress tracker">
         <div class="tracker-head">
           <div>

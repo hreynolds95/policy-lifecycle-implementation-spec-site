@@ -696,6 +696,89 @@ h1 {
   line-height: 1.28;
 }
 
+.readiness-gate-panel {
+  background: #fbfcfd;
+}
+
+.readiness-gate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.readiness-gate-status {
+  border: 1px solid #d8b4b4;
+  border-radius: 999px;
+  background: #f8ecec;
+  color: #6f3434;
+  padding: 0.22rem 0.56rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.readiness-gate-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.56rem;
+  margin-top: 0.72rem;
+}
+
+.readiness-gate-card {
+  border: 1px solid #d8e0e7;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #303741;
+  display: grid;
+  gap: 0.16rem;
+  min-height: 136px;
+  padding: 0.7rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.readiness-gate-card:hover {
+  border-color: #9fb0bf;
+}
+
+.readiness-gate-card strong {
+  color: #242a31;
+  font-size: 0.92rem;
+  line-height: 1.25;
+}
+
+.readiness-gate-card span:last-child {
+  color: #526170;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.readiness-gate-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.readiness-gate-card.is-blocked {
+  border-color: #d8b4b4;
+}
+
+.readiness-gate-card.is-blocked .readiness-gate-label {
+  color: #6f3434;
+}
+
+.readiness-gate-card.is-designing .readiness-gate-label {
+  color: #2f4356;
+}
+
+.readiness-gate-card.is-ready .readiness-gate-label {
+  color: #234b38;
+}
+
 .tracker-panel {
   overflow: hidden;
 }
@@ -2173,6 +2256,24 @@ pre {
 
   .glance-grid {
     grid-template-columns: 1fr;
+  }
+
+  .readiness-gate-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .readiness-gate-status {
+    justify-self: start;
+    text-align: center;
+  }
+
+  .readiness-gate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .readiness-gate-card {
+    min-height: 0;
   }
 
   .tracker-head {

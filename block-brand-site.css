@@ -846,6 +846,91 @@ h1 {
   display: none;
 }
 
+.review-only {
+  display: none;
+}
+
+.workplan-review-mode .review-only {
+  display: grid;
+}
+
+.workplan-review-mode .implementation-nav {
+  display: none;
+}
+
+.workplan-review-mode .hero {
+  padding: 1rem 1.1rem;
+}
+
+.workplan-review-mode .subtitle {
+  display: none;
+}
+
+.workplan-review-mode .meeting-mode-toggle {
+  padding: 0.7rem 0.84rem;
+}
+
+.workplan-review-mode .meeting-mode-toggle p {
+  display: none;
+}
+
+.review-focus-panel {
+  gap: 0.72rem;
+}
+
+.review-focus-head {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.review-focus-head h2 {
+  font-size: 1rem;
+}
+
+.review-blocker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.56rem;
+}
+
+.review-blocker-card {
+  border: 1px solid #d8e0e7;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #303741;
+  display: grid;
+  gap: 0.18rem;
+  min-height: 124px;
+  padding: 0.72rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.review-blocker-card:hover {
+  border-color: #9fb0bf;
+}
+
+.review-blocker-card.is-blocked {
+  border-color: #d8b4b4;
+}
+
+.review-blocker-card.is-designing {
+  border-color: #c3d1de;
+}
+
+.review-blocker-card strong {
+  color: #242a31;
+  font-size: 0.92rem;
+  line-height: 1.24;
+}
+
+.review-blocker-card span:last-child {
+  color: #526170;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
 .plan-overview {
   display: flex;
   align-items: center;
@@ -2734,6 +2819,14 @@ pre {
 
   .meeting-mode-btn {
     width: 100%;
+  }
+
+  .review-blocker-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-blocker-card {
+    min-height: 0;
   }
 
   .plan-overview {

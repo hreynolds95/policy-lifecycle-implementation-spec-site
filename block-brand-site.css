@@ -3281,8 +3281,8 @@ summary,
 }
 
 .lifecycle-state.is-source {
-  background: rgba(50, 223, 182, 0.08);
-  border-color: rgba(50, 223, 182, 0.28);
+  background: rgba(167, 176, 185, 0.07);
+  border-color: rgba(167, 176, 185, 0.22);
 }
 
 .lifecycle-state.is-draft {
@@ -3320,7 +3320,7 @@ summary,
 }
 
 .lifecycle-state.is-source::before {
-  background: var(--accent);
+  background: #8a98a7;
 }
 
 .lifecycle-state.is-draft::before {

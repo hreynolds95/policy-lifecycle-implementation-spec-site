@@ -2748,6 +2748,9 @@ pre {
   .telemetry-banner,
   .workflow-presets,
   .workplan-banner,
+  .meeting-mode-actions,
+  .workplan-command-nav,
+  .tracker-filters,
   .completion-banner,
   .gate-readiness-banner,
   .filter-empty-state,
@@ -2857,6 +2860,171 @@ pre {
     page-break-inside: avoid;
     break-inside: avoid;
     border-radius: 8px !important;
+  }
+
+  .start-here-panel,
+  .readiness-bar,
+  .landing-next,
+  .workplan-command-center,
+  .plan-overview,
+  .readiness-gate-panel,
+  .tracker-panel,
+  .dependency-panel,
+  .review-focus-panel {
+    margin: 0 0 0.12in !important;
+    padding: 0.12in !important;
+  }
+
+  .start-here-panel,
+  .workplan-command-center.meeting-mode-toggle,
+  .plan-overview,
+  .readiness-gate-head,
+  .tracker-head {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.08in !important;
+  }
+
+  .start-here-copy,
+  .workplan-command-copy,
+  .plan-overview-copy,
+  .dependency-head,
+  .review-focus-head {
+    gap: 0.02in !important;
+  }
+
+  .start-here-copy h2,
+  .workplan-command-copy h2,
+  .plan-overview-copy h2,
+  .readiness-gate-head h2,
+  .tracker-head h2,
+  .dependency-head h2,
+  .review-focus-head h2 {
+    color: #000000 !important;
+    font-size: 12pt !important;
+    line-height: 1.22 !important;
+  }
+
+  .start-here-copy p,
+  .workplan-command-copy p,
+  .plan-overview-copy p,
+  .readiness-gate-head p,
+  .dependency-head p {
+    color: #202020 !important;
+    font-size: 9.5pt !important;
+  }
+
+  .start-decision-grid,
+  .landing-paths,
+  .workplan-command-metrics,
+  .plan-phase-list,
+  .review-blocker-grid,
+  .readiness-gate-grid,
+  .tracker-summary,
+  .dependency-lanes,
+  .implementation-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.08in !important;
+  }
+
+  .start-decision-card,
+  .landing-path,
+  .workplan-command-metrics span,
+  .plan-phase-list span,
+  .review-blocker-card,
+  .readiness-gate-card,
+  .tracker-summary span,
+  .dependency-lane,
+  .step-card {
+    min-height: 0 !important;
+    padding: 0.08in !important;
+    border: 1px solid #c0c0c0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .landing-path.primary-path {
+    grid-column: auto !important;
+  }
+
+  .readiness-bar,
+  .readiness-bar-items,
+  .landing-next,
+  .landing-action-flow {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    gap: 0.04in !important;
+    text-align: left !important;
+  }
+
+  .readiness-bar-items {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+  }
+
+  .workplan-command-metrics span,
+  .tracker-summary span,
+  .plan-phase-list span,
+  .readiness-gate-status,
+  .tracker-status,
+  .step-id,
+  .task-id,
+  .hero-step-id,
+  .step-status {
+    color: #000000 !important;
+    border-color: #c0c0c0 !important;
+    background: #f5f5f5 !important;
+  }
+
+  .dependency-lane {
+    grid-template-columns: 1fr !important;
+    gap: 0.04in !important;
+  }
+
+  .dependency-arrow {
+    color: #303030 !important;
+    text-align: left !important;
+  }
+
+  .dependency-node {
+    background: #f5f5f5 !important;
+    color: #000000 !important;
+  }
+
+  .implementation-table,
+  .tracker-table {
+    min-width: 0 !important;
+    font-size: 8.5pt !important;
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  .implementation-table thead {
+    display: table-header-group;
+  }
+
+  .implementation-table tr {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .implementation-table th,
+  .implementation-table td {
+    padding: 0.05in !important;
+    border-color: #cfcfcf !important;
+  }
+
+  .tracker-table-wrap {
+    overflow: visible !important;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: none !important;
   }
 
   .accordion > details {

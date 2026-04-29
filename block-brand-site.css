@@ -1581,13 +1581,36 @@ h1 {
 }
 
 .tracker-table {
-  min-width: 880px;
+  min-width: 1040px;
 }
 
 .tracker-table a {
   color: #27313b;
   font-weight: 700;
   text-decoration: none;
+}
+
+.tracker-update-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.3rem;
+  border: 1px solid #cbd5de;
+  border-radius: var(--ui-chip-radius);
+  padding: 0.18rem 0.5rem;
+  background: #f5f8fa;
+  color: #27313b;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tracker-update-link:hover {
+  border-color: #9fb0bf;
+  background: #ffffff;
 }
 
 .tracker-table tr[hidden] {
@@ -3079,6 +3102,17 @@ code,
 a.doc-link,
 a.doc-link-record {
   color: var(--info);
+}
+
+.tracker-table a.tracker-update-link {
+  background: rgba(124, 172, 255, 0.12);
+  border-color: rgba(124, 172, 255, 0.34);
+  color: var(--info);
+}
+
+.tracker-table a.tracker-update-link:hover {
+  background: rgba(124, 172, 255, 0.18);
+  border-color: rgba(124, 172, 255, 0.48);
 }
 
 button,

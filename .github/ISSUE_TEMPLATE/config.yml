@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: View Action Plan
+    url: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/implementation/
+    about: Review workstreams, collaboration needs, and next actions.
+  - name: View Reference Spec
+    url: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/spec-explorer.html#specExplorer
+    about: Read technical implementation details and controls.

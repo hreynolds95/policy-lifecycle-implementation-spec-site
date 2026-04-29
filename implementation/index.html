@@ -29,13 +29,13 @@
         <div class="workplan-command-copy">
           <span class="implementation-eyebrow">Action Plan</span>
           <h2>Use this as the editable team Action Plan.</h2>
-          <p>Statuses are intentionally not pre-filled. Assign DRIs, record decisions, and update target dates through GitHub pull requests.</p>
+          <p>Statuses are intentionally not pre-filled. Assign DRIs, record decisions, and update target dates through GitHub issue forms.</p>
         </div>
         <div class="workplan-command-panel">
           <div class="workplan-command-metrics" aria-label="Action plan collaboration summary">
             <span><strong>Source</strong> ACTION_PLAN.md</span>
             <span><strong>Workstreams</strong> 14</span>
-            <span><strong>Update Flow</strong> PR review</span>
+            <span><strong>Update Flow</strong> Issue forms</span>
             <span><strong>Next</strong> Assign DRIs</span>
           </div>
           <div class="workplan-command-actions">
@@ -45,8 +45,10 @@
             </div>
             <nav class="workplan-command-nav" aria-label="Action plan shortcuts">
               <a href="../">Home</a>
+              <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml">Update Workstream</a>
+              <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=decision-record.yml">Log Decision</a>
+              <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=evidence-link.yml">Add Evidence</a>
               <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/blob/main/ACTION_PLAN.md">Source File</a>
-              <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">Edit Plan</a>
               <a href="04-governance-workflow.html">Workflow Gates</a>
               <a href="06-template-enforcement.html">Template Gate</a>
               <a href="11-gap-analysis.html">Gap Analysis</a>
@@ -61,7 +63,7 @@
           <h2>Use the review view to make collaboration assignments.</h2>
         </div>
         <div class="review-blocker-grid">
-          <a class="review-blocker-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">
+          <a class="review-blocker-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml">
             <span class="step-id">PLAN</span>
             <strong>Assign DRIs</strong>
             <span>Replace unassigned workstreams with accountable owners or teams.</span>
@@ -83,7 +85,7 @@
         <div class="plan-overview-copy">
           <span class="implementation-eyebrow">Plan Overview</span>
           <h2>14 workstreams, one editable Action Plan.</h2>
-          <p><code>DMS-##</code> identifies workstreams. <code>DMS-##.##</code> identifies child tasks. Use <code>ACTION_PLAN.md</code> to collaborate on owners, dates, decisions, and notes.</p>
+          <p><code>DMS-##</code> identifies workstreams. <code>DMS-##.##</code> identifies child tasks. Use issue forms to submit owner, date, decision, and evidence updates.</p>
         </div>
         <div class="plan-phase-list" aria-label="Implementation phases">
           <span><strong>0</strong> Discovery</span>
@@ -98,20 +100,20 @@
           <div>
             <span class="implementation-eyebrow">Operating Model</span>
             <h2>How the plan stays editable and reviewable</h2>
-            <p>Use the site for navigation and the markdown Action Plan for team edits. Every material update should leave a GitHub review trail.</p>
+            <p>Use the site for navigation and GitHub issue forms for execution updates. Every material update should leave a GitHub review trail.</p>
           </div>
-          <span class="readiness-gate-status">GitHub PRs are the edit path</span>
+          <span class="readiness-gate-status">Issue forms are the update path</span>
         </div>
         <div class="readiness-gate-grid">
           <a class="readiness-gate-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/blob/main/ACTION_PLAN.md"><span class="step-id">SOURCE</span>
-            <span class="readiness-gate-label">Editable</span>
-            <strong>Action plan markdown</strong>
+            <span class="readiness-gate-label">Source</span>
+            <strong>Source file</strong>
             <span>Single editable table for DRIs, collaboration needs, target dates, and notes.</span>
           </a>
-          <a class="readiness-gate-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md"><span class="step-id">EDIT</span>
+          <a class="readiness-gate-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml"><span class="step-id">UPDATE</span>
             <span class="readiness-gate-label">Collaborate</span>
-            <strong>Propose changes</strong>
-            <span>Use GitHub edits and pull requests instead of offline status copies.</span>
+            <strong>Update Workstream</strong>
+            <span>Use structured issue forms instead of offline status copies.</span>
           </a>
           <a class="readiness-gate-card is-designing" href="14-open-decisions.html"><span class="step-id">DECIDE</span>
             <span class="readiness-gate-label">Resolve</span>
@@ -156,23 +158,24 @@
                 <th>Phase</th>
                 <th>Collaboration Need</th>
                 <th>Next Action</th>
+                <th>Update</th>
               </tr>
             </thead>
             <tbody>
-              <tr data-step-id="DMS-01" data-need="decision" data-critical="false"><td><span class="step-id">DMS-01</span><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance.</td></tr>
-              <tr data-step-id="DMS-02" data-need="build" data-critical="false"><td><span class="step-id">DMS-02</span><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Finalize repository layout, domain taxonomy, metadata registry, and archive link model.</td></tr>
-              <tr data-step-id="DMS-03" data-need="decision" data-critical="true"><td><span class="step-id">DMS-03</span><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-decision">Decision</span></td><td>Resolve GitHub Teams, SSO group mapping, CODEOWNERS coverage, and portal role gates.</td></tr>
-              <tr data-step-id="DMS-04" data-need="decision" data-critical="true"><td><span class="step-id">DMS-04</span><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-decision">Decision</span></td><td>Select the enforceable approval pattern for PoP tollgates and tiered approval parity.</td></tr>
-              <tr data-step-id="DMS-05" data-need="build" data-critical="false"><td><span class="step-id">DMS-05</span><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Draft issue forms, exception records, approval path, expiry rules, and renewal logic.</td></tr>
-              <tr data-step-id="DMS-06" data-need="build" data-critical="true"><td><span class="step-id">DMS-06</span><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Build validator fixtures from the official Policy and Standard templates.</td></tr>
-              <tr data-step-id="DMS-07" data-need="build" data-critical="false"><td><span class="step-id">DMS-07</span><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Define staff-facing library, search, request initiation, conflict warnings, and role-gated actions.</td></tr>
-              <tr data-step-id="DMS-08" data-need="decision" data-critical="false"><td><span class="step-id">DMS-08</span><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm Slack/email baseline, stakeholder group source, and material-change notification evidence.</td></tr>
-              <tr data-step-id="DMS-09" data-need="decision" data-critical="false"><td><span class="step-id">DMS-09</span><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm owner deactivation signal, reassignment workflow, escalation path, and evidence capture.</td></tr>
-              <tr data-step-id="DMS-10" data-need="decision" data-critical="false"><td><span class="step-id">DMS-10</span><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Define routing criteria for procedures, SOPs, job aids, and documents without regulatory or policy connection.</td></tr>
-              <tr data-step-id="DMS-11" data-need="evidence" data-critical="true"><td><span class="step-id">DMS-11</span><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-evidence">Evidence</span></td><td>Convert BRD and PoP requirements into a gap register with mitigation owners and acceptance evidence.</td></tr>
-              <tr data-step-id="DMS-12" data-need="evidence" data-critical="false"><td><span class="step-id">DMS-12</span><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-evidence">Evidence</span></td><td>Inventory archive references and prove traceability across versions, approvals, and published records.</td></tr>
-              <tr data-step-id="DMS-13" data-need="owner" data-critical="false"><td><span class="step-id">DMS-13</span><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-owner">DRI</span></td><td>Sequence phases, dependencies, delivery milestones, and acceptance checkpoints.</td></tr>
-              <tr data-step-id="DMS-14" data-need="decision" data-critical="false"><td><span class="step-id">DMS-14</span><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-decision">Decision</span></td><td>Assign decision owners and target resolution path for governance, security, tooling, and operating model choices.</td></tr>
+              <tr data-step-id="DMS-01" data-need="decision" data-critical="false"><td><span class="step-id">DMS-01</span><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-01%20-%20Architecture%20Overview">Update</a></td></tr>
+              <tr data-step-id="DMS-02" data-need="build" data-critical="false"><td><span class="step-id">DMS-02</span><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Finalize repository layout, domain taxonomy, metadata registry, and archive link model.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-02%20-%20Repository%20Taxonomy">Update</a></td></tr>
+              <tr data-step-id="DMS-03" data-need="decision" data-critical="true"><td><span class="step-id">DMS-03</span><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-decision">Decision</span></td><td>Resolve GitHub Teams, SSO group mapping, CODEOWNERS coverage, and portal role gates.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-03%20-%20Access%20Control">Update</a></td></tr>
+              <tr data-step-id="DMS-04" data-need="decision" data-critical="true"><td><span class="step-id">DMS-04</span><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-decision">Decision</span></td><td>Select the enforceable approval pattern for PoP tollgates and tiered approval parity.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-04%20-%20Governance%20Workflow">Update</a></td></tr>
+              <tr data-step-id="DMS-05" data-need="build" data-critical="false"><td><span class="step-id">DMS-05</span><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Draft issue forms, exception records, approval path, expiry rules, and renewal logic.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-05%20-%20Exception%20Handling">Update</a></td></tr>
+              <tr data-step-id="DMS-06" data-need="build" data-critical="true"><td><span class="step-id">DMS-06</span><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Build validator fixtures from the official Policy and Standard templates.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-06%20-%20Template%20Enforcement">Update</a></td></tr>
+              <tr data-step-id="DMS-07" data-need="build" data-critical="false"><td><span class="step-id">DMS-07</span><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Define staff-facing library, search, request initiation, conflict warnings, and role-gated actions.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-07%20-%20GitHub%20Pages%20Portal">Update</a></td></tr>
+              <tr data-step-id="DMS-08" data-need="decision" data-critical="false"><td><span class="step-id">DMS-08</span><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm Slack/email baseline, stakeholder group source, and material-change notification evidence.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-08%20-%20Awareness%20Communications">Update</a></td></tr>
+              <tr data-step-id="DMS-09" data-need="decision" data-critical="false"><td><span class="step-id">DMS-09</span><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm owner deactivation signal, reassignment workflow, escalation path, and evidence capture.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-09%20-%20Orphaned%20Documents">Update</a></td></tr>
+              <tr data-step-id="DMS-10" data-need="decision" data-critical="false"><td><span class="step-id">DMS-10</span><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Define routing criteria for procedures, SOPs, job aids, and documents without regulatory or policy connection.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-10%20-%20Non-Governed%20Controls">Update</a></td></tr>
+              <tr data-step-id="DMS-11" data-need="evidence" data-critical="true"><td><span class="step-id">DMS-11</span><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-evidence">Evidence</span></td><td>Convert BRD and PoP requirements into a gap register with mitigation owners and acceptance evidence.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-11%20-%20Gap%20Analysis">Update</a></td></tr>
+              <tr data-step-id="DMS-12" data-need="evidence" data-critical="false"><td><span class="step-id">DMS-12</span><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-evidence">Evidence</span></td><td>Inventory archive references and prove traceability across versions, approvals, and published records.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-12%20-%20Legacy%20Migration">Update</a></td></tr>
+              <tr data-step-id="DMS-13" data-need="owner" data-critical="false"><td><span class="step-id">DMS-13</span><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-owner">DRI</span></td><td>Sequence phases, dependencies, delivery milestones, and acceptance checkpoints.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-13%20-%20Roadmap">Update</a></td></tr>
+              <tr data-step-id="DMS-14" data-need="decision" data-critical="false"><td><span class="step-id">DMS-14</span><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-decision">Decision</span></td><td>Assign decision owners and target resolution path for governance, security, tooling, and operating model choices.</td><td><a class="tracker-update-link" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml&amp;title=%5BWorkstream%20Update%5D%20DMS-14%20-%20Open%20Decisions">Update</a></td></tr>
             </tbody>
           </table>
         </div>

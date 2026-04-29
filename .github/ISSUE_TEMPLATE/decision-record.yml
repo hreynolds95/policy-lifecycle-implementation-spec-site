@@ -1,0 +1,56 @@
+name: Log Decision
+description: Record or request a decision needed for the GitHub DMS implementation.
+title: "[Decision] DMS-## - "
+assignees:
+  - hreynolds95
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to capture a decision or request decision ownership. Submitting this issue does not automatically assign anyone other than hreynolds95.
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Related Workstream
+      options:
+        - DMS-01 Architecture Overview
+        - DMS-02 Repository Taxonomy
+        - DMS-03 Access Control
+        - DMS-04 Governance Workflow
+        - DMS-05 Exception Handling
+        - DMS-06 Template Enforcement
+        - DMS-07 GitHub Pages Portal
+        - DMS-08 Awareness Communications
+        - DMS-09 Orphaned Documents
+        - DMS-10 Non-Governed Controls
+        - DMS-11 Gap Analysis
+        - DMS-12 Legacy Migration
+        - DMS-13 Roadmap
+        - DMS-14 Open Decisions
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision Needed or Made
+      description: State the question, recommendation, or final decision.
+      placeholder: "What needs to be decided? If already decided, what was decided?"
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options Considered
+      description: Optional options, tradeoffs, or alternatives.
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Explain how this affects scope, controls, timeline, risk, or implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or Links
+      description: Add supporting links, meeting notes, source docs, or references.

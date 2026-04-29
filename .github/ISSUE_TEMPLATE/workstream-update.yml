@@ -1,0 +1,74 @@
+name: Update Workstream
+description: Submit a structured update for one DMS implementation workstream.
+title: "[Workstream Update] DMS-## - "
+assignees:
+  - hreynolds95
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to propose an execution update for the GitHub DMS Action Plan. Submitting this issue does not automatically assign anyone other than hreynolds95.
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream
+      description: Select the DMS workstream this update applies to.
+      options:
+        - DMS-01 Architecture Overview
+        - DMS-02 Repository Taxonomy
+        - DMS-03 Access Control
+        - DMS-04 Governance Workflow
+        - DMS-05 Exception Handling
+        - DMS-06 Template Enforcement
+        - DMS-07 GitHub Pages Portal
+        - DMS-08 Awareness Communications
+        - DMS-09 Orphaned Documents
+        - DMS-10 Non-Governed Controls
+        - DMS-11 Gap Analysis
+        - DMS-12 Legacy Migration
+        - DMS-13 Roadmap
+        - DMS-14 Open Decisions
+    validations:
+      required: true
+  - type: input
+    id: proposed_dri
+    attributes:
+      label: Proposed DRI
+      description: Person or team proposed to drive the workstream. Leave blank if unknown.
+      placeholder: "Example: hreynolds or Compliance Governance"
+  - type: dropdown
+    id: collaboration_need
+    attributes:
+      label: Collaboration Need
+      description: What kind of update is this?
+      options:
+        - DRI assignment
+        - Decision needed
+        - Build scope
+        - Evidence needed
+        - Target date
+        - Dependency
+        - Risk or blocker
+        - General update
+    validations:
+      required: true
+  - type: textarea
+    id: update
+    attributes:
+      label: Proposed Update
+      description: Describe the update that should be reflected in the Action Plan.
+      placeholder: "What changed, what should be updated, and why?"
+    validations:
+      required: true
+  - type: input
+    id: target_date
+    attributes:
+      label: Target Date
+      description: Optional committed or proposed date.
+      placeholder: "YYYY-MM-DD or leave blank"
+  - type: textarea
+    id: links
+    attributes:
+      label: Supporting Links
+      description: Add links to PRs, docs, decisions, evidence, or meeting notes.
+      placeholder: "Paste links here."

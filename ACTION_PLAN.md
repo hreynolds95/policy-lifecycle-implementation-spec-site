@@ -1,6 +1,6 @@
 # GitHub DMS Action Plan
 
-This is the editable Action Plan for turning the GitHub DMS implementation spec into an executable delivery plan. Use pull requests to propose updates so owner assignments, decisions, and sequencing remain reviewable.
+This is the editable Action Plan for turning the GitHub DMS implementation spec into an executable delivery plan. Use the site links or GitHub Issue Forms to submit owner assignments, decisions, evidence, and sequencing updates.
 
 ## How to Collaborate
 
@@ -8,7 +8,17 @@ This is the editable Action Plan for turning the GitHub DMS implementation spec 
 2. Replace `Unassigned` with the accountable DRI or team once confirmed.
 3. Add target dates only after they are committed by the accountable team.
 4. Link GitHub issues, decision records, or meeting notes in the `Collaboration Notes` column.
-5. Submit changes through a pull request so updates have review history.
+5. Submit execution updates through GitHub Issue Forms. Use pull requests for direct source-file changes only.
+
+## Interaction Paths
+
+| Path | Purpose | Link |
+| --- | --- | --- |
+| Update Workstream | Submit owner, date, dependency, risk, or next-action updates. | [Open form](https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml) |
+| Log Decision | Capture or request architecture, governance, tooling, or control decisions. | [Open form](https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=decision-record.yml) |
+| Add Evidence | Attach audit support, readiness proof, QC results, or links. | [Open form](https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=evidence-link.yml) |
+
+Issue forms default to `hreynolds95` and do not assign issues to anyone else. No live issues are created by this setup.
 
 ## Planning Fields
 
@@ -43,7 +53,7 @@ This is the editable Action Plan for turning the GitHub DMS implementation spec 
 
 | Cadence | Purpose | Output |
 | --- | --- | --- |
-| Weekly working review | Confirm owner assignments, decisions, and new risks. | Updated Action Plan PR or merged Action Plan change. |
+| Weekly working review | Confirm owner assignments, decisions, and new risks. | Submitted issue form or merged source-file PR. |
 | Decision review | Resolve choices that change architecture, approval parity, or audit evidence. | Decision record linked from the workstream row. |
 | Readiness review | Confirm whether GitHub can replace LogicGate for governed documents. | Evidence-backed cutover recommendation. |
 

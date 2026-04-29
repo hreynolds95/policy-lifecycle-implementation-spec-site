@@ -1,0 +1,60 @@
+name: Add Evidence
+description: Link implementation evidence, audit support, or readiness proof to a DMS workstream.
+title: "[Evidence] DMS-## - "
+assignees:
+  - hreynolds95
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to attach evidence or readiness support to a workstream. Submitting this issue does not automatically assign anyone other than hreynolds95.
+  - type: dropdown
+    id: workstream
+    attributes:
+      label: Workstream
+      options:
+        - DMS-01 Architecture Overview
+        - DMS-02 Repository Taxonomy
+        - DMS-03 Access Control
+        - DMS-04 Governance Workflow
+        - DMS-05 Exception Handling
+        - DMS-06 Template Enforcement
+        - DMS-07 GitHub Pages Portal
+        - DMS-08 Awareness Communications
+        - DMS-09 Orphaned Documents
+        - DMS-10 Non-Governed Controls
+        - DMS-11 Gap Analysis
+        - DMS-12 Legacy Migration
+        - DMS-13 Roadmap
+        - DMS-14 Open Decisions
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: Evidence Type
+      options:
+        - Requirement mapping
+        - Approval evidence
+        - QC evidence
+        - Migration evidence
+        - Access-control evidence
+        - Communications evidence
+        - Meeting note
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_summary
+    attributes:
+      label: Evidence Summary
+      description: Briefly describe what the evidence proves.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_links
+    attributes:
+      label: Evidence Links
+      description: Paste links to evidence, PRs, docs, screenshots, or test output.
+    validations:
+      required: true

@@ -45,16 +45,16 @@
           <span class="status-value">Replace LogicGate with a GitHub-based DMS</span>
         </div>
         <div class="status-item">
-          <span class="status-label">Cutover Gate</span>
-          <span class="status-pill" data-status-token="blocked">Not Ready</span>
+          <span class="status-label">Planning Mode</span>
+          <span class="status-value">Collaborative draft</span>
         </div>
         <div class="status-item">
-          <span class="status-label">Required Parity</span>
-          <span class="status-pill" data-status-token="required">Required</span>
+          <span class="status-label">Editable Source</span>
+          <span class="status-value">ACTION_PLAN.md</span>
         </div>
         <div class="status-item">
-          <span class="status-label">Build Status</span>
-          <span class="status-pill" data-status-token="in-progress">In Progress</span>
+          <span class="status-label">Review Path</span>
+          <span class="status-value">GitHub PRs</span>
         </div>
       </section>
 
@@ -69,15 +69,15 @@
       </section>
 
       <section class="landing-paths" aria-label="Primary navigation">
-        <a class="landing-path primary-path" href="implementation/?mode=review">
+        <a class="landing-path primary-path" href="implementation/">
           <span class="landing-path-label">Start Here</span>
-          <strong>Weekly Review View</strong>
-          <span>Meeting-ready view of readiness blockers, tracker status, and dependencies.</span>
+          <strong>Review Action Plan</strong>
+          <span>Shareable view of workstreams, collaboration needs, and next actions.</span>
         </a>
-        <a class="landing-path" href="implementation/">
-          <span class="landing-path-label">Implementation</span>
-          <strong>Open Workplan</strong>
-          <span>Fourteen tactical pages with owners, outputs, dependencies, and exit criteria.</span>
+        <a class="landing-path" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">
+          <span class="landing-path-label">Collaborate</span>
+          <strong>Edit Source Plan</strong>
+          <span>Propose owner, date, decision, and note updates through GitHub.</span>
         </a>
         <a class="landing-path" href="#specExplorer">
           <span class="landing-path-label">Reference</span>
@@ -195,15 +195,15 @@
         </div>
           </section>
 
-          <section class="gate-readiness-banner card" aria-label="Gate readiness summary">
+          <section class="gate-readiness-banner card" aria-label="Section review summary">
         <div class="gate-readiness-head">
           <div class="gate-readiness-copy">
-            <span class="gate-readiness-label">Gate Readiness</span>
+            <span class="gate-readiness-label">Section Review</span>
             <span id="gateReadinessText" class="gate-readiness-text" aria-live="polite">
-              0 of 12 sections ready (0%)
+              0 of 12 sections reviewed (0%)
             </span>
             <span id="gateReadinessSummary" class="gate-readiness-summary">
-              No readiness blockers detected.
+              No open section review items detected.
             </span>
           </div>
           <div class="gate-readiness-actions">
@@ -215,7 +215,7 @@
           id="gateReadinessTrack"
           class="gate-readiness-track"
           role="progressbar"
-          aria-label="Gate readiness progress"
+          aria-label="Section review progress"
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow="0"
@@ -976,12 +976,12 @@ procedures_reference_only:
         const percent = formatPercent(readySections.length, total);
 
         if (gateReadinessText) {
-          gateReadinessText.textContent = `${readySections.length} of ${total} sections ready (${percent}%)`;
+          gateReadinessText.textContent = `${readySections.length} of ${total} sections reviewed (${percent}%)`;
         }
 
         if (gateReadinessSummary) {
           if (pendingSections.length === 0) {
-            gateReadinessSummary.textContent = 'No readiness blockers detected.';
+            gateReadinessSummary.textContent = 'No open section review items detected.';
           } else {
             const preview = pendingSections
               .slice(0, 3)
@@ -1184,10 +1184,10 @@ procedures_reference_only:
           `Active section: ${activeLabel}`,
           `Reading progress: ${openVisible.length}/${totalVisible} (${readingPercent}%) open`,
           `Review completion: ${reviewedVisible.length}/${totalVisible} (${reviewedPercent}%) reviewed`,
-          `Gate readiness: ${readyVisible.length}/${totalVisible} (${readyPercent}%) ready`,
+          `Section review: ${readyVisible.length}/${totalVisible} (${readyPercent}%) reviewed`,
           `Open sections: ${sectionList(openVisible)}`,
           `Reviewed sections: ${sectionList(reviewedVisible)}`,
-          `Ready sections: ${sectionList(readyVisible)}`,
+          `Reviewed gate sections: ${sectionList(readyVisible)}`,
           `Top opened sections (local telemetry): ${topTelemetry.length > 0 ? topTelemetry.join('; ') : 'None'}`,
           'Links:',
           `- Current spec view: ${window.location.href}`,

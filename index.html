@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitHub DMS Cutover Readiness</title>
+    <title>GitHub DMS Collaborative Action Plan</title>
     <meta
       name="description"
-      content="Cutover readiness dashboard for replacing LogicGate with a GitHub-native compliance policy and standards DMS."
+      content="Collaborative action plan for replacing LogicGate with a GitHub-native compliance policy and standards DMS."
     />
     <link rel="stylesheet" href="block-brand-site.css" />
 
@@ -26,26 +26,26 @@
             />
           </div>
           <span class="hero-title-divider" aria-hidden="true"></span>
-          <h1>GitHub DMS Cutover Readiness</h1>
+          <h1>GitHub DMS Collaborative Action Plan</h1>
         </div>
         <p class="subtitle">
-          Decision view for replacing LogicGate with a GitHub-native compliance policy and
-          standards DMS. Start with blockers, then drill into workplan detail as needed.
+          Shareable planning view for replacing LogicGate with a GitHub-native compliance policy and
+          standards DMS. Start by reviewing the action plan, then assign owners and decisions in GitHub.
         </p>
         <div class="badge-row">
-          <span class="badge">Cutover Gate: Not Ready</span>
+          <span class="badge">Planning Mode: Collaborative Draft</span>
           <span class="badge">Target Platform: GitHub</span>
-          <span class="badge">PoP Parity Required</span>
+          <span class="badge">Editable Source: ACTION_PLAN.md</span>
         </div>
       </header>
 
-      <section class="readiness-bar card" aria-label="Cutover readiness summary">
-        <span class="readiness-bar-label">Cutover Readiness</span>
+      <section class="readiness-bar card" aria-label="Action plan collaboration summary">
+        <span class="readiness-bar-label">Action Plan</span>
         <div class="readiness-bar-items">
-          <span><strong>Gate:</strong> Not Ready</span>
-          <span><strong>Blockers:</strong> 2</span>
-          <span><strong>Critical Workstreams:</strong> 3</span>
-          <span><strong>Build:</strong> In Progress</span>
+          <span><strong>Mode:</strong> Share + edit</span>
+          <span><strong>Workstreams:</strong> 14</span>
+          <span><strong>Next:</strong> Assign DRIs</span>
+          <span><strong>Edits:</strong> GitHub PR</span>
           <span><strong>Updated:</strong> <span id="readinessCommitStamp">loading...</span></span>
         </div>
       </section>
@@ -66,13 +66,13 @@
           <h2 id="startHereTitle">Choose the path based on the decision you need to make.</h2>
         </div>
         <div class="start-decision-grid" aria-label="Recommended first clicks">
-          <a class="start-decision-card is-primary" href="implementation/?mode=review">
-            <span>Need the cutover call?</span>
-            <strong>Review blockers</strong>
+          <a class="start-decision-card is-primary" href="implementation/">
+            <span>Need the working plan?</span>
+            <strong>Review action plan</strong>
           </a>
-          <a class="start-decision-card" href="implementation/">
-            <span>Need to move work?</span>
-            <strong>Open workplan</strong>
+          <a class="start-decision-card" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">
+            <span>Need to collaborate?</span>
+            <strong>Edit in GitHub</strong>
           </a>
           <a class="start-decision-card" href="spec-explorer.html#specExplorer">
             <span>Need control detail?</span>
@@ -82,15 +82,15 @@
       </section>
 
       <section class="landing-paths" aria-label="Primary navigation">
-        <a class="landing-path primary-path" href="implementation/?mode=review">
-          <span class="landing-path-label">Decision Review</span>
-          <strong>Review Blockers</strong>
-          <span>Meeting-ready view of blocker status, critical workstreams, and next actions.</span>
+        <a class="landing-path primary-path" href="implementation/">
+          <span class="landing-path-label">Action Plan</span>
+          <strong>Review Workstreams</strong>
+          <span>Shareable view of the 14 implementation workstreams, collaboration needs, and next actions.</span>
         </a>
-        <a class="landing-path" href="implementation/">
-          <span class="landing-path-label">Implementation</span>
-          <strong>Execute Workplan</strong>
-          <span>Fourteen tactical pages with owners, outputs, dependencies, and exit criteria.</span>
+        <a class="landing-path" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">
+          <span class="landing-path-label">Editable Source</span>
+          <strong>Update Plan</strong>
+          <span>Edit owners, decisions, milestones, and notes through the GitHub review flow.</span>
         </a>
         <a class="landing-path" href="spec-explorer.html#specExplorer">
           <span class="landing-path-label">Reference</span>
@@ -102,11 +102,11 @@
       <section class="landing-next card" aria-label="Next best action">
         <span class="landing-next-label">Next Best Action</span>
         <div class="landing-action-flow">
-          <span>Review blockers</span>
+          <span>Review action plan</span>
           <span aria-hidden="true">→</span>
-          <span>Assign owners</span>
+          <span>Assign DRIs</span>
           <span aria-hidden="true">→</span>
-          <span>Update workstream status</span>
+          <span>Submit GitHub edits</span>
         </div>
       </section>
 

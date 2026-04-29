@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Block GitHub DMS Implementation Workplan</title>
+    <title>Block GitHub DMS Collaborative Action Plan</title>
     <meta
       name="description"
-      content="Tactical implementation workplan for a Block-wide GitHub document management system aligned to the Policy on Policies."
+      content="Shareable and editable action plan for a Block-wide GitHub document management system aligned to the Policy on Policies."
     />
     <link rel="stylesheet" href="../block-brand-site.css" />
   </head>
@@ -18,25 +18,25 @@
             <img class="hero-logo" src="../assets/block-lockup-black-no-padding.png" alt="Block logo" width="118" height="26" />
           </div>
           <span class="hero-title-divider" aria-hidden="true"></span>
-          <h1>GitHub DMS Implementation Workplan</h1>
+          <h1>GitHub DMS Collaborative Action Plan</h1>
         </div>
         <p class="subtitle">
-          Project-management pages for delivering a Block-wide, PoP-aligned GitHub document management system.
+          Project-management view for assigning owners, resolving decisions, and turning the implementation spec into accountable work.
         </p>
       </header>
 
-      <section class="workplan-command-center meeting-mode-toggle implementation-section" aria-label="Weekly review command center">
+      <section class="workplan-command-center meeting-mode-toggle implementation-section" aria-label="Collaborative action plan command center">
         <div class="workplan-command-copy">
-          <span class="implementation-eyebrow">Meeting Dashboard</span>
-          <h2>Weekly cutover review</h2>
-          <p>Use this view to resolve blockers, confirm owners, and decide whether the LogicGate replacement gate can move.</p>
+          <span class="implementation-eyebrow">Working Plan</span>
+          <h2>Use this as the editable team action plan.</h2>
+          <p>Statuses are intentionally not pre-filled. Assign DRIs, record decisions, and update target dates through GitHub pull requests.</p>
         </div>
         <div class="workplan-command-panel">
-          <div class="workplan-command-metrics" aria-label="Meeting status summary">
-            <span><strong>Gate</strong> Not Ready</span>
-            <span><strong>Blockers</strong> 2</span>
-            <span><strong>Critical</strong> 3</span>
+          <div class="workplan-command-metrics" aria-label="Action plan collaboration summary">
+            <span><strong>Source</strong> ACTION_PLAN.md</span>
             <span><strong>Workstreams</strong> 14</span>
+            <span><strong>Update Flow</strong> PR review</span>
+            <span><strong>Next</strong> Assign DRIs</span>
           </div>
           <div class="lifecycle-state-list workplan-lifecycle" aria-label="Document lifecycle state model">
             <span class="lifecycle-state is-source"><strong>Source of Truth</strong><span>GitHub canonical record</span></span>
@@ -46,40 +46,41 @@
           </div>
           <div class="workplan-command-actions">
             <div class="meeting-mode-actions" role="group" aria-label="Workplan view mode selector">
-              <button class="meeting-mode-btn is-active" type="button" data-workplan-mode="full" aria-pressed="true">Full Workplan</button>
-              <button class="meeting-mode-btn" type="button" data-workplan-mode="review" aria-pressed="false">Weekly Review</button>
+              <button class="meeting-mode-btn is-active" type="button" data-workplan-mode="full" aria-pressed="true">Full Plan</button>
+              <button class="meeting-mode-btn" type="button" data-workplan-mode="review" aria-pressed="false">Working Review</button>
             </div>
             <nav class="workplan-command-nav" aria-label="Workplan shortcuts">
               <a href="../">Dashboard</a>
+              <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/blob/main/ACTION_PLAN.md">Action Plan Source</a>
+              <a href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">Edit in GitHub</a>
               <a href="04-governance-workflow.html">Workflow Gates</a>
               <a href="06-template-enforcement.html">Template Gate</a>
               <a href="11-gap-analysis.html">Gap Analysis</a>
-              <a href="13-roadmap.html">Roadmap</a>
             </nav>
           </div>
         </div>
       </section>
 
-      <section class="implementation-section review-focus-panel review-only" aria-label="Top blockers for weekly review">
+      <section class="implementation-section review-focus-panel review-only" aria-label="Working review focus areas">
         <div class="review-focus-head">
-          <span class="implementation-eyebrow">Top Blockers</span>
-          <h2>Resolve these before cutover readiness can move.</h2>
+          <span class="implementation-eyebrow">Working Review</span>
+          <h2>Use the review view to make collaboration assignments.</h2>
         </div>
         <div class="review-blocker-grid">
-          <a class="review-blocker-card is-blocked" href="03-access-control.html">
-            <span class="step-id">DMS-03</span>
-            <strong>Portal access model</strong>
-            <span>Resolve authentication, SSO group mapping, and role-gated initiation.</span>
+          <a class="review-blocker-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">
+            <span class="step-id">PLAN</span>
+            <strong>Assign DRIs</strong>
+            <span>Replace unassigned workstreams with accountable owners or teams.</span>
           </a>
-          <a class="review-blocker-card is-blocked" href="09-orphaned-documents.html">
-            <span class="step-id">DMS-09</span>
-            <strong>Owner deactivation signal</strong>
-            <span>Confirm source of owner removal signal and escalation trigger.</span>
+          <a class="review-blocker-card is-designing" href="14-open-decisions.html">
+            <span class="step-id">DMS-14</span>
+            <strong>Resolve decisions</strong>
+            <span>Capture architecture, governance, security, tooling, and operating model choices.</span>
           </a>
           <a class="review-blocker-card is-designing" href="04-governance-workflow.html">
             <span class="step-id">DMS-04</span>
-            <strong>Tiered approval enforcement</strong>
-            <span>Select the enforceable and auditable approval parity pattern.</span>
+            <strong>Define approval parity</strong>
+            <span>Confirm how GitHub will enforce PoP tollgates before any cutover recommendation.</span>
           </a>
         </div>
       </section>
@@ -87,8 +88,8 @@
       <section class="implementation-section plan-overview workplan-detail" aria-label="Implementation plan overview">
         <div class="plan-overview-copy">
           <span class="implementation-eyebrow">Plan Overview</span>
-          <h2>14 workstreams, one cutover gate.</h2>
-          <p><code>DMS-##</code> identifies workstreams. <code>DMS-##.##</code> identifies child tasks.</p>
+          <h2>14 workstreams, one editable action plan.</h2>
+          <p><code>DMS-##</code> identifies workstreams. <code>DMS-##.##</code> identifies child tasks. Use <code>ACTION_PLAN.md</code> to collaborate on owners, dates, decisions, and notes.</p>
         </div>
         <div class="plan-phase-list" aria-label="Implementation phases">
           <span><strong>0</strong> Discovery</span>
@@ -98,58 +99,58 @@
         </div>
       </section>
 
-      <section class="implementation-section readiness-gate-panel" aria-label="LogicGate replacement readiness gate summary">
+      <section class="implementation-section readiness-gate-panel" aria-label="Collaboration operating model">
         <div class="readiness-gate-head">
           <div>
-            <span class="implementation-eyebrow">Migration Readiness</span>
-            <h2>LogicGate Replacement Gate</h2>
-            <p>GitHub remains the target platform, but production cutover waits until critical controls are demonstrably ready.</p>
+            <span class="implementation-eyebrow">Operating Model</span>
+            <h2>How the plan stays editable and reviewable</h2>
+            <p>Use the site for navigation and the markdown action plan for team edits. Every material update should leave a GitHub review trail.</p>
           </div>
-          <span class="readiness-gate-status">Not Ready for Cutover</span>
+          <span class="readiness-gate-status">GitHub PRs are the edit path</span>
         </div>
         <div class="readiness-gate-grid">
-          <a class="readiness-gate-card is-blocked" href="03-access-control.html"><span class="step-id">DMS-03</span>
-            <span class="readiness-gate-label">Blocked</span>
-            <strong>Portal access model</strong>
-            <span>Resolve SSO group mapping and role-gated initiation.</span>
+          <a class="readiness-gate-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/blob/main/ACTION_PLAN.md"><span class="step-id">SOURCE</span>
+            <span class="readiness-gate-label">Editable</span>
+            <strong>Action plan markdown</strong>
+            <span>Single editable table for DRIs, collaboration needs, target dates, and notes.</span>
           </a>
-          <a class="readiness-gate-card is-blocked" href="09-orphaned-documents.html"><span class="step-id">DMS-09</span>
-            <span class="readiness-gate-label">Blocked</span>
-            <strong>Owner deactivation signal</strong>
-            <span>Confirm membership or IdP source for orphan detection.</span>
+          <a class="readiness-gate-card is-designing" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md"><span class="step-id">EDIT</span>
+            <span class="readiness-gate-label">Collaborate</span>
+            <strong>Propose changes</strong>
+            <span>Use GitHub edits and pull requests instead of offline status copies.</span>
           </a>
-          <a class="readiness-gate-card is-designing" href="04-governance-workflow.html"><span class="step-id">DMS-04</span>
-            <span class="readiness-gate-label">Designing</span>
-            <strong>Tiered approval enforcement</strong>
-            <span>Select enforcement pattern for PoP approval parity.</span>
+          <a class="readiness-gate-card is-designing" href="14-open-decisions.html"><span class="step-id">DECIDE</span>
+            <span class="readiness-gate-label">Resolve</span>
+            <strong>Decision log</strong>
+            <span>Move open design questions into owned decisions with target resolution paths.</span>
           </a>
-          <a class="readiness-gate-card is-ready" href="06-template-enforcement.html"><span class="step-id">DMS-06</span>
-            <span class="readiness-gate-label">Ready</span>
-            <strong>Template hard gate</strong>
-            <span>Build validator fixtures from official Policy/Standard template.</span>
+          <a class="readiness-gate-card is-designing" href="11-gap-analysis.html"><span class="step-id">EVIDENCE</span>
+            <span class="readiness-gate-label">Prove</span>
+            <strong>Readiness evidence</strong>
+            <span>Trace requirements, mitigations, and audit evidence before cutover recommendation.</span>
           </a>
         </div>
       </section>
 
-      <section class="implementation-section tracker-panel" aria-label="Workstream progress tracker">
+      <section class="implementation-section tracker-panel" aria-label="Collaborative action plan tracker">
         <div class="tracker-head">
           <div>
-            <span class="implementation-eyebrow">Progress Tracker</span>
-            <h2>Workstream Status</h2>
+            <span class="implementation-eyebrow">Action Tracker</span>
+            <h2>Workstreams by collaboration need</h2>
           </div>
-          <div class="tracker-summary" aria-label="Status summary">
-            <span><strong>3</strong> Ready for Build</span>
-            <span><strong>5</strong> Designing</span>
-            <span><strong>4</strong> Not Started</span>
-            <span><strong>2</strong> Blocked</span>
+          <div class="tracker-summary" aria-label="Collaboration summary">
+            <span><strong>14</strong> Workstreams</span>
+            <span><strong>7</strong> Decisions</span>
+            <span><strong>4</strong> Build Scope</span>
+            <span><strong>2</strong> Evidence</span>
           </div>
         </div>
-        <div class="tracker-filters" role="group" aria-label="Filter workstream tracker">
+        <div class="tracker-filters" role="group" aria-label="Filter action plan tracker">
           <button class="tracker-filter is-active" type="button" data-tracker-filter="all" aria-pressed="true">All</button>
-          <button class="tracker-filter" type="button" data-tracker-filter="blocked" aria-pressed="false">Blocked</button>
-          <button class="tracker-filter" type="button" data-tracker-filter="ready" aria-pressed="false">Ready for Build</button>
-          <button class="tracker-filter" type="button" data-tracker-filter="designing" aria-pressed="false">Designing</button>
-          <button class="tracker-filter" type="button" data-tracker-filter="not-started" aria-pressed="false">Not Started</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="owner" aria-pressed="false">Needs DRI</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="decision" aria-pressed="false">Needs Decision</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="build" aria-pressed="false">Needs Build Scope</button>
+          <button class="tracker-filter" type="button" data-tracker-filter="evidence" aria-pressed="false">Needs Evidence</button>
           <button class="tracker-filter" type="button" data-tracker-filter="critical" aria-pressed="false">Critical Path</button>
           <span class="tracker-filter-count" id="trackerFilterCount" aria-live="polite">14 workstreams</span>
         </div>
@@ -159,25 +160,25 @@
               <tr>
                 <th>Workstream</th>
                 <th>Phase</th>
-                <th>Status</th>
+                <th>Collaboration Need</th>
                 <th>Next Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr data-step-id="DMS-01" data-status="ready" data-critical="false"><td><span class="step-id">DMS-01</span><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Confirm target-state topology with Platform and Security.</td></tr>
-              <tr data-step-id="DMS-02" data-status="designing" data-critical="false"><td><span class="step-id">DMS-02</span><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-designing">Designing</span></td><td>Finalize registry schema and domain folder taxonomy.</td></tr>
-              <tr data-step-id="DMS-03" data-status="blocked" data-critical="false"><td><span class="step-id">DMS-03</span><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Resolve portal authentication and SSO group mapping.</td></tr>
-              <tr data-step-id="DMS-04" data-status="designing" data-critical="true"><td><span class="step-id">DMS-04</span><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-designing">Designing</span></td><td>Choose approval enforcement pattern for tiered gates.</td></tr>
-              <tr data-step-id="DMS-05" data-status="not-started" data-critical="false"><td><span class="step-id">DMS-05</span><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Draft issue form and exception record schema.</td></tr>
-              <tr data-step-id="DMS-06" data-status="ready" data-critical="true"><td><span class="step-id">DMS-06</span><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Build parser fixtures from the official template.</td></tr>
-              <tr data-step-id="DMS-07" data-status="designing" data-critical="false"><td><span class="step-id">DMS-07</span><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define published metadata and request form surfaces.</td></tr>
-              <tr data-step-id="DMS-08" data-status="not-started" data-critical="false"><td><span class="step-id">DMS-08</span><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Confirm Slack/email baseline and stakeholder group source.</td></tr>
-              <tr data-step-id="DMS-09" data-status="blocked" data-critical="false"><td><span class="step-id">DMS-09</span><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-blocked">Blocked</span></td><td>Confirm source of owner deactivation signal.</td></tr>
-              <tr data-step-id="DMS-10" data-status="designing" data-critical="false"><td><span class="step-id">DMS-10</span><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-designing">Designing</span></td><td>Define routing criteria for procedures and SOPs.</td></tr>
-              <tr data-step-id="DMS-11" data-status="ready" data-critical="true"><td><span class="step-id">DMS-11</span><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-ready">Ready for Build</span></td><td>Convert BRD categories into gap register rows.</td></tr>
-              <tr data-step-id="DMS-12" data-status="designing" data-critical="false"><td><span class="step-id">DMS-12</span><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-designing">Designing</span></td><td>Inventory legacy archive links and cutover evidence.</td></tr>
-              <tr data-step-id="DMS-13" data-status="not-started" data-critical="false"><td><span class="step-id">DMS-13</span><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Add owners, dates, and dependency sequencing.</td></tr>
-              <tr data-step-id="DMS-14" data-status="not-started" data-critical="false"><td><span class="step-id">DMS-14</span><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-not-started">Not Started</span></td><td>Assign decision owners and target resolution dates.</td></tr>
+              <tr data-step-id="DMS-01" data-need="decision" data-critical="false"><td><span class="step-id">DMS-01</span><a href="01-architecture-overview.html">01 Architecture Overview</a></td><td>Phase 0</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance.</td></tr>
+              <tr data-step-id="DMS-02" data-need="build" data-critical="false"><td><span class="step-id">DMS-02</span><a href="02-repository-taxonomy.html">02 Repository Taxonomy</a></td><td>Phase 1</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Finalize repository layout, domain taxonomy, metadata registry, and archive link model.</td></tr>
+              <tr data-step-id="DMS-03" data-need="decision" data-critical="true"><td><span class="step-id">DMS-03</span><a href="03-access-control.html">03 Access Control</a></td><td>Phase 1</td><td><span class="tracker-status is-decision">Decision</span></td><td>Resolve GitHub Teams, SSO group mapping, CODEOWNERS coverage, and portal role gates.</td></tr>
+              <tr data-step-id="DMS-04" data-need="decision" data-critical="true"><td><span class="step-id">DMS-04</span><a href="04-governance-workflow.html">04 Governance Workflow</a></td><td>Phase 2</td><td><span class="tracker-status is-decision">Decision</span></td><td>Select the enforceable approval pattern for PoP tollgates and tiered approval parity.</td></tr>
+              <tr data-step-id="DMS-05" data-need="build" data-critical="false"><td><span class="step-id">DMS-05</span><a href="05-exception-handling.html">05 Exception Handling</a></td><td>Phase 2</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Draft issue forms, exception records, approval path, expiry rules, and renewal logic.</td></tr>
+              <tr data-step-id="DMS-06" data-need="build" data-critical="true"><td><span class="step-id">DMS-06</span><a href="06-template-enforcement.html">06 Template Enforcement</a></td><td>Phase 2</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Build validator fixtures from the official Policy and Standard templates.</td></tr>
+              <tr data-step-id="DMS-07" data-need="build" data-critical="false"><td><span class="step-id">DMS-07</span><a href="07-portal-specification.html">07 GitHub Pages Portal</a></td><td>Phase 3</td><td><span class="tracker-status is-build">Build Scope</span></td><td>Define staff-facing library, search, request initiation, conflict warnings, and role-gated actions.</td></tr>
+              <tr data-step-id="DMS-08" data-need="decision" data-critical="false"><td><span class="step-id">DMS-08</span><a href="08-awareness-communications.html">08 Awareness Communications</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm Slack/email baseline, stakeholder group source, and material-change notification evidence.</td></tr>
+              <tr data-step-id="DMS-09" data-need="decision" data-critical="false"><td><span class="step-id">DMS-09</span><a href="09-orphaned-documents.html">09 Orphaned Documents</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Confirm owner deactivation signal, reassignment workflow, escalation path, and evidence capture.</td></tr>
+              <tr data-step-id="DMS-10" data-need="decision" data-critical="false"><td><span class="step-id">DMS-10</span><a href="10-non-governed-controls.html">10 Non-Governed Controls</a></td><td>Phase 3</td><td><span class="tracker-status is-decision">Decision</span></td><td>Define routing criteria for procedures, SOPs, job aids, and documents without regulatory or policy connection.</td></tr>
+              <tr data-step-id="DMS-11" data-need="evidence" data-critical="true"><td><span class="step-id">DMS-11</span><a href="11-gap-analysis.html">11 Gap Analysis</a></td><td>Phase 4</td><td><span class="tracker-status is-evidence">Evidence</span></td><td>Convert BRD and PoP requirements into a gap register with mitigation owners and acceptance evidence.</td></tr>
+              <tr data-step-id="DMS-12" data-need="evidence" data-critical="false"><td><span class="step-id">DMS-12</span><a href="12-legacy-migration.html">12 Legacy Migration</a></td><td>Phase 4</td><td><span class="tracker-status is-evidence">Evidence</span></td><td>Inventory archive references and prove traceability across versions, approvals, and published records.</td></tr>
+              <tr data-step-id="DMS-13" data-need="owner" data-critical="false"><td><span class="step-id">DMS-13</span><a href="13-roadmap.html">13 Roadmap</a></td><td>Program</td><td><span class="tracker-status is-owner">DRI</span></td><td>Sequence phases, dependencies, delivery milestones, and acceptance checkpoints.</td></tr>
+              <tr data-step-id="DMS-14" data-need="decision" data-critical="false"><td><span class="step-id">DMS-14</span><a href="14-open-decisions.html">14 Open Decisions</a></td><td>Program</td><td><span class="tracker-status is-decision">Decision</span></td><td>Assign decision owners and target resolution path for governance, security, tooling, and operating model choices.</td></tr>
             </tbody>
           </table>
         </div>
@@ -187,14 +188,14 @@
         <div class="dependency-head">
           <span class="implementation-eyebrow">Dependency Map</span>
           <h2>Sequencing Hotspots</h2>
-          <p>Use this map to understand which workstreams unlock downstream delivery and where blockers could slow the migration path.</p>
+          <p>Use this map to understand which decisions and scoped builds unlock downstream delivery.</p>
         </div>
         <div class="dependency-lanes">
-          <div class="dependency-lane is-blocked">
+          <div class="dependency-lane is-designing">
             <a href="03-access-control.html" class="dependency-node"><span class="step-id">DMS-03</span>Access Control</a>
             <span class="dependency-arrow">Unlocks</span>
             <a href="07-portal-specification.html" class="dependency-node"><span class="step-id">DMS-07</span>Portal Role Gates</a>
-            <span class="dependency-risk">Blocked by SSO and role mapping decisions.</span>
+            <span class="dependency-risk">Needs SSO and role mapping decisions.</span>
           </div>
           <div class="dependency-lane is-designing">
             <a href="02-repository-taxonomy.html" class="dependency-node"><span class="step-id">DMS-02</span>Registry Schema</a>
@@ -208,11 +209,11 @@
             <a href="11-gap-analysis.html" class="dependency-node"><span class="step-id">DMS-11</span>Migration Readiness</a>
             <span class="dependency-risk">Tiered approval parity must be proven before cutover.</span>
           </div>
-          <div class="dependency-lane is-ready">
+          <div class="dependency-lane is-designing">
             <a href="06-template-enforcement.html" class="dependency-node"><span class="step-id">DMS-06</span>Template Gate</a>
             <span class="dependency-arrow">Unlocks</span>
             <a href="04-governance-workflow.html" class="dependency-node"><span class="step-id">DMS-04</span>Policy Team QC</a>
-            <span class="dependency-risk">Ready to build parser fixtures and QC handoff.</span>
+            <span class="dependency-risk">Needs parser fixture scope and QC handoff criteria.</span>
           </div>
         </div>
       </section>
@@ -245,10 +246,10 @@
       const meetingModeButtons = Array.from(document.querySelectorAll('.meeting-mode-btn'));
       const trackerLabels = {
         all: 'workstreams',
-        blocked: 'blocked workstreams',
-        ready: 'ready workstreams',
-        designing: 'designing workstreams',
-        'not-started': 'not-started workstreams',
+        owner: 'workstreams needing a DRI',
+        decision: 'workstreams needing decisions',
+        build: 'workstreams needing build scope',
+        evidence: 'workstreams needing evidence',
         critical: 'critical path workstreams',
       };
 
@@ -256,7 +257,7 @@
         let visibleCount = 0;
         trackerRows.forEach((row) => {
           const isMatch = filter === 'all' ||
-            row.dataset.status === filter ||
+            row.dataset.need === filter ||
             (filter === 'critical' && row.dataset.critical === 'true');
           row.hidden = !isMatch;
           if (isMatch) visibleCount += 1;

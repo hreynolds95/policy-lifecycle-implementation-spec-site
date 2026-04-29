@@ -1738,6 +1738,30 @@ h1 {
   color: #6f3434;
 }
 
+.tracker-status.is-owner {
+  background: #f4f7f9;
+  border-color: #cbd5de;
+  color: #4a5968;
+}
+
+.tracker-status.is-decision {
+  background: #fff5d7;
+  border-color: #dbcdb6;
+  color: #6f582f;
+}
+
+.tracker-status.is-build {
+  background: #eaf1f6;
+  border-color: #c3d1de;
+  color: #2f4356;
+}
+
+.tracker-status.is-evidence {
+  background: #e8f3ec;
+  border-color: #aac8b6;
+  color: #234b38;
+}
+
 .dependency-panel {
   background: var(--surface-gradient-guidance);
 }
@@ -3283,6 +3307,36 @@ summary,
 .tracker-status.is-ready {
   background: rgba(124, 172, 255, 0.15);
   border-color: rgba(124, 172, 255, 0.38);
+}
+
+.tracker-status.is-owner {
+  background: rgba(227, 230, 234, 0.12);
+  border-color: rgba(227, 230, 234, 0.24);
+  color: var(--accent-2);
+}
+
+.tracker-status.is-decision {
+  background: rgba(255, 217, 102, 0.15);
+  border-color: rgba(255, 217, 102, 0.38);
+  color: var(--warning);
+}
+
+.tracker-status.is-build {
+  background: rgba(124, 172, 255, 0.15);
+  border-color: rgba(124, 172, 255, 0.38);
+  color: var(--info);
+}
+
+.tracker-status.is-evidence {
+  background: rgba(163, 215, 149, 0.15);
+  border-color: rgba(163, 215, 149, 0.38);
+  color: var(--success);
+}
+
+.readiness-gate-status {
+  background: rgba(50, 223, 182, 0.12);
+  border-color: rgba(50, 223, 182, 0.32);
+  color: var(--accent);
 }
 
 .tracker-status.is-not-started,

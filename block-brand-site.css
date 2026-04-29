@@ -31,26 +31,26 @@
   --font-sans: 'Cash Sans', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --color-background-primary: #ffffff;
-  --color-background-secondary: #f4f6f7;
-  --color-background-tertiary: #e3e6ea;
-  --color-background-inverse: #000000;
+  --color-background-primary: #32353b;
+  --color-background-secondary: #22252a;
+  --color-background-tertiary: #474e57;
+  --color-background-inverse: #ffffff;
 
-  --color-text-primary: #3f434b;
-  --color-text-secondary: #878787;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #cbd1d6;
   --color-text-tertiary: #a7b0b9;
   --color-text-inverse: #ffffff;
 
-  --color-border-primary: #e3e6ea;
-  --color-border-secondary: #e3e6ea;
-  --color-border-tertiary: #cbd1d6;
+  --color-border-primary: #3f434b;
+  --color-border-secondary: #474e57;
+  --color-border-tertiary: #5c6470;
 
-  --color-accent: #3f434b;
-  --color-accent-foreground: #ffffff;
+  --color-accent: #e3e6ea;
+  --color-accent-foreground: #22252a;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -58,53 +58,67 @@
   --radius-xl: 16px;
 
   /* Site-level aliases */
-  --surface: var(--color-background-primary);
-  --surface-subtle: var(--color-background-secondary);
-  --surface-muted: var(--color-background-tertiary);
-  --ink: #32353b;
-  --ink-subtle: #474e57;
+  --surface: #32353b;
+  --surface-subtle: #22252a;
+  --surface-muted: #474e57;
+  --ink: #ffffff;
+  --ink-subtle: #cbd1d6;
+  --bg: #22252a;
+  --bg-secondary: #3f434b;
+  --bg-tertiary: #474e57;
+  --card: #32353b;
+  --muted: #878787;
+  --accent: #e3e6ea;
+  --accent-2: #cbd1d6;
+  --accent-3: #a7b0b9;
   --line: var(--color-border-primary);
-  --card-line: #d8e0e5;
-  --card-line-strong: #c6d1d8;
-  --card-header-band: linear-gradient(180deg, #fafcfd 0%, #f4f7f9 100%);
-  --surface-gradient-current: linear-gradient(135deg, #f3f7fa 0%, #ffffff 48%, #e8eef3 100%);
-  --surface-gradient-guidance: linear-gradient(135deg, #fbfcfd 0%, #f4f7f9 54%, #eef3f6 100%);
-  --surface-gradient-info: linear-gradient(135deg, #ffffff 0%, #f7fafb 58%, #eef4f8 100%);
-  --surface-gradient-warning: linear-gradient(135deg, #fffdf8 0%, #fbf8f1 58%, #f1e8d7 100%);
-  --surface-gradient-success: linear-gradient(135deg, #ffffff 0%, #f2f8f4 58%, #e3f0e8 100%);
-  --card-shadow: 0 1px 1px rgba(34, 37, 42, 0.05), 0 2px 7px rgba(34, 37, 42, 0.035);
-  --card-shadow-open: 0 1px 1px rgba(34, 37, 42, 0.06), 0 3px 9px rgba(34, 37, 42, 0.045);
-  --lane-tint-1: #f9fbfc;
-  --lane-tint-2: #f7fafb;
-  --lane-tint-3: #f5f8fa;
-  --page-grad-1: rgba(71, 78, 87, 0.28);
-  --page-grad-2: rgba(82, 91, 104, 0.24);
-  --page-bg: #000000;
-  --label-ink: #4f5f6f;
-  --status-item-border: #d7e0e7;
-  --status-item-bg: linear-gradient(180deg, #fbfcfd 0%, #f5f8fa 100%);
-  --pill-required-bg: #edf2f6;
-  --pill-required-border: #c5d1dc;
-  --pill-required-text: #2f3c49;
-  --pill-progress-bg: #eaf1f6;
-  --pill-progress-border: #c3d1de;
-  --pill-progress-text: #2f4356;
-  --pill-progress-dot: #3f434b;
-  --pill-complete-bg: #e8f3ec;
-  --pill-complete-border: #aac8b6;
-  --pill-complete-text: #234b38;
-  --pill-blocked-bg: #f8ecec;
-  --pill-blocked-border: #d8b4b4;
-  --pill-blocked-text: #6f3434;
-  --meta-chip-bg: #edf3f8;
-  --meta-chip-border: #c4d2de;
-  --meta-chip-text: #344b5f;
-  --meta-chip-current-bg: #e3ebf2;
-  --meta-chip-current-border: #9db0c2;
-  --meta-chip-current-text: #273847;
-  --meta-chip-reviewed-bg: #e7f2eb;
-  --meta-chip-reviewed-border: #9fc2ad;
-  --meta-chip-reviewed-text: #234b38;
+  --card-line: #3f434b;
+  --card-line-strong: #5c6470;
+  --card-header-band: linear-gradient(180deg, #3f434b 0%, #32353b 100%);
+  --surface-gradient-current: linear-gradient(135deg, #3f434b 0%, #32353b 54%, #2a2d33 100%);
+  --surface-gradient-guidance: linear-gradient(135deg, #32353b 0%, #2f3339 58%, #2a2d33 100%);
+  --surface-gradient-info: linear-gradient(135deg, #32353b 0%, #2b3036 58%, #22252a 100%);
+  --surface-gradient-warning: linear-gradient(135deg, rgba(255, 217, 102, 0.17) 0%, #32353b 54%, #2a2d33 100%);
+  --surface-gradient-success: linear-gradient(135deg, rgba(163, 215, 149, 0.16) 0%, #32353b 54%, #2a2d33 100%);
+  --surface-gradient-danger: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, #32353b 54%, #2a2d33 100%);
+  --card-shadow: var(--shadow-md);
+  --card-shadow-open: var(--shadow-lg);
+  --lane-tint-1: #32353b;
+  --lane-tint-2: #2f3339;
+  --lane-tint-3: #2a2d33;
+  --page-grad-1: rgba(42, 45, 51, 0.9);
+  --page-grad-2: rgba(40, 43, 48, 0.86);
+  --page-bg: #22252a;
+  --label-ink: #878787;
+  --status-item-border: #3f434b;
+  --status-item-bg: linear-gradient(180deg, #32353b 0%, #2f3339 100%);
+  --info: #7cacff;
+  --danger: #ff6b6b;
+  --success: #a3d795;
+  --warning: #ffd966;
+  --extension: #bb8fff;
+  --pill-required-bg: rgba(227, 230, 234, 0.12);
+  --pill-required-border: #5c6470;
+  --pill-required-text: #e3e6ea;
+  --pill-progress-bg: rgba(124, 172, 255, 0.15);
+  --pill-progress-border: rgba(124, 172, 255, 0.38);
+  --pill-progress-text: #7cacff;
+  --pill-progress-dot: #7cacff;
+  --pill-complete-bg: rgba(163, 215, 149, 0.15);
+  --pill-complete-border: rgba(163, 215, 149, 0.38);
+  --pill-complete-text: #a3d795;
+  --pill-blocked-bg: rgba(255, 107, 107, 0.15);
+  --pill-blocked-border: rgba(255, 107, 107, 0.38);
+  --pill-blocked-text: #ff6b6b;
+  --meta-chip-bg: rgba(227, 230, 234, 0.12);
+  --meta-chip-border: #5c6470;
+  --meta-chip-text: #cbd1d6;
+  --meta-chip-current-bg: rgba(124, 172, 255, 0.16);
+  --meta-chip-current-border: rgba(124, 172, 255, 0.45);
+  --meta-chip-current-text: #7cacff;
+  --meta-chip-reviewed-bg: rgba(163, 215, 149, 0.15);
+  --meta-chip-reviewed-border: rgba(163, 215, 149, 0.38);
+  --meta-chip-reviewed-text: #a3d795;
 
   /* Typography scale */
   --type-hero: clamp(1.7rem, 2.45vw, 2.3rem);
@@ -140,9 +154,9 @@
 }
 
 .theme-block {
-  --page-grad-1: rgba(71, 78, 87, 0.28);
-  --page-grad-2: rgba(82, 91, 104, 0.24);
-  --page-bg: #000000;
+  --page-grad-1: rgba(42, 45, 51, 0.9);
+  --page-grad-2: rgba(40, 43, 48, 0.86);
+  --page-bg: #22252a;
 }
 
 * {
@@ -2823,6 +2837,369 @@ pre {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
+/* Compliance dashboard visual parity layer */
+body {
+  background:
+    radial-gradient(circle at -8% 108%, var(--page-grad-1) 0%, transparent 330px),
+    radial-gradient(circle at 108% -18%, var(--page-grad-2) 0%, transparent 310px),
+    var(--page-bg);
+}
+
+.wrap {
+  width: min(1200px, 94vw);
+  margin: 30px auto 40px;
+}
+
+.card,
+.panel,
+.implementation-section,
+.advanced-panel,
+.status-banner,
+.readiness-bar,
+.lifecycle-state-strip,
+.start-here-panel,
+.landing-next,
+.workplan-command-center,
+.review-focus-panel,
+.plan-overview,
+.readiness-gate-panel,
+.tracker-panel,
+.dependency-panel,
+.diagram-panel,
+.telemetry-banner,
+.workflow-presets,
+.completion-banner,
+.gate-readiness-banner,
+.filter-empty-state,
+details,
+.accordion > details {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--ink);
+  box-shadow: var(--shadow-md);
+}
+
+.hero,
+.hero.card {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 0 0 var(--space-2);
+}
+
+.hero::after {
+  display: none;
+}
+
+.hero h1 {
+  letter-spacing: -0.03em;
+}
+
+.hero-title-row {
+  gap: 18px;
+}
+
+.hero-title-divider {
+  display: none;
+}
+
+.hero-logo {
+  width: 140px;
+  max-width: 140px;
+}
+
+.subtitle,
+.status,
+.section-subtitle,
+.diagram-subtitle,
+.landing-path span:last-child,
+.start-decision-card span,
+.lifecycle-state span:last-child,
+.workplan-command-copy p,
+.review-blocker-card span:last-child,
+.plan-overview-copy p,
+.phase-item span:last-child,
+.step-card p,
+.implementation-section p,
+.glance-value,
+.readiness-gate-card span:last-child,
+.tracker-filter-count,
+.dependency-risk,
+.content,
+.content p,
+.content li,
+.footer-note {
+  color: var(--muted);
+}
+
+.status-label,
+.readiness-bar-label,
+.lifecycle-state-label,
+.start-here-label,
+.landing-path-label,
+.landing-next-label,
+.workplan-label,
+.implementation-eyebrow,
+.workplan-command-metrics strong,
+.phase-kicker,
+.step-meta,
+.glance-label,
+.readiness-gate-label,
+.dependency-arrow,
+.orientation-label,
+.summary-meta,
+.section-gates-label {
+  color: var(--muted);
+}
+
+h1,
+h2,
+h3,
+summary,
+.status-value,
+.landing-path strong,
+.start-here-copy h2,
+.start-decision-card strong,
+.lifecycle-state strong,
+.workplan-title,
+.workplan-command-copy h2,
+.workplan-command-metrics span,
+.review-blocker-card strong,
+.plan-phase-list strong,
+.phase-item strong,
+.step-card h2,
+.implementation-section h2,
+.readiness-gate-card strong,
+.tracker-table a,
+.dependency-node,
+.orientation-current {
+  color: var(--ink);
+}
+
+.status-banner,
+.lifecycle-state-strip,
+.start-here-panel,
+.workplan-command-center.meeting-mode-toggle,
+.plan-overview,
+.readiness-gate-panel,
+.dependency-panel,
+.at-a-glance,
+.accordion > details.is-current {
+  background: var(--surface-gradient-guidance);
+}
+
+.status-item,
+.start-decision-card,
+.landing-path,
+.lifecycle-state,
+.workplan-command-metrics span,
+.review-blocker-card,
+.phase-item,
+.step-card,
+.glance-item,
+.readiness-gate-card,
+.tracker-summary span,
+.dependency-lane,
+.dependency-node,
+.diagram-flow,
+.diagram-node,
+.lane,
+.section-gates,
+.footer-note {
+  background: var(--surface-subtle);
+  border-color: var(--line);
+}
+
+.landing-path.primary-path,
+.start-decision-card.is-primary,
+.step-card.is-critical,
+.readiness-gate-card.is-designing,
+.dependency-lane.is-critical {
+  background: var(--surface-gradient-current);
+  border-color: var(--bg-tertiary, #474e57);
+}
+
+.review-blocker-card.is-blocked,
+.readiness-gate-card.is-blocked,
+.dependency-lane.is-blocked {
+  background: var(--surface-gradient-danger);
+  border-color: rgba(255, 107, 107, 0.45);
+}
+
+.lifecycle-state.is-pending {
+  background: var(--surface-gradient-warning);
+  border-color: rgba(255, 217, 102, 0.38);
+  border-left-color: var(--warning);
+}
+
+.lifecycle-state.is-published,
+.readiness-gate-card.is-ready,
+.dependency-lane.is-ready,
+.accordion > details.is-reviewed {
+  background: var(--surface-gradient-success);
+  border-color: rgba(163, 215, 149, 0.38);
+}
+
+.lifecycle-state.is-source {
+  border-left-color: var(--accent);
+}
+
+.lifecycle-state.is-draft {
+  border-left-color: var(--accent-3);
+}
+
+.readiness-gate-card.is-blocked .readiness-gate-label,
+.tracker-status.is-blocked,
+.due-badge.overdue {
+  color: var(--danger);
+}
+
+.readiness-gate-card.is-designing .readiness-gate-label,
+.tracker-status.is-designing,
+.tracker-status.is-ready,
+.due-badge.coming-due {
+  color: var(--info);
+}
+
+.readiness-gate-card.is-ready .readiness-gate-label,
+.tracker-status.is-ready,
+.section-gate-btn.is-pass {
+  color: var(--success);
+}
+
+.readiness-gate-status,
+.status-pill.is-blocked,
+.tracker-status.is-blocked {
+  background: rgba(255, 107, 107, 0.15);
+  border-color: rgba(255, 107, 107, 0.38);
+}
+
+.tracker-status.is-designing,
+.tracker-status.is-ready {
+  background: rgba(124, 172, 255, 0.15);
+  border-color: rgba(124, 172, 255, 0.38);
+}
+
+.tracker-status.is-not-started,
+.step-status,
+.step-id,
+.task-id,
+.hero-step-id,
+code,
+.status-pill,
+.status-chip,
+.pill,
+.summary-meta,
+.section-ready-chip,
+.section-gate-btn,
+.section-review-btn,
+.plan-phase-list span {
+  background: rgba(227, 230, 234, 0.12);
+  border-color: var(--bg-tertiary, #474e57);
+  color: var(--accent-2);
+}
+
+.step-id,
+.task-id,
+.hero-step-id {
+  color: var(--accent);
+}
+
+.implementation-table th,
+.implementation-table td,
+.preview th,
+.preview td,
+.heatmap-table th,
+.heatmap-table td {
+  border-color: var(--bg-tertiary, #474e57);
+}
+
+.implementation-table th {
+  background: var(--bg-secondary, #3f434b);
+  color: var(--accent-2);
+}
+
+.implementation-table a,
+a.doc-link,
+a.doc-link-record {
+  color: var(--info);
+}
+
+button,
+.workplan-link,
+.implementation-nav a,
+.workplan-command-nav a,
+.step-link,
+.section-nav-btn,
+.orientation-btn {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--page-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+button:hover,
+.workplan-link:hover,
+.implementation-nav a:hover,
+.workplan-command-nav a:hover,
+.step-link:hover,
+.section-nav-btn:hover,
+.orientation-btn:hover {
+  filter: brightness(0.92);
+}
+
+input,
+select,
+.search-controls,
+.search-controls input[type='search'] {
+  background: var(--surface-subtle);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.search-controls input[type='search']::placeholder {
+  color: var(--accent-3);
+}
+
+.mini-nav,
+.orientation-strip {
+  background: rgba(50, 53, 59, 0.96);
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.mini-nav a {
+  color: var(--accent-2);
+}
+
+.mini-nav a:hover {
+  background: var(--bg-secondary, #3f434b);
+  border-color: var(--bg-tertiary, #474e57);
+  color: var(--ink);
+}
+
+.mini-nav a.active {
+  background: var(--accent);
+  color: var(--page-bg);
+}
+
+.accordion > details > summary::before {
+  background: var(--surface-subtle);
+  border-color: var(--bg-tertiary, #474e57);
+  color: var(--accent-2);
+}
+
+.accordion > details[open] > summary,
+.advanced-panel[open] > summary {
+  border-bottom-color: var(--line);
+}
+
+pre {
+  background: #22252a;
+  border-color: var(--bg-tertiary, #474e57);
+  color: var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .status-banner.is-updating,
   .status-legend.is-updating,
@@ -2856,8 +3233,9 @@ pre {
   .mobile-quick-actions,
   .mini-nav-sentinel,
   .mini-nav-wrap,
-  .diagram-panel,
-  .telemetry-banner,
+.diagram-panel,
+.spec-intro,
+.telemetry-banner,
   .workflow-presets,
   .workplan-banner,
   .meeting-mode-actions,
@@ -3549,9 +3927,9 @@ pre {
     padding: 0.34rem;
     border: 1px solid var(--line);
     border-radius: 12px;
-    background: rgba(250, 252, 253, 0.96);
+    background: rgba(50, 53, 59, 0.96);
     backdrop-filter: saturate(1.2) blur(2px);
-    box-shadow: 0 4px 12px rgba(34, 37, 42, 0.12);
+    box-shadow: var(--shadow-md);
   }
 
   .mobile-quick-actions button {

@@ -24,7 +24,7 @@ This is the editable working plan for turning the GitHub DMS implementation spec
 
 | ID | Workstream | Phase | DRI | Collaboration Need | Next Action | Target Date | Collaboration Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DMS-01 | Architecture Overview | Phase 0 Discovery | Unassigned | Decision | Confirm target-state topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance. |  |  |
+| DMS-01 | Architecture Overview | Phase 0 Discovery | hreynolds | Decision | Confirm target-state topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance. |  |  |
 | DMS-02 | Repository Taxonomy | Phase 1 Foundation | Unassigned | Build scope | Finalize canonical repository layout, domain taxonomy, metadata registry, and archive link model. |  |  |
 | DMS-03 | Access Control | Phase 1 Foundation | Unassigned | Decision | Resolve GitHub Teams, SSO group mapping, CODEOWNERS coverage, and portal role gates. |  |  |
 | DMS-04 | Governance Workflow | Phase 2 Governed Workflow | Unassigned | Decision | Select the enforceable approval pattern for PoP tollgates and tiered approval parity. |  |  |

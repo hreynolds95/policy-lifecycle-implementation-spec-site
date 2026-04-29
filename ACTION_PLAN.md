@@ -32,22 +32,22 @@ Issue forms default to `hreynolds95` and do not assign issues to anyone else. No
 
 ## Workstream Action Plan
 
-| ID | Workstream | Phase | DRI | Collaboration Need | Next Action | Target Date | Collaboration Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| DMS-01 | Architecture Overview | Phase 0 Discovery | hreynolds | Decision | Confirm target-state topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance. |  |  |
-| DMS-02 | Repository Taxonomy | Phase 1 Foundation | Unassigned | Build scope | Finalize canonical repository layout, domain taxonomy, metadata registry, and archive link model. |  |  |
-| DMS-03 | Access Control | Phase 1 Foundation | Unassigned | Decision | Resolve GitHub Teams, SSO group mapping, CODEOWNERS coverage, and portal role gates. |  |  |
-| DMS-04 | Governance Workflow | Phase 2 Governed Workflow | Unassigned | Decision | Select the enforceable approval pattern for PoP tollgates and tiered approval parity. |  |  |
-| DMS-05 | Exception Handling | Phase 2 Governed Workflow | Unassigned | Build scope | Draft issue forms, exception records, approval path, expiry rules, and renewal logic. |  |  |
-| DMS-06 | Template Enforcement | Phase 2 Governed Workflow | Unassigned | Build scope | Build validator fixtures from the official Policy and Standard templates and define hard-fail rules. |  |  |
-| DMS-07 | GitHub Pages Portal | Phase 3 Portal | Unassigned | Build scope | Define staff-facing library, search, request initiation, conflict warnings, and role-gated actions. |  |  |
-| DMS-08 | Awareness Communications | Phase 3 Portal | Unassigned | Decision | Confirm Slack/email baseline, stakeholder group source, and material-change notification evidence. |  |  |
-| DMS-09 | Orphaned Documents | Phase 3 Controls | Unassigned | Decision | Confirm owner deactivation signal, reassignment workflow, escalation path, and evidence capture. |  |  |
-| DMS-10 | Non-Governed Controls | Phase 3 Controls | Unassigned | Decision | Define routing criteria for procedures, SOPs, job aids, and documents without regulatory or policy connection. |  |  |
-| DMS-11 | Gap Analysis | Phase 4 Readiness | Unassigned | Evidence | Convert BRD and PoP requirements into a gap register with mitigation owners and acceptance evidence. |  |  |
-| DMS-12 | Legacy Migration | Phase 4 Readiness | Unassigned | Evidence | Inventory legacy archive references and prove traceability across prior versions, approvals, and published records. |  |  |
-| DMS-13 | Roadmap | Program Management | Unassigned | Sequencing | Sequence phases, dependencies, delivery milestones, and acceptance checkpoints. |  |  |
-| DMS-14 | Open Decisions | Program Management | Unassigned | Decision | Assign decision owners and target resolution path for governance, security, tooling, and operating model choices. |  |  |
+| ID | Workstream | Phase | DRI | Collaboration Need | Dependency | Next Action | Target Date | Collaboration Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| DMS-01 | Architecture Overview | Phase 0 Discovery | hreynolds | Decision | Baseline input for target topology and readiness criteria. | Confirm target-state topology, system boundaries, and readiness criteria with Platform, Security, and Compliance Governance. |  |  |
+| DMS-02 | Repository Taxonomy | Phase 1 Foundation | Unassigned | Build scope | Unlocks DMS-08 awareness automation; needs stakeholder group metadata source. | Finalize canonical repository layout, domain taxonomy, metadata registry, and archive link model. |  |  |
+| DMS-03 | Access Control | Phase 1 Foundation | Unassigned | Decision | Unlocks DMS-07 portal role gates; needs SSO and role mapping decisions. | Resolve GitHub Teams, SSO group mapping, CODEOWNERS coverage, and portal role gates. |  |  |
+| DMS-04 | Governance Workflow | Phase 2 Governed Workflow | Unassigned | Decision | Depends on DMS-06 template gate; unlocks DMS-11 migration readiness. | Select the enforceable approval pattern for PoP tollgates and tiered approval parity. |  |  |
+| DMS-05 | Exception Handling | Phase 2 Governed Workflow | Unassigned | Build scope | No mapped sequencing dependency yet. | Draft issue forms, exception records, approval path, expiry rules, and renewal logic. |  |  |
+| DMS-06 | Template Enforcement | Phase 2 Governed Workflow | Unassigned | Build scope | Unlocks DMS-04 Policy Team QC; needs parser fixture scope and QC handoff criteria. | Build validator fixtures from the official Policy and Standard templates and define hard-fail rules. |  |  |
+| DMS-07 | GitHub Pages Portal | Phase 3 Portal | Unassigned | Build scope | Depends on DMS-03 access-control decisions. | Define staff-facing library, search, request initiation, conflict warnings, and role-gated actions. |  |  |
+| DMS-08 | Awareness Communications | Phase 3 Portal | Unassigned | Decision | Depends on DMS-02 stakeholder group metadata. | Confirm Slack/email baseline, stakeholder group source, and material-change notification evidence. |  |  |
+| DMS-09 | Orphaned Documents | Phase 3 Controls | Unassigned | Decision | No mapped sequencing dependency yet. | Confirm owner deactivation signal, reassignment workflow, escalation path, and evidence capture. |  |  |
+| DMS-10 | Non-Governed Controls | Phase 3 Controls | Unassigned | Decision | No mapped sequencing dependency yet. | Define routing criteria for procedures, SOPs, job aids, and documents without regulatory or policy connection. |  |  |
+| DMS-11 | Gap Analysis | Phase 4 Readiness | Unassigned | Evidence | Depends on DMS-04 tiered approval parity. | Convert BRD and PoP requirements into a gap register with mitigation owners and acceptance evidence. |  |  |
+| DMS-12 | Legacy Migration | Phase 4 Readiness | Unassigned | Evidence | No mapped sequencing dependency yet. | Inventory legacy archive references and prove traceability across prior versions, approvals, and published records. |  |  |
+| DMS-13 | Roadmap | Program Management | Unassigned | Sequencing | Maintains sequencing across DMS-01 through DMS-12. | Sequence phases, dependencies, delivery milestones, and acceptance checkpoints. |  |  |
+| DMS-14 | Open Decisions | Program Management | Unassigned | Decision | Captures decisions that may block DMS-03, DMS-04, and DMS-08. | Assign decision owners and target resolution path for governance, security, tooling, and operating model choices. |  |  |
 
 ## Review Cadence
 
@@ -56,4 +56,3 @@ Issue forms default to `hreynolds95` and do not assign issues to anyone else. No
 | Weekly working review | Confirm owner assignments, decisions, and new risks. | Submitted issue form or merged source-file PR. |
 | Decision review | Resolve choices that change architecture, approval parity, or audit evidence. | Decision record linked from the workstream row. |
 | Readiness review | Confirm whether GitHub can replace LogicGate for governed documents. | Evidence-backed cutover recommendation. |
-

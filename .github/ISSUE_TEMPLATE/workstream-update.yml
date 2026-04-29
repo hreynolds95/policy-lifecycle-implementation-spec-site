@@ -67,6 +67,12 @@ body:
       description: Optional committed or proposed date.
       placeholder: "YYYY-MM-DD or leave blank"
   - type: textarea
+    id: dependency
+    attributes:
+      label: Dependency Update
+      description: Optional dependency, blocker, upstream requirement, or downstream workstream this update affects.
+      placeholder: "Example: Depends on DMS-03 access-control decision; unlocks DMS-07 portal role gates."
+  - type: textarea
     id: links
     attributes:
       label: Supporting Links

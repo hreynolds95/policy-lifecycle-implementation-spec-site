@@ -1581,7 +1581,7 @@ h1 {
 }
 
 .tracker-table {
-  min-width: 1040px;
+  min-width: 1320px;
 }
 
 .tracker-table a {
@@ -1611,6 +1611,41 @@ h1 {
 .tracker-update-link:hover {
   border-color: #9fb0bf;
   background: #ffffff;
+}
+
+.dependency-chip,
+.dependency-note {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dependency-chip {
+  width: fit-content;
+  border: 1px solid #cbd5de;
+  border-radius: var(--ui-chip-radius);
+  padding: 0.12rem 0.42rem;
+  background: #f4f7f9;
+  color: #4a5968;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dependency-chip.is-critical {
+  background: #fff5d7;
+  border-color: #d0b656;
+  color: #6a570d;
+}
+
+.dependency-note {
+  margin-top: 0.24rem;
+  color: #526170;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .tracker-table tr[hidden] {
@@ -3113,6 +3148,22 @@ a.doc-link-record {
 .tracker-table a.tracker-update-link:hover {
   background: rgba(124, 172, 255, 0.18);
   border-color: rgba(124, 172, 255, 0.48);
+}
+
+.dependency-chip {
+  background: rgba(227, 230, 234, 0.12);
+  border-color: var(--bg-tertiary, #474e57);
+  color: var(--accent-2);
+}
+
+.dependency-chip.is-critical {
+  background: rgba(255, 217, 102, 0.15);
+  border-color: rgba(255, 217, 102, 0.38);
+  color: var(--warning);
+}
+
+.dependency-note {
+  color: var(--color-text-tertiary);
 }
 
 button,

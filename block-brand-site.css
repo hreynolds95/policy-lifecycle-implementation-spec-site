@@ -3168,6 +3168,79 @@ summary,
   border-color: var(--line);
 }
 
+.diagram-panel {
+  color: var(--ink);
+}
+
+.diagram-panel h2 {
+  color: var(--ink);
+  font-size: clamp(1.18rem, 1.8vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.diagram-subtitle {
+  color: var(--accent-2);
+  font-size: clamp(0.98rem, 1.4vw, 1.18rem);
+  font-weight: 650;
+  line-height: 1.42;
+}
+
+.diagram-flow {
+  background: rgba(227, 230, 234, 0.05);
+  border-color: rgba(227, 230, 234, 0.34);
+}
+
+.diagram-node {
+  background: rgba(20, 23, 28, 0.58);
+  border-color: rgba(227, 230, 234, 0.16);
+}
+
+.node-title {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+}
+
+.node-text {
+  color: var(--ink);
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  font-weight: 760;
+  line-height: 1.18;
+}
+
+.diagram-arrow {
+  background: var(--ink);
+  border-color: rgba(227, 230, 234, 0.24);
+  color: var(--bg);
+  font-weight: 850;
+}
+
+.lane {
+  background: rgba(20, 23, 28, 0.58);
+  border-color: rgba(227, 230, 234, 0.16);
+}
+
+.diagram-lanes .lane:nth-child(2),
+.diagram-lanes .lane:nth-child(3) {
+  background: rgba(20, 23, 28, 0.5);
+}
+
+.lane h3 {
+  color: var(--accent-2);
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+}
+
+.lane li {
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.42;
+}
+
 .landing-path.primary-path,
 .start-decision-card.is-primary,
 .step-card.is-critical,

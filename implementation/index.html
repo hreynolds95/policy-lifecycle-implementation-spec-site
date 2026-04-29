@@ -25,23 +25,32 @@
         </p>
       </header>
 
-      <nav class="implementation-nav" aria-label="Workplan navigation">
-        <a href="../">Dashboard</a>
-        <a href="04-governance-workflow.html">Workflow Gates</a>
-        <a href="06-template-enforcement.html">Template Gate</a>
-        <a href="11-gap-analysis.html">Gap Analysis</a>
-        <a href="13-roadmap.html">Roadmap</a>
-      </nav>
-
-      <section class="meeting-mode-toggle implementation-section" aria-label="Workplan view mode">
-        <div>
-          <span class="implementation-eyebrow">View Mode</span>
-          <h2>Weekly Review Focus</h2>
-          <p>Toggle to show only readiness, tracker, and dependencies for implementation review meetings.</p>
+      <section class="workplan-command-center meeting-mode-toggle implementation-section" aria-label="Weekly review command center">
+        <div class="workplan-command-copy">
+          <span class="implementation-eyebrow">Meeting Dashboard</span>
+          <h2>Weekly cutover review</h2>
+          <p>Use this view to resolve blockers, confirm owners, and decide whether the LogicGate replacement gate can move.</p>
         </div>
-        <div class="meeting-mode-actions" role="group" aria-label="Workplan view mode selector">
-          <button class="meeting-mode-btn is-active" type="button" data-workplan-mode="full" aria-pressed="true">Full Workplan</button>
-          <button class="meeting-mode-btn" type="button" data-workplan-mode="review" aria-pressed="false">Weekly Review</button>
+        <div class="workplan-command-panel">
+          <div class="workplan-command-metrics" aria-label="Meeting status summary">
+            <span><strong>Gate</strong> Not Ready</span>
+            <span><strong>Blockers</strong> 2</span>
+            <span><strong>Critical</strong> 3</span>
+            <span><strong>Workstreams</strong> 14</span>
+          </div>
+          <div class="workplan-command-actions">
+            <div class="meeting-mode-actions" role="group" aria-label="Workplan view mode selector">
+              <button class="meeting-mode-btn is-active" type="button" data-workplan-mode="full" aria-pressed="true">Full Workplan</button>
+              <button class="meeting-mode-btn" type="button" data-workplan-mode="review" aria-pressed="false">Weekly Review</button>
+            </div>
+            <nav class="workplan-command-nav" aria-label="Workplan shortcuts">
+              <a href="../">Dashboard</a>
+              <a href="04-governance-workflow.html">Workflow Gates</a>
+              <a href="06-template-enforcement.html">Template Gate</a>
+              <a href="11-gap-analysis.html">Gap Analysis</a>
+              <a href="13-roadmap.html">Roadmap</a>
+            </nav>
+          </div>
         </div>
       </section>
 

@@ -856,6 +856,7 @@ h1 {
 
 .workplan-link,
 .implementation-nav a,
+.workplan-command-nav a,
 .step-card,
 .step-link {
   color: #303741;
@@ -864,6 +865,7 @@ h1 {
 
 .workplan-link,
 .implementation-nav a,
+.workplan-command-nav a,
 .step-link {
   border: 1px solid #cbd5de;
   border-radius: var(--ui-card-radius);
@@ -929,6 +931,83 @@ h1 {
   color: var(--color-accent-foreground);
 }
 
+.workplan-command-center.meeting-mode-toggle {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.1fr) minmax(320px, 1.45fr);
+  align-items: stretch;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.workplan-command-copy {
+  display: grid;
+  align-content: center;
+  gap: var(--ui-gap-xs);
+}
+
+.workplan-command-copy h2 {
+  margin: 0;
+  color: #242a31;
+  font-size: 1.06rem;
+  line-height: 1.22;
+}
+
+.workplan-command-copy p {
+  margin: 0;
+  color: #4a5968;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.36;
+}
+
+.workplan-command-panel {
+  display: grid;
+  gap: var(--ui-gap-md);
+  align-content: center;
+}
+
+.workplan-command-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--ui-gap-sm);
+}
+
+.workplan-command-metrics span {
+  border: 1px solid #d8e0e7;
+  border-radius: var(--ui-card-radius);
+  background: #f8fafb;
+  color: #303741;
+  display: grid;
+  gap: var(--ui-gap-xs);
+  min-height: 58px;
+  padding: 0.48rem 0.56rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.18;
+}
+
+.workplan-command-metrics strong {
+  color: var(--label-ink);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.workplan-command-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-gap-md);
+}
+
+.workplan-command-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--ui-gap-sm);
+}
+
 .workplan-review-mode .workplan-detail {
   display: none;
 }
@@ -954,10 +1033,19 @@ h1 {
 }
 
 .workplan-review-mode .meeting-mode-toggle {
-  padding: 0.7rem 0.84rem;
+  padding: var(--ui-card-padding-md) var(--ui-card-padding-lg);
 }
 
-.workplan-review-mode .meeting-mode-toggle p {
+.workplan-review-mode .workplan-command-center {
+  border-color: #aeb9c4;
+  box-shadow: 0 0 0 1px rgba(63, 67, 75, 0.08), var(--card-shadow);
+}
+
+.workplan-review-mode .workplan-command-copy p {
+  display: block;
+}
+
+.workplan-review-mode .workplan-command-nav a:not(:first-child) {
   display: none;
 }
 
@@ -2906,6 +2994,25 @@ pre {
   .meeting-mode-toggle {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .workplan-command-center.meeting-mode-toggle,
+  .workplan-command-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .workplan-command-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .workplan-command-nav {
+    justify-content: stretch;
+  }
+
+  .workplan-command-nav a {
+    flex: 1 1 140px;
+    text-align: center;
   }
 
   .meeting-mode-actions {

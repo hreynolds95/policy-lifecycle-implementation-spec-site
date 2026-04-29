@@ -732,110 +732,6 @@ h1 {
   font-weight: 800;
 }
 
-.lifecycle-state-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--ui-gap-md);
-  margin: 0 0 var(--ui-gap-lg);
-  padding: 0.42rem 0.56rem;
-  background: var(--surface-gradient-guidance);
-  box-shadow: none;
-}
-
-.lifecycle-state-label {
-  color: var(--label-ink);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.lifecycle-state-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.34rem;
-  width: 100%;
-}
-
-.lifecycle-state {
-  border: 1px solid #d8e0e7;
-  border-radius: var(--ui-chip-radius);
-  background: #f8fafb;
-  color: #303741;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.34rem;
-  min-height: 0;
-  padding: 0.24rem 0.48rem;
-  box-shadow: none;
-}
-
-.lifecycle-state::before {
-  background: #607080;
-  border-radius: 999px;
-  content: "";
-  flex: 0 0 auto;
-  height: 0.42rem;
-  width: 0.42rem;
-}
-
-.lifecycle-state strong {
-  color: #242a31;
-  font-size: 0.72rem;
-  line-height: 1;
-}
-
-.lifecycle-state span:last-child {
-  color: #526170;
-  font-size: 0.68rem;
-  font-weight: 600;
-  line-height: 1.1;
-}
-
-.lifecycle-state.is-source {
-  border-color: #c7d2dc;
-  background: var(--surface-gradient-current);
-}
-
-.lifecycle-state.is-source::before {
-  background: #32353b;
-}
-
-.lifecycle-state.is-draft {
-  border-color: #d6dfe7;
-  background: var(--surface-gradient-info);
-}
-
-.lifecycle-state.is-draft::before {
-  background: #7a8794;
-}
-
-.lifecycle-state.is-pending {
-  border-color: #dbcdb6;
-  background: var(--surface-gradient-warning);
-}
-
-.lifecycle-state.is-pending::before {
-  background: #8a6f42;
-}
-
-.lifecycle-state.is-published {
-  border-color: #aac8b6;
-  background: var(--surface-gradient-success);
-}
-
-.lifecycle-state.is-published::before {
-  background: #315846;
-}
-
-.workplan-lifecycle .lifecycle-state {
-  min-height: 0;
-  padding: 0.24rem 0.48rem;
-}
-
 .start-here-panel {
   display: grid;
   grid-template-columns: minmax(220px, 0.82fr) minmax(0, 1.65fr);
@@ -2968,7 +2864,6 @@ body {
 .advanced-panel,
 .status-banner,
 .readiness-bar,
-.lifecycle-state-strip,
 .start-here-panel,
 .landing-next,
 .workplan-command-center,
@@ -3026,7 +2921,6 @@ details,
 .diagram-subtitle,
 .landing-path span:last-child,
 .start-decision-card span,
-.lifecycle-state span:last-child,
 .workplan-command-copy p,
 .review-blocker-card span:last-child,
 .plan-overview-copy p,
@@ -3046,7 +2940,6 @@ details,
 
 .status-label,
 .readiness-bar-label,
-.lifecycle-state-label,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -3093,7 +2986,6 @@ summary,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
-.lifecycle-state strong,
 .workplan-title,
 .workplan-command-copy h2,
 .workplan-command-metrics span,
@@ -3110,7 +3002,6 @@ summary,
 }
 
 .status-banner,
-.lifecycle-state-strip,
 .start-here-panel,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
@@ -3149,7 +3040,6 @@ summary,
 .status-item,
 .start-decision-card,
 .landing-path,
-.lifecycle-state,
 .workplan-command-metrics span,
 .review-blocker-card,
 .phase-item,
@@ -3267,87 +3157,11 @@ summary,
   border-color: rgba(255, 107, 107, 0.45);
 }
 
-.lifecycle-state.is-pending {
-  background: rgba(255, 217, 102, 0.08);
-  border-color: rgba(255, 217, 102, 0.38);
-}
-
-.lifecycle-state.is-published,
 .readiness-gate-card.is-ready,
 .dependency-lane.is-ready,
 .accordion > details.is-reviewed {
   background: var(--surface-gradient-success);
   border-color: rgba(163, 215, 149, 0.38);
-}
-
-.lifecycle-state.is-source {
-  background: rgba(167, 176, 185, 0.07);
-  border-color: rgba(167, 176, 185, 0.22);
-}
-
-.lifecycle-state.is-draft {
-  background: rgba(227, 230, 234, 0.06);
-  border-color: rgba(227, 230, 234, 0.16);
-}
-
-.lifecycle-state-strip {
-  background: rgba(227, 230, 234, 0.06);
-  box-shadow: none;
-}
-
-.lifecycle-state-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.34rem;
-  justify-content: flex-end;
-}
-
-.lifecycle-state,
-.workplan-lifecycle .lifecycle-state {
-  align-items: center;
-  background: rgba(227, 230, 234, 0.06);
-  border: 1px solid rgba(227, 230, 234, 0.16);
-  border-radius: var(--ui-chip-radius);
-  box-shadow: none;
-  display: inline-flex;
-  gap: 0.36rem;
-  min-height: 0;
-  padding: 0.24rem 0.48rem;
-}
-
-.lifecycle-state::before {
-  background: var(--accent-3);
-}
-
-.lifecycle-state.is-source::before {
-  background: #8a98a7;
-}
-
-.lifecycle-state.is-draft::before {
-  background: var(--accent-3);
-}
-
-.lifecycle-state.is-pending::before {
-  background: var(--warning);
-}
-
-.lifecycle-state.is-published::before {
-  background: var(--success);
-}
-
-.lifecycle-state.is-published {
-  background: rgba(163, 215, 149, 0.08);
-  border-color: rgba(163, 215, 149, 0.28);
-}
-
-.lifecycle-state strong {
-  font-size: 0.72rem;
-  line-height: 1;
-}
-
-.lifecycle-state span:last-child {
-  font-size: 0.68rem;
-  line-height: 1.1;
 }
 
 .readiness-gate-card.is-blocked .readiness-gate-label,
@@ -3685,7 +3499,6 @@ pre {
   }
 
   .start-here-panel,
-  .lifecycle-state-strip,
   .readiness-bar,
   .landing-next,
   .workplan-command-center,
@@ -3699,7 +3512,6 @@ pre {
   }
 
   .start-here-panel,
-  .lifecycle-state-strip,
   .workplan-command-center.meeting-mode-toggle,
   .plan-overview,
   .readiness-gate-head,
@@ -3739,7 +3551,6 @@ pre {
   }
 
   .start-decision-grid,
-  .lifecycle-state-list,
   .landing-paths,
   .workplan-command-metrics,
   .plan-phase-list,
@@ -3754,7 +3565,6 @@ pre {
   }
 
   .start-decision-card,
-  .lifecycle-state,
   .landing-path,
   .workplan-command-metrics span,
   .plan-phase-list span,
@@ -3793,7 +3603,6 @@ pre {
   }
 
   .workplan-command-metrics span,
-  .lifecycle-state,
   .tracker-summary span,
   .plan-phase-list span,
   .readiness-gate-status,
@@ -3961,25 +3770,12 @@ pre {
   }
 
   .start-here-panel,
-  .lifecycle-state-strip,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
 
-  .lifecycle-state-list,
-  .workplan-lifecycle {
-    grid-template-columns: 1fr;
-    justify-content: flex-start;
-  }
-
-  .start-decision-card,
-  .lifecycle-state {
+  .start-decision-card {
     min-height: 0;
-  }
-
-  .lifecycle-state-strip {
-    align-items: stretch;
-    flex-direction: column;
   }
 
   .landing-next,

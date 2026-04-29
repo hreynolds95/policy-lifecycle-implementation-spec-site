@@ -2952,6 +2952,27 @@ details,
   color: var(--muted);
 }
 
+.readiness-bar-items,
+.landing-action-flow {
+  color: var(--accent-2);
+}
+
+.readiness-bar-items strong {
+  color: var(--ink);
+}
+
+.readiness-bar-items span:last-child {
+  color: var(--accent-3);
+}
+
+.landing-action-flow span:not([aria-hidden='true']) {
+  color: var(--accent-2);
+}
+
+.landing-action-flow span[aria-hidden='true'] {
+  color: var(--accent-3);
+}
+
 h1,
 h2,
 h3,

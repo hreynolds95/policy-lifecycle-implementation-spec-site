@@ -736,10 +736,11 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--ui-gap-lg);
+  gap: var(--ui-gap-md);
   margin: 0 0 var(--ui-gap-lg);
-  padding: var(--ui-card-padding-sm) var(--ui-card-padding-md);
+  padding: 0.42rem 0.56rem;
   background: var(--surface-gradient-guidance);
+  box-shadow: none;
 }
 
 .lifecycle-state-label {
@@ -752,64 +753,87 @@ h1 {
 }
 
 .lifecycle-state-list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--ui-gap-sm);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.34rem;
   width: 100%;
 }
 
 .lifecycle-state {
   border: 1px solid #d8e0e7;
-  border-left: 3px solid #607080;
-  border-radius: var(--ui-card-radius);
+  border-radius: var(--ui-chip-radius);
   background: #f8fafb;
   color: #303741;
-  display: grid;
-  gap: var(--ui-gap-xs);
-  min-height: 58px;
-  padding: 0.46rem 0.56rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.34rem;
+  min-height: 0;
+  padding: 0.24rem 0.48rem;
+  box-shadow: none;
+}
+
+.lifecycle-state::before {
+  background: #607080;
+  border-radius: 999px;
+  content: "";
+  flex: 0 0 auto;
+  height: 0.42rem;
+  width: 0.42rem;
 }
 
 .lifecycle-state strong {
   color: #242a31;
-  font-size: 0.8rem;
-  line-height: 1.18;
+  font-size: 0.72rem;
+  line-height: 1;
 }
 
 .lifecycle-state span:last-child {
   color: #526170;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  line-height: 1.24;
+  line-height: 1.1;
 }
 
 .lifecycle-state.is-source {
   border-color: #c7d2dc;
-  border-left-color: #32353b;
   background: var(--surface-gradient-current);
+}
+
+.lifecycle-state.is-source::before {
+  background: #32353b;
 }
 
 .lifecycle-state.is-draft {
   border-color: #d6dfe7;
-  border-left-color: #7a8794;
   background: var(--surface-gradient-info);
+}
+
+.lifecycle-state.is-draft::before {
+  background: #7a8794;
 }
 
 .lifecycle-state.is-pending {
   border-color: #dbcdb6;
-  border-left-color: #8a6f42;
   background: var(--surface-gradient-warning);
+}
+
+.lifecycle-state.is-pending::before {
+  background: #8a6f42;
 }
 
 .lifecycle-state.is-published {
   border-color: #aac8b6;
-  border-left-color: #315846;
   background: var(--surface-gradient-success);
 }
 
+.lifecycle-state.is-published::before {
+  background: #315846;
+}
+
 .workplan-lifecycle .lifecycle-state {
-  min-height: 52px;
-  padding: 0.42rem 0.5rem;
+  min-height: 0;
+  padding: 0.24rem 0.48rem;
 }
 
 .start-here-panel {
@@ -3048,9 +3072,8 @@ summary,
 }
 
 .lifecycle-state.is-pending {
-  background: var(--surface-gradient-warning);
+  background: rgba(255, 217, 102, 0.08);
   border-color: rgba(255, 217, 102, 0.38);
-  border-left-color: var(--warning);
 }
 
 .lifecycle-state.is-published,
@@ -3062,11 +3085,73 @@ summary,
 }
 
 .lifecycle-state.is-source {
-  border-left-color: var(--accent);
+  background: rgba(50, 223, 182, 0.08);
+  border-color: rgba(50, 223, 182, 0.28);
 }
 
 .lifecycle-state.is-draft {
-  border-left-color: var(--accent-3);
+  background: rgba(227, 230, 234, 0.06);
+  border-color: rgba(227, 230, 234, 0.16);
+}
+
+.lifecycle-state-strip {
+  background: rgba(227, 230, 234, 0.06);
+  box-shadow: none;
+}
+
+.lifecycle-state-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+  justify-content: flex-end;
+}
+
+.lifecycle-state,
+.workplan-lifecycle .lifecycle-state {
+  align-items: center;
+  background: rgba(227, 230, 234, 0.06);
+  border: 1px solid rgba(227, 230, 234, 0.16);
+  border-radius: var(--ui-chip-radius);
+  box-shadow: none;
+  display: inline-flex;
+  gap: 0.36rem;
+  min-height: 0;
+  padding: 0.24rem 0.48rem;
+}
+
+.lifecycle-state::before {
+  background: var(--accent-3);
+}
+
+.lifecycle-state.is-source::before {
+  background: var(--accent);
+}
+
+.lifecycle-state.is-draft::before {
+  background: var(--accent-3);
+}
+
+.lifecycle-state.is-pending::before {
+  background: var(--warning);
+}
+
+.lifecycle-state.is-published::before {
+  background: var(--success);
+}
+
+.lifecycle-state.is-published {
+  background: rgba(163, 215, 149, 0.08);
+  border-color: rgba(163, 215, 149, 0.28);
+}
+
+.lifecycle-state strong {
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.lifecycle-state span:last-child {
+  font-size: 0.68rem;
+  line-height: 1.1;
 }
 
 .readiness-gate-card.is-blocked .readiness-gate-label,
@@ -3658,6 +3743,7 @@ pre {
   .lifecycle-state-list,
   .workplan-lifecycle {
     grid-template-columns: 1fr;
+    justify-content: flex-start;
   }
 
   .start-decision-card,

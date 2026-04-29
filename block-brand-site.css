@@ -446,14 +446,12 @@ h1 {
 }
 
 .status-banner,
-.status-legend,
-.diagram-panel {
+.status-legend {
   will-change: transform, opacity;
 }
 
 .status-banner.is-updating,
-.status-legend.is-updating,
-.diagram-panel.is-updating {
+.status-legend.is-updating {
   animation: surface-refresh 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2331,116 +2329,6 @@ button:hover {
   align-items: start;
 }
 
-.diagram-panel {
-  padding: var(--space-2);
-  border-color: var(--card-line-strong);
-}
-
-.diagram-panel h2 {
-  margin: 0;
-  font-size: 1.12rem;
-  line-height: var(--leading-tight);
-  letter-spacing: 0.01em;
-  color: #32353b;
-}
-
-.diagram-subtitle {
-  margin: var(--space-1) 0 var(--space-2);
-  color: #474e57;
-  font-size: 0.92rem;
-}
-
-.diagram-flow {
-  border: 1px solid var(--card-line);
-  border-radius: 14px;
-  background: linear-gradient(180deg, #fbfcfd 0%, #f6f9fb 100%);
-  padding: var(--space-1);
-  display: grid;
-  gap: var(--space-1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
-}
-
-.diagram-node {
-  border: 1px solid var(--card-line);
-  border-radius: 12px;
-  background: #ffffff;
-  padding: var(--space-1);
-  box-shadow: var(--card-shadow);
-}
-
-.node-title {
-  display: inline-block;
-  font-size: var(--type-micro);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--label-ink);
-  font-weight: 700;
-}
-
-.node-text {
-  display: block;
-  font-size: 0.89rem;
-  color: #2f3339;
-  font-weight: 600;
-  margin-top: 0.1rem;
-}
-
-.diagram-arrow {
-  color: #606c7a;
-  font-size: 0.95rem;
-  text-align: center;
-  line-height: 1;
-  border: 1px solid #d5dde3;
-  border-radius: 999px;
-  background: #ffffff;
-  width: 1.5rem;
-  height: 1.5rem;
-  justify-self: center;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.diagram-lanes {
-  margin-top: var(--space-2);
-  display: grid;
-  gap: var(--space-1);
-}
-
-.lane {
-  border: 1px solid var(--card-line);
-  border-radius: 12px;
-  padding: var(--space-1);
-  background: var(--lane-tint-1);
-}
-
-.diagram-lanes .lane:nth-child(2) {
-  background: var(--lane-tint-2);
-}
-
-.diagram-lanes .lane:nth-child(3) {
-  background: var(--lane-tint-3);
-}
-
-.lane h3 {
-  margin: 0 0 var(--space-1);
-  font-size: 0.84rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #525b68;
-}
-
-.lane ul {
-  margin: 0 0 0 1rem;
-  padding: 0;
-}
-
-.lane li {
-  margin: 0.18rem 0;
-  font-size: 0.85rem;
-  color: #3f434b;
-}
-
 details {
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -2872,7 +2760,6 @@ body {
 .readiness-gate-panel,
 .tracker-panel,
 .dependency-panel,
-.diagram-panel,
 .telemetry-banner,
 .workflow-presets,
 .completion-banner,
@@ -2918,7 +2805,6 @@ details,
 .subtitle,
 .status,
 .section-subtitle,
-.diagram-subtitle,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3049,86 +2935,10 @@ summary,
 .tracker-summary span,
 .dependency-lane,
 .dependency-node,
-.diagram-flow,
-.diagram-node,
-.lane,
 .section-gates,
 .footer-note {
   background: var(--surface-subtle);
   border-color: var(--line);
-}
-
-.diagram-panel {
-  color: var(--ink);
-}
-
-.diagram-panel h2 {
-  color: var(--ink);
-  font-size: clamp(1.18rem, 1.8vw, 1.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.diagram-subtitle {
-  color: var(--accent-2);
-  font-size: clamp(0.98rem, 1.4vw, 1.18rem);
-  font-weight: 650;
-  line-height: 1.42;
-}
-
-.diagram-flow {
-  background: rgba(227, 230, 234, 0.05);
-  border-color: rgba(227, 230, 234, 0.34);
-}
-
-.diagram-node {
-  background: rgba(20, 23, 28, 0.58);
-  border-color: rgba(227, 230, 234, 0.16);
-}
-
-.node-title {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.07em;
-}
-
-.node-text {
-  color: var(--ink);
-  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
-  font-weight: 760;
-  line-height: 1.18;
-}
-
-.diagram-arrow {
-  background: var(--ink);
-  border-color: rgba(227, 230, 234, 0.24);
-  color: var(--bg);
-  font-weight: 850;
-}
-
-.lane {
-  background: rgba(20, 23, 28, 0.58);
-  border-color: rgba(227, 230, 234, 0.16);
-}
-
-.diagram-lanes .lane:nth-child(2),
-.diagram-lanes .lane:nth-child(3) {
-  background: rgba(20, 23, 28, 0.5);
-}
-
-.lane h3 {
-  color: var(--accent-2);
-  font-size: 0.82rem;
-  font-weight: 850;
-  letter-spacing: 0.07em;
-}
-
-.lane li {
-  color: var(--ink);
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.42;
 }
 
 .landing-path.primary-path,
@@ -3348,8 +3158,7 @@ pre {
 
 @media (prefers-reduced-motion: reduce) {
   .status-banner.is-updating,
-  .status-legend.is-updating,
-  .diagram-panel.is-updating {
+  .status-legend.is-updating {
     animation: none;
   }
 }
@@ -3379,7 +3188,6 @@ pre {
   .mobile-quick-actions,
   .mini-nav-sentinel,
   .mini-nav-wrap,
-.diagram-panel,
 .spec-intro,
 .telemetry-banner,
   .workflow-presets,
@@ -4176,16 +3984,5 @@ pre {
   .content {
     padding-top: 0.76rem;
     padding-bottom: 0.92rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .spec-layout {
-    grid-template-columns: minmax(0, 1fr) 360px;
-  }
-
-  .diagram-panel {
-    position: sticky;
-    top: 4.1rem;
   }
 }

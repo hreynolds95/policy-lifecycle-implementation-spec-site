@@ -1,6 +1,6 @@
-# GitHub DMS Collaborative Action Plan
+# GitHub DMS Action Plan
 
-This is the editable working plan for turning the GitHub DMS implementation spec into an executable delivery plan. Use pull requests to propose updates so owner assignments, decisions, and sequencing remain reviewable.
+This is the editable Action Plan for turning the GitHub DMS implementation spec into an executable delivery plan. Use pull requests to propose updates so owner assignments, decisions, and sequencing remain reviewable.
 
 ## How to Collaborate
 
@@ -43,7 +43,7 @@ This is the editable working plan for turning the GitHub DMS implementation spec
 
 | Cadence | Purpose | Output |
 | --- | --- | --- |
-| Weekly working review | Confirm owner assignments, decisions, and new risks. | Updated action plan PR or merged action plan change. |
+| Weekly working review | Confirm owner assignments, decisions, and new risks. | Updated Action Plan PR or merged Action Plan change. |
 | Decision review | Resolve choices that change architecture, approval parity, or audit evidence. | Decision record linked from the workstream row. |
 | Readiness review | Confirm whether GitHub can replace LogicGate for governed documents. | Evidence-backed cutover recommendation. |
 

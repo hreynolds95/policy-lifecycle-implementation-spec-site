@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spec Explorer | GitHub Policy Lifecycle Implementation Spec</title>
+    <title>Reference Spec | GitHub DMS</title>
     <meta
       name="description"
       content="Implementation spec for a GitHub-native compliance policy and standard lifecycle with PoP tollgates."
@@ -26,7 +26,7 @@
             />
           </div>
           <span class="hero-title-divider" aria-hidden="true"></span>
-          <h1>GitHub Policy Lifecycle Implementation Spec</h1>
+          <h1>GitHub DMS Reference Spec</h1>
         </div>
         <p class="subtitle">
           Compliance policy and standard governance on GitHub with PoP-aligned tollgates,
@@ -49,7 +49,7 @@
           <span class="status-value">Collaborative draft</span>
         </div>
         <div class="status-item">
-          <span class="status-label">Editable Source</span>
+          <span class="status-label">Source File</span>
           <span class="status-value">ACTION_PLAN.md</span>
         </div>
         <div class="status-item">
@@ -60,18 +60,18 @@
 
       <section class="landing-paths" aria-label="Primary navigation">
         <a class="landing-path primary-path" href="implementation/">
-          <span class="landing-path-label">Start Here</span>
-          <strong>Review Action Plan</strong>
+          <span class="landing-path-label">Action Plan</span>
+          <strong>Open Action Plan</strong>
           <span>Shareable view of workstreams, collaboration needs, and next actions.</span>
         </a>
         <a class="landing-path" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/edit/main/ACTION_PLAN.md">
-          <span class="landing-path-label">Collaborate</span>
-          <strong>Edit Source Plan</strong>
+          <span class="landing-path-label">Edit Plan</span>
+          <strong>Edit Plan</strong>
           <span>Propose owner, date, decision, and note updates through GitHub.</span>
         </a>
         <a class="landing-path" href="#specExplorer">
-          <span class="landing-path-label">Reference</span>
-          <strong>Read Spec Explorer</strong>
+          <span class="landing-path-label">Reference Spec</span>
+          <strong>Open Reference Spec</strong>
           <span>Detailed GitHub workflow design, approval gates, audit controls, and delivery plan.</span>
         </a>
       </section>
@@ -276,9 +276,9 @@
       </section>
 
       <section class="spec-intro" id="specExplorer">
-        <span class="implementation-eyebrow">Spec Explorer</span>
-        <h2>GitHub Workflow Design</h2>
-        <p>Use this section as the detailed reference. For project execution and weekly reviews, start with the implementation workplan.</p>
+        <span class="implementation-eyebrow">Reference Spec</span>
+        <h2>Technical Design</h2>
+        <p>Use this page for technical detail. For owners, dates, and collaboration updates, start with the Action Plan.</p>
       </section>
 
       <div class="spec-layout">
@@ -1114,7 +1114,7 @@ procedures_reference_only:
           list.length > 0 ? list.map((section) => sectionLabels[section.id] || section.id).join('; ') : 'None';
 
         return [
-          'Review Packet — GitHub Policy Lifecycle Implementation Spec',
+          'Review Packet — GitHub DMS Reference Spec',
           `Generated: ${new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}`,
           `View mode: ${viewMode === 'review' ? 'Review Mode' : 'Full Spec'}`,
           `Theme: ${getThemeName()}`,

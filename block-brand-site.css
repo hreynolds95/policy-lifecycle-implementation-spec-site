@@ -2107,6 +2107,152 @@ h1 {
   color: var(--accent);
 }
 
+.exec-home-panel,
+.exec-share-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  padding: var(--ui-card-padding-lg);
+}
+
+.exec-home-copy,
+.exec-share-copy,
+.exec-decision-panel,
+.exec-summary-panel,
+.exec-risk-panel,
+.exec-links-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.exec-home-copy h2,
+.exec-share-copy h2 {
+  color: var(--ink);
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.exec-home-copy p,
+.exec-share-copy p {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.42;
+  margin: 0;
+}
+
+.exec-home-actions,
+.exec-share-actions {
+  align-content: center;
+  display: grid;
+  gap: var(--ui-gap-sm);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.exec-home-actions a,
+.exec-share-button {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--ui-pill-radius);
+  background: var(--surface-subtle);
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 800;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.42rem 0.72rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.exec-home-actions a:hover,
+.exec-share-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.exec-decision-grid,
+.exec-summary-grid,
+.exec-risk-grid,
+.exec-link-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  margin-top: var(--ui-gap-md);
+}
+
+.exec-decision-grid,
+.exec-risk-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.exec-summary-grid,
+.exec-link-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.exec-decision-card,
+.exec-summary-card,
+.exec-risk-card,
+.exec-link-grid a {
+  border: 1px solid var(--line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-subtle);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.exec-decision-card.is-critical {
+  border-color: rgba(255, 217, 102, 0.42);
+}
+
+.exec-decision-card span,
+.exec-summary-card span,
+.exec-risk-card span,
+.exec-link-grid span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.exec-decision-card strong,
+.exec-summary-card strong,
+.exec-link-grid strong {
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.exec-decision-card p,
+.exec-summary-card p,
+.exec-risk-card p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.exec-link-grid a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.exec-link-grid a:hover {
+  border-color: var(--accent);
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -4599,6 +4745,8 @@ summary,
 .phase2-priority-card,
 .phase2-input-card,
 .phase2-output-card,
+.exec-home-panel,
+.exec-share-panel,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -5114,6 +5262,9 @@ pre {
   .status-legend,
   .section-review-row,
   .section-gates,
+  .implementation-nav,
+  .exec-share-actions,
+  .exec-home-actions,
   .site-credit,
   .skip-link,
   .sr-only {
@@ -5220,6 +5371,8 @@ pre {
   }
 
   .start-here-panel,
+  .exec-home-panel,
+  .exec-share-panel,
   .readiness-bar,
   .landing-next,
   .workplan-command-center,
@@ -5272,6 +5425,10 @@ pre {
   }
 
   .start-decision-grid,
+  .exec-decision-grid,
+  .exec-summary-grid,
+  .exec-risk-grid,
+  .exec-link-grid,
   .landing-paths,
   .workplan-command-metrics,
   .plan-phase-list,
@@ -5286,6 +5443,10 @@ pre {
   }
 
   .start-decision-card,
+  .exec-decision-card,
+  .exec-summary-card,
+  .exec-risk-card,
+  .exec-link-grid a,
   .landing-path,
   .workplan-command-metrics span,
   .plan-phase-list span,
@@ -5587,6 +5748,24 @@ pre {
   .navmodel-layer-card,
   .navmodel-audience-card,
   .navmodel-map-card {
+    min-height: 0;
+  }
+
+  .exec-home-panel,
+  .exec-share-panel,
+  .exec-home-actions,
+  .exec-share-actions,
+  .exec-decision-grid,
+  .exec-summary-grid,
+  .exec-risk-grid,
+  .exec-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exec-decision-card,
+  .exec-summary-card,
+  .exec-risk-card,
+  .exec-link-grid a {
     min-height: 0;
   }
 

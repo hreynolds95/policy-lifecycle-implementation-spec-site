@@ -1,0 +1,160 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Executive Summary</title>
+    <meta
+      name="description"
+      content="Executive summary for the GitHub-native compliance DMS implementation plan, including decision ask, benefits, risks, and shareable reference links."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block exec-summary-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Executive Summary</h1>
+        </div>
+        <p class="subtitle">
+          A sponsor-ready summary of the proposal to replace LogicGate with a GitHub-native compliance
+          policy and standards document management system.
+        </p>
+      </header>
+
+      {% include site-nav.html %}
+
+      <section class="exec-share-panel" aria-labelledby="execShareTitle">
+        <div class="exec-share-copy">
+          <span class="implementation-eyebrow">Share Package</span>
+          <h2 id="execShareTitle">Use this page as the meeting pre-read or follow-up artifact.</h2>
+          <p>
+            It summarizes the decision, operating model, implementation ask, and key risks in one
+            place, with links to the deeper evidence pages when reviewers need detail.
+          </p>
+        </div>
+        <div class="exec-share-actions" aria-label="Executive summary share actions">
+          <button class="exec-share-button" type="button" onclick="window.print()">Print / Save PDF</button>
+          <a class="exec-share-button" href="GitHub_Policy_Lifecycle_Implementation_Spec.pdf" download>Download Spec PDF</a>
+          <a class="exec-share-button" href="brief-crosswalk.html">Open Crosswalk</a>
+          <a class="exec-share-button" href="implementation/">Open Action Plan</a>
+        </div>
+      </section>
+
+      <section class="implementation-section exec-decision-panel" aria-labelledby="execDecisionTitle">
+        <span class="implementation-eyebrow">Decision Ask</span>
+        <h2 id="execDecisionTitle">Approve Phase 2 readiness work for a GitHub-native DMS replacement.</h2>
+        <div class="exec-decision-grid">
+          <article class="exec-decision-card is-critical">
+            <span>Approve</span>
+            <strong>GitHub as the target system of record.</strong>
+            <p>Proceed on the assumption that GitHub fully replaces LogicGate for governed policies and standards.</p>
+          </article>
+          <article class="exec-decision-card is-critical">
+            <span>Confirm</span>
+            <strong>PoP approval parity requirements.</strong>
+            <p>Resolve which tollgates, approval tiers, QC checks, and exception paths must be enforceable before cutover.</p>
+          </article>
+          <article class="exec-decision-card">
+            <span>Assign</span>
+            <strong>DRIs for critical workstreams.</strong>
+            <p>Assign owners for architecture, access control, governance workflow, migration, and open decisions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section exec-summary-panel" aria-labelledby="execSummaryTitle">
+        <span class="implementation-eyebrow">Proposal Summary</span>
+        <h2 id="execSummaryTitle">What changes in the target operating model</h2>
+        <div class="exec-summary-grid">
+          <article class="exec-summary-card">
+            <span>Source of Truth</span>
+            <strong>Policies and standards live in GitHub.</strong>
+            <p>Markdown source files, metadata, approvals, commits, PDFs, and audit logs remain traceable in one system.</p>
+          </article>
+          <article class="exec-summary-card">
+            <span>Two Surfaces</span>
+            <strong>Employees use a portal; governance teams use GitHub.</strong>
+            <p>The front door stays simple while controlled change, approvals, and evidence remain enforceable.</p>
+          </article>
+          <article class="exec-summary-card">
+            <span>Approval Parity</span>
+            <strong>PoP tollgates are translated into GitHub controls.</strong>
+            <p>Branch protection, CODEOWNERS, issue records, checks, and labels support approval routing and merge gates.</p>
+          </article>
+          <article class="exec-summary-card">
+            <span>Automation</span>
+            <strong>Recurring governance checks become scheduled evidence.</strong>
+            <p>Review reminders, exception expiry, orphan detection, and portfolio digests become structured GitHub records.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section exec-risk-panel" aria-labelledby="execRiskTitle">
+        <span class="implementation-eyebrow">Risks To Resolve</span>
+        <h2 id="execRiskTitle">Cutover depends on a few high-confidence decisions.</h2>
+        <div class="exec-risk-grid">
+          <article class="exec-risk-card">
+            <span>Approval model</span>
+            <p>Tiered approval parity must be mapped clearly enough to enforce in GitHub without ambiguity.</p>
+          </article>
+          <article class="exec-risk-card">
+            <span>Legacy evidence</span>
+            <p>LogicGate history, publication records, and archive references must be migrated or formally accepted as gaps.</p>
+          </article>
+          <article class="exec-risk-card">
+            <span>Portal scope</span>
+            <p>Staff-facing access must remain simple, even if governance teams operate in GitHub.</p>
+          </article>
+          <article class="exec-risk-card">
+            <span>Operating ownership</span>
+            <p>Metadata quality, exception renewal, orphan detection, and monthly portfolio review need named owners.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section exec-links-panel" aria-labelledby="execLinksTitle">
+        <span class="implementation-eyebrow">Reference Pack</span>
+        <h2 id="execLinksTitle">Open these pages when reviewers ask for detail</h2>
+        <div class="exec-link-grid">
+          <a href="navigation-model.html"><span>Navigate</span><strong>Choose audience route</strong></a>
+          <a href="brief-crosswalk.html"><span>Trace</span><strong>Map brief to workstreams</strong></a>
+          <a href="readiness-matrix.html"><span>Decide</span><strong>Review readiness</strong></a>
+          <a href="phase-2-input-checklist.html"><span>Gather</span><strong>Confirm Phase 2 inputs</strong></a>
+          <a href="policy-change-story.html"><span>Explain</span><strong>Follow a policy change</strong></a>
+          <a href="auditability-source.html"><span>Prove</span><strong>Trace audit evidence</strong></a>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="execWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="execWorkstreamsTitle">Where executive decisions should be routed</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>Architecture overview</a>
+          <a href="implementation/03-access-control.html"><span class="step-id">DMS-03</span>Access control</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Governance workflow</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Gap analysis</a>
+          <a href="implementation/13-roadmap.html"><span class="step-id">DMS-13</span>Roadmap</a>
+          <a href="implementation/14-open-decisions.html"><span class="step-id">DMS-14</span>Open decisions</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Document Discovery Journey</title>
+    <meta
+      name="description"
+      content="Plain-English journey for how Block employees find current and related compliance documents in the GitHub-native DMS."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block discovery-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>Document Discovery Journey</h1>
+        </div>
+        <p class="subtitle">
+          A plain-English view of how the GitHub DMS helps employees find the right compliance document,
+          confirm it is current, discover related materials, and know what to do next.
+        </p>
+      </header>
+
+      {% include site-nav.html %}
+
+      <section class="implementation-section" aria-labelledby="discoveryProblemTitle">
+        <span class="implementation-eyebrow">Viewer Problem</span>
+        <h2 id="discoveryProblemTitle">People should not need tribal knowledge to find related documents.</h2>
+        <p>
+          Today, a policy search can turn into a scavenger hunt across tools, folders, PDFs, owners,
+          and historical versions. The target DMS should make the current document, related documents,
+          accountable owner, status, and change path visible from one staff-facing portal.
+        </p>
+      </section>
+
+      <section class="implementation-section surface-flow" aria-labelledby="discoveryJourneyTitle">
+        <span class="implementation-eyebrow">Discovery Path</span>
+        <h2 id="discoveryJourneyTitle">The user journey starts with a topic, not a repository.</h2>
+        <div class="surface-flow-grid">
+          <div class="surface-flow-step">
+            <span>01</span>
+            <strong>Search by topic</strong>
+            <p>Employee searches using business language such as sanctions, complaints, privacy, onboarding, or record retention.</p>
+          </div>
+          <div class="surface-flow-step">
+            <span>02</span>
+            <strong>Confirm current source</strong>
+            <p>The portal shows the authoritative published version, lifecycle state, owner, effective date, and next review date.</p>
+          </div>
+          <div class="surface-flow-step">
+            <span>03</span>
+            <strong>See related documents</strong>
+            <p>Metadata connects policies, standards, procedures, exceptions, implementation plans, and legacy archive records.</p>
+          </div>
+          <div class="surface-flow-step">
+            <span>04</span>
+            <strong>Take the next action</strong>
+            <p>The user can read, ask a question, request a change, propose a new document, or route a gap to the right owner.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section" aria-labelledby="discoveryMustShowTitle">
+        <span class="implementation-eyebrow">Portal Must Show</span>
+        <h2 id="discoveryMustShowTitle">Each document detail page should answer the cold-start questions.</h2>
+        <div class="exec-grid exec-grid-four">
+          <article class="exec-card">
+            <span>Current?</span>
+            <strong>Is this the active version?</strong>
+            <p>Show lifecycle state, effective date, publication date, and active source record.</p>
+          </article>
+          <article class="exec-card">
+            <span>Related?</span>
+            <strong>What else should I read?</strong>
+            <p>Show linked policies, standards, procedures, exceptions, and implementation references.</p>
+          </article>
+          <article class="exec-card">
+            <span>Owner?</span>
+            <strong>Who is accountable?</strong>
+            <p>Show document owner, stakeholder groups, governance contact, and review cadence.</p>
+          </article>
+          <article class="exec-card">
+            <span>Next?</span>
+            <strong>What can I do from here?</strong>
+            <p>Offer request, change, exception, or question paths without requiring GitHub training.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section" aria-labelledby="discoveryDataTitle">
+        <span class="implementation-eyebrow">What Makes It Work</span>
+        <h2 id="discoveryDataTitle">Findability depends on structured metadata, not just better search UI.</h2>
+        <div class="crosswalk-table-wrap">
+          <table class="implementation-table crosswalk-table">
+            <thead>
+              <tr>
+                <th>Metadata</th>
+                <th>Why It Matters</th>
+                <th>User Benefit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Domain and topic tags</td>
+                <td>Groups documents by compliance subject area and business language.</td>
+                <td>Users can search the way they think, not by repository structure.</td>
+              </tr>
+              <tr>
+                <td>Document type and governance scope</td>
+                <td>Separates policies, standards, procedures, job aids, and non-governed content.</td>
+                <td>Users know whether they are reading an authoritative requirement or supporting guidance.</td>
+              </tr>
+              <tr>
+                <td>Related document links</td>
+                <td>Creates explicit relationships between source records instead of relying on memory.</td>
+                <td>Users can move from one document to its dependencies and implementation references.</td>
+              </tr>
+              <tr>
+                <td>Owner, stakeholder group, and review date</td>
+                <td>Supports reminders, escalation, ownership checks, and lifecycle monitoring.</td>
+                <td>Users know who maintains the document and whether it is overdue or under review.</td>
+              </tr>
+              <tr>
+                <td>Legacy archive and approval evidence</td>
+                <td>Preserves traceability from published output back to history and approval records.</td>
+                <td>Users can trust the portal result and auditors can reconstruct the evidence chain.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="discoveryWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="discoveryWorkstreamsTitle">Where document discovery is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/02-repository-taxonomy.html"><span class="step-id">DMS-02</span>Metadata and taxonomy</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Search and portal experience</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Stakeholder communications</a>
+          <a href="implementation/10-non-governed-controls.html"><span class="step-id">DMS-10</span>Governance scope routing</a>
+          <a href="implementation/12-legacy-migration.html"><span class="step-id">DMS-12</span>Archive traceability</a>
+          <a href="validation-packet.html"><span class="step-id">VALIDATE</span>Discovery acceptance tests</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

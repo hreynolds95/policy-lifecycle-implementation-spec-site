@@ -650,6 +650,12 @@ h1 {
   border-color: #9fb0bf;
 }
 
+.overview-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-gap-sm);
+}
+
 .surface-model-intro {
   display: grid;
   gap: var(--ui-gap-sm);
@@ -792,6 +798,131 @@ h1 {
 
 .surface-workstream-grid a:hover {
   border-color: #9fb0bf;
+}
+
+.role-intro {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.role-card-grid {
+  display: grid;
+  gap: var(--ui-gap-lg);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.role-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-md);
+  padding: var(--ui-card-padding-lg);
+}
+
+.role-card.is-employee {
+  border-color: rgba(124, 172, 255, 0.34);
+}
+
+.role-card.is-owner {
+  border-color: rgba(255, 217, 102, 0.34);
+}
+
+.role-card.is-governance {
+  border-color: rgba(50, 223, 182, 0.34);
+}
+
+.role-label {
+  color: var(--label-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.role-card h2 {
+  color: #242a31;
+  font-size: clamp(1.08rem, 1.38vw, 1.34rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.role-summary {
+  color: #4e5d6b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.42;
+  margin: 0;
+}
+
+.role-facts {
+  display: grid;
+  gap: var(--ui-gap-sm);
+  margin: 0;
+}
+
+.role-facts div {
+  border-top: 1px solid var(--card-line);
+  display: grid;
+  gap: 0.12rem;
+  padding-top: var(--ui-gap-sm);
+}
+
+.role-facts dt {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.role-facts dd {
+  color: #303741;
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.34;
+  margin: 0;
+}
+
+.role-list,
+.role-sequence {
+  color: #4e5d6b;
+  display: grid;
+  gap: 0.38rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.38;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.role-handoff {
+  display: grid;
+  gap: var(--ui-gap-md);
+}
+
+.role-handoff-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-gap-sm);
+  align-items: center;
+}
+
+.role-handoff-flow span:not([aria-hidden='true']) {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-chip-radius);
+  background: var(--surface-gradient-info);
+  color: #27313b;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 0.32rem 0.58rem;
+}
+
+.role-handoff-flow span[aria-hidden='true'] {
+  color: #7a8794;
+  font-weight: 800;
 }
 
 .advanced-panel {
@@ -3106,6 +3237,9 @@ details,
 .overview-proof-card p,
 .surface-summary,
 .surface-flow-step p,
+.role-summary,
+.role-list,
+.role-sequence,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3132,6 +3266,8 @@ details,
 .surface-label,
 .surface-facts dt,
 .surface-flow-step span,
+.role-label,
+.role-facts dt,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -3181,6 +3317,9 @@ summary,
 .surface-facts dd,
 .surface-flow-step strong,
 .surface-workstream-grid a,
+.role-card h2,
+.role-facts dd,
+.role-handoff-flow span:not([aria-hidden='true']),
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -3205,6 +3344,8 @@ summary,
 .surface-card,
 .surface-flow-step,
 .surface-workstream-grid a,
+.role-card,
+.role-handoff-flow span:not([aria-hidden='true']),
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -3245,6 +3386,8 @@ summary,
 .surface-card,
 .surface-flow-step,
 .surface-workstream-grid a,
+.role-card,
+.role-handoff-flow span:not([aria-hidden='true']),
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -3267,6 +3410,22 @@ summary,
 
 .surface-card.is-backend {
   border-color: rgba(50, 223, 182, 0.38);
+}
+
+.role-card.is-employee {
+  border-color: rgba(124, 172, 255, 0.38);
+}
+
+.role-card.is-owner {
+  border-color: rgba(255, 217, 102, 0.38);
+}
+
+.role-card.is-governance {
+  border-color: rgba(50, 223, 182, 0.38);
+}
+
+.role-handoff-flow span[aria-hidden='true'] {
+  color: var(--accent-3);
 }
 
 .landing-path.primary-path,
@@ -3951,13 +4110,15 @@ pre {
   .surface-comparison,
   .surface-flow-grid,
   .surface-workstream-grid,
+  .role-card-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
 
   .overview-proof-card,
   .surface-card,
-  .surface-flow-step {
+  .surface-flow-step,
+  .role-card {
     min-height: 0;
   }
 

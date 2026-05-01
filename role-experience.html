@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Role-Based Experience</title>
+    <meta
+      name="description"
+      content="Role-based education page explaining how Block employees, document owners, submitters, and Policy Governance use the GitHub-native DMS."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block role-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Role-Based Experience</h1>
+        </div>
+        <p class="subtitle">
+          The DMS is designed so each group only touches the surface they need. Staff use the portal
+          to find documents. Owners and submitters use one governed pull request. Policy Governance
+          controls routing, approvals, exceptions, and the registry.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section role-intro" aria-labelledby="roleIntroTitle">
+        <span class="implementation-eyebrow">Role Model</span>
+        <h2 id="roleIntroTitle">The experience changes by responsibility, not by org chart.</h2>
+        <p>
+          Most employees consume published documents and never need GitHub. The people accountable for
+          document changes get a structured governance path with enough control to preserve approval
+          evidence, version history, and auditability.
+        </p>
+      </section>
+
+      <section class="role-card-grid" aria-label="Role-based experience cards">
+        <article class="role-card is-employee">
+          <span class="role-label">Role 01</span>
+          <h2>All Block Employees</h2>
+          <p class="role-summary">Portal-only access for finding current compliance documents without GitHub training.</p>
+          <dl class="role-facts">
+            <div>
+              <dt>Primary surface</dt>
+              <dd>Policy Library Portal</dd>
+            </div>
+            <div>
+              <dt>GitHub required?</dt>
+              <dd>No</dd>
+            </div>
+            <div>
+              <dt>Training burden</dt>
+              <dd>Low: search, filter, read, request.</dd>
+            </div>
+          </dl>
+          <ul class="role-list">
+            <li>Search and filter documents by domain, tier, owner, and review status.</li>
+            <li>See overdue, coming due, and under-review documents at a glance.</li>
+            <li>Open published PDFs and ask Quincy natural-language questions.</li>
+          </ul>
+        </article>
+
+        <article class="role-card is-owner">
+          <span class="role-label">Role 02</span>
+          <h2>Document Owners + Submitters</h2>
+          <p class="role-summary">Portal initiation plus one governed GitHub pull request for document changes.</p>
+          <dl class="role-facts">
+            <div>
+              <dt>Primary surface</dt>
+              <dd>Portal + GitHub PR</dd>
+            </div>
+            <div>
+              <dt>GitHub required?</dt>
+              <dd>Yes, for governed changes</dd>
+            </div>
+            <div>
+              <dt>Training burden</dt>
+              <dd>Moderate: read diffs, comment, approve, or request changes.</dd>
+            </div>
+          </dl>
+          <ol class="role-sequence">
+            <li>Review starts from portal request, reminder, or Actions dispatch.</li>
+            <li>A branch and pull request hold the change record and redline.</li>
+            <li>Owner reviews the diff, comments inline, and confirms readiness.</li>
+            <li>Merge publishes the record and updates audit evidence.</li>
+          </ol>
+        </article>
+
+        <article class="role-card is-governance">
+          <span class="role-label">Role 03</span>
+          <h2>Policy Governance Team</h2>
+          <p class="role-summary">Full governance control through structured queues, registry updates, and approval gates.</p>
+          <dl class="role-facts">
+            <div>
+              <dt>Primary surface</dt>
+              <dd>GitHub Backend</dd>
+            </div>
+            <div>
+              <dt>GitHub required?</dt>
+              <dd>Yes</dd>
+            </div>
+            <div>
+              <dt>Training burden</dt>
+              <dd>Focused: routing, labels, registry, exceptions, evidence.</dd>
+            </div>
+          </dl>
+          <ul class="role-list">
+            <li>Maintain document registry, owners, stakeholder groups, and review dates.</li>
+            <li>Control approval labels that gate tier-appropriate merge authority.</li>
+            <li>Evaluate new document requests, exceptions, and conflict checks.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="implementation-section role-handoff" aria-labelledby="roleHandoffTitle">
+        <span class="implementation-eyebrow">Handoff Pattern</span>
+        <h2 id="roleHandoffTitle">The system reduces coordination by making handoffs explicit.</h2>
+        <div class="role-handoff-flow" aria-label="Role handoff flow">
+          <span>Employee finds or requests</span>
+          <span aria-hidden="true">-&gt;</span>
+          <span>Owner or Submitter edits</span>
+          <span aria-hidden="true">-&gt;</span>
+          <span>Policy Governance gates</span>
+          <span aria-hidden="true">-&gt;</span>
+          <span>Published record updates</span>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="roleWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="roleWorkstreamsTitle">Where role design is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/03-access-control.html"><span class="step-id">DMS-03</span>Access model</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Governance handoffs</a>
+          <a href="implementation/05-exception-handling.html"><span class="step-id">DMS-05</span>Exception routing</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal role gates</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Stakeholder notifications</a>
+          <a href="implementation/09-orphaned-documents.html"><span class="step-id">DMS-09</span>Owner coverage</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -4110,8 +4110,6 @@ details,
 .phase2-priority-card p,
 .phase2-output-card p,
 .phase2-input-card dd,
-.glossary-principle-card p,
-.glossary-card p,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -4155,8 +4153,6 @@ details,
 .phase2-input-card > span,
 .phase2-output-card span,
 .phase2-input-card dt,
-.glossary-principle-card span,
-.glossary-card span,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -4229,10 +4225,6 @@ summary,
 .phase2-priority-head h2,
 .phase2-priority-card strong,
 .phase2-input-card strong,
-.glossary-principle-head h2,
-.glossary-principle-card strong,
-.glossary-card strong,
-.glossary-table td:first-child,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -4280,9 +4272,6 @@ summary,
 .phase2-priority-card,
 .phase2-input-card,
 .phase2-output-card,
-.glossary-principle-panel,
-.glossary-principle-card,
-.glossary-card,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -4342,8 +4331,6 @@ summary,
 .phase2-priority-card,
 .phase2-input-card,
 .phase2-output-card,
-.glossary-principle-card,
-.glossary-card,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -4416,6 +4403,33 @@ summary,
 }
 
 .phase2-input-card dl div {
+  border-color: var(--line);
+}
+
+.glossary-principle-card p,
+.glossary-card p {
+  color: var(--muted);
+}
+
+.glossary-principle-card span,
+.glossary-card span {
+  color: var(--muted);
+}
+
+.glossary-principle-head h2,
+.glossary-principle-card strong,
+.glossary-card strong,
+.glossary-table td:first-child {
+  color: var(--ink);
+}
+
+.glossary-principle-panel {
+  background: var(--surface-gradient-guidance);
+}
+
+.glossary-principle-card,
+.glossary-card {
+  background: var(--surface-subtle);
   border-color: var(--line);
 }
 
@@ -5170,8 +5184,6 @@ pre {
   .phase2-priority-grid,
   .phase2-checklist-grid,
   .phase2-output-grid,
-  .glossary-principle-grid,
-  .glossary-card-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -5190,9 +5202,7 @@ pre {
   .demo-proof-card,
   .phase2-priority-card,
   .phase2-input-card,
-  .phase2-output-card,
-  .glossary-principle-card,
-  .glossary-card {
+  .phase2-output-card {
     min-height: 0;
   }
 
@@ -5203,6 +5213,16 @@ pre {
   }
 
   .start-decision-card {
+    min-height: 0;
+  }
+
+  .glossary-principle-grid,
+  .glossary-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glossary-principle-card,
+  .glossary-card {
     min-height: 0;
   }
 

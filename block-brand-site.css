@@ -2310,7 +2310,8 @@ h1 {
   font-size: 0.94rem;
   line-height: 1.34;
   margin-top: 0.24rem;
-  max-width: 68ch;
+  max-width: none;
+  width: min(100%, 1080px);
 }
 
 .landing-page .badge-row {

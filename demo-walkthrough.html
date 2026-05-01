@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Demo Walkthrough</title>
+    <meta
+      name="description"
+      content="Demo script for presenting the GitHub-native compliance DMS, including the recommended sequence, talk track, and proof points."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block demo-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Demo Walkthrough</h1>
+        </div>
+        <p class="subtitle">
+          A meeting-ready path for explaining the implementation plan. Use this page to walk an
+          audience from the business problem, through the GitHub operating model, into the workstream
+          decisions that need ownership.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="auditability-source.html">Auditability</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section demo-intro" aria-labelledby="demoIntroTitle">
+        <span class="implementation-eyebrow">Demo Objective</span>
+        <h2 id="demoIntroTitle">Show how the DMS replaces LogicGate with a governed GitHub workflow.</h2>
+        <p>
+          The demo should avoid deep technical detail up front. Start with the operating model, prove
+          that governance controls remain intact, then route the group to the action plan for decisions,
+          owners, and implementation sequencing.
+        </p>
+      </section>
+
+      <section class="demo-run-panel" aria-labelledby="demoRunTitle">
+        <div class="demo-run-head">
+          <span class="implementation-eyebrow">Recommended Run Of Show</span>
+          <h2 id="demoRunTitle">A 20-minute walkthrough that keeps the room oriented.</h2>
+        </div>
+        <div class="demo-timeline" aria-label="Demo sequence">
+          <article class="demo-step-card is-current">
+            <span>00-03 min</span>
+            <strong>Frame the decision</strong>
+            <p>Open the landing page and explain that the proposal is a GitHub-native replacement for LogicGate.</p>
+            <a href="./">Open Home</a>
+          </article>
+          <article class="demo-step-card">
+            <span>03-07 min</span>
+            <strong>Explain the two surfaces</strong>
+            <p>Separate staff-facing policy access from governance work performed by owners and the Policy Team.</p>
+            <a href="two-surfaces.html">Open Two Surfaces</a>
+          </article>
+          <article class="demo-step-card">
+            <span>07-11 min</span>
+            <strong>Prove approval parity</strong>
+            <p>Walk through TG1-TG4 and show where tiered approval, QC, and publish controls are enforced.</p>
+            <a href="governance-gates.html">Open Governance Gates</a>
+          </article>
+          <article class="demo-step-card">
+            <span>11-15 min</span>
+            <strong>Show evidence traceability</strong>
+            <p>Connect Markdown source, PR review, merge commit, generated PDF, and audit log into one chain.</p>
+            <a href="auditability-source.html">Open Auditability</a>
+          </article>
+          <article class="demo-step-card">
+            <span>15-20 min</span>
+            <strong>Move into execution</strong>
+            <p>Use the action plan to assign decisions, implementation owners, dependencies, and validation gates.</p>
+            <a href="implementation/">Open Action Plan</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-proof-panel" aria-labelledby="demoProofTitle">
+        <span class="implementation-eyebrow">Proof Points</span>
+        <h2 id="demoProofTitle">What the audience should understand by the end</h2>
+        <div class="demo-proof-grid">
+          <div class="demo-proof-card">
+            <span>Control</span>
+            <strong>PoP tollgates remain visible.</strong>
+            <p>GitHub does not remove governance. It makes routing, review, and approval evidence inspectable.</p>
+          </div>
+          <div class="demo-proof-card">
+            <span>Experience</span>
+            <strong>Users do not need to live in GitHub.</strong>
+            <p>The portal remains the simple entry point for staff, while governance teams use GitHub for controlled work.</p>
+          </div>
+          <div class="demo-proof-card">
+            <span>Auditability</span>
+            <strong>Every published output traces to source.</strong>
+            <p>The generated PDF, comments, approvals, checks, and publication record all connect back to the same commit.</p>
+          </div>
+          <div class="demo-proof-card">
+            <span>Execution</span>
+            <strong>The plan is editable and assignable.</strong>
+            <p>Implementation workstreams can be tracked through GitHub issues without sending broad notifications yet.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section demo-questions-panel" aria-labelledby="demoQuestionsTitle">
+        <span class="implementation-eyebrow">Decision Prompts</span>
+        <h2 id="demoQuestionsTitle">Questions to ask before ending the walkthrough</h2>
+        <div class="demo-question-list">
+          <p><strong>Approval model:</strong> Which PoP approval gates must be enforced by branch protection, CODEOWNERS, or issue-based approval?</p>
+          <p><strong>Portal scope:</strong> Which user actions must be available without exposing staff to GitHub?</p>
+          <p><strong>Cutover readiness:</strong> Which LogicGate records must be migrated before GitHub can become the authoritative record?</p>
+          <p><strong>Operating model:</strong> Who owns metadata quality, exception renewal, orphan detection, and monthly portfolio review?</p>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="demoWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="demoWorkstreamsTitle">Where demo feedback should be routed</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>Architecture decisions</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Governance workflow</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal experience</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness gaps</a>
+          <a href="implementation/13-roadmap.html"><span class="step-id">DMS-13</span>Roadmap sequencing</a>
+          <a href="implementation/14-open-decisions.html"><span class="step-id">DMS-14</span>Open decisions</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

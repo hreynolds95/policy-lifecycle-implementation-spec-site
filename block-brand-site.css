@@ -1463,6 +1463,124 @@ h1 {
   padding: var(--ui-card-padding-md);
 }
 
+.demo-intro,
+.demo-proof-panel,
+.demo-questions-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.demo-run-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.demo-run-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.demo-run-head h2 {
+  color: #242a31;
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.demo-timeline {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.demo-step-card,
+.demo-proof-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.demo-step-card {
+  align-content: start;
+  min-height: 228px;
+}
+
+.demo-step-card.is-current {
+  border-color: rgba(50, 223, 182, 0.42);
+}
+
+.demo-step-card span,
+.demo-proof-card span {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.demo-step-card strong,
+.demo-proof-card strong {
+  color: #242a31;
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.demo-step-card p,
+.demo-proof-card p,
+.demo-question-list p {
+  color: #4e5d6b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.demo-step-card a {
+  align-self: end;
+  border: 1px solid #cbd5de;
+  border-radius: var(--ui-pill-radius);
+  color: #27313b;
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 800;
+  justify-content: center;
+  margin-top: 0.2rem;
+  padding: 0.36rem 0.62rem;
+  text-decoration: none;
+}
+
+.demo-step-card a:hover {
+  border-color: var(--accent);
+}
+
+.demo-proof-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.demo-question-list {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.demo-question-list p {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  padding: var(--ui-card-padding-md);
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -3787,6 +3905,9 @@ details,
 .audit-chain-step p,
 .audit-record-card p,
 .audit-why-card p,
+.demo-step-card p,
+.demo-proof-card p,
+.demo-question-list p,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3824,6 +3945,8 @@ details,
 .automation-record-card span,
 .audit-chain-step span,
 .audit-record-card span,
+.demo-step-card span,
+.demo-proof-card span,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -3890,6 +4013,9 @@ summary,
 .audit-chain-head h2,
 .audit-chain-step strong,
 .audit-why-card strong,
+.demo-run-head h2,
+.demo-step-card strong,
+.demo-proof-card strong,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -3929,6 +4055,10 @@ summary,
 .audit-chain-step,
 .audit-record-card,
 .audit-why-card,
+.demo-run-panel,
+.demo-step-card,
+.demo-proof-card,
+.demo-question-list p,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -3982,6 +4112,9 @@ summary,
 .audit-chain-step,
 .audit-record-card,
 .audit-why-card,
+.demo-step-card,
+.demo-proof-card,
+.demo-question-list p,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -4034,6 +4167,19 @@ summary,
 
 .audit-chain-step.is-final {
   border-color: rgba(50, 223, 182, 0.42);
+}
+
+.demo-step-card.is-current {
+  border-color: rgba(50, 223, 182, 0.42);
+}
+
+.demo-step-card a {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.demo-step-card a:hover {
+  border-color: var(--accent);
 }
 
 .readiness-summary-card {
@@ -4782,6 +4928,8 @@ pre {
   .audit-chain,
   .audit-record-grid,
   .audit-why-grid,
+  .demo-timeline,
+  .demo-proof-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -4795,7 +4943,9 @@ pre {
   .automation-summary-card,
   .audit-chain-step,
   .audit-record-card,
-  .audit-why-card {
+  .audit-why-card,
+  .demo-step-card,
+  .demo-proof-card {
     min-height: 0;
   }
 

@@ -1780,6 +1780,119 @@ h1 {
   font-weight: 700;
 }
 
+.story-intro,
+.story-path-panel,
+.story-evidence-panel,
+.story-roles-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.story-scenario-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.story-scenario-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.story-scenario-head h2 {
+  color: #242a31;
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.story-scenario-grid,
+.story-evidence-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.story-role-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.story-path {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(7, minmax(150px, 1fr));
+  margin-top: var(--ui-gap-md);
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.story-scenario-card,
+.story-step-card,
+.story-evidence-card,
+.story-role-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.story-step-card {
+  align-content: start;
+  min-height: 260px;
+}
+
+.story-step-card.is-final {
+  border-color: rgba(50, 223, 182, 0.42);
+}
+
+.story-scenario-card span,
+.story-step-card span,
+.story-evidence-card span,
+.story-role-card span {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.story-scenario-card strong,
+.story-step-card strong,
+.story-evidence-card strong {
+  color: #242a31;
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.story-scenario-card p,
+.story-step-card p,
+.story-step-card em,
+.story-evidence-card p,
+.story-role-card p {
+  color: #4e5d6b;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.story-step-card em {
+  border-top: 1px solid var(--card-line);
+  margin-top: 0.2rem;
+  padding-top: 0.48rem;
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -4433,6 +4546,48 @@ summary,
   border-color: var(--line);
 }
 
+.story-scenario-card p,
+.story-step-card p,
+.story-step-card em,
+.story-evidence-card p,
+.story-role-card p {
+  color: var(--muted);
+}
+
+.story-scenario-card span,
+.story-step-card span,
+.story-evidence-card span,
+.story-role-card span {
+  color: var(--muted);
+}
+
+.story-scenario-head h2,
+.story-scenario-card strong,
+.story-step-card strong,
+.story-evidence-card strong {
+  color: var(--ink);
+}
+
+.story-scenario-panel {
+  background: var(--surface-gradient-guidance);
+}
+
+.story-scenario-card,
+.story-step-card,
+.story-evidence-card,
+.story-role-card {
+  background: var(--surface-subtle);
+  border-color: var(--line);
+}
+
+.story-step-card.is-final {
+  border-color: rgba(50, 223, 182, 0.42);
+}
+
+.story-step-card em {
+  border-color: var(--line);
+}
+
 .readiness-summary-card {
   border-color: rgba(163, 215, 149, 0.38);
 }
@@ -5223,6 +5378,21 @@ pre {
 
   .glossary-principle-card,
   .glossary-card {
+    min-height: 0;
+  }
+
+  .story-scenario-grid,
+  .story-path,
+  .story-evidence-grid,
+  .story-role-grid {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+  }
+
+  .story-step-card,
+  .story-scenario-card,
+  .story-evidence-card,
+  .story-role-card {
     min-height: 0;
   }
 

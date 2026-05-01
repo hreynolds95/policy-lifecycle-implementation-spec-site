@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Policy Change Story</title>
+    <meta
+      name="description"
+      content="Plain-English walkthrough showing how a policy change moves through the GitHub-native compliance DMS from intake to publication and audit evidence."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block story-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Policy Change Story</h1>
+        </div>
+        <p class="subtitle">
+          A narrative walkthrough for explaining how one policy change moves through the proposed
+          GitHub-native DMS. Use this to connect the operating model, approval gates, publication
+          controls, and audit trail in one simple story.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="auditability-source.html">Auditability</a>
+        <a href="demo-walkthrough.html">Demo Walkthrough</a>
+        <a href="phase-2-input-checklist.html">Phase 2 Inputs</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section story-intro" aria-labelledby="storyIntroTitle">
+        <span class="implementation-eyebrow">Narrative Example</span>
+        <h2 id="storyIntroTitle">A regulatory change requires a material policy update.</h2>
+        <p>
+          The example below follows a policy owner updating an existing policy after a regulatory
+          requirement changes. The same pattern also applies to standard updates, annual refreshes,
+          and policy changes that require tiered approval under the PoP.
+        </p>
+      </section>
+
+      <section class="story-scenario-panel" aria-labelledby="storyScenarioTitle">
+        <div class="story-scenario-head">
+          <span class="implementation-eyebrow">Scenario</span>
+          <h2 id="storyScenarioTitle">What the system needs to prove</h2>
+        </div>
+        <div class="story-scenario-grid" aria-label="Policy change scenario proof points">
+          <article class="story-scenario-card">
+            <span>Business trigger</span>
+            <strong>A regulation changes.</strong>
+            <p>The policy owner needs to update requirements, notify affected stakeholders, and retain evidence.</p>
+          </article>
+          <article class="story-scenario-card">
+            <span>Governance need</span>
+            <strong>PoP tollgates still apply.</strong>
+            <p>The change must pass intake, revision, QC, and approval before it becomes authoritative.</p>
+          </article>
+          <article class="story-scenario-card">
+            <span>Audit need</span>
+            <strong>The final PDF must trace to source.</strong>
+            <p>Every approved output should connect back to the source file, reviewers, checks, and merge commit.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section story-path-panel" aria-labelledby="storyPathTitle">
+        <span class="implementation-eyebrow">Change Path</span>
+        <h2 id="storyPathTitle">How the policy change moves through the DMS</h2>
+        <div class="story-path" aria-label="Policy change lifecycle path">
+          <article class="story-step-card">
+            <span>01 Intake request</span>
+            <strong>Owner submits the change need.</strong>
+            <p>The request captures document ID, change driver, regulatory implication, target date, and expected approval tier.</p>
+            <em>Creates: intake issue or request record.</em>
+          </article>
+          <article class="story-step-card">
+            <span>02 Scope triage</span>
+            <strong>Policy Team confirms governance path.</strong>
+            <p>The team validates that the change applies to a policy or standard and identifies required PoP tollgates.</p>
+            <em>Creates: routing labels and checklist requirements.</em>
+          </article>
+          <article class="story-step-card">
+            <span>03 Draft branch</span>
+            <strong>Owner edits the source document.</strong>
+            <p>The policy content changes in Markdown while the approved source record remains protected.</p>
+            <em>Creates: controlled draft workspace.</em>
+          </article>
+          <article class="story-step-card">
+            <span>04 Change package</span>
+            <strong>Pull request opens for review.</strong>
+            <p>The PR shows the redline, metadata changes, reviewer comments, required checks, and approval routing.</p>
+            <em>Creates: formal review and approval record.</em>
+          </article>
+          <article class="story-step-card">
+            <span>05 QC gate</span>
+            <strong>Automated and human checks run.</strong>
+            <p>Metadata, template structure, formatting, required fields, and publication readiness are validated.</p>
+            <em>Creates: workflow logs and QC checklist evidence.</em>
+          </article>
+          <article class="story-step-card">
+            <span>06 Approval and merge</span>
+            <strong>Required approvers sign off.</strong>
+            <p>Branch protection blocks merge until required reviewers and checks satisfy the configured tier path.</p>
+            <em>Creates: approved commit in the source of truth.</em>
+          </article>
+          <article class="story-step-card is-final">
+            <span>07 Publish and notify</span>
+            <strong>The approved source generates outputs.</strong>
+            <p>The system publishes the staff-facing page or PDF, records the audit event, and triggers awareness communications.</p>
+            <em>Creates: published output, notification record, and audit log.</em>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section story-evidence-panel" aria-labelledby="storyEvidenceTitle">
+        <span class="implementation-eyebrow">Evidence Created</span>
+        <h2 id="storyEvidenceTitle">What exists after the change is complete</h2>
+        <div class="story-evidence-grid">
+          <article class="story-evidence-card">
+            <span>Source</span>
+            <strong>Approved Markdown file</strong>
+            <p>The exact document content that became authoritative.</p>
+          </article>
+          <article class="story-evidence-card">
+            <span>Review</span>
+            <strong>Pull request record</strong>
+            <p>Comments, redlines, required reviewers, approvals, and resolved feedback.</p>
+          </article>
+          <article class="story-evidence-card">
+            <span>Controls</span>
+            <strong>Workflow and QC results</strong>
+            <p>Automated checks and checklist outcomes showing control operation.</p>
+          </article>
+          <article class="story-evidence-card">
+            <span>Publication</span>
+            <strong>PDF or portal output</strong>
+            <p>The readable version employees use, tied back to the commit that produced it.</p>
+          </article>
+          <article class="story-evidence-card">
+            <span>Awareness</span>
+            <strong>Communication record</strong>
+            <p>Evidence that relevant stakeholders were notified of the material change.</p>
+          </article>
+          <article class="story-evidence-card">
+            <span>Audit</span>
+            <strong>Evidence register entry</strong>
+            <p>The retained event linking version, approvers, output, notification, and source commit.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section story-roles-panel" aria-labelledby="storyRolesTitle">
+        <span class="implementation-eyebrow">Role View</span>
+        <h2 id="storyRolesTitle">Who interacts with the change</h2>
+        <div class="story-role-grid">
+          <article class="story-role-card">
+            <span>Policy owner</span>
+            <p>Raises the change, edits source content, responds to reviewer feedback, and confirms stakeholder impact.</p>
+          </article>
+          <article class="story-role-card">
+            <span>Policy Team</span>
+            <p>Confirms governance path, performs QC, validates readiness, and controls publication handoff.</p>
+          </article>
+          <article class="story-role-card">
+            <span>Approvers</span>
+            <p>Review the change package, resolve questions, and approve only when required evidence is complete.</p>
+          </article>
+          <article class="story-role-card">
+            <span>Employees</span>
+            <p>Consume the published policy through the portal or PDF without needing to understand GitHub workflow details.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="storyWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="storyWorkstreamsTitle">Where this story is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Governance workflow</a>
+          <a href="implementation/06-template-enforcement.html"><span class="step-id">DMS-06</span>Template and QC checks</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Published portal output</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Awareness communications</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Evidence readiness</a>
+          <a href="implementation/12-legacy-migration.html"><span class="step-id">DMS-12</span>Version traceability</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

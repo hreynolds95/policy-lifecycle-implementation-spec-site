@@ -37,38 +37,31 @@
         </div>
       </header>
 
-      <section class="start-here-panel card" aria-labelledby="startHereTitle">
-        <div class="start-here-copy">
-          <span class="start-here-label"><span class="start-here-badge" aria-hidden="true">1</span><span>Start here</span></span>
-          <h2 id="startHereTitle">Choose the path that matches what you need to decide.</h2>
+      <section class="process-panel card" aria-labelledby="processTitle">
+        <div class="process-copy">
+          <span class="process-label">Start here</span>
+          <h2 id="processTitle">Follow the three-stage review path.</h2>
+          <p>Use the first stage that matches the decision you need to make.</p>
         </div>
-        <div class="start-decision-grid" aria-label="Recommended first clicks">
-          <a class="start-decision-card is-primary" href="executive-summary.html">
-            <span>Understand the proposal</span>
-            <strong>Open Executive Summary</strong>
-            <span class="start-decision-help">Use this if you need the why, decision ask, and operating model.</span>
+        <nav class="process-flow" aria-label="Recommended review process">
+          <a class="process-step" href="executive-summary.html">
+            <span class="process-number">01</span>
+            <strong>Frame the decision</strong>
+            <span>Executive Summary</span>
           </a>
-          <a class="start-decision-card" href="validation-packet.html">
-            <span>Validate readiness</span>
-            <strong>Open Validation Packet</strong>
-            <span class="start-decision-help">Use this if you need evidence that GitHub can replace LogicGate.</span>
+          <span class="process-arrow" aria-hidden="true">&rarr;</span>
+          <a class="process-step" href="validation-packet.html">
+            <span class="process-number">02</span>
+            <strong>Check the evidence</strong>
+            <span>Validation Packet</span>
           </a>
-          <a class="start-decision-card" href="implementation/">
-            <span>Execute the plan</span>
-            <strong>Open Action Plan</strong>
-            <span class="start-decision-help">Use this if you need owners, workstreams, dependencies, and next actions.</span>
+          <span class="process-arrow" aria-hidden="true">&rarr;</span>
+          <a class="process-step" href="implementation/">
+            <span class="process-number">03</span>
+            <strong>Assign the work</strong>
+            <span>Action Plan</span>
           </a>
-        </div>
-      </section>
-
-      <section class="review-path card" aria-labelledby="reviewPathTitle">
-        <span class="overview-eyebrow">Recommended First Review</span>
-        <h2 id="reviewPathTitle">Executive Summary → Validation Packet → Action Plan</h2>
-        <div class="review-path-steps" aria-label="Recommended review sequence">
-          <a href="executive-summary.html"><span>01</span><strong>Frame the decision</strong></a>
-          <a href="validation-packet.html"><span>02</span><strong>Check the evidence</strong></a>
-          <a href="implementation/"><span>03</span><strong>Assign the work</strong></a>
-        </div>
+        </nav>
       </section>
 
       <section class="dms-overview card" aria-labelledby="dmsOverviewTitle">

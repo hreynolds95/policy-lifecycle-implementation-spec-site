@@ -2324,208 +2324,96 @@ h1 {
   padding: 0.24rem 0.48rem;
 }
 
-.start-here-panel {
+.process-panel {
+  align-items: center;
   display: grid;
-  grid-template-columns: minmax(220px, 0.82fr) minmax(0, 1.65fr);
-  align-items: stretch;
-  gap: var(--ui-gap-lg);
+  gap: var(--ui-gap-xl);
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.65fr);
   margin-bottom: var(--ui-gap-lg);
-  padding: var(--ui-card-padding-md);
-  background: var(--surface-gradient-info);
-  overflow: hidden;
-  position: relative;
+  padding: var(--ui-card-padding-lg);
 }
 
-.start-here-panel::before {
-  color: #242a31;
-  content: "!";
-  font-size: clamp(3.8rem, 8vw, 7.5rem);
-  font-weight: 900;
-  left: 0.72rem;
-  line-height: 0.8;
-  opacity: 0.05;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-48%);
-  z-index: 0;
-}
-
-.start-here-copy {
+.process-copy {
   display: grid;
-  align-content: center;
   gap: var(--ui-gap-xs);
-  padding: 0 var(--ui-gap-xs) 0 2.15rem;
-  position: relative;
-  z-index: 1;
 }
 
-.start-here-label {
-  align-items: center;
-  color: var(--label-ink);
-  display: inline-flex;
-  gap: 0.42rem;
-  justify-self: start;
+.process-label {
+  color: var(--accent);
   font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  padding: 0.26rem 0.46rem 0.26rem 0.28rem;
-  border: 1px solid rgba(36, 42, 49, 0.16);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.58);
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.start-here-badge {
-  align-items: center;
-  background: #242a31;
-  border-radius: 999px;
-  color: #ffffff;
-  display: inline-flex;
-  font-size: 0.68rem;
-  height: 1.05rem;
-  justify-content: center;
-  line-height: 1;
-  width: 1.05rem;
-}
-
-.start-here-arrow {
-  color: #526170;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.start-here-copy h2 {
+.process-copy h2 {
+  color: var(--ink);
+  font-size: clamp(1.18rem, 1.45vw, 1.55rem);
+  line-height: 1.1;
   margin: 0;
-  color: #242a31;
-  font-size: clamp(1.08rem, 1.2vw, 1.34rem);
-  line-height: 1.18;
 }
 
-.start-decision-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--ui-gap-sm);
-}
-
-.start-decision-card {
-  border: 1px solid #d6dfe7;
-  border-radius: var(--ui-card-radius);
-  background: var(--surface-gradient-info);
-  color: #303741;
-  display: grid;
-  gap: var(--ui-gap-xs);
-  min-height: 72px;
-  padding: var(--ui-card-padding-sm);
-  text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-}
-
-.start-decision-card:hover {
-  border-color: #9fb0bf;
-}
-
-.start-decision-card.is-primary {
-  border-color: #aeb9c4;
-  background: var(--surface-gradient-current);
-  box-shadow: 0 0 0 1px rgba(63, 67, 75, 0.08), var(--shadow-sm);
-}
-
-.start-decision-card.is-primary::after {
-  align-items: center;
-  background: #242a31;
-  border-radius: 999px;
-  color: #ffffff;
-  content: "1";
-  display: inline-flex;
-  font-size: 0.68rem;
-  font-weight: 900;
-  height: 1.2rem;
-  justify-content: center;
-  position: absolute;
-  right: 0.58rem;
-  top: 0.52rem;
-  width: 1.2rem;
-}
-
-.start-decision-card span {
-  color: #607080;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1.22;
-  text-transform: uppercase;
-}
-
-.start-decision-card strong {
-  color: #242a31;
-  font-size: 0.9rem;
-  line-height: 1.2;
-}
-
-.start-decision-help {
-  color: #6a7784;
-  font-size: 0.78rem;
+.process-copy p {
+  color: var(--muted);
+  font-size: 0.84rem;
   font-weight: 650;
-  line-height: 1.32;
-}
-
-.review-path {
-  display: grid;
-  gap: var(--ui-gap-sm);
-  margin-bottom: var(--ui-gap-lg);
-  padding: var(--ui-card-padding-md);
-}
-
-.review-path h2 {
-  color: var(--ink);
-  font-size: clamp(1.02rem, 1.35vw, 1.28rem);
-  line-height: 1.18;
+  line-height: 1.34;
   margin: 0;
 }
 
-.review-path-steps {
+.process-flow {
+  align-items: center;
   display: grid;
   gap: var(--ui-gap-sm);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
 }
 
-.review-path-steps a {
-  align-items: center;
-  background: var(--surface-subtle);
-  border: 1px solid var(--line);
-  border-radius: var(--ui-card-radius);
+.process-step {
+  align-content: center;
   color: var(--ink);
-  display: flex;
-  gap: var(--ui-gap-sm);
-  min-height: 58px;
-  padding: var(--ui-card-padding-sm);
+  display: grid;
+  gap: 0.24rem;
+  min-height: 104px;
+  padding: 0.2rem 0;
   text-decoration: none;
 }
 
-.review-path-steps a:hover {
-  border-color: var(--accent);
+.process-step:hover strong {
+  color: var(--accent);
 }
 
-.review-path-steps span {
+.process-number {
   align-items: center;
   background: var(--accent);
   border-radius: 999px;
   color: var(--bg);
   display: inline-flex;
-  flex: 0 0 auto;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 900;
-  height: 1.35rem;
+  height: 1.42rem;
   justify-content: center;
-  width: 1.35rem;
+  width: 1.42rem;
 }
 
-.review-path-steps strong {
+.process-step strong {
   color: var(--ink);
-  font-size: 0.86rem;
-  line-height: 1.18;
+  font-size: clamp(1.08rem, 1.35vw, 1.34rem);
+  line-height: 1.12;
+}
+
+.process-step span:last-child {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.process-arrow {
+  color: var(--accent);
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 900;
+  line-height: 1;
 }
 
 .overview-proof-grid.is-trimmed {
@@ -4518,8 +4406,7 @@ body {
 .implementation-section,
 .advanced-panel,
 .status-banner,
-.start-here-panel,
-.review-path,
+.process-panel,
 .secondary-route,
 .workplan-command-center,
 .review-focus-panel,
@@ -4595,8 +4482,8 @@ details,
 .phase2-output-card p,
 .phase2-input-card dd,
 .landing-path span:last-child,
-.start-decision-card span,
-.start-decision-help,
+.process-copy p,
+.process-step span:last-child,
 .workplan-command-copy p,
 .review-blocker-card span:last-child,
 .plan-overview-copy p,
@@ -4637,7 +4524,7 @@ details,
 .phase2-input-card > span,
 .phase2-output-card span,
 .phase2-input-card dt,
-.start-here-label,
+.process-label,
 .landing-path-label,
 .workplan-label,
 .implementation-eyebrow,
@@ -4688,8 +4575,8 @@ summary,
 .phase2-priority-card strong,
 .phase2-input-card strong,
 .landing-path strong,
-.start-here-copy h2,
-.start-decision-card strong,
+.process-copy h2,
+.process-step strong,
 .workplan-title,
 .workplan-command-copy h2,
 .workplan-command-metrics span,
@@ -4706,8 +4593,7 @@ summary,
 }
 
 .status-banner,
-.start-here-panel,
-.review-path,
+.process-panel,
 .secondary-route,
 .dms-overview,
 .surface-card,
@@ -4746,33 +4632,12 @@ summary,
   background: var(--surface-gradient-guidance);
 }
 
-.start-here-panel {
+.process-panel {
   border-color: rgba(50, 223, 182, 0.28);
   box-shadow: 0 0 0 1px rgba(50, 223, 182, 0.08), var(--shadow-sm);
 }
 
-.start-here-panel::before {
-  color: var(--accent);
-  opacity: 0.12;
-}
-
-.start-here-label {
-  background: rgba(50, 223, 182, 0.12);
-  border-color: rgba(50, 223, 182, 0.34);
-  color: var(--accent);
-}
-
-.start-here-badge {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-.start-here-arrow {
-  color: var(--accent-2);
-}
-
 .status-item,
-.start-decision-card,
 .overview-proof-card,
 .surface-card,
 .surface-flow-step,
@@ -4953,22 +4818,11 @@ summary,
 }
 
 .landing-path.primary-path,
-.start-decision-card.is-primary,
 .step-card.is-critical,
 .readiness-gate-card.is-designing,
 .dependency-lane.is-critical {
   background: var(--surface-gradient-current);
   border-color: var(--bg-tertiary, #474e57);
-}
-
-.start-decision-card.is-primary {
-  border-color: rgba(50, 223, 182, 0.44);
-  box-shadow: 0 0 0 1px rgba(50, 223, 182, 0.1), 0 16px 34px rgba(0, 0, 0, 0.24);
-}
-
-.start-decision-card.is-primary::after {
-  background: var(--accent);
-  color: var(--bg);
 }
 
 .review-blocker-card.is-blocked,
@@ -5359,7 +5213,7 @@ pre {
     border-radius: 8px !important;
   }
 
-  .start-here-panel,
+  .process-panel,
   .exec-panel,
   .workplan-command-center,
   .plan-overview,
@@ -5371,7 +5225,7 @@ pre {
     padding: 0.12in !important;
   }
 
-  .start-here-panel,
+  .process-panel,
   .workplan-command-center.meeting-mode-toggle,
   .plan-overview,
   .readiness-gate-head,
@@ -5381,7 +5235,7 @@ pre {
     gap: 0.08in !important;
   }
 
-  .start-here-copy,
+  .process-copy,
   .workplan-command-copy,
   .plan-overview-copy,
   .dependency-head,
@@ -5389,7 +5243,7 @@ pre {
     gap: 0.02in !important;
   }
 
-  .start-here-copy h2,
+  .process-copy h2,
   .workplan-command-copy h2,
   .plan-overview-copy h2,
   .readiness-gate-head h2,
@@ -5401,7 +5255,7 @@ pre {
     line-height: 1.22 !important;
   }
 
-  .start-here-copy p,
+  .process-copy p,
   .workplan-command-copy p,
   .plan-overview-copy p,
   .readiness-gate-head p,
@@ -5410,7 +5264,6 @@ pre {
     font-size: 9.5pt !important;
   }
 
-  .start-decision-grid,
   .exec-grid,
   .landing-paths,
   .workplan-command-metrics,
@@ -5425,7 +5278,13 @@ pre {
     gap: 0.08in !important;
   }
 
-  .start-decision-card,
+  .process-flow {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.08in !important;
+  }
+
+  .process-step,
   .exec-card,
   .landing-path,
   .workplan-command-metrics span,
@@ -5615,7 +5474,7 @@ pre {
     min-height: 0;
   }
 
-  .start-here-panel,
+  .process-panel,
   .dms-overview,
   .overview-proof-grid,
   .surface-comparison,
@@ -5636,7 +5495,7 @@ pre {
   .phase2-priority-grid,
   .phase2-checklist-grid,
   .phase2-output-grid,
-  .start-decision-grid {
+  .process-flow {
     grid-template-columns: 1fr;
   }
 
@@ -5658,13 +5517,14 @@ pre {
     min-height: 0;
   }
 
+  .process-arrow,
   .gate-arrow,
   .audit-chain-arrow {
     justify-self: start;
     transform: rotate(90deg);
   }
 
-  .start-decision-card {
+  .process-step {
     min-height: 0;
   }
 

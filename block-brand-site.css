@@ -2180,29 +2180,21 @@ h1 {
   color: var(--accent);
 }
 
-.exec-decision-grid,
-.exec-summary-grid,
-.exec-risk-grid,
-.exec-link-grid {
+.exec-grid {
   display: grid;
   gap: var(--ui-gap-md);
   margin-top: var(--ui-gap-md);
 }
 
-.exec-decision-grid,
-.exec-risk-grid {
+.exec-grid-three {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.exec-summary-grid,
-.exec-link-grid {
+.exec-grid-four {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.exec-decision-card,
-.exec-summary-card,
-.exec-risk-card,
-.exec-link-grid a {
+.exec-card {
   border: 1px solid var(--line);
   border-radius: var(--ui-card-radius);
   background: var(--surface-subtle);
@@ -2211,14 +2203,11 @@ h1 {
   padding: var(--ui-card-padding-md);
 }
 
-.exec-decision-card.is-critical {
+.exec-card.is-critical {
   border-color: rgba(255, 217, 102, 0.42);
 }
 
-.exec-decision-card span,
-.exec-summary-card span,
-.exec-risk-card span,
-.exec-link-grid span {
+.exec-card span {
   color: var(--muted);
   font-size: 0.68rem;
   font-weight: 800;
@@ -2226,17 +2215,13 @@ h1 {
   text-transform: uppercase;
 }
 
-.exec-decision-card strong,
-.exec-summary-card strong,
-.exec-link-grid strong {
+.exec-card strong {
   color: var(--ink);
   font-size: 0.94rem;
   line-height: 1.18;
 }
 
-.exec-decision-card p,
-.exec-summary-card p,
-.exec-risk-card p {
+.exec-card p {
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 600;
@@ -2244,12 +2229,12 @@ h1 {
   margin: 0;
 }
 
-.exec-link-grid a {
+.exec-link-card {
   color: var(--ink);
   text-decoration: none;
 }
 
-.exec-link-grid a:hover {
+.exec-link-card:hover {
   border-color: var(--accent);
 }
 
@@ -5425,10 +5410,7 @@ pre {
   }
 
   .start-decision-grid,
-  .exec-decision-grid,
-  .exec-summary-grid,
-  .exec-risk-grid,
-  .exec-link-grid,
+  .exec-grid,
   .landing-paths,
   .workplan-command-metrics,
   .plan-phase-list,
@@ -5443,10 +5425,7 @@ pre {
   }
 
   .start-decision-card,
-  .exec-decision-card,
-  .exec-summary-card,
-  .exec-risk-card,
-  .exec-link-grid a,
+  .exec-card,
   .landing-path,
   .workplan-command-metrics span,
   .plan-phase-list span,
@@ -5755,17 +5734,11 @@ pre {
   .exec-share-panel,
   .exec-home-actions,
   .exec-share-actions,
-  .exec-decision-grid,
-  .exec-summary-grid,
-  .exec-risk-grid,
-  .exec-link-grid {
+  .exec-grid {
     grid-template-columns: 1fr;
   }
 
-  .exec-decision-card,
-  .exec-summary-card,
-  .exec-risk-card,
-  .exec-link-grid a {
+  .exec-card {
     min-height: 0;
   }
 

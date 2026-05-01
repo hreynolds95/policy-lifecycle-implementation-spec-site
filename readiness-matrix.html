@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Live vs Phase 2 Readiness Matrix</title>
+    <meta
+      name="description"
+      content="Readiness matrix showing what is live in the Block compliance DMS proof of concept and what remains for Phase 2."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block readiness-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Live vs Phase 2 Readiness</h1>
+        </div>
+        <p class="subtitle">
+          This matrix translates the proof-of-concept brief into a stakeholder-ready view of what is
+          already working, what remains for Phase 2, and which inputs are needed before a Block-wide
+          implementation can move forward.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section readiness-intro" aria-labelledby="readinessIntroTitle">
+        <span class="implementation-eyebrow">Readiness Lens</span>
+        <h2 id="readinessIntroTitle">Separate proof-of-concept evidence from Phase 2 enterprise requirements.</h2>
+        <p>
+          The current PoC proves the operating model in a personal GitHub account. Phase 2 is the
+          enterprise cutover path: move to the right org, enable SSO/SAML, confirm governance inputs,
+          and migrate the full document inventory.
+        </p>
+      </section>
+
+      <section class="readiness-summary-grid" aria-label="Readiness summary">
+        <div class="readiness-summary-card">
+          <span>Live PoC</span>
+          <strong>7</strong>
+          <p>Portal, dashboard, Quincy, pilot docs, workflows, exceptions, and annual review dispatch.</p>
+        </div>
+        <div class="readiness-summary-card is-phase-two">
+          <span>Phase 2</span>
+          <strong>4</strong>
+          <p>Slack notifications, portal request initiation, SSO/login gate, and full migration.</p>
+        </div>
+        <div class="readiness-summary-card is-input">
+          <span>Inputs Needed</span>
+          <strong>3</strong>
+          <p>IT, Legal/CCO, and Policy Governance decisions before enterprise implementation.</p>
+        </div>
+      </section>
+
+      <section class="implementation-section readiness-matrix-panel" aria-labelledby="readinessMatrixTitle">
+        <span class="implementation-eyebrow">Feature Matrix</span>
+        <h2 id="readinessMatrixTitle">What is live today versus Phase 2</h2>
+        <div class="readiness-matrix-wrap">
+          <table class="implementation-table readiness-matrix">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Status</th>
+                <th>What It Proves</th>
+                <th>Phase 2 Need</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Policy library portal with search, filters, document detail</td>
+                <td><span class="readiness-status is-live">Live</span></td>
+                <td>Staff can find and view compliance documents through a portal.</td>
+                <td>Move from PoC hosting to enterprise access model.</td>
+              </tr>
+              <tr>
+                <td>Compliance metrics dashboard</td>
+                <td><span class="readiness-status is-live">Live</span></td>
+                <td>Review health, ownership, and document status can be summarized visually.</td>
+                <td>Wire to authoritative registry and production reporting needs.</td>
+              </tr>
+              <tr>
+                <td>Quincy AI assistant</td>
+                <td><span class="readiness-status is-live">Live</span></td>
+                <td>Document corpus can support natural-language discovery and answers.</td>
+                <td>Confirm approved enterprise AI integration pattern.</td>
+              </tr>
+              <tr>
+                <td>6 pilot documents with governance metadata</td>
+                <td><span class="readiness-status is-live">Live</span></td>
+                <td>Metadata model works for pilot policy records.</td>
+                <td>Scale metadata quality checks to the full inventory.</td>
+              </tr>
+              <tr>
+                <td>12 governance workflows</td>
+                <td><span class="readiness-status is-live">Live PoC</span></td>
+                <td>GitHub can run the DMS control logic end-to-end.</td>
+                <td>Migrate to enterprise GitHub org and production secrets.</td>
+              </tr>
+              <tr>
+                <td>Exception request form and lifecycle</td>
+                <td><span class="readiness-status is-live">Live</span></td>
+                <td>Exceptions can be requested, reviewed, retained, and renewed.</td>
+                <td>Confirm migration approach for active LogicGate exceptions.</td>
+              </tr>
+              <tr>
+                <td>Annual review dispatch</td>
+                <td><span class="readiness-status is-live">Live PoC</span></td>
+                <td>Review process can start from workflow automation.</td>
+                <td>Move from manual Actions trigger to fully automatic initiation.</td>
+              </tr>
+              <tr>
+                <td>Slack publication notifications</td>
+                <td><span class="readiness-status is-phase-two">Phase 2</span></td>
+                <td>Notification pattern is defined but webhook is not configured.</td>
+                <td>Configure approved Slack webhook/channel and evidence retention.</td>
+              </tr>
+              <tr>
+                <td>Request Review portal button</td>
+                <td><span class="readiness-status is-phase-two">Phase 2</span></td>
+                <td>Desired owner experience is defined.</td>
+                <td>Connect portal action to branch and PR creation workflow.</td>
+              </tr>
+              <tr>
+                <td>SSO / Block employee login gate</td>
+                <td><span class="readiness-status is-phase-two">Phase 2</span></td>
+                <td>Access boundary is known.</td>
+                <td>Enable enterprise SSO/SAML and define employee access gates.</td>
+              </tr>
+              <tr>
+                <td>Full ~190 document migration</td>
+                <td><span class="readiness-status is-phase-two">Phase 2</span></td>
+                <td>Migration scope is understood.</td>
+                <td>Clean inventory, map metadata, migrate content, and validate records.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="implementation-section phase-two-inputs" aria-labelledby="phaseTwoInputsTitle">
+        <span class="implementation-eyebrow">Phase 2 Inputs</span>
+        <h2 id="phaseTwoInputsTitle">What must be confirmed before Phase 2 can begin</h2>
+        <div class="phase-input-grid">
+          <div class="phase-input-card">
+            <span>IT</span>
+            <p>Migrate repo to the enterprise GitHub org, enable GitHub SSO/SAML, and create compliance teams.</p>
+          </div>
+          <div class="phase-input-card">
+            <span>Legal / CCO</span>
+            <p>Confirm how Board-level approval evidence is applied and retained in GitHub.</p>
+          </div>
+          <div class="phase-input-card">
+            <span>Policy Governance</span>
+            <p>Confirm active exception migration and Markdown authoring guidance for document owners.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="readinessWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="readinessWorkstreamsTitle">Where readiness work is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>Architecture readiness</a>
+          <a href="implementation/03-access-control.html"><span class="step-id">DMS-03</span>SSO and access gates</a>
+          <a href="implementation/05-exception-handling.html"><span class="step-id">DMS-05</span>Exception lifecycle</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal initiation</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Cutover evidence</a>
+          <a href="implementation/12-legacy-migration.html"><span class="step-id">DMS-12</span>Document migration</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

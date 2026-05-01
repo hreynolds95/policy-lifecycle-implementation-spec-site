@@ -1082,6 +1082,133 @@ h1 {
   margin: 0;
 }
 
+.readiness-intro,
+.readiness-matrix-panel,
+.phase-two-inputs {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.readiness-summary-grid {
+  display: grid;
+  gap: var(--ui-gap-lg);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.readiness-summary-card {
+  border: 1px solid rgba(163, 215, 149, 0.36);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: 0.24rem;
+  padding: var(--ui-card-padding-lg);
+}
+
+.readiness-summary-card.is-phase-two {
+  border-color: rgba(124, 172, 255, 0.38);
+}
+
+.readiness-summary-card.is-input {
+  border-color: rgba(255, 217, 102, 0.38);
+}
+
+.readiness-summary-card span {
+  color: var(--label-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.readiness-summary-card strong {
+  color: #242a31;
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.readiness-summary-card p {
+  color: #4e5d6b;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.readiness-matrix-wrap {
+  overflow-x: auto;
+  margin-top: var(--ui-gap-md);
+}
+
+.readiness-matrix {
+  min-width: 1040px;
+}
+
+.readiness-matrix td:first-child {
+  color: #27313b;
+  font-weight: 800;
+}
+
+.readiness-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid #cbd5de;
+  border-radius: var(--ui-chip-radius);
+  padding: 0.14rem 0.48rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.readiness-status.is-live {
+  background: rgba(163, 215, 149, 0.15);
+  border-color: rgba(163, 215, 149, 0.38);
+  color: #234b38;
+}
+
+.readiness-status.is-phase-two {
+  background: rgba(124, 172, 255, 0.15);
+  border-color: rgba(124, 172, 255, 0.38);
+  color: #2f4d78;
+}
+
+.phase-input-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.phase-input-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.28rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.phase-input-card span {
+  color: var(--label-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phase-input-card p {
+  color: #4e5d6b;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -3399,6 +3526,8 @@ details,
 .role-sequence,
 .gate-step p,
 .gate-tier-card p,
+.readiness-summary-card p,
+.phase-input-card p,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3430,6 +3559,8 @@ details,
 .gate-sequence-head .implementation-eyebrow,
 .gate-step-id,
 .gate-tier-card span,
+.readiness-summary-card span,
+.phase-input-card span,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -3487,6 +3618,9 @@ summary,
 .gate-step strong,
 .gate-publish-flow span:not([aria-hidden='true']),
 .gate-tier-card strong,
+.readiness-summary-card strong,
+.readiness-matrix td:first-child,
+.phase-input-card strong,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -3518,6 +3652,8 @@ summary,
 .gate-publish-flow,
 .gate-publish-flow span:not([aria-hidden='true']),
 .gate-tier-card,
+.readiness-summary-card,
+.phase-input-card,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -3564,6 +3700,8 @@ summary,
 .gate-publish-flow,
 .gate-publish-flow span:not([aria-hidden='true']),
 .gate-tier-card,
+.readiness-summary-card,
+.phase-input-card,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -3611,6 +3749,30 @@ summary,
 .gate-arrow,
 .gate-publish-flow span[aria-hidden='true'] {
   color: var(--accent-3);
+}
+
+.readiness-summary-card {
+  border-color: rgba(163, 215, 149, 0.38);
+}
+
+.readiness-summary-card.is-phase-two {
+  border-color: rgba(124, 172, 255, 0.38);
+}
+
+.readiness-summary-card.is-input {
+  border-color: rgba(255, 217, 102, 0.38);
+}
+
+.readiness-status.is-live {
+  background: rgba(163, 215, 149, 0.15);
+  border-color: rgba(163, 215, 149, 0.38);
+  color: var(--success);
+}
+
+.readiness-status.is-phase-two {
+  background: rgba(124, 172, 255, 0.15);
+  border-color: rgba(124, 172, 255, 0.38);
+  color: var(--info);
 }
 
 .landing-path.primary-path,
@@ -4298,6 +4460,8 @@ pre {
   .role-card-grid,
   .gate-sequence,
   .gate-tier-grid,
+  .readiness-summary-grid,
+  .phase-input-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -4306,7 +4470,8 @@ pre {
   .surface-card,
   .surface-flow-step,
   .role-card,
-  .gate-step {
+  .gate-step,
+  .readiness-summary-card {
     min-height: 0;
   }
 
@@ -4330,6 +4495,10 @@ pre {
 
   .readiness-bar-items {
     gap: 0.28rem;
+  }
+
+  .readiness-matrix {
+    min-width: 900px;
   }
 
   .advanced-panel-content {

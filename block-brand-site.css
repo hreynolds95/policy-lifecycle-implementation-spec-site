@@ -1688,6 +1688,98 @@ h1 {
   text-transform: uppercase;
 }
 
+.glossary-intro,
+.glossary-table-panel,
+.glossary-cards-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.glossary-principle-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.glossary-principle-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.glossary-principle-head h2 {
+  color: #242a31;
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.glossary-principle-grid,
+.glossary-card-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.glossary-card-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.glossary-principle-card,
+.glossary-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.glossary-principle-card span,
+.glossary-card span {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.glossary-principle-card strong,
+.glossary-card strong,
+.glossary-table td:first-child {
+  color: #242a31;
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.glossary-principle-card p,
+.glossary-card p {
+  color: #4e5d6b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.glossary-table-wrap {
+  overflow-x: auto;
+  margin-top: var(--ui-gap-md);
+}
+
+.glossary-table {
+  min-width: 1120px;
+}
+
+.glossary-table td:nth-child(3) {
+  font-weight: 700;
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -4018,6 +4110,8 @@ details,
 .phase2-priority-card p,
 .phase2-output-card p,
 .phase2-input-card dd,
+.glossary-principle-card p,
+.glossary-card p,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -4061,6 +4155,8 @@ details,
 .phase2-input-card > span,
 .phase2-output-card span,
 .phase2-input-card dt,
+.glossary-principle-card span,
+.glossary-card span,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -4133,6 +4229,10 @@ summary,
 .phase2-priority-head h2,
 .phase2-priority-card strong,
 .phase2-input-card strong,
+.glossary-principle-head h2,
+.glossary-principle-card strong,
+.glossary-card strong,
+.glossary-table td:first-child,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -4180,6 +4280,9 @@ summary,
 .phase2-priority-card,
 .phase2-input-card,
 .phase2-output-card,
+.glossary-principle-panel,
+.glossary-principle-card,
+.glossary-card,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -4239,6 +4342,8 @@ summary,
 .phase2-priority-card,
 .phase2-input-card,
 .phase2-output-card,
+.glossary-principle-card,
+.glossary-card,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -5065,6 +5170,8 @@ pre {
   .phase2-priority-grid,
   .phase2-checklist-grid,
   .phase2-output-grid,
+  .glossary-principle-grid,
+  .glossary-card-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -5083,7 +5190,9 @@ pre {
   .demo-proof-card,
   .phase2-priority-card,
   .phase2-input-card,
-  .phase2-output-card {
+  .phase2-output-card,
+  .glossary-principle-card,
+  .glossary-card {
     min-height: 0;
   }
 

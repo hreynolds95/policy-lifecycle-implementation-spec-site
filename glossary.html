@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Glossary and Translation Layer</title>
+    <meta
+      name="description"
+      content="Plain-English glossary translating GitHub terms into compliance DMS operating model language for policy stakeholders."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block glossary-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Glossary and Translation Layer</h1>
+        </div>
+        <p class="subtitle">
+          A plain-English bridge between GitHub implementation terms and compliance policy operating
+          language. Use this when stakeholders ask what the system means in practice, not what the
+          engineering feature is called.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="auditability-source.html">Auditability</a>
+        <a href="demo-walkthrough.html">Demo Walkthrough</a>
+        <a href="phase-2-input-checklist.html">Phase 2 Inputs</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section glossary-intro" aria-labelledby="glossaryIntroTitle">
+        <span class="implementation-eyebrow">Translation Principle</span>
+        <h2 id="glossaryIntroTitle">Translate GitHub mechanics into governance outcomes.</h2>
+        <p>
+          The implementation can use GitHub terms internally, but stakeholder conversations should stay
+          anchored to familiar DMS concepts: source of truth, approval evidence, role gates, publication
+          controls, and audit traceability.
+        </p>
+      </section>
+
+      <section class="glossary-principle-panel" aria-labelledby="glossaryPrincipleTitle">
+        <div class="glossary-principle-head">
+          <span class="implementation-eyebrow">Messaging Rule</span>
+          <h2 id="glossaryPrincipleTitle">Lead with the compliance meaning before the platform term.</h2>
+        </div>
+        <div class="glossary-principle-grid" aria-label="Glossary messaging rules">
+          <article class="glossary-principle-card">
+            <span>Say this first</span>
+            <strong>"This is the approval record."</strong>
+            <p>Then explain that GitHub stores it as a pull request with comments, approvals, and checks.</p>
+          </article>
+          <article class="glossary-principle-card">
+            <span>Avoid leading with</span>
+            <strong>"Open a PR against main."</strong>
+            <p>That is implementation language. It is accurate, but it is not the stakeholder mental model.</p>
+          </article>
+          <article class="glossary-principle-card">
+            <span>Anchor back to</span>
+            <strong>"Does this preserve PoP control intent?"</strong>
+            <p>The design should be judged by governance parity, auditability, and operational clarity.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section glossary-table-panel" aria-labelledby="glossaryTableTitle">
+        <span class="implementation-eyebrow">Glossary</span>
+        <h2 id="glossaryTableTitle">Core translations for DMS conversations</h2>
+        <div class="glossary-table-wrap">
+          <table class="implementation-table glossary-table">
+            <thead>
+              <tr>
+                <th>GitHub Term</th>
+                <th>DMS Meaning</th>
+                <th>Say It This Way</th>
+                <th>Why It Matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Repository</td>
+                <td>Governed document system of record.</td>
+                <td>The controlled library where source documents and evidence live.</td>
+                <td>Defines the authoritative home that replaces LogicGate for in-scope policies and standards.</td>
+              </tr>
+              <tr>
+                <td>Markdown</td>
+                <td>Machine-readable policy or standard source file.</td>
+                <td>The editable source record behind the published PDF.</td>
+                <td>Allows validation, search, automation, AI indexing, and consistent publication output.</td>
+              </tr>
+              <tr>
+                <td>Metadata / front matter</td>
+                <td>Required document registry fields.</td>
+                <td>The structured record of owner, tier, review date, domain, and status.</td>
+                <td>Drives routing, reminders, reporting, portal filtering, and migration checks.</td>
+              </tr>
+              <tr>
+                <td>Branch</td>
+                <td>Controlled draft workspace.</td>
+                <td>A temporary editing copy used before the approved source record changes.</td>
+                <td>Lets multiple changes be reviewed without overwriting the published record.</td>
+              </tr>
+              <tr>
+                <td>Pull request</td>
+                <td>Formal change and approval package.</td>
+                <td>The place where redlines, comments, checks, and approvals are reviewed.</td>
+                <td>Creates a durable evidence trail for the proposed change.</td>
+              </tr>
+              <tr>
+                <td>CODEOWNERS</td>
+                <td>Role-based required reviewer mapping.</td>
+                <td>The rule that routes a document to the right approving group.</td>
+                <td>Supports tiered approval parity and prevents bypassing required reviewers.</td>
+              </tr>
+              <tr>
+                <td>Branch protection</td>
+                <td>Merge gate enforcement.</td>
+                <td>The control that blocks publication until required reviews and checks pass.</td>
+                <td>Turns PoP tollgate requirements into enforceable workflow rules.</td>
+              </tr>
+              <tr>
+                <td>GitHub Actions</td>
+                <td>Automated governance checks.</td>
+                <td>The system-run checks for metadata, formatting, review dates, and publication readiness.</td>
+                <td>Reduces manual QC and creates evidence that the control ran.</td>
+              </tr>
+              <tr>
+                <td>Issue</td>
+                <td>Assignable work item or governance follow-up.</td>
+                <td>The tracked record for a blocker, review reminder, exception renewal, or decision.</td>
+                <td>Turns open work into visible, assignable, auditable follow-up.</td>
+              </tr>
+              <tr>
+                <td>Label</td>
+                <td>Status, category, or routing marker.</td>
+                <td>The tag that tells the system and team what kind of work this is.</td>
+                <td>Supports filtering, reporting, automation triggers, and portfolio visibility.</td>
+              </tr>
+              <tr>
+                <td>Merge commit</td>
+                <td>Approved version snapshot.</td>
+                <td>The permanent record of exactly what changed and when it became authoritative.</td>
+                <td>Connects approved content to the publication and audit evidence chain.</td>
+              </tr>
+              <tr>
+                <td>GitHub Pages</td>
+                <td>Staff-facing policy portal surface.</td>
+                <td>The readable website experience generated from the governed source records.</td>
+                <td>Keeps employee access simple while governance work remains controlled in GitHub.</td>
+              </tr>
+              <tr>
+                <td>Release / artifact</td>
+                <td>Published document output.</td>
+                <td>The generated PDF or portal file created from the approved source.</td>
+                <td>Prevents disconnected PDFs by tying each output back to a commit.</td>
+              </tr>
+              <tr>
+                <td>Audit log</td>
+                <td>Evidence register.</td>
+                <td>The retained record of publication events, approvals, exceptions, and control outcomes.</td>
+                <td>Supports regulator-ready traceability from output back to source and approval.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="implementation-section glossary-cards-panel" aria-labelledby="glossaryCardsTitle">
+        <span class="implementation-eyebrow">Shortcut Language</span>
+        <h2 id="glossaryCardsTitle">Recommended phrases for stakeholder conversations</h2>
+        <div class="glossary-card-grid">
+          <article class="glossary-card">
+            <span>Instead of "PR"</span>
+            <strong>Change package</strong>
+            <p>Use when explaining approvals, redlines, QC checks, and stakeholder comments.</p>
+          </article>
+          <article class="glossary-card">
+            <span>Instead of "main branch"</span>
+            <strong>Approved source record</strong>
+            <p>Use when explaining why direct editing of published content is blocked.</p>
+          </article>
+          <article class="glossary-card">
+            <span>Instead of "GitHub Action"</span>
+            <strong>Automated control check</strong>
+            <p>Use when explaining format validation, metadata validation, and publication readiness.</p>
+          </article>
+          <article class="glossary-card">
+            <span>Instead of "merge"</span>
+            <strong>Approve into the source of truth</strong>
+            <p>Use when explaining the moment a change becomes authoritative.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="glossaryWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="glossaryWorkstreamsTitle">Where terminology alignment matters most</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>System framing</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Approval language</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal experience</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Awareness comms</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness framing</a>
+          <a href="implementation/14-open-decisions.html"><span class="step-id">DMS-14</span>Decision language</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

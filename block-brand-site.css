@@ -2107,8 +2107,7 @@ h1 {
   color: var(--accent);
 }
 
-.exec-home-panel,
-.exec-share-panel {
+.exec-panel {
   border: 1px solid var(--card-line);
   border-radius: var(--ui-card-radius);
   background: var(--surface-gradient-guidance);
@@ -2119,8 +2118,7 @@ h1 {
   padding: var(--ui-card-padding-lg);
 }
 
-.exec-home-copy,
-.exec-share-copy,
+.exec-copy,
 .exec-decision-panel,
 .exec-summary-panel,
 .exec-risk-panel,
@@ -2129,8 +2127,7 @@ h1 {
   gap: var(--ui-gap-sm);
 }
 
-.exec-home-copy h2,
-.exec-share-copy h2 {
+.exec-copy h2 {
   color: var(--ink);
   font-size: clamp(1.12rem, 1.5vw, 1.42rem);
   letter-spacing: -0.02em;
@@ -2138,8 +2135,7 @@ h1 {
   margin: 0;
 }
 
-.exec-home-copy p,
-.exec-share-copy p {
+.exec-copy p {
   color: var(--muted);
   font-size: 0.86rem;
   font-weight: 600;
@@ -2147,16 +2143,14 @@ h1 {
   margin: 0;
 }
 
-.exec-home-actions,
-.exec-share-actions {
+.exec-actions {
   align-content: center;
   display: grid;
   gap: var(--ui-gap-sm);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.exec-home-actions a,
-.exec-share-button {
+.exec-action {
   align-items: center;
   border: 1px solid var(--line);
   border-radius: var(--ui-pill-radius);
@@ -2174,8 +2168,7 @@ h1 {
   text-decoration: none;
 }
 
-.exec-home-actions a:hover,
-.exec-share-button:hover {
+.exec-action:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -4730,8 +4723,7 @@ summary,
 .phase2-priority-card,
 .phase2-input-card,
 .phase2-output-card,
-.exec-home-panel,
-.exec-share-panel,
+.exec-panel,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -5248,8 +5240,7 @@ pre {
   .section-review-row,
   .section-gates,
   .implementation-nav,
-  .exec-share-actions,
-  .exec-home-actions,
+  .exec-actions,
   .site-credit,
   .skip-link,
   .sr-only {
@@ -5356,8 +5347,7 @@ pre {
   }
 
   .start-here-panel,
-  .exec-home-panel,
-  .exec-share-panel,
+  .exec-panel,
   .readiness-bar,
   .landing-next,
   .workplan-command-center,
@@ -5730,10 +5720,8 @@ pre {
     min-height: 0;
   }
 
-  .exec-home-panel,
-  .exec-share-panel,
-  .exec-home-actions,
-  .exec-share-actions,
+  .exec-panel,
+  .exec-actions,
   .exec-grid {
     grid-template-columns: 1fr;
   }

@@ -1,0 +1,9 @@
+# Local review and scratch artifacts
+review.txt
+
+# Legacy local stylesheet experiments not used by the deployed site
+main.css
+theme-custom.css
+
+# OS/editor noise
+.DS_Store

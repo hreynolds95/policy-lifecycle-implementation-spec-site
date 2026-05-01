@@ -1,5 +1,14 @@
 blank_issues_enabled: false
 contact_links:
+  - name: View Replacement Hub
+    url: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/
+    about: Start with the three-stage review path.
+  - name: View Executive Summary
+    url: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/executive-summary.html
+    about: Frame the proposal, decision ask, risks, and operating model.
+  - name: View Validation Packet
+    url: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/validation-packet.html
+    about: Check approval parity, audit traceability, ownership, and cutover evidence.
   - name: View Action Plan
     url: https://hreynolds95.github.io/policy-lifecycle-implementation-spec-site/implementation/
     about: Review workstreams, collaboration needs, and next actions.

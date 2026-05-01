@@ -2463,10 +2463,9 @@ h1 {
   line-height: 1.2;
 }
 
-.start-decision-card em {
+.start-decision-help {
   color: #6a7784;
   font-size: 0.78rem;
-  font-style: normal;
   font-weight: 650;
   line-height: 1.32;
 }
@@ -4596,7 +4595,7 @@ details,
 .phase2-input-card dd,
 .landing-path span:last-child,
 .start-decision-card span,
-.start-decision-card em,
+.start-decision-help,
 .workplan-command-copy p,
 .review-blocker-card span:last-child,
 .plan-overview-copy p,

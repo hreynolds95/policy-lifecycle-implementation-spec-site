@@ -1348,6 +1348,121 @@ h1 {
   margin: 0;
 }
 
+.audit-intro,
+.audit-record-panel,
+.audit-why-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.audit-chain-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.audit-chain-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.audit-chain-head h2 {
+  color: #242a31;
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.audit-chain {
+  display: grid;
+  grid-template-columns: minmax(128px, 1fr) auto minmax(128px, 1fr) auto minmax(128px, 1fr) auto minmax(128px, 1fr) auto minmax(128px, 1fr);
+  gap: var(--ui-gap-sm);
+  align-items: stretch;
+}
+
+.audit-chain-step {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.24rem;
+  min-height: 154px;
+  padding: var(--ui-card-padding-md);
+}
+
+.audit-chain-step.is-final {
+  border-color: rgba(50, 223, 182, 0.42);
+}
+
+.audit-chain-step span,
+.audit-record-card span {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.audit-chain-step strong,
+.audit-why-card strong {
+  color: #242a31;
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.audit-chain-step p,
+.audit-record-card p,
+.audit-why-card p {
+  color: #4e5d6b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.audit-chain-arrow {
+  align-self: center;
+  color: #7a8794;
+  font-weight: 900;
+}
+
+.audit-record-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.audit-record-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.24rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.audit-why-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.audit-why-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.28rem;
+  padding: var(--ui-card-padding-md);
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -3669,6 +3784,9 @@ details,
 .phase-input-card p,
 .automation-summary-card p,
 .automation-record-card p,
+.audit-chain-step p,
+.audit-record-card p,
+.audit-why-card p,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3704,6 +3822,8 @@ details,
 .phase-input-card span,
 .automation-summary-card span,
 .automation-record-card span,
+.audit-chain-step span,
+.audit-record-card span,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -3767,6 +3887,9 @@ summary,
 .automation-summary-card strong,
 .automation-table td:first-child,
 .automation-record-card strong,
+.audit-chain-head h2,
+.audit-chain-step strong,
+.audit-why-card strong,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -3802,6 +3925,10 @@ summary,
 .phase-input-card,
 .automation-summary-card,
 .automation-record-card,
+.audit-chain-panel,
+.audit-chain-step,
+.audit-record-card,
+.audit-why-card,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -3852,6 +3979,9 @@ summary,
 .phase-input-card,
 .automation-summary-card,
 .automation-record-card,
+.audit-chain-step,
+.audit-record-card,
+.audit-why-card,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -3897,8 +4027,13 @@ summary,
 }
 
 .gate-arrow,
+.audit-chain-arrow,
 .gate-publish-flow span[aria-hidden='true'] {
   color: var(--accent-3);
+}
+
+.audit-chain-step.is-final {
+  border-color: rgba(50, 223, 182, 0.42);
 }
 
 .readiness-summary-card {
@@ -4644,6 +4779,9 @@ pre {
   .phase-input-grid,
   .automation-summary-grid,
   .automation-record-grid,
+  .audit-chain,
+  .audit-record-grid,
+  .audit-why-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -4654,11 +4792,15 @@ pre {
   .role-card,
   .gate-step,
   .readiness-summary-card,
-  .automation-summary-card {
+  .automation-summary-card,
+  .audit-chain-step,
+  .audit-record-card,
+  .audit-why-card {
     min-height: 0;
   }
 
-  .gate-arrow {
+  .gate-arrow,
+  .audit-chain-arrow {
     justify-self: start;
     transform: rotate(90deg);
   }

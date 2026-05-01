@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Auditability and Source of Truth</title>
+    <meta
+      name="description"
+      content="Educational explainer for how the GitHub-native compliance DMS creates an auditable source of truth through Markdown, commits, PDFs, and evidence records."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block audit-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Auditability and Source of Truth</h1>
+        </div>
+        <p class="subtitle">
+          The DMS makes GitHub the authoritative record for governed document content, approvals,
+          publication evidence, and audit traceability. The published PDF is an output of the source
+          record, not a disconnected file.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section audit-intro" aria-labelledby="auditIntroTitle">
+        <span class="implementation-eyebrow">Source of Truth</span>
+        <h2 id="auditIntroTitle">Markdown in GitHub is the governed source record.</h2>
+        <p>
+          The repository stores policy and standard content in a version-controlled, machine-readable
+          format. Approvals, comments, checks, and publication events attach to that record through
+          pull requests, commits, workflow logs, and audit entries.
+        </p>
+      </section>
+
+      <section class="audit-chain-panel" aria-labelledby="auditChainTitle">
+        <div class="audit-chain-head">
+          <span class="implementation-eyebrow">Evidence Chain</span>
+          <h2 id="auditChainTitle">Every published document should trace back to one commit.</h2>
+        </div>
+        <div class="audit-chain" aria-label="Audit evidence chain">
+          <article class="audit-chain-step">
+            <span>01</span>
+            <strong>Markdown source</strong>
+            <p>Policy content, metadata, approval history, and review dates live in the repository.</p>
+          </article>
+          <span class="audit-chain-arrow" aria-hidden="true">-&gt;</span>
+          <article class="audit-chain-step">
+            <span>02</span>
+            <strong>Pull request record</strong>
+            <p>The PR contains the redline, comments, approvals, checks, and tier routing evidence.</p>
+          </article>
+          <span class="audit-chain-arrow" aria-hidden="true">-&gt;</span>
+          <article class="audit-chain-step">
+            <span>03</span>
+            <strong>Merge commit</strong>
+            <p>The approved change lands as a permanent version-controlled snapshot.</p>
+          </article>
+          <span class="audit-chain-arrow" aria-hidden="true">-&gt;</span>
+          <article class="audit-chain-step">
+            <span>04</span>
+            <strong>Published PDF</strong>
+            <p>The Block-branded PDF is generated from the merged source and tied to the commit.</p>
+          </article>
+          <span class="audit-chain-arrow" aria-hidden="true">-&gt;</span>
+          <article class="audit-chain-step is-final">
+            <span>05</span>
+            <strong>Audit log</strong>
+            <p>The publication event, version, evidence links, and notification record are retained.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section audit-record-panel" aria-labelledby="auditRecordTitle">
+        <span class="implementation-eyebrow">Audit Record</span>
+        <h2 id="auditRecordTitle">What an auditor or regulator should be able to verify</h2>
+        <div class="audit-record-grid">
+          <div class="audit-record-card">
+            <span>Content</span>
+            <p>The exact policy or standard text that was approved and published.</p>
+          </div>
+          <div class="audit-record-card">
+            <span>Authority</span>
+            <p>The reviewers, approval label, tier path, and policy governance gate that allowed merge.</p>
+          </div>
+          <div class="audit-record-card">
+            <span>Time</span>
+            <p>The commit timestamp, publication date, review date, and notification timing.</p>
+          </div>
+          <div class="audit-record-card">
+            <span>Output</span>
+            <p>The generated PDF, portal record, and any Google Drive archive reference.</p>
+          </div>
+          <div class="audit-record-card">
+            <span>Controls</span>
+            <p>The validation checks, role enforcement, routing, and approval controls that ran.</p>
+          </div>
+          <div class="audit-record-card">
+            <span>Follow-up</span>
+            <p>Open exceptions, annual review reminders, owner reassignment, or corrective actions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section audit-why-panel" aria-labelledby="auditWhyTitle">
+        <span class="implementation-eyebrow">Why This Matters</span>
+        <h2 id="auditWhyTitle">The system avoids version confusion and disconnected evidence.</h2>
+        <div class="audit-why-grid">
+          <div class="audit-why-card">
+            <strong>No file drift</strong>
+            <p>The source document, approval trail, and published output remain tied together.</p>
+          </div>
+          <div class="audit-why-card">
+            <strong>Machine-readable corpus</strong>
+            <p>Markdown can be validated, searched, indexed by Quincy, and used by future AI tooling.</p>
+          </div>
+          <div class="audit-why-card">
+            <strong>Regulator-ready traceability</strong>
+            <p>A PDF can be shown with the commit and workflow history that produced it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="auditWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="auditWorkstreamsTitle">Where auditability is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/02-repository-taxonomy.html"><span class="step-id">DMS-02</span>Registry and metadata</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Approval evidence</a>
+          <a href="implementation/06-template-enforcement.html"><span class="step-id">DMS-06</span>Validation checks</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness gaps</a>
+          <a href="implementation/12-legacy-migration.html"><span class="step-id">DMS-12</span>Legacy archive traceability</a>
+          <a href="implementation/13-roadmap.html"><span class="step-id">DMS-13</span>Cutover sequencing</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

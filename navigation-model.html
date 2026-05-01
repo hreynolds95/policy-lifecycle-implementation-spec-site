@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Navigation Model</title>
+    <meta
+      name="description"
+      content="Top-level navigation model for the GitHub-native compliance DMS reference site, organized by audience, intent, and decision path."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block navmodel-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Navigation Model</h1>
+        </div>
+        <p class="subtitle">
+          A top-level map for moving through the implementation reference without getting lost. Use
+          this page to choose the right route by audience, decision type, or implementation need.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <!-- Static nav is duplicated intentionally so GitHub Pages remains usable without JavaScript. -->
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="auditability-source.html">Auditability</a>
+        <a href="demo-walkthrough.html">Demo Walkthrough</a>
+        <a href="phase-2-input-checklist.html">Phase 2 Inputs</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="policy-change-story.html">Policy Change Story</a>
+        <a href="brief-crosswalk.html">Brief Crosswalk</a>
+        <a href="navigation-model.html">Navigation Model</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section navmodel-intro" aria-labelledby="navmodelIntroTitle">
+        <span class="implementation-eyebrow">Information Architecture</span>
+        <h2 id="navmodelIntroTitle">The site has four jobs: orient, explain, decide, and execute.</h2>
+        <p>
+          Not every stakeholder needs the same depth. The navigation model separates strategic
+          orientation, educational explanation, decision support, and tactical execution so each person
+          can enter through the path that matches their job.
+        </p>
+      </section>
+
+      <section class="navmodel-layers-panel" aria-labelledby="navmodelLayersTitle">
+        <div class="navmodel-layers-head">
+          <span class="implementation-eyebrow">Top-Level Routes</span>
+          <h2 id="navmodelLayersTitle">Use the route that matches the conversation.</h2>
+        </div>
+        <div class="navmodel-layer-grid" aria-label="Top-level navigation routes">
+          <article class="navmodel-layer-card">
+            <span>01 Orient</span>
+            <strong>Understand the proposal.</strong>
+            <p>Start with the landing page, two-surface model, role experience, and policy change story.</p>
+            <a href="./">Start at Home</a>
+          </article>
+          <article class="navmodel-layer-card">
+            <span>02 Explain</span>
+            <strong>Make the system legible.</strong>
+            <p>Use the glossary, demo walkthrough, auditability page, and governance gates to translate the model.</p>
+            <a href="demo-walkthrough.html">Open Demo Walkthrough</a>
+          </article>
+          <article class="navmodel-layer-card is-critical">
+            <span>03 Decide</span>
+            <strong>Resolve implementation choices.</strong>
+            <p>Use the crosswalk, readiness matrix, and Phase 2 input checklist to identify blockers and decisions.</p>
+            <a href="brief-crosswalk.html">Open Crosswalk</a>
+          </article>
+          <article class="navmodel-layer-card">
+            <span>04 Execute</span>
+            <strong>Assign work and track delivery.</strong>
+            <p>Use the action plan, workstream pages, issue forms, and reference spec to move implementation forward.</p>
+            <a href="implementation/">Open Action Plan</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section navmodel-audience-panel" aria-labelledby="navmodelAudienceTitle">
+        <span class="implementation-eyebrow">Audience Routes</span>
+        <h2 id="navmodelAudienceTitle">Recommended path by stakeholder</h2>
+        <div class="navmodel-audience-grid">
+          <article class="navmodel-audience-card">
+            <span>Executive / Sponsor</span>
+            <strong>Decision confidence route</strong>
+            <p>Home -> Brief Crosswalk -> Readiness Matrix -> Action Plan.</p>
+            <a href="brief-crosswalk.html">Start with Crosswalk</a>
+          </article>
+          <article class="navmodel-audience-card">
+            <span>Policy Owner</span>
+            <strong>How work moves route</strong>
+            <p>Policy Change Story -> Role Experience -> Governance Gates -> Phase 2 Inputs.</p>
+            <a href="policy-change-story.html">Start with Story</a>
+          </article>
+          <article class="navmodel-audience-card">
+            <span>Policy Team</span>
+            <strong>Control design route</strong>
+            <p>Governance Gates -> Auditability -> Automation Catalog -> Action Plan.</p>
+            <a href="governance-gates.html">Start with Gates</a>
+          </article>
+          <article class="navmodel-audience-card">
+            <span>Engineering / Platform</span>
+            <strong>Build scope route</strong>
+            <p>Two Surfaces -> Phase 2 Inputs -> Reference Spec -> Workstream pages.</p>
+            <a href="phase-2-input-checklist.html">Start with Inputs</a>
+          </article>
+          <article class="navmodel-audience-card">
+            <span>Audit / Risk</span>
+            <strong>Evidence route</strong>
+            <p>Auditability -> Policy Change Story -> Governance Gates -> Legacy Migration workstream.</p>
+            <a href="auditability-source.html">Start with Evidence</a>
+          </article>
+          <article class="navmodel-audience-card">
+            <span>Reviewer New To GitHub</span>
+            <strong>Translation route</strong>
+            <p>Glossary -> Demo Walkthrough -> Policy Change Story -> Brief Crosswalk.</p>
+            <a href="glossary.html">Start with Glossary</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section navmodel-map-panel" aria-labelledby="navmodelMapTitle">
+        <span class="implementation-eyebrow">Page Map</span>
+        <h2 id="navmodelMapTitle">Where each page fits</h2>
+        <div class="navmodel-map-grid">
+          <article class="navmodel-map-card">
+            <span>Orientation</span>
+            <p><a href="./">Home</a>, <a href="two-surfaces.html">Two Surfaces</a>, <a href="role-experience.html">Role Experience</a></p>
+          </article>
+          <article class="navmodel-map-card">
+            <span>Control Model</span>
+            <p><a href="governance-gates.html">Governance Gates</a>, <a href="auditability-source.html">Auditability</a>, <a href="automation-catalog.html">Automation Catalog</a></p>
+          </article>
+          <article class="navmodel-map-card">
+            <span>Decision Support</span>
+            <p><a href="readiness-matrix.html">Readiness Matrix</a>, <a href="phase-2-input-checklist.html">Phase 2 Inputs</a>, <a href="brief-crosswalk.html">Brief Crosswalk</a></p>
+          </article>
+          <article class="navmodel-map-card">
+            <span>Explanation</span>
+            <p><a href="demo-walkthrough.html">Demo Walkthrough</a>, <a href="glossary.html">Glossary</a>, <a href="policy-change-story.html">Policy Change Story</a></p>
+          </article>
+          <article class="navmodel-map-card">
+            <span>Execution</span>
+            <p><a href="implementation/">Action Plan</a>, <a href="spec-explorer.html#specExplorer">Reference Spec</a>, GitHub issue forms.</p>
+          </article>
+          <article class="navmodel-map-card">
+            <span>Source Detail</span>
+            <p>Use the Reference Spec when the educational pages are not granular enough for design or build decisions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="navmodelWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="navmodelWorkstreamsTitle">Where navigation model gaps should be routed</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>System boundaries</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal navigation</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Audience communications</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness framing</a>
+          <a href="implementation/13-roadmap.html"><span class="step-id">DMS-13</span>Delivery sequencing</a>
+          <a href="implementation/14-open-decisions.html"><span class="step-id">DMS-14</span>Open decisions</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

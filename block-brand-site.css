@@ -1991,6 +1991,122 @@ h1 {
   color: var(--accent);
 }
 
+.navmodel-intro,
+.navmodel-audience-panel,
+.navmodel-map-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.navmodel-layers-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.navmodel-layers-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.navmodel-layers-head h2 {
+  color: var(--ink);
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.navmodel-layer-grid,
+.navmodel-map-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.navmodel-audience-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.navmodel-map-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.navmodel-layer-card,
+.navmodel-audience-card,
+.navmodel-map-card {
+  border: 1px solid var(--line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-subtle);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.navmodel-layer-card.is-critical {
+  border-color: rgba(255, 217, 102, 0.42);
+}
+
+.navmodel-layer-card span,
+.navmodel-audience-card span,
+.navmodel-map-card span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.navmodel-layer-card strong,
+.navmodel-audience-card strong {
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.navmodel-layer-card p,
+.navmodel-audience-card p,
+.navmodel-map-card p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.navmodel-layer-card a,
+.navmodel-audience-card a,
+.navmodel-map-card a {
+  color: var(--accent-2);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.navmodel-layer-card > a,
+.navmodel-audience-card > a {
+  align-self: end;
+  border: 1px solid var(--line);
+  border-radius: var(--ui-pill-radius);
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 0.2rem;
+  padding: 0.36rem 0.62rem;
+}
+
+.navmodel-layer-card a:hover,
+.navmodel-audience-card a:hover,
+.navmodel-map-card a:hover {
+  color: var(--accent);
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -5459,6 +5575,18 @@ pre {
 
   .crosswalk-priority-card,
   .crosswalk-action-card {
+    min-height: 0;
+  }
+
+  .navmodel-layer-grid,
+  .navmodel-audience-grid,
+  .navmodel-map-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navmodel-layer-card,
+  .navmodel-audience-card,
+  .navmodel-map-card {
     min-height: 0;
   }
 

@@ -2457,6 +2457,18 @@ h1 {
   color: var(--accent);
 }
 
+.secondary-route .secondary-route-primary {
+  background: linear-gradient(135deg, rgba(29, 141, 128, 0.34), rgba(124, 156, 255, 0.18));
+  border-color: rgba(54, 191, 174, 0.72);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgba(54, 191, 174, 0.12), 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.secondary-route .secondary-route-primary:hover {
+  background: linear-gradient(135deg, rgba(54, 191, 174, 0.42), rgba(124, 156, 255, 0.24));
+  color: var(--ink);
+}
+
 .landing-page .landing-paths {
   gap: var(--ui-gap-md);
   margin-bottom: var(--ui-gap-lg);

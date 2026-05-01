@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Phase 2 Input Checklist</title>
+    <meta
+      name="description"
+      content="Phase 2 input checklist for the GitHub-native compliance DMS, covering approvals, metadata, portal scope, migration, and automation readiness."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block phase-inputs-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Phase 2 Input Checklist</h1>
+        </div>
+        <p class="subtitle">
+          A practical intake sheet for the decisions, source files, stakeholder inputs, and readiness
+          evidence needed before Phase 2 build work can proceed with less ambiguity.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="auditability-source.html">Auditability</a>
+        <a href="demo-walkthrough.html">Demo Walkthrough</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section phase2-intro" aria-labelledby="phase2IntroTitle">
+        <span class="implementation-eyebrow">Phase 2 Readiness</span>
+        <h2 id="phase2IntroTitle">The build can only move as fast as the input decisions are clear.</h2>
+        <p>
+          Phase 2 depends on specific governance decisions and data inputs. This page groups the
+          required inputs by workstream so gaps can be assigned before engineering turns them into
+          workflows, templates, checks, and portal behavior.
+        </p>
+      </section>
+
+      <section class="phase2-priority-panel" aria-labelledby="phase2PriorityTitle">
+        <div class="phase2-priority-head">
+          <span class="implementation-eyebrow">Priority Inputs</span>
+          <h2 id="phase2PriorityTitle">Resolve these first to unblock implementation design.</h2>
+        </div>
+        <div class="phase2-priority-grid" aria-label="Phase 2 priority inputs">
+          <article class="phase2-priority-card is-critical">
+            <span>01 Approval Model</span>
+            <strong>Map PoP tollgates to enforceable GitHub rules.</strong>
+            <p>Without this, branch protection, CODEOWNERS, issue forms, and merge gates remain speculative.</p>
+          </article>
+          <article class="phase2-priority-card is-critical">
+            <span>02 Metadata Registry</span>
+            <strong>Confirm the canonical fields required for every policy and standard.</strong>
+            <p>Without this, automation, search, reminders, reporting, and migration checks cannot be trusted.</p>
+          </article>
+          <article class="phase2-priority-card">
+            <span>03 Migration Evidence</span>
+            <strong>Define what LogicGate history must survive cutover.</strong>
+            <p>Without this, GitHub can publish new work but may not fully replace legacy evidence.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section phase2-checklist-panel" aria-labelledby="phase2ChecklistTitle">
+        <span class="implementation-eyebrow">Checklist</span>
+        <h2 id="phase2ChecklistTitle">Inputs to collect before Phase 2 build</h2>
+        <div class="phase2-checklist-grid">
+          <article class="phase2-input-card">
+            <span>Approval Inputs</span>
+            <strong>Tiered approval parity</strong>
+            <dl>
+              <div>
+                <dt>Needed from</dt>
+                <dd>Policy Governance, Legal, Compliance approvers, GitHub admins.</dd>
+              </div>
+              <div>
+                <dt>Decision needed</dt>
+                <dd>Which approval gates are enforced by CODEOWNERS, branch protection, labels, or issue signoff?</dd>
+              </div>
+              <div>
+                <dt>Unlocks</dt>
+                <dd>DMS-03 Access Control and DMS-04 Governance Workflow.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="phase2-input-card">
+            <span>Metadata Inputs</span>
+            <strong>Canonical document registry</strong>
+            <dl>
+              <div>
+                <dt>Needed from</dt>
+                <dd>Current inventory owners, Policy Team, domain leads, migration support.</dd>
+              </div>
+              <div>
+                <dt>Decision needed</dt>
+                <dd>Required metadata fields, taxonomy values, review cadence, owner model, and exception markers.</dd>
+              </div>
+              <div>
+                <dt>Unlocks</dt>
+                <dd>DMS-02 Repository Taxonomy, DMS-06 Template Enforcement, and DMS-08 Awareness Communications.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="phase2-input-card">
+            <span>Portal Inputs</span>
+            <strong>Staff-facing policy experience</strong>
+            <dl>
+              <div>
+                <dt>Needed from</dt>
+                <dd>Policy users, document owners, portal/platform owners, search stakeholders.</dd>
+              </div>
+              <div>
+                <dt>Decision needed</dt>
+                <dd>Which actions live in the portal versus GitHub, including search, request initiation, and conflict warnings?</dd>
+              </div>
+              <div>
+                <dt>Unlocks</dt>
+                <dd>DMS-07 GitHub Pages Portal and role-gated actions.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="phase2-input-card">
+            <span>Migration Inputs</span>
+            <strong>LogicGate cutover evidence</strong>
+            <dl>
+              <div>
+                <dt>Needed from</dt>
+                <dd>LogicGate admins, records owners, audit stakeholders, migration support.</dd>
+              </div>
+              <div>
+                <dt>Decision needed</dt>
+                <dd>Which legacy versions, approvals, attachments, archive links, and publication records must be migrated?</dd>
+              </div>
+              <div>
+                <dt>Unlocks</dt>
+                <dd>DMS-11 Gap Analysis and DMS-12 Legacy Migration.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="phase2-input-card">
+            <span>Automation Inputs</span>
+            <strong>Governance control signals</strong>
+            <dl>
+              <div>
+                <dt>Needed from</dt>
+                <dd>Policy Team, document owners, exception owners, communications owners, GitHub workflow owners.</dd>
+              </div>
+              <div>
+                <dt>Decision needed</dt>
+                <dd>Trigger signals, cadences, output issue templates, labels, and evidence expectations for each automation.</dd>
+              </div>
+              <div>
+                <dt>Unlocks</dt>
+                <dd>DMS-05 Exception Handling, DMS-08 Awareness Communications, and DMS-09 Orphaned Documents.</dd>
+              </div>
+            </dl>
+          </article>
+          <article class="phase2-input-card">
+            <span>Operating Inputs</span>
+            <strong>Ownership and acceptance criteria</strong>
+            <dl>
+              <div>
+                <dt>Needed from</dt>
+                <dd>Program DRI, Policy Team, engineering owner, security partner, platform partner.</dd>
+              </div>
+              <div>
+                <dt>Decision needed</dt>
+                <dd>Who owns each workstream, what evidence proves done, and which blockers must be escalated?</dd>
+              </div>
+              <div>
+                <dt>Unlocks</dt>
+                <dd>DMS-13 Roadmap and DMS-14 Open Decisions.</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section phase2-output-panel" aria-labelledby="phase2OutputTitle">
+        <span class="implementation-eyebrow">Output Format</span>
+        <h2 id="phase2OutputTitle">Each checklist gap should become an assignable GitHub issue.</h2>
+        <div class="phase2-output-grid">
+          <div class="phase2-output-card">
+            <span>Issue title</span>
+            <p>Use the workstream ID and input category so blockers sort cleanly.</p>
+          </div>
+          <div class="phase2-output-card">
+            <span>Required fields</span>
+            <p>Owner, dependency, decision needed, target date, evidence link, and affected workstream.</p>
+          </div>
+          <div class="phase2-output-card">
+            <span>Exit criteria</span>
+            <p>A documented decision, source file, or approved assumption that the build can rely on.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="phase2WorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="phase2WorkstreamsTitle">Where checklist gaps should be routed</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/02-repository-taxonomy.html"><span class="step-id">DMS-02</span>Metadata registry</a>
+          <a href="implementation/03-access-control.html"><span class="step-id">DMS-03</span>Access model</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Approval workflow</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal scope</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness gaps</a>
+          <a href="implementation/14-open-decisions.html"><span class="step-id">DMS-14</span>Open decisions</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

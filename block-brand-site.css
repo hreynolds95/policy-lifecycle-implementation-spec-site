@@ -1581,6 +1581,113 @@ h1 {
   padding: var(--ui-card-padding-md);
 }
 
+.phase2-intro,
+.phase2-checklist-panel,
+.phase2-output-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.phase2-priority-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.phase2-priority-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.phase2-priority-head h2 {
+  color: #242a31;
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.phase2-priority-grid,
+.phase2-output-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.phase2-checklist-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.phase2-priority-card,
+.phase2-input-card,
+.phase2-output-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.phase2-priority-card.is-critical {
+  border-color: rgba(255, 217, 102, 0.42);
+}
+
+.phase2-priority-card span,
+.phase2-input-card > span,
+.phase2-output-card span {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.phase2-priority-card strong,
+.phase2-input-card strong {
+  color: #242a31;
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.phase2-priority-card p,
+.phase2-output-card p,
+.phase2-input-card dd {
+  color: #4e5d6b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.phase2-input-card dl {
+  display: grid;
+  gap: var(--ui-gap-sm);
+  margin: var(--ui-gap-sm) 0 0;
+}
+
+.phase2-input-card dl div {
+  border-top: 1px solid var(--card-line);
+  display: grid;
+  gap: 0.18rem;
+  padding-top: var(--ui-gap-sm);
+}
+
+.phase2-input-card dt {
+  color: var(--label-ink);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -3908,6 +4015,9 @@ details,
 .demo-step-card p,
 .demo-proof-card p,
 .demo-question-list p,
+.phase2-priority-card p,
+.phase2-output-card p,
+.phase2-input-card dd,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3947,6 +4057,10 @@ details,
 .audit-record-card span,
 .demo-step-card span,
 .demo-proof-card span,
+.phase2-priority-card span,
+.phase2-input-card > span,
+.phase2-output-card span,
+.phase2-input-card dt,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -4016,6 +4130,9 @@ summary,
 .demo-run-head h2,
 .demo-step-card strong,
 .demo-proof-card strong,
+.phase2-priority-head h2,
+.phase2-priority-card strong,
+.phase2-input-card strong,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -4059,6 +4176,10 @@ summary,
 .demo-step-card,
 .demo-proof-card,
 .demo-question-list p,
+.phase2-priority-panel,
+.phase2-priority-card,
+.phase2-input-card,
+.phase2-output-card,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -4115,6 +4236,9 @@ summary,
 .demo-step-card,
 .demo-proof-card,
 .demo-question-list p,
+.phase2-priority-card,
+.phase2-input-card,
+.phase2-output-card,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -4180,6 +4304,14 @@ summary,
 
 .demo-step-card a:hover {
   border-color: var(--accent);
+}
+
+.phase2-priority-card.is-critical {
+  border-color: rgba(255, 217, 102, 0.42);
+}
+
+.phase2-input-card dl div {
+  border-color: var(--line);
 }
 
 .readiness-summary-card {
@@ -4930,6 +5062,9 @@ pre {
   .audit-why-grid,
   .demo-timeline,
   .demo-proof-grid,
+  .phase2-priority-grid,
+  .phase2-checklist-grid,
+  .phase2-output-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -4945,7 +5080,10 @@ pre {
   .audit-record-card,
   .audit-why-card,
   .demo-step-card,
-  .demo-proof-card {
+  .demo-proof-card,
+  .phase2-priority-card,
+  .phase2-input-card,
+  .phase2-output-card {
     min-height: 0;
   }
 

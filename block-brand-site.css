@@ -3471,6 +3471,20 @@ h1 {
   margin: 0.55rem 0 0;
 }
 
+.implementation-list {
+  color: var(--muted);
+  display: grid;
+  gap: 0.44rem;
+  margin: 0.65rem 0 0;
+  padding-left: 1.3rem;
+}
+
+.implementation-list li {
+  font-size: var(--type-body);
+  font-weight: 650;
+  line-height: var(--leading-body);
+}
+
 .implementation-table {
   width: 100%;
   border-collapse: collapse;

@@ -1,0 +1,174 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Validation Packet</title>
+    <meta
+      name="description"
+      content="Validation packet for proving a GitHub-native compliance DMS is ready to replace LogicGate."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block validation-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Validation Packet</h1>
+        </div>
+        <p class="subtitle">
+          A reviewer-ready evidence checklist for proving the GitHub-native compliance DMS can replace
+          LogicGate without losing PoP approval parity, audit traceability, or operational ownership.
+        </p>
+      </header>
+
+      {% include site-nav.html %}
+
+      <section class="implementation-section" aria-labelledby="validationDecisionTitle">
+        <span class="implementation-eyebrow">Validation Outcome</span>
+        <h2 id="validationDecisionTitle">Use this packet to decide if the system is cutover-ready.</h2>
+        <div class="exec-grid exec-grid-three" aria-label="Validation outcomes">
+          <article class="exec-card is-critical">
+            <span>Required</span>
+            <strong>Approval parity is proven.</strong>
+            <p>Each PoP tollgate has a mapped GitHub control, owner, artifact, and failure mode.</p>
+          </article>
+          <article class="exec-card is-critical">
+            <span>Required</span>
+            <strong>Audit evidence is traceable.</strong>
+            <p>Every published document can be traced to source, review, approval, merge, and publication evidence.</p>
+          </article>
+          <article class="exec-card">
+            <span>Required</span>
+            <strong>Operating ownership is assigned.</strong>
+            <p>Daily, monthly, exception, orphan, migration, and stakeholder communication controls have DRIs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section" aria-labelledby="validationChecklistTitle">
+        <span class="implementation-eyebrow">Acceptance Checklist</span>
+        <h2 id="validationChecklistTitle">Minimum evidence before LogicGate replacement</h2>
+        <div class="crosswalk-table-wrap">
+          <table class="implementation-table crosswalk-table">
+            <thead>
+              <tr>
+                <th>Validation Area</th>
+                <th>Evidence To Review</th>
+                <th>Pass Standard</th>
+                <th>Primary Workstreams</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>System of record</td>
+                <td>Repository taxonomy, registry schema, archive link model, and source-to-PDF trace.</td>
+                <td>GitHub record is canonical for governed policies and standards.</td>
+                <td><a href="implementation/01-architecture-overview.html">DMS-01</a>, <a href="implementation/02-repository-taxonomy.html">DMS-02</a>, <a href="implementation/12-legacy-migration.html">DMS-12</a></td>
+              </tr>
+              <tr>
+                <td>PoP tollgate parity</td>
+                <td>Branch protection, CODEOWNERS, approval labels, QC checks, exception path, and merge blocks.</td>
+                <td>Required approvers and checks cannot be bypassed for each tier.</td>
+                <td><a href="implementation/03-access-control.html">DMS-03</a>, <a href="implementation/04-governance-workflow.html">DMS-04</a>, <a href="implementation/06-template-enforcement.html">DMS-06</a></td>
+              </tr>
+              <tr>
+                <td>Audit chain</td>
+                <td>Sample policy change PR, approval trail, generated output, audit log, and notification record.</td>
+                <td>Reviewer can reconstruct who changed what, who approved it, when it published, and what was sent.</td>
+                <td><a href="auditability-source.html">Auditability</a>, <a href="policy-change-story.html">Policy Change Story</a>, <a href="implementation/11-gap-analysis.html">DMS-11</a></td>
+              </tr>
+              <tr>
+                <td>Portal usability</td>
+                <td>Staff-facing library, search, document detail, role experience, and request initiation design.</td>
+                <td>Employees can find current documents without GitHub training; governed actors know where to act.</td>
+                <td><a href="role-experience.html">Role Experience</a>, <a href="two-surfaces.html">Two Surfaces</a>, <a href="implementation/07-portal-specification.html">DMS-07</a></td>
+              </tr>
+              <tr>
+                <td>Continuous controls</td>
+                <td>Review reminders, exception expiry, portfolio digest, orphan detection, and awareness communications.</td>
+                <td>Recurring governance work produces structured records without manual chase-down.</td>
+                <td><a href="automation-catalog.html">Automation Catalog</a>, <a href="implementation/05-exception-handling.html">DMS-05</a>, <a href="implementation/08-awareness-communications.html">DMS-08</a>, <a href="implementation/09-orphaned-documents.html">DMS-09</a></td>
+              </tr>
+              <tr>
+                <td>Cutover readiness</td>
+                <td>Gap register, legacy migration proof, open decision log, roadmap, and owner-backed action plan.</td>
+                <td>Known gaps are mitigated, accepted, or assigned before LogicGate decommission.</td>
+                <td><a href="readiness-matrix.html">Readiness Matrix</a>, <a href="implementation/11-gap-analysis.html">DMS-11</a>, <a href="implementation/13-roadmap.html">DMS-13</a>, <a href="implementation/14-open-decisions.html">DMS-14</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="implementation-section" aria-labelledby="validationAgendaTitle">
+        <span class="implementation-eyebrow">Reviewer Walkthrough</span>
+        <h2 id="validationAgendaTitle">Sixty-minute validation agenda</h2>
+        <div class="exec-grid exec-grid-four" aria-label="Validation walkthrough agenda">
+          <article class="exec-card">
+            <span>00-10 min</span>
+            <strong>Frame the decision.</strong>
+            <p>Use the executive summary to align on the LogicGate replacement assumption and decision ask.</p>
+          </article>
+          <article class="exec-card">
+            <span>10-25 min</span>
+            <strong>Trace one policy change.</strong>
+            <p>Walk from intake through PR, QC, approval, publication, and evidence capture.</p>
+          </article>
+          <article class="exec-card">
+            <span>25-45 min</span>
+            <strong>Test the hard controls.</strong>
+            <p>Review approval parity, template checks, owner restrictions, exception routing, and audit trail.</p>
+          </article>
+          <article class="exec-card">
+            <span>45-60 min</span>
+            <strong>Resolve cutover blockers.</strong>
+            <p>Use the action plan to assign owners for unresolved Phase 2 inputs, dependencies, and gaps.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section" aria-labelledby="validationQuestionsTitle">
+        <span class="implementation-eyebrow">Decision Questions</span>
+        <h2 id="validationQuestionsTitle">Questions this packet should answer clearly</h2>
+        <ol class="implementation-list">
+          <li>Can a Tier 1, Tier 2, or Tier 3 policy change merge without the required approval evidence?</li>
+          <li>Can the Policy Governance Team prove which document version was active on a historical date?</li>
+          <li>Can employees find the current published document without needing GitHub training?</li>
+          <li>Can exceptions, review reminders, orphaned documents, and monthly digests be monitored without spreadsheets?</li>
+          <li>Are every Phase 2 blocker, decision, and legacy migration gap assigned to an owner?</li>
+        </ol>
+      </section>
+
+      <section class="implementation-section exec-links-panel" aria-labelledby="validationLinksTitle">
+        <span class="implementation-eyebrow">Evidence Pack</span>
+        <h2 id="validationLinksTitle">Open these pages during validation</h2>
+        <div class="exec-grid exec-grid-four">
+          <a class="exec-card exec-link-card" href="executive-summary.html"><span>Frame</span><strong>Executive Summary</strong></a>
+          <a class="exec-card exec-link-card" href="readiness-matrix.html"><span>Assess</span><strong>Readiness Matrix</strong></a>
+          <a class="exec-card exec-link-card" href="governance-gates.html"><span>Control</span><strong>Governance Gates</strong></a>
+          <a class="exec-card exec-link-card" href="auditability-source.html"><span>Prove</span><strong>Auditability</strong></a>
+          <a class="exec-card exec-link-card" href="policy-change-story.html"><span>Trace</span><strong>Policy Change Story</strong></a>
+          <a class="exec-card exec-link-card" href="implementation/"><span>Assign</span><strong>Action Plan</strong></a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

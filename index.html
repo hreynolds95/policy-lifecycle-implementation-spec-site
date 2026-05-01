@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitHub DMS Action Plan</title>
+    <title>GitHub DMS Replacement Hub</title>
     <meta
       name="description"
-      content="Action Plan for replacing LogicGate with a GitHub-native compliance policy and standards DMS."
+      content="Proposal and execution hub for replacing LogicGate with a GitHub-native compliance policy and standards DMS."
     />
     <link rel="stylesheet" href="block-brand-site.css" />
 
@@ -26,146 +26,79 @@
             />
           </div>
           <span class="hero-title-divider" aria-hidden="true"></span>
-          <h1>GitHub DMS Action Plan</h1>
+          <h1>GitHub DMS Replacement Hub</h1>
         </div>
         <p class="subtitle">
-          Shareable planning view for replacing LogicGate with a GitHub-native compliance policy and
-          standards DMS. Start by reviewing the Action Plan, then assign owners and decisions in GitHub.
+          A proposal and execution hub for replacing LogicGate with a GitHub-native compliance document
+          management system.
         </p>
         <div class="badge-row">
-          <span class="badge">Planning Mode: Collaborative Draft</span>
-          <span class="badge">Target Platform: GitHub</span>
-          <span class="badge">Source File: ACTION_PLAN.md</span>
+          <span class="badge">Collaborative Draft</span>
         </div>
       </header>
 
-      <section class="readiness-bar card" aria-label="Action plan collaboration summary">
-        <span class="readiness-bar-label">Action Plan</span>
-        <div class="readiness-bar-items">
-          <span><strong>Mode:</strong> Share + edit</span>
-          <span><strong>Workstreams:</strong> 14</span>
-          <span><strong>Next:</strong> Assign DRIs</span>
-          <span><strong>Edits:</strong> Issue forms</span>
-          <span><strong>Updated:</strong> <span id="readinessCommitStamp">loading...</span></span>
+      <section class="start-here-panel card" aria-labelledby="startHereTitle">
+        <div class="start-here-copy">
+          <span class="start-here-label"><span class="start-here-badge" aria-hidden="true">1</span><span>Start here</span></span>
+          <h2 id="startHereTitle">Choose the path that matches what you need to decide.</h2>
+        </div>
+        <div class="start-decision-grid" aria-label="Recommended first clicks">
+          <a class="start-decision-card is-primary" href="executive-summary.html">
+            <span>Understand the proposal</span>
+            <strong>Open Executive Summary</strong>
+            <em>Use this if you need the why, decision ask, and operating model.</em>
+          </a>
+          <a class="start-decision-card" href="validation-packet.html">
+            <span>Validate readiness</span>
+            <strong>Open Validation Packet</strong>
+            <em>Use this if you need evidence that GitHub can replace LogicGate.</em>
+          </a>
+          <a class="start-decision-card" href="implementation/">
+            <span>Execute the plan</span>
+            <strong>Open Action Plan</strong>
+            <em>Use this if you need owners, workstreams, dependencies, and next actions.</em>
+          </a>
+        </div>
+      </section>
+
+      <section class="review-path card" aria-labelledby="reviewPathTitle">
+        <span class="overview-eyebrow">Recommended First Review</span>
+        <h2 id="reviewPathTitle">Executive Summary → Validation Packet → Action Plan</h2>
+        <div class="review-path-steps" aria-label="Recommended review sequence">
+          <a href="executive-summary.html"><span>01</span><strong>Frame the decision</strong></a>
+          <a href="validation-packet.html"><span>02</span><strong>Check the evidence</strong></a>
+          <a href="implementation/"><span>03</span><strong>Assign the work</strong></a>
         </div>
       </section>
 
       <section class="dms-overview card" aria-labelledby="dmsOverviewTitle">
         <div class="dms-overview-copy">
-          <span class="overview-eyebrow">Executive Overview</span>
-          <h2 id="dmsOverviewTitle">A GitHub-native DMS for governed compliance documents.</h2>
-          <p>
-            The target system replaces manual distribution, email approval chains, and spreadsheet tracking
-            with a version-controlled workflow. Document content lives in Markdown as the source of truth,
-            changes move through approval gates, and each publication creates a permanent audit record tied
-            to a specific git commit.
-          </p>
-          <div class="overview-link-row">
-            <a class="overview-deep-link" href="two-surfaces.html">Read the two-surface model</a>
-            <a class="overview-deep-link" href="role-experience.html">Explore role experience</a>
-            <a class="overview-deep-link" href="governance-gates.html">View governance gates</a>
-            <a class="overview-deep-link" href="readiness-matrix.html">Check readiness matrix</a>
-            <a class="overview-deep-link" href="automation-catalog.html">Browse automations</a>
-            <a class="overview-deep-link" href="auditability-source.html">Trace audit evidence</a>
-            <a class="overview-deep-link" href="demo-walkthrough.html">Run the demo walkthrough</a>
-            <a class="overview-deep-link" href="phase-2-input-checklist.html">Review Phase 2 inputs</a>
-            <a class="overview-deep-link" href="glossary.html">Translate GitHub terms</a>
-            <a class="overview-deep-link" href="policy-change-story.html">Follow a policy change</a>
-            <a class="overview-deep-link" href="brief-crosswalk.html">Map brief concepts</a>
-            <a class="overview-deep-link" href="navigation-model.html">Choose navigation route</a>
-            <a class="overview-deep-link" href="executive-summary.html">Share executive summary</a>
-            <a class="overview-deep-link" href="validation-packet.html">Validate cutover readiness</a>
-          </div>
+          <span class="overview-eyebrow">Proposal Summary</span>
+          <h2 id="dmsOverviewTitle">The proposal in three parts</h2>
         </div>
-        <div class="overview-proof-grid" aria-label="Core DMS capabilities">
+        <div class="overview-proof-grid is-trimmed" aria-label="Core DMS capabilities">
           <div class="overview-proof-card">
             <span>01</span>
-            <strong>Machine-readable source</strong>
-            <p>Policies and standards are stored in GitHub so the document corpus can be validated, searched, and indexed by AI tooling.</p>
+            <strong>Source of truth</strong>
+            <p>Governed policies and standards move into GitHub as the authoritative record.</p>
           </div>
           <div class="overview-proof-card">
             <span>02</span>
-            <strong>Governed change flow</strong>
-            <p>Every material change is reviewed on a branch, routed by tier, approved, merged, and retained as evidence.</p>
+            <strong>Governed workflow</strong>
+            <p>Changes route through defined review, QC, approval, and publication controls.</p>
           </div>
           <div class="overview-proof-card">
             <span>03</span>
-            <strong>Two user surfaces</strong>
-            <p>Staff use the policy library portal; owners, submitters, and the Policy Governance Team use GitHub for governance work.</p>
-          </div>
-          <div class="overview-proof-card">
-            <span>04</span>
-            <strong>Audit-ready output</strong>
-            <p>Published PDFs, approval history, audit logs, and notifications can be traced back to the repository record.</p>
+            <strong>Audit evidence</strong>
+            <p>Published outputs trace back to source, approvals, checks, and the final record.</p>
           </div>
         </div>
       </section>
 
-      <section class="exec-panel card" aria-labelledby="execHomeTitle">
-        <div class="exec-copy">
-          <span class="overview-eyebrow">Share Package</span>
-          <h2 id="execHomeTitle">Need a sponsor-ready artifact?</h2>
-          <p>
-            Start with the executive summary, then use the crosswalk and readiness matrix to route
-            questions into decisions and workstreams.
-          </p>
-        </div>
-        <div class="exec-actions" aria-label="Executive share package links">
-          <a class="exec-action" href="executive-summary.html">Open Executive Summary</a>
-          <a class="exec-action" href="validation-packet.html">Validate Readiness</a>
-          <a class="exec-action" href="brief-crosswalk.html">Map Concepts</a>
-          <a class="exec-action" href="readiness-matrix.html">Review Readiness</a>
-        </div>
-      </section>
-
-      <section class="start-here-panel card" aria-labelledby="startHereTitle">
-        <div class="start-here-copy">
-          <span class="start-here-label"><span class="start-here-badge" aria-hidden="true">!</span><span>Start here</span><span class="start-here-arrow" aria-hidden="true">-&gt;</span></span>
-          <h2 id="startHereTitle">Choose the path based on the decision you need to make.</h2>
-        </div>
-        <div class="start-decision-grid" aria-label="Recommended first clicks">
-          <a class="start-decision-card is-primary" href="implementation/">
-            <span>Need the Action Plan?</span>
-            <strong>Open Action Plan</strong>
-          </a>
-          <a class="start-decision-card" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml">
-            <span>Need to submit an update?</span>
-            <strong>Update Workstream</strong>
-          </a>
-          <a class="start-decision-card" href="spec-explorer.html#specExplorer">
-            <span>Need technical detail?</span>
-            <strong>Open Reference Spec</strong>
-          </a>
-        </div>
-      </section>
-
-      <section class="landing-paths" aria-label="Primary navigation">
-        <a class="landing-path primary-path" href="implementation/">
-          <span class="landing-path-label">Action Plan</span>
-          <strong>Open Action Plan</strong>
-          <span>Shareable view of the 14 implementation workstreams, collaboration needs, and next actions.</span>
-        </a>
-        <a class="landing-path" href="https://github.com/hreynolds95/policy-lifecycle-implementation-spec-site/issues/new?template=workstream-update.yml">
-          <span class="landing-path-label">Update Workstream</span>
-          <strong>Update Workstream</strong>
-          <span>Submit a structured workstream update through GitHub.</span>
-        </a>
-        <a class="landing-path" href="spec-explorer.html#specExplorer">
-          <span class="landing-path-label">Reference Spec</span>
-          <strong>Open Reference Spec</strong>
-          <span>Detailed GitHub workflow design, approval gates, audit controls, and delivery plan.</span>
-        </a>
-      </section>
-
-      <section class="landing-next card" aria-label="Next best action">
-        <span class="landing-next-label">Next Best Action</span>
-        <div class="landing-action-flow">
-          <span>Open Action Plan</span>
-          <span aria-hidden="true">→</span>
-          <span>Assign DRIs</span>
-          <span aria-hidden="true">→</span>
-          <span>Update Workstream</span>
-        </div>
+      <section class="secondary-route card" aria-label="Secondary navigation">
+        <span>Need a different route?</span>
+        <a href="navigation-model.html">Choose Navigation Route</a>
+        <a href="spec-explorer.html#specExplorer">Open Reference Spec</a>
       </section>
 
       <footer class="site-footer" aria-label="Site metadata">
@@ -179,7 +112,6 @@
 
     <script>
       const lastCommitStamp = document.getElementById('lastCommitStamp');
-      const readinessCommitStamp = document.getElementById('readinessCommitStamp');
 
       function formatTimestamp(isoString) {
         const value = new Date(isoString);
@@ -196,17 +128,13 @@
 
       function setCommitStamp(prefix, isoString) {
         const formatted = formatTimestamp(isoString);
-        const value = formatted || 'unavailable';
         if (lastCommitStamp) {
           lastCommitStamp.textContent = formatted ? `${prefix} ${formatted}` : `${prefix} unavailable`;
-        }
-        if (readinessCommitStamp) {
-          readinessCommitStamp.textContent = value;
         }
       }
 
       async function loadLastCommitStamp() {
-        if (!lastCommitStamp && !readinessCommitStamp) return;
+        if (!lastCommitStamp) return;
         const lastModified = new Date(document.lastModified);
         const fallbackIso = Number.isNaN(lastModified.getTime())
           ? new Date().toISOString()

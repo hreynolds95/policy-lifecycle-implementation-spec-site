@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Brief Concept Crosswalk</title>
+    <meta
+      name="description"
+      content="Crosswalk mapping DMS brief concepts to the GitHub-native compliance DMS workstreams and educational reference pages."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block crosswalk-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Brief Concept Crosswalk</h1>
+        </div>
+        <p class="subtitle">
+          A traceability map from the DMS brief concepts to the implementation workstreams. Use this
+          page to answer: "Where does this idea show up in the actual build plan?"
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <!-- Static nav is duplicated intentionally so GitHub Pages remains usable without JavaScript. -->
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="automation-catalog.html">Automation Catalog</a>
+        <a href="auditability-source.html">Auditability</a>
+        <a href="demo-walkthrough.html">Demo Walkthrough</a>
+        <a href="phase-2-input-checklist.html">Phase 2 Inputs</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="policy-change-story.html">Policy Change Story</a>
+        <a href="brief-crosswalk.html">Brief Crosswalk</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section crosswalk-intro" aria-labelledby="crosswalkIntroTitle">
+        <span class="implementation-eyebrow">Concept Traceability</span>
+        <h2 id="crosswalkIntroTitle">Each brief concept should resolve to work that can be assigned.</h2>
+        <p>
+          This page keeps the strategy-to-execution line visible. The brief explains why the DMS should
+          exist; the workstreams define what must be built, decided, validated, or migrated.
+        </p>
+      </section>
+
+      <section class="crosswalk-priority-panel" aria-labelledby="crosswalkPriorityTitle">
+        <div class="crosswalk-priority-head">
+          <span class="implementation-eyebrow">Highest Leverage Concepts</span>
+          <h2 id="crosswalkPriorityTitle">These concepts drive the largest implementation decisions.</h2>
+        </div>
+        <div class="crosswalk-priority-grid" aria-label="Highest leverage brief concepts">
+          <article class="crosswalk-priority-card is-critical">
+            <span>01 Source of Truth</span>
+            <strong>GitHub becomes the governed record, not just a collaboration tool.</strong>
+            <p>Impacts repository structure, migration readiness, publication controls, and audit evidence.</p>
+          </article>
+          <article class="crosswalk-priority-card is-critical">
+            <span>02 Approval Parity</span>
+            <strong>PoP tollgates must remain enforceable after LogicGate replacement.</strong>
+            <p>Impacts branch protection, CODEOWNERS, issue signoff, QC gates, and exception paths.</p>
+          </article>
+          <article class="crosswalk-priority-card">
+            <span>03 Two Surfaces</span>
+            <strong>Employees get a simple portal; governance teams get controlled GitHub workflows.</strong>
+            <p>Impacts portal scope, user roles, training, support model, and search experience.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section crosswalk-table-panel" aria-labelledby="crosswalkTableTitle">
+        <span class="implementation-eyebrow">Crosswalk</span>
+        <h2 id="crosswalkTableTitle">Brief concepts mapped to workstreams</h2>
+        <div class="crosswalk-table-wrap">
+          <table class="implementation-table crosswalk-table">
+            <thead>
+              <tr>
+                <th>Brief Concept</th>
+                <th>Implementation Meaning</th>
+                <th>Primary Workstreams</th>
+                <th>Reference Pages</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GitHub as source of truth</td>
+                <td>Markdown, metadata, commits, approvals, and audit evidence become the governed system record.</td>
+                <td>
+                  <a href="implementation/01-architecture-overview.html">DMS-01</a>,
+                  <a href="implementation/02-repository-taxonomy.html">DMS-02</a>,
+                  <a href="implementation/12-legacy-migration.html">DMS-12</a>
+                </td>
+                <td><a href="auditability-source.html">Auditability</a>, <a href="glossary.html">Glossary</a></td>
+              </tr>
+              <tr>
+                <td>Two-surface operating model</td>
+                <td>Portal users consume documents; governance users manage controlled change and evidence.</td>
+                <td>
+                  <a href="implementation/03-access-control.html">DMS-03</a>,
+                  <a href="implementation/07-portal-specification.html">DMS-07</a>
+                </td>
+                <td><a href="two-surfaces.html">Two Surfaces</a>, <a href="role-experience.html">Role Experience</a></td>
+              </tr>
+              <tr>
+                <td>PoP approval parity</td>
+                <td>TG1-TG4 gates, tiered approvers, QC checks, and publication readiness are enforced in GitHub.</td>
+                <td>
+                  <a href="implementation/03-access-control.html">DMS-03</a>,
+                  <a href="implementation/04-governance-workflow.html">DMS-04</a>,
+                  <a href="implementation/06-template-enforcement.html">DMS-06</a>
+                </td>
+                <td><a href="governance-gates.html">Governance Gates</a>, <a href="phase-2-input-checklist.html">Phase 2 Inputs</a></td>
+              </tr>
+              <tr>
+                <td>Audit-ready evidence chain</td>
+                <td>Published outputs must trace to source, PR approvals, checks, merge commit, notifications, and audit log.</td>
+                <td>
+                  <a href="implementation/04-governance-workflow.html">DMS-04</a>,
+                  <a href="implementation/08-awareness-communications.html">DMS-08</a>,
+                  <a href="implementation/11-gap-analysis.html">DMS-11</a>
+                </td>
+                <td><a href="auditability-source.html">Auditability</a>, <a href="policy-change-story.html">Policy Change Story</a></td>
+              </tr>
+              <tr>
+                <td>Continuous governance automations</td>
+                <td>Review reminders, exception expiry, monthly digest, and orphan detection become scheduled GitHub evidence.</td>
+                <td>
+                  <a href="implementation/05-exception-handling.html">DMS-05</a>,
+                  <a href="implementation/08-awareness-communications.html">DMS-08</a>,
+                  <a href="implementation/09-orphaned-documents.html">DMS-09</a>
+                </td>
+                <td><a href="automation-catalog.html">Automation Catalog</a></td>
+              </tr>
+              <tr>
+                <td>Procedure and non-governed document routing</td>
+                <td>Procedures are triaged only when they implement policy, have regulatory implications, or are submitted externally.</td>
+                <td>
+                  <a href="implementation/10-non-governed-controls.html">DMS-10</a>,
+                  <a href="implementation/14-open-decisions.html">DMS-14</a>
+                </td>
+                <td><a href="phase-2-input-checklist.html">Phase 2 Inputs</a></td>
+              </tr>
+              <tr>
+                <td>LogicGate replacement and cutover</td>
+                <td>Legacy records, archive references, versions, approval evidence, and readiness gaps must be migrated or accepted.</td>
+                <td>
+                  <a href="implementation/11-gap-analysis.html">DMS-11</a>,
+                  <a href="implementation/12-legacy-migration.html">DMS-12</a>,
+                  <a href="implementation/13-roadmap.html">DMS-13</a>
+                </td>
+                <td><a href="readiness-matrix.html">Readiness Matrix</a>, <a href="phase-2-input-checklist.html">Phase 2 Inputs</a></td>
+              </tr>
+              <tr>
+                <td>AI-ready policy corpus</td>
+                <td>Structured source documents and metadata enable search, Quincy indexing, QC assistance, and future analysis.</td>
+                <td>
+                  <a href="implementation/02-repository-taxonomy.html">DMS-02</a>,
+                  <a href="implementation/06-template-enforcement.html">DMS-06</a>,
+                  <a href="implementation/07-portal-specification.html">DMS-07</a>
+                </td>
+                <td><a href="two-surfaces.html">Two Surfaces</a>, <a href="glossary.html">Glossary</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="implementation-section crosswalk-action-panel" aria-labelledby="crosswalkActionTitle">
+        <span class="implementation-eyebrow">How To Use This</span>
+        <h2 id="crosswalkActionTitle">Turn conceptual agreement into assigned work.</h2>
+        <div class="crosswalk-action-grid">
+          <article class="crosswalk-action-card">
+            <span>01 Start with concept</span>
+            <strong>Pick the brief idea under discussion.</strong>
+            <p>Use the crosswalk row to keep the conversation anchored to one concept at a time.</p>
+          </article>
+          <article class="crosswalk-action-card">
+            <span>02 Follow the links</span>
+            <strong>Open the relevant workstream pages.</strong>
+            <p>Review dependencies, decision type, phase, acceptance criteria, and blockers.</p>
+          </article>
+          <article class="crosswalk-action-card">
+            <span>03 Assign the gap</span>
+            <strong>Create or update the GitHub issue.</strong>
+            <p>Convert the unresolved input, decision, or evidence gap into an owner-backed action.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="crosswalkWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="crosswalkWorkstreamsTitle">Where crosswalk gaps should be routed</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>Architecture framing</a>
+          <a href="implementation/02-repository-taxonomy.html"><span class="step-id">DMS-02</span>Repository taxonomy</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Governance workflow</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal specification</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Gap analysis</a>
+          <a href="implementation/14-open-decisions.html"><span class="step-id">DMS-14</span>Open decisions</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

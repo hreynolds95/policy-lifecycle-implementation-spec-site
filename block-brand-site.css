@@ -1894,6 +1894,103 @@ h1 {
   padding-top: 0.48rem;
 }
 
+.crosswalk-intro,
+.crosswalk-table-panel,
+.crosswalk-action-panel {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.crosswalk-priority-panel {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-guidance);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: var(--ui-gap-lg);
+  padding: var(--ui-card-padding-lg);
+}
+
+.crosswalk-priority-head {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.crosswalk-priority-head h2 {
+  color: var(--ink);
+  font-size: clamp(1.12rem, 1.5vw, 1.42rem);
+  letter-spacing: -0.02em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.crosswalk-priority-grid,
+.crosswalk-action-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.crosswalk-priority-card,
+.crosswalk-action-card {
+  border: 1px solid var(--line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-subtle);
+  display: grid;
+  gap: 0.34rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.crosswalk-priority-card.is-critical {
+  border-color: rgba(255, 217, 102, 0.42);
+}
+
+.crosswalk-priority-card span,
+.crosswalk-action-card span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.crosswalk-priority-card strong,
+.crosswalk-action-card strong,
+.crosswalk-table td:first-child {
+  color: var(--ink);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.crosswalk-priority-card p,
+.crosswalk-action-card p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.crosswalk-table-wrap {
+  overflow-x: auto;
+  margin-top: var(--ui-gap-md);
+}
+
+.crosswalk-table {
+  min-width: 1120px;
+}
+
+.crosswalk-table a {
+  color: var(--accent-2);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.crosswalk-table a:hover {
+  color: var(--accent);
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -5352,6 +5449,16 @@ pre {
   .story-scenario-card,
   .story-evidence-card,
   .story-role-card {
+    min-height: 0;
+  }
+
+  .crosswalk-priority-grid,
+  .crosswalk-action-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crosswalk-priority-card,
+  .crosswalk-action-card {
     min-height: 0;
   }
 

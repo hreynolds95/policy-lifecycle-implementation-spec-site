@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Surfaces, One System</title>
+    <meta
+      name="description"
+      content="Educational overview of the Policy Library Portal and GitHub Backend surfaces in the Block compliance DMS."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block surface-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>Two Surfaces, One System</h1>
+        </div>
+        <p class="subtitle">
+          The DMS separates the employee experience from the governance engine. Staff use a simple
+          policy library portal; document owners, submitters, and the Policy Governance Team use GitHub
+          to manage controlled changes, approvals, exceptions, and evidence.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section surface-model-intro" aria-labelledby="surfaceModelTitle">
+        <span class="implementation-eyebrow">Operating Model</span>
+        <h2 id="surfaceModelTitle">The portal is the front door. GitHub is the control plane.</h2>
+        <p>
+          This split is what makes the DMS usable for the company while still satisfying governance,
+          audit, and approval requirements. Most employees never need to learn GitHub. The controlled
+          GitHub workflow remains available for the people accountable for document changes.
+        </p>
+      </section>
+
+      <section class="surface-comparison" aria-label="Surface comparison">
+        <article class="surface-card is-portal">
+          <span class="surface-label">Surface 01</span>
+          <h2>Policy Library Portal</h2>
+          <p class="surface-summary">
+            Staff-facing website for finding, reading, and requesting compliance documents without
+            requiring GitHub training.
+          </p>
+          <dl class="surface-facts">
+            <div>
+              <dt>Primary users</dt>
+              <dd>All Block employees</dd>
+            </div>
+            <div>
+              <dt>Core jobs</dt>
+              <dd>Search, filter, view metadata, open PDFs, ask Quincy, initiate requests.</dd>
+            </div>
+            <div>
+              <dt>GitHub required?</dt>
+              <dd>No for standard staff use.</dd>
+            </div>
+          </dl>
+          <a class="surface-link" href="https://hreynolds95.github.io/block-compliance-policies/">
+            View portal PoC
+          </a>
+        </article>
+
+        <article class="surface-card is-backend">
+          <span class="surface-label">Surface 02</span>
+          <h2>GitHub Backend</h2>
+          <p class="surface-summary">
+            Governance engine for version-controlled content, review branches, approval gates, audit
+            logs, exception tracking, and publication automation.
+          </p>
+          <dl class="surface-facts">
+            <div>
+              <dt>Primary users</dt>
+              <dd>Document Owners, Submitters, Policy Governance Team</dd>
+            </div>
+            <div>
+              <dt>Core jobs</dt>
+              <dd>Edit documents, review diffs, route approvals, merge, publish, retain evidence.</dd>
+            </div>
+            <div>
+              <dt>GitHub required?</dt>
+              <dd>Yes for governed document changes.</dd>
+            </div>
+          </dl>
+          <a class="surface-link" href="implementation/">
+            Open implementation plan
+          </a>
+        </article>
+      </section>
+
+      <section class="implementation-section surface-flow" aria-labelledby="surfaceFlowTitle">
+        <span class="implementation-eyebrow">How Work Moves</span>
+        <h2 id="surfaceFlowTitle">A policy change can start simply and still end with a complete audit record.</h2>
+        <div class="surface-flow-grid">
+          <div class="surface-flow-step">
+            <span>01</span>
+            <strong>Find or request</strong>
+            <p>Employees use the portal to search the library, view current documents, or initiate a request.</p>
+          </div>
+          <div class="surface-flow-step">
+            <span>02</span>
+            <strong>Govern the change</strong>
+            <p>GitHub creates the controlled record: issue, branch, pull request, review, approval, and merge.</p>
+          </div>
+          <div class="surface-flow-step">
+            <span>03</span>
+            <strong>Publish evidence</strong>
+            <p>The merged source creates the published record, audit trail, PDF output, and notification evidence.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="surfaceWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="surfaceWorkstreamsTitle">Where this model is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/01-architecture-overview.html"><span class="step-id">DMS-01</span>Architecture boundaries</a>
+          <a href="implementation/03-access-control.html"><span class="step-id">DMS-03</span>Role and access model</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Governance workflow</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Portal experience</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Awareness automation</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness evidence</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

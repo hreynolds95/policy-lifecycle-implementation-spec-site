@@ -15,13 +15,22 @@
     { href: 'spec-explorer.html#specExplorer', label: 'Reference Spec' },
   ];
 
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname.replace(/\/+$/, '/');
+  const currentPage = currentPath.split('/').pop() || 'index.html';
+
+  const isCurrentItem = (item) => {
+    if (item.href === 'implementation/') {
+      return currentPath.endsWith('/implementation/') || currentPath.endsWith('/implementation/index.html');
+    }
+
+    const target = item.match || item.href.split('#')[0];
+    return target === currentPage;
+  };
 
   document.querySelectorAll('[data-site-nav]').forEach((nav) => {
     nav.innerHTML = navItems
       .map((item) => {
-        const target = item.match || item.href.split('#')[0];
-        const isCurrent = target === currentPage;
+        const isCurrent = isCurrentItem(item);
         const currentAttr = isCurrent ? ' aria-current="page"' : '';
         return `<a href="${item.href}"${currentAttr}>${item.label}</a>`;
       })

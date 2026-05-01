@@ -1804,7 +1804,7 @@ h1 {
 }
 
 .story-scenario-head h2 {
-  color: #242a31;
+  color: var(--ink);
   font-size: clamp(1.12rem, 1.5vw, 1.42rem);
   letter-spacing: -0.02em;
   line-height: 1.16;
@@ -1840,7 +1840,8 @@ h1 {
 .story-role-card {
   border: 1px solid var(--card-line);
   border-radius: var(--ui-card-radius);
-  background: var(--surface-gradient-info);
+  background: var(--surface-subtle);
+  border-color: var(--line);
   display: grid;
   gap: 0.34rem;
   padding: var(--ui-card-padding-md);
@@ -1859,7 +1860,7 @@ h1 {
 .story-step-card span,
 .story-evidence-card span,
 .story-role-card span {
-  color: var(--label-ink);
+  color: var(--muted);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -1869,7 +1870,7 @@ h1 {
 .story-scenario-card strong,
 .story-step-card strong,
 .story-evidence-card strong {
-  color: #242a31;
+  color: var(--ink);
   font-size: 0.94rem;
   line-height: 1.18;
 }
@@ -1879,7 +1880,7 @@ h1 {
 .story-step-card em,
 .story-evidence-card p,
 .story-role-card p {
-  color: #4e5d6b;
+  color: var(--muted);
   font-size: 0.8rem;
   font-style: normal;
   font-weight: 600;
@@ -1888,7 +1889,7 @@ h1 {
 }
 
 .story-step-card em {
-  border-top: 1px solid var(--card-line);
+  border-top: 1px solid var(--line);
   margin-top: 0.2rem;
   padding-top: 0.48rem;
 }
@@ -4543,48 +4544,6 @@ summary,
 .glossary-principle-card,
 .glossary-card {
   background: var(--surface-subtle);
-  border-color: var(--line);
-}
-
-.story-scenario-card p,
-.story-step-card p,
-.story-step-card em,
-.story-evidence-card p,
-.story-role-card p {
-  color: var(--muted);
-}
-
-.story-scenario-card span,
-.story-step-card span,
-.story-evidence-card span,
-.story-role-card span {
-  color: var(--muted);
-}
-
-.story-scenario-head h2,
-.story-scenario-card strong,
-.story-step-card strong,
-.story-evidence-card strong {
-  color: var(--ink);
-}
-
-.story-scenario-panel {
-  background: var(--surface-gradient-guidance);
-}
-
-.story-scenario-card,
-.story-step-card,
-.story-evidence-card,
-.story-role-card {
-  background: var(--surface-subtle);
-  border-color: var(--line);
-}
-
-.story-step-card.is-final {
-  border-color: rgba(50, 223, 182, 0.42);
-}
-
-.story-step-card em {
   border-color: var(--line);
 }
 

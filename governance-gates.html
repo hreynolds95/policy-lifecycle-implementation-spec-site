@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Governance Gate Sequence</title>
+    <meta
+      name="description"
+      content="Visual explanation of the GitHub DMS governance gate sequence: validate, role enforce, route, approve, merge, publish, audit, and notify."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block gate-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Governance Gate Sequence</h1>
+        </div>
+        <p class="subtitle">
+          Every governed document change must clear a consistent set of automated gates before it
+          becomes a published record. The sequence makes the PR the redline, the approval path, and
+          the audit trail.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section gate-intro" aria-labelledby="gateIntroTitle">
+        <span class="implementation-eyebrow">Gate Logic</span>
+        <h2 id="gateIntroTitle">The merge is blocked until the right evidence exists.</h2>
+        <p>
+          The DMS uses GitHub checks, ownership rules, tier routing, and approval labels to prevent
+          uncontrolled publication. If a document has the wrong metadata, wrong submitter, wrong tier
+          label, or missing approval, the workflow does not merge.
+        </p>
+      </section>
+
+      <section class="gate-sequence-panel" aria-labelledby="gateSequenceTitle">
+        <div class="gate-sequence-head">
+          <span class="implementation-eyebrow">Visual Sequence</span>
+          <h2 id="gateSequenceTitle">Validate -> Role Enforce -> Route -> Approve</h2>
+        </div>
+        <div class="gate-sequence" aria-label="Governance gate sequence">
+          <article class="gate-step">
+            <span class="gate-step-id">Gate 01</span>
+            <h3>Validate</h3>
+            <p>Frontmatter fields are correct, required headings exist, and template requirements pass.</p>
+            <strong>Evidence: validation check</strong>
+          </article>
+          <span class="gate-arrow" aria-hidden="true">-&gt;</span>
+          <article class="gate-step">
+            <span class="gate-step-id">Gate 02</span>
+            <h3>Role Enforce</h3>
+            <p>Correct submitter is confirmed and prohibited owner self-approval is blocked.</p>
+            <strong>Evidence: role check</strong>
+          </article>
+          <span class="gate-arrow" aria-hidden="true">-&gt;</span>
+          <article class="gate-step">
+            <span class="gate-step-id">Gate 03</span>
+            <h3>Route</h3>
+            <p>Tier is detected, approval checklist is posted, and the correct review path is selected.</p>
+            <strong>Evidence: routing record</strong>
+          </article>
+          <span class="gate-arrow" aria-hidden="true">-&gt;</span>
+          <article class="gate-step is-critical">
+            <span class="gate-step-id">Gate 04</span>
+            <h3>Approve</h3>
+            <p>Merge remains blocked until the tier-appropriate approval label is applied.</p>
+            <strong>Evidence: approval label</strong>
+          </article>
+        </div>
+        <div class="gate-publish-flow" aria-label="Post approval publication flow">
+          <span>Merge</span>
+          <span aria-hidden="true">-&gt;</span>
+          <span>Publish</span>
+          <span aria-hidden="true">-&gt;</span>
+          <span>Audit log entry</span>
+          <span aria-hidden="true">-&gt;</span>
+          <span>Stakeholder notification</span>
+        </div>
+      </section>
+
+      <section class="implementation-section gate-tier-panel" aria-labelledby="gateTierTitle">
+        <span class="implementation-eyebrow">Approval Tiers</span>
+        <h2 id="gateTierTitle">The label must match the document tier.</h2>
+        <div class="gate-tier-grid">
+          <div class="gate-tier-card">
+            <span>Tier 1</span>
+            <strong>Board</strong>
+            <p>Board-level approval evidence must be confirmed before the approval gate passes.</p>
+          </div>
+          <div class="gate-tier-card">
+            <span>Tier 2</span>
+            <strong>Committee</strong>
+            <p>Committee path applies where the Policy on Policies requires intermediate governance approval.</p>
+          </div>
+          <div class="gate-tier-card">
+            <span>Tier 3</span>
+            <strong>Owner</strong>
+            <p>Owner-level approval is accepted only where the document tier and change type allow it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="gateWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="gateWorkstreamsTitle">Where gate design is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/03-access-control.html"><span class="step-id">DMS-03</span>Role enforcement</a>
+          <a href="implementation/04-governance-workflow.html"><span class="step-id">DMS-04</span>Approval workflow</a>
+          <a href="implementation/06-template-enforcement.html"><span class="step-id">DMS-06</span>Template validation</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Notifications</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Readiness evidence</a>
+          <a href="implementation/12-legacy-migration.html"><span class="step-id">DMS-12</span>Audit continuity</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

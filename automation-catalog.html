@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DMS Automation Catalog</title>
+    <meta
+      name="description"
+      content="Catalog of continuous automations in the Block compliance DMS, including review reminders, exception expiry alerts, monthly digest, and orphan detection."
+    />
+    <link rel="stylesheet" href="block-brand-site.css" />
+  </head>
+  <body class="theme-block automation-page">
+    <a class="skip-link" href="#mainContent">Skip to Main Content</a>
+    <main class="wrap implementation-shell" id="mainContent" tabindex="-1">
+      <header class="hero card">
+        <div class="hero-title-row">
+          <div class="hero-brand" aria-label="Block">
+            <img
+              class="hero-logo"
+              src="assets/block-lockup-black-no-padding.png"
+              alt="Block logo"
+              width="118"
+              height="26"
+            />
+          </div>
+          <span class="hero-title-divider" aria-hidden="true"></span>
+          <h1>DMS Automation Catalog</h1>
+        </div>
+        <p class="subtitle">
+          The DMS should not wait for humans to notice overdue reviews, expiring exceptions, missing
+          owners, or portfolio drift. These automations turn recurring governance checks into
+          structured GitHub records.
+        </p>
+      </header>
+
+      <nav class="implementation-nav" aria-label="Page navigation">
+        <a href="./">Home</a>
+        <a href="two-surfaces.html">Two Surfaces</a>
+        <a href="role-experience.html">Role Experience</a>
+        <a href="governance-gates.html">Governance Gates</a>
+        <a href="readiness-matrix.html">Readiness Matrix</a>
+        <a href="implementation/">Action Plan</a>
+        <a href="spec-explorer.html#specExplorer">Reference Spec</a>
+      </nav>
+
+      <section class="implementation-section automation-intro" aria-labelledby="automationIntroTitle">
+        <span class="implementation-eyebrow">Automation Principle</span>
+        <h2 id="automationIntroTitle">Recurring governance work becomes scheduled evidence.</h2>
+        <p>
+          Each automation has a defined cadence, source signal, output record, and owner queue. The
+          goal is not just notification. The goal is to create a durable record that shows the control
+          ran, what it found, and what follow-up was required.
+        </p>
+      </section>
+
+      <section class="automation-summary-grid" aria-label="Automation summary">
+        <div class="automation-summary-card">
+          <span>Cadences</span>
+          <strong>Daily / Weekly / Monthly</strong>
+          <p>Controls run on a predictable schedule instead of relying on manual reminders.</p>
+        </div>
+        <div class="automation-summary-card is-record">
+          <span>Primary Output</span>
+          <strong>GitHub Issue</strong>
+          <p>Each exception, reminder, orphan, or digest becomes a structured work item.</p>
+        </div>
+        <div class="automation-summary-card is-evidence">
+          <span>Evidence</span>
+          <strong>Audit Trail</strong>
+          <p>Issues, labels, workflow logs, and linked records prove the control operated.</p>
+        </div>
+      </section>
+
+      <section class="implementation-section automation-catalog-panel" aria-labelledby="automationCatalogTitle">
+        <span class="implementation-eyebrow">Catalog</span>
+        <h2 id="automationCatalogTitle">Continuous automations in scope</h2>
+        <div class="automation-table-wrap">
+          <table class="implementation-table automation-table">
+            <thead>
+              <tr>
+                <th>Automation</th>
+                <th>Cadence</th>
+                <th>Trigger Signal</th>
+                <th>Output</th>
+                <th>Control Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Review reminders</td>
+                <td><span class="automation-cadence is-daily">Daily</span></td>
+                <td>Document review date reaches 90, 60, or 30 days out.</td>
+                <td>GitHub issue opened for upcoming review.</td>
+                <td>Prevents stale policies and creates evidence that review owners were prompted.</td>
+              </tr>
+              <tr>
+                <td>Exception expiry alerts</td>
+                <td><span class="automation-cadence is-daily">Daily</span></td>
+                <td>Approved exception reaches 30 days before expiry.</td>
+                <td>Renewal issue opened with exception context.</td>
+                <td>Prevents expired exceptions from persisting without review.</td>
+              </tr>
+              <tr>
+                <td>Portfolio digest</td>
+                <td><span class="automation-cadence is-monthly">Monthly</span></td>
+                <td>First day of each month.</td>
+                <td>GitHub issue summarizing published docs, due reviews, overdue items, and open exceptions.</td>
+                <td>Creates a recurring portfolio health snapshot for governance review.</td>
+              </tr>
+              <tr>
+                <td>Orphan detection</td>
+                <td><span class="automation-cadence is-weekly">Weekly</span></td>
+                <td>Document has no active owner or owner signal is inactive.</td>
+                <td>Issue opened for reassignment and escalation.</td>
+                <td>Prevents documents from losing accountable ownership.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="implementation-section automation-records" aria-labelledby="automationRecordsTitle">
+        <span class="implementation-eyebrow">Record Design</span>
+        <h2 id="automationRecordsTitle">Every automation should leave the same basic evidence shape.</h2>
+        <div class="automation-record-grid">
+          <div class="automation-record-card">
+            <span>01</span>
+            <strong>Source signal</strong>
+            <p>The registry, exception record, review date, or owner status that caused the automation to run.</p>
+          </div>
+          <div class="automation-record-card">
+            <span>02</span>
+            <strong>Generated issue</strong>
+            <p>The structured GitHub issue that captures owner, due date, context, and required follow-up.</p>
+          </div>
+          <div class="automation-record-card">
+            <span>03</span>
+            <strong>Workflow log</strong>
+            <p>The GitHub Actions run that proves when the control executed and whether it succeeded.</p>
+          </div>
+          <div class="automation-record-card">
+            <span>04</span>
+            <strong>Closure evidence</strong>
+            <p>The linked PR, decision, renewal, reassignment, or governance note that resolves the issue.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="implementation-section surface-workstreams" aria-labelledby="automationWorkstreamsTitle">
+        <span class="implementation-eyebrow">Related Workstreams</span>
+        <h2 id="automationWorkstreamsTitle">Where automation work is implemented</h2>
+        <div class="surface-workstream-grid">
+          <a href="implementation/05-exception-handling.html"><span class="step-id">DMS-05</span>Exception renewal</a>
+          <a href="implementation/07-portal-specification.html"><span class="step-id">DMS-07</span>Request initiation</a>
+          <a href="implementation/08-awareness-communications.html"><span class="step-id">DMS-08</span>Digest and notifications</a>
+          <a href="implementation/09-orphaned-documents.html"><span class="step-id">DMS-09</span>Orphan detection</a>
+          <a href="implementation/11-gap-analysis.html"><span class="step-id">DMS-11</span>Evidence mapping</a>
+          <a href="implementation/13-roadmap.html"><span class="step-id">DMS-13</span>Automation sequencing</a>
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site metadata">
+        <p class="site-credit">Built by hreynolds</p>
+      </footer>
+    </main>
+  </body>
+</html>

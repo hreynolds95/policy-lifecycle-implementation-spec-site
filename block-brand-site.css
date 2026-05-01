@@ -1209,6 +1209,145 @@ h1 {
   margin: 0;
 }
 
+.automation-intro,
+.automation-catalog-panel,
+.automation-records {
+  display: grid;
+  gap: var(--ui-gap-sm);
+}
+
+.automation-summary-grid {
+  display: grid;
+  gap: var(--ui-gap-lg);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.automation-summary-card {
+  border: 1px solid rgba(124, 172, 255, 0.36);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  gap: 0.24rem;
+  padding: var(--ui-card-padding-lg);
+}
+
+.automation-summary-card.is-record {
+  border-color: rgba(50, 223, 182, 0.38);
+}
+
+.automation-summary-card.is-evidence {
+  border-color: rgba(255, 217, 102, 0.38);
+}
+
+.automation-summary-card span {
+  color: var(--label-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.automation-summary-card strong {
+  color: #242a31;
+  font-size: clamp(1.05rem, 1.45vw, 1.36rem);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.automation-summary-card p {
+  color: #4e5d6b;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
+.automation-table-wrap {
+  overflow-x: auto;
+  margin-top: var(--ui-gap-md);
+}
+
+.automation-table {
+  min-width: 1040px;
+}
+
+.automation-table td:first-child {
+  color: #27313b;
+  font-weight: 800;
+}
+
+.automation-cadence {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid #cbd5de;
+  border-radius: var(--ui-chip-radius);
+  padding: 0.14rem 0.48rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.automation-cadence.is-daily {
+  background: rgba(163, 215, 149, 0.15);
+  border-color: rgba(163, 215, 149, 0.38);
+  color: #234b38;
+}
+
+.automation-cadence.is-weekly {
+  background: rgba(124, 172, 255, 0.15);
+  border-color: rgba(124, 172, 255, 0.38);
+  color: #2f4d78;
+}
+
+.automation-cadence.is-monthly {
+  background: rgba(255, 217, 102, 0.15);
+  border-color: rgba(255, 217, 102, 0.38);
+  color: #6a570d;
+}
+
+.automation-record-grid {
+  display: grid;
+  gap: var(--ui-gap-md);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: var(--ui-gap-md);
+}
+
+.automation-record-card {
+  border: 1px solid var(--card-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--surface-gradient-info);
+  display: grid;
+  gap: 0.24rem;
+  padding: var(--ui-card-padding-md);
+}
+
+.automation-record-card span {
+  color: var(--label-ink);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.automation-record-card strong {
+  color: #242a31;
+  font-size: 0.94rem;
+  line-height: 1.18;
+}
+
+.automation-record-card p {
+  color: #4e5d6b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.36;
+  margin: 0;
+}
+
 .advanced-panel {
   margin-bottom: var(--space-2);
   border: 1px solid var(--card-line);
@@ -3528,6 +3667,8 @@ details,
 .gate-tier-card p,
 .readiness-summary-card p,
 .phase-input-card p,
+.automation-summary-card p,
+.automation-record-card p,
 .landing-path span:last-child,
 .start-decision-card span,
 .workplan-command-copy p,
@@ -3561,6 +3702,8 @@ details,
 .gate-tier-card span,
 .readiness-summary-card span,
 .phase-input-card span,
+.automation-summary-card span,
+.automation-record-card span,
 .start-here-label,
 .landing-path-label,
 .landing-next-label,
@@ -3621,6 +3764,9 @@ summary,
 .readiness-summary-card strong,
 .readiness-matrix td:first-child,
 .phase-input-card strong,
+.automation-summary-card strong,
+.automation-table td:first-child,
+.automation-record-card strong,
 .landing-path strong,
 .start-here-copy h2,
 .start-decision-card strong,
@@ -3654,6 +3800,8 @@ summary,
 .gate-tier-card,
 .readiness-summary-card,
 .phase-input-card,
+.automation-summary-card,
+.automation-record-card,
 .workplan-command-center.meeting-mode-toggle,
 .plan-overview,
 .readiness-gate-panel,
@@ -3702,6 +3850,8 @@ summary,
 .gate-tier-card,
 .readiness-summary-card,
 .phase-input-card,
+.automation-summary-card,
+.automation-record-card,
 .landing-path,
 .workplan-command-metrics span,
 .review-blocker-card,
@@ -3773,6 +3923,36 @@ summary,
   background: rgba(124, 172, 255, 0.15);
   border-color: rgba(124, 172, 255, 0.38);
   color: var(--info);
+}
+
+.automation-summary-card {
+  border-color: rgba(124, 172, 255, 0.38);
+}
+
+.automation-summary-card.is-record {
+  border-color: rgba(50, 223, 182, 0.38);
+}
+
+.automation-summary-card.is-evidence {
+  border-color: rgba(255, 217, 102, 0.38);
+}
+
+.automation-cadence.is-daily {
+  background: rgba(163, 215, 149, 0.15);
+  border-color: rgba(163, 215, 149, 0.38);
+  color: var(--success);
+}
+
+.automation-cadence.is-weekly {
+  background: rgba(124, 172, 255, 0.15);
+  border-color: rgba(124, 172, 255, 0.38);
+  color: var(--info);
+}
+
+.automation-cadence.is-monthly {
+  background: rgba(255, 217, 102, 0.15);
+  border-color: rgba(255, 217, 102, 0.38);
+  color: var(--warning);
 }
 
 .landing-path.primary-path,
@@ -4462,6 +4642,8 @@ pre {
   .gate-tier-grid,
   .readiness-summary-grid,
   .phase-input-grid,
+  .automation-summary-grid,
+  .automation-record-grid,
   .start-decision-grid {
     grid-template-columns: 1fr;
   }
@@ -4471,7 +4653,8 @@ pre {
   .surface-flow-step,
   .role-card,
   .gate-step,
-  .readiness-summary-card {
+  .readiness-summary-card,
+  .automation-summary-card {
     min-height: 0;
   }
 
@@ -4498,6 +4681,10 @@ pre {
   }
 
   .readiness-matrix {
+    min-width: 900px;
+  }
+
+  .automation-table {
     min-width: 900px;
   }
 
